@@ -25,7 +25,11 @@ A proposed journey from the creator:
 3. Present exercises in an interactive interface that help with that particular struggle.
 4. Organize the experience around twelve steps.
 
-The preferred initial direction is an app inside ChatGPT. If its limitations prevent the desired experience, a standalone agent using OpenAI APIs is an option. Current platform capabilities, alpha access, persistence, and distribution rules still need verification.
+The initial direction explored an app inside ChatGPT. The creator is now considering a standalone app using OpenAI APIs, accessible on mobile and desktop, to support a stronger exercise-centered experience. The platform decision remains open; a responsive web prototype is the current strategy recommendation. A future ChatGPT integration remains possible.
+
+Exercises should be generated for each person based on the problems they are trying to address. The agent should personalize prompts, content, and exercise structure, with a UI that adapts to the practice. A proposed implementation is to compose reliable interactive components from validated exercise specifications.
+
+See the [supplied research](../research/soulfire-research-dossier.md) and [proposed strategy](../strategy/product-strategy.md) for research implications, architecture, and next moves. Research recommendations are inputs for review rather than automatically adopted doctrine.
 
 ## Proposals discussed, not yet settled
 
