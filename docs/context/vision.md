@@ -4,6 +4,8 @@
 
 Soulfire is an experimental AI companion with elements of a mental health coach, life coach, and Twelve Step sponsor. Its purpose is to help people move toward the next level they want in life and find spirituality as an anchor.
 
+The vision is a twelve-step spiritual program with interactive exercises for every step. It helps people deepen their connection to spirituality and apply spiritual principles to the mental health challenges and everyday life problems they are struggling with. Spiritual principles guide the companion's suggested solutions, practices, and practical responses, connecting reflection to action in daily life. This is the intended approach, rather than a promise that spirituality will solve every problem.
+
 The creative approach is inspired by Rick Rubin: make something meaningful, explore its usefulness through experimentation, and avoid making market size, positioning, or a predefined commercial use case the starting point. This describes the creator's intent, not a researched summary of Rubin's teachings.
 
 The Twelve Steps are the proposed backbone. The creator generalizes them beyond alcohol and addiction into a program oriented toward spiritual awakening. Initial interpretations of all twelve steps are captured in [Twelve Steps](twelve-steps.md). Daily prayer and meditation are central practices, and passing the practice on to others is part of the program.
@@ -14,7 +16,7 @@ Addiction and compulsive patterns remain central. The creator emphasizes that th
 
 ## Desired experience
 
-The companion should do more than converse. A strong interactive UI should let people practice exercises.
+The companion should do more than converse. A strong interactive UI should let people practice exercises for each of the twelve steps, with relevant spiritual principles and tools tailored to the struggles they bring.
 
 A proposed journey from the creator:
 
