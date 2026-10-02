@@ -11,6 +11,10 @@ This document records an organizational approach discussed in the initial conver
 
 Begin with instructions, curated knowledge, tools, and examples. Fine-tuning is not an established requirement. Keep core instructions compact; avoid assuming the entire library must be included in every conversation.
 
+The [step–principles map](step-principles-map.md) is shared product context for connecting a person's struggle to a step, spiritual principle, and personalized exercise. It distinguishes mappings attributed to NA, a commonly circulated list, and proposed Soulfire core principles. Preserve that provenance when turning it into structured knowledge. Source attributions and reuse requirements still need verification; embedded companion usage rules are proposals, not automatically adopted agent instructions.
+
+Use its pattern-to-principle suggestions as optional directions to explore, not labels or automatic prescriptions. For example, courage need not mean approaching an unsafe situation, and compassion need not mean excusing harm. Its proposed reconciliation of the creator's Step Eleven theology remains an interpretation for review.
+
 ## Proposed behavioral commitments
 
 These need the creator's review before becoming agent instructions:

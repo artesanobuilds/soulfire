@@ -6,6 +6,8 @@ Build a standalone responsive web prototype for phones and desktop, using OpenAI
 
 The defining experience is a twelve-step spiritual practice with personalized exercises for every step. Conversation discovers a person's struggle; interactive practice helps them apply spiritual principles; a small chosen action connects the practice to daily life.
 
+The [step–principles map](../context/step-principles-map.md) adds a shared vocabulary for this loop. Use it to inform exercise selection, principle explanations, and suggested actions while keeping the proposed Soulfire core distinct from fellowship-attributed mappings. A future structured catalog should retain step IDs, principle IDs, source/proposal status, and exercise links. These relationships support personalization across steps rather than requiring one principle per step or a rigid linear progression. The supplied map is reference context, not a mandatory policy for every interaction.
+
 A standalone app offers control over navigation, the twelve-step practice map, consent, saved progress, meditation interactions, and the relationship between chat and exercises. ChatGPT apps can support custom UI too; generative UI is not exclusive to standalone apps. Current platform limits and submission rules require verification rather than assumptions.
 
 Begin with one responsive web codebase. Validate actual phone and desktop use before investing in native apps. An installable web app can follow if useful, but background timers, audio, notifications, and screen-lock behavior require device testing. Revisit native development if those become essential.
