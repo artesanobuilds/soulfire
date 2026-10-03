@@ -48,6 +48,8 @@ Minimal abstract S monogram for Soulfire, two gently curved interlocking strokes
 
 ## Next design work
 
+[Landing palette comparison](landing-palette-comparison.png) places amber/charcoal and sage/gold in matching landing concepts, using logo A, text/voice entry, four starting topics, and practice previews. This is a generated image, not a functional page or exact color specification. Preview copy is exploratory; final surrender language should retain the higher-power grounding in the creator's framework.
+
 [Color exploration for A](logo-a-color-exploration.png) presents amber/charcoal, sage/gold, and terracotta/plum with wordmarks and icon applications. These are approximate image-generated previews; listed hex values are intended palette tokens, not verified pixel colors. No palette has been selected yet.
 
 [MidJourney-inspired landing and icon comparison](logo-landing-comparison.png) compares the selected sheltered-flame mark (middle row, third column of the supplied grid) with the flame S monogram (top row, second column). These are generated approximations, not exact reproductions or final vectors. The layouts are illustrative; suggested-topic labels in this image are not changes to the four agreed prototype journeys.
