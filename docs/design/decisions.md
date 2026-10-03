@@ -38,3 +38,15 @@ These are starting tokens from the exploration, not measured colors extracted fr
 Apply sage and gold across the practice screen as well as the landing. Replace the initial amber-tinted practice panels with a consistent sage treatment and restrained gold accents. See the [corrected concept](practice/first-practice-sage-gold.png); retain the [original](practice/archive/first-practice-concept-v1.png) as a superseded artifact.
 
 Organize artifacts by section: identity, landing, and practice. Preserve the existing explorations and update document links when moving them. The root index and decisions log tie the sections together.
+
+## D-003 · Proof of Concept One review refinements
+
+**Date:** October 3, 2026 (UTC)
+
+**Status:** Parent design reviewer approved the sage/ivory direction and requested these specific refinements; this does not settle the open theology or program decisions.
+
+Browser-native screens preserve the sheltered flame, selected palette, serif hierarchy and secondary conversation panel. The first implementation follows the strategy's bounded Steps 1/3/10/11 recommendation, with all twelve steps visible and later exercises explicitly marked. Four journey examples remain distinct and labeled. No accounts or automatic saving are implied.
+
+After reviewing mobile invitation, full acceptance practice, privacy and conflict screenshots, the reviewer requested: connection status beside the composer/voice controls; automatically expanding filled action/practice textareas; tested dialog focus trapping/restoration; short-height mobile checks. All are implemented. Native modal keyboard traversal needed an explicit first/last focus loop; Escape restores the invoking control. Practice fields remain editable and private until selected for sharing.
+
+Actual browser screenshots and the section gallery live in [review](review/index.html). Loading/service-error/microphone-denial captures are clearly identified as simulations. No live model or audio round-trip claim follows from those images.
