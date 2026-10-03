@@ -6,6 +6,7 @@ These documents capture the early creative direction for Soulfire. They are work
 - [Twelve Steps](twelve-steps.md): the original AA wording supplied by the creator, with space for a broader adaptation.
 - [Step–principles map](step-principles-map.md): supplied mapping of steps, spiritual principles, reflection questions, and exercise ideas. The Soulfire core selections and usage rules remain proposals.
 - [Agent foundation](agent-foundation.md): a proposed structure for knowledge, behavior, exercises, and evaluation.
+- [Additional perspectives](additional-perspectives.md): first integration draft for Jung, Maté, Ghiyam, and Hudson; conceptual lenses with differences left open.
 - [Research dossier](../research/soulfire-research-dossier.md): supplied research, preserved unchanged.
 - [Product strategy](../strategy/product-strategy.md): proposed standalone prototype, generated exercises, and next moves.
 

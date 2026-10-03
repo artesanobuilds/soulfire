@@ -75,6 +75,24 @@ Do not promise that unsaved responses are invisible to OpenAI. Distinguish:
 
 Keep raw private answers out of analytics, traces, and error reports. Review actual provider retention settings before making privacy claims. Browser-local persistent storage is not equivalent to encryption or secure backup. Start with ephemeral drafts; add accounts and persistence once their purpose and deletion controls are clear.
 
+## Text, dictation, and live voice
+
+The creator wants ChatGPT-like flexibility across three distinct interaction modes:
+
+- **Text:** type messages and exercise answers; read the companion's responses.
+- **Dictation:** speak into a message or an exercise field, review and edit the transcript, then explicitly submit it.
+- **Live voice:** speak with the companion, hear its responses, interrupt or mute playback, and return to text whenever useful.
+
+All modes share one conversation and exercise state. Switching modes must retain unsent drafts, submitted answers, and the person's place in the practice. Voice can guide an exercise while its interactive components remain visible; it must not submit or overwrite a private exercise answer without the person's choice.
+
+Design the composer with distinct dictation and voice-conversation controls, visible microphone/listening states, stop and mute controls, and readable transcripts. Explain that live voice sends speech for processing as the person speaks, whereas dictation produces an editable draft before message submission. If transcription uses a cloud service, that audio has already been transmitted for transcription even when the draft is never submitted. Permission denial or microphone failure should leave text usable.
+
+Plan separate technical paths for speech-to-text dictation and low-latency voice conversation. Evaluate OpenAI transcription, speech generation, and Realtime capabilities against current official documentation, browser support, latency, and cost. Shared backend tools should generate the same validated exercise specifications regardless of input mode. Coordinate state updates and turn IDs to prevent duplicate submissions when a person switches modes or interrupts a response. Long-lived API credentials remain on the server; any direct browser voice session must use supported short-lived credentials.
+
+Raw audio and transcripts should not be retained by Soulfire by default or copied into analytics and traces. Review provider processing and retention separately. Spoken responses are optional for sensitive material, and the app must make playback controllable. Do not infer mood, diagnoses, or sincerity from vocal characteristics.
+
+Include typed input and dictation in the first working loop, followed by an early live-voice iteration rather than treating voice as a distant enhancement. Validate switching mid-exercise, edited transcripts, interrupted speech, background/screen-lock behavior, slow networks, and recovery after disconnection on phones and desktop. Meditation needs a quiet state that stops companion playback and clearly indicates whether the microphone is active.
+
 ## First prototype
 
 Show all twelve steps as a practice map. Initially implement a complete, personalized loop using Steps 1, 3, 10, and 11:
@@ -107,9 +125,10 @@ Obtain qualified review of high-stakes coaching, crisis, withdrawal, trauma, and
 
 ## Recommended next moves
 
-1. Storyboard three contrasting journeys: work conflict, compulsive checking, and spiritual uncertainty. Specify generated exercise screens and the boundaries between private drafts, model sharing, and saving.
+1. Storyboard the creator's four selected journeys: addiction, anxiety, depression, and relationship conflict. See [prototype use cases](prototype-use-cases.md) for concrete scenarios, generated exercises, and boundaries. Include spiritual uncertainty as a variation across all four. Specify screens and the boundaries between private drafts, model sharing, and saving.
 2. Define the exercise schema, trusted component library, companion instructions, and a small reviewed knowledge set.
 3. Build the responsive prototype slice and test its actual functional loop on phone and desktop, including timer pause/resume and malformed-output fallbacks.
+   Include text and editable dictation, then add live voice using the same conversation and exercise state. Test mode switching and interruption before expanding the exercise library.
 4. Evaluate approximately 30 meaningful scenarios: ordinary struggles, differing beliefs, user corrections, shame, blame, no-contact amends, withdrawal, crisis, destabilizing meditation, dependency, and prompt injection. Evaluate UI specifications as well as conversational responses.
 5. Run a small consenting adult alpha after appropriate review. Ask whether the practice felt specific, useful, respectful, and doable, and whether it led to a real-world action. Investigate pressure, confusion, shame, and unwanted reliance. Completion and time spent are not measures of spiritual progress or clinical effectiveness.
 6. Expand to reviewed exercises for every step; add optional persistence, reminders, native capabilities, or a ChatGPT integration only when observed needs justify them.

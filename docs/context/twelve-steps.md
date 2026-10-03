@@ -47,6 +47,8 @@ Creator's wording:
 
 The emphasis is on applying this surrender to everyday conflicts and complications.
 
+Later clarification from the creator: surrender is the plain-language expression of Step Three—accepting the world as it is and turning things over to a higher power. The creator wants new perspectives to continue expanding the meaning of each step while remaining grounded in the Twelve Steps.
+
 ### Step 4: Moral inventory and resentments
 
 Creator's wording:
