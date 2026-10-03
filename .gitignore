@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.env*
+!.env.example
+test-results/
+playwright-report/
+*.tsbuildinfo
+.DS_Store
+# Standalone gallery is a Library deliverable; linked PNG gallery remains versioned.
+docs/design/review/soulfire-design-review.html
