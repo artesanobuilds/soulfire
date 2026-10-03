@@ -10,6 +10,8 @@ The creative approach is inspired by Rick Rubin: make something meaningful, expl
 
 The Twelve Steps are the proposed backbone. The creator generalizes them beyond alcohol and addiction into a program oriented toward spiritual awakening. Initial interpretations of all twelve steps are captured in [Twelve Steps](twelve-steps.md). Daily prayer and meditation are central practices, and passing the practice on to others is part of the program.
 
+The Twelve Steps remain the organizing foundation as the project evolves. Each step's meaning can deepen and expand through new perspectives, reflection, and experience. Connect additional teachings back to the relevant steps and consolidate overlapping language rather than continually introducing separate concepts. For example, the creator identifies surrender with Step Three's practice of accepting the world as it is and turning things over to a higher power.
+
 Carl Jung's teachings are another intended source. The creator sees a connection between Jung and the Steps. Historical claims and particular teachings need sourced research before becoming authoritative agent knowledge.
 
 Addiction and compulsive patterns remain central. The creator emphasizes that these can involve alcohol, drugs, pornography, gambling, shopping, and other behaviors, and believes many people struggle with patterns they do not recognize as addiction. This belief is part of the creative context, not a clinical claim that all such behaviors are equivalent or that most people have a diagnosable addiction.
@@ -17,6 +19,8 @@ Addiction and compulsive patterns remain central. The creator emphasizes that th
 ## Desired experience
 
 The companion should do more than converse. A strong interactive UI should let people practice exercises for each of the twelve steps, with relevant spiritual principles and tools tailored to the struggles they bring.
+
+Text, dictation, and live voice should be interchangeable, similar to the interaction flexibility of ChatGPT. A person can type, dictate an editable message, or speak with the companion and hear its response. Switching modes should preserve the conversation and the current exercise. Voice is a core part of the intended experience on mobile and desktop.
 
 A proposed journey from the creator:
 

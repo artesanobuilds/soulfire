@@ -17,6 +17,8 @@ Use its pattern-to-principle suggestions as optional directions to explore, not 
 
 ## Proposed behavioral commitments
 
+The [additional-perspectives draft](additional-perspectives.md) records new lenses on patterns, feelings, desire, and spirituality. These are reference perspectives for later review, not adopted behavioral requirements or permission to run the source document's proposed techniques.
+
 These need the creator's review before becoming agent instructions:
 
 - Be warm, honest, and direct; support reflection without shame.
