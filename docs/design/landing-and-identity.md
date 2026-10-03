@@ -48,4 +48,8 @@ Minimal abstract S monogram for Soulfire, two gently curved interlocking strokes
 
 ## Next design work
 
+[MidJourney-inspired landing and icon comparison](logo-landing-comparison.png) compares the selected sheltered-flame mark (middle row, third column of the supplied grid) with the flame S monogram (top row, second column). These are generated approximations, not exact reproductions or final vectors. The layouts are illustrative; suggested-topic labels in this image are not changes to the four agreed prototype journeys.
+
+[First desktop and mobile concept](landing-concept-01.png) is an image-generated visual exploration, not an implemented page. Its twelve-step labels are generated placeholders and do not represent our program; replace them with reviewed labels from the actual steps and principles map. The example exercise is illustrative. Final copy, processing disclosure, contrast, and responsive behavior require implementation review.
+
 Compare generated marks for feeling, distinctiveness, legibility, and fit with the landing concept. Choose a direction, refine a vector mark and wordmark, and build the landing as an interactive responsive prototype. Confirm colors and type through actual browser rendering, not only concept images.
