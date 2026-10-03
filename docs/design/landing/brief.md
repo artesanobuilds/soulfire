@@ -4,7 +4,7 @@ Working brand: **Soulfire**. Domain availability and trademark clearance are not
 
 ## Visual direction
 
-Selected direction: warm ivory surfaces, deep sage for the working logo and primary actions, antique gold for the flame and restrained accents, and charcoal body text. See [D-001 in the decisions log](decisions.md) for starting color tokens and rationale. Earlier amber explorations remain in the [artifact archive](README.md).
+Selected direction: warm ivory surfaces, deep sage for the working logo and primary actions, antique gold for the flame and restrained accents, and charcoal body text. See [D-001 in the decisions log](../decisions.md) for starting color tokens and rationale. Earlier amber explorations remain in the [artifact archive](../README.md).
 
 Spacious layouts, expressive but readable typography, accessible contrast, and subtle motion. Aim for warmth, clarity, and steadiness. Test both phone and desktop. Spiritual depth can emerge through language and pace rather than literal religious imagery.
 
@@ -52,9 +52,9 @@ Minimal abstract S monogram for Soulfire, two gently curved interlocking strokes
 
 [Landing palette comparison](landing-palette-comparison.png) places amber/charcoal and sage/gold in matching landing concepts, using logo A, text/voice entry, four starting topics, and practice previews. This is a generated image, not a functional page or exact color specification. Preview copy is exploratory; final surrender language should retain the higher-power grounding in the creator's framework.
 
-[Color exploration for A](logo-a-color-exploration.png) presents amber/charcoal, sage/gold, and terracotta/plum with wordmarks and icon applications. These are approximate image-generated previews; listed hex values are intended palette tokens, not verified pixel colors. Sage/gold is now selected; other palettes remain archived.
+[Color exploration for A](../identity/logo-a-color-exploration.png) presents amber/charcoal, sage/gold, and terracotta/plum with wordmarks and icon applications. These are approximate image-generated previews; listed hex values are intended palette tokens, not verified pixel colors. Sage/gold is now selected; other palettes remain archived.
 
-[MidJourney-inspired landing and icon comparison](logo-landing-comparison.png) compares the selected sheltered-flame mark (middle row, third column of the supplied grid) with the flame S monogram (top row, second column). These are generated approximations, not exact reproductions or final vectors. The layouts are illustrative; suggested-topic labels in this image are not changes to the four agreed prototype journeys.
+[MidJourney-inspired landing and icon comparison](../identity/logo-landing-comparison.png) compares the selected sheltered-flame mark (middle row, third column of the supplied grid) with the flame S monogram (top row, second column). These are generated approximations, not exact reproductions or final vectors. The layouts are illustrative; suggested-topic labels in this image are not changes to the four agreed prototype journeys.
 
 [First desktop and mobile concept](landing-concept-01.png) is an image-generated visual exploration, not an implemented page. Its twelve-step labels are generated placeholders and do not represent our program; replace them with reviewed labels from the actual steps and principles map. The example exercise is illustrative. Final copy, processing disclosure, contrast, and responsive behavior require implementation review.
 

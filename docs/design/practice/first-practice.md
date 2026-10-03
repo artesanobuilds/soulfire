@@ -1,6 +1,8 @@
 # First personalized practice: concept
 
-[Desktop and mobile mockup](first-practice-concept.png).
+[Desktop and mobile mockup](first-practice-sage-gold.png).
+
+Current version uses sage consistently for the headings, all three exercise groups, icons, and primary controls, with gold confined to the flame and small accents. The [earlier version](archive/first-practice-concept-v1.png) is retained as history, not the selected direction.
 
 Scenario: "I have a presentation tomorrow and can't stop worrying." Connect to Step One's acceptance practice, keeping agency in the next response. Copy and interactions are proposals, not final coaching instructions.
 
