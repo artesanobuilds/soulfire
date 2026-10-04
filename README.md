@@ -2,6 +2,14 @@
 
 A local, responsive practice prototype based on the repository vision and selected sage-and-gold design. The complete interaction loop and real OpenAI integrations are implemented. **Live model, cloud transcription and physical voice round trips still require an authorized API key and microphone consent; they have not been verified in this workspace.** Labeled examples are available without a key. This is not a public pilot or clinical product.
 
+**Taking over the project? Start with [the agent handoff](AGENT_HANDOFF.md).**
+
+- [Product context](docs/context/README.md)
+- [Product strategy](docs/strategy/product-strategy.md)
+- [Prototype journeys](docs/strategy/prototype-use-cases.md)
+- [Research](docs/research/README.md)
+- [Design archive](docs/design/README.md)
+
 ## Run locally
 
 Requires Node 22+ and npm. In this directory:
