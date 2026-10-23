@@ -8,6 +8,8 @@ export default defineConfig({
     baseURL: process.env.SOULFIRE_TEST_URL || "http://127.0.0.1:3100",
     headless: true,
     launchOptions: {
+      // Keep local browser tests silent without altering autoplay permission.
+      args: ["--mute-audio"],
       executablePath:
         process.env.CHROME_PATH ||
         (process.platform === "darwin"

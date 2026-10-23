@@ -1,3 +1,7 @@
+# Current location — October 23, 2026
+
+Authoritative source and Git working tree: `/Users/miguelalvarado/Coding/soulfire`. Preview: http://127.0.0.1:3100. Git origin remains https://github.com/artesanobuilds/soulfire.git. Current work includes immersive arrival, ambient audio, opt-in local practice persistence and verified real text generation. See `docs/implementation/live-ai-validation.md` for the latest acceptance evidence. Old Documents and /tmp copies are recovery/history, not the active project. See `docs/implementation/location-and-intro-controls.md` for migration evidence and current checks; the older handoff below is historical.
+
 # soulfire agent handoff
 
 Last reviewed: October 4, 2026. This handoff reconciles the earlier design snapshot with implementation commit `0dfcc8b`. Recheck Git status and current documents when resuming; later user instructions take precedence.

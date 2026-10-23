@@ -2,10 +2,16 @@ import { test, expect } from "@playwright/test";
 import { samples } from "../../src/lib/catalog";
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
+  await page
+    .getByRole("button", { name: "Begin journey", exact: true })
+    .click();
 });
 async function practice(page: import("@playwright/test").Page) {
   await page.getByRole("button", { name: /Try the example/ }).click();
   await page.getByRole("button", { name: "Try this practice" }).click();
+  await page
+    .getByRole("button", { name: "Show all prompts", exact: true })
+    .click();
 }
 test("full private loop, editing, movement, repeated controls and no overflow", async ({
   page,
@@ -103,6 +109,7 @@ test("simulated model transport renders validated responses and shares only chec
       },
     });
   });
+  await page.getByText("Make this space yours", { exact: true }).click();
   await page.getByLabel("Language that feels right").selectOption("plain");
   await page
     .getByLabel("What’s weighing on you today?")
@@ -112,11 +119,15 @@ test("simulated model transport renders validated responses and shares only chec
     .click();
   await page.getByRole("button", { name: "Try this practice" }).click();
   await page
+    .getByRole("button", { name: "Show all prompts", exact: true })
+    .click();
+  await page
     .getByLabel("Name what is here", { exact: true })
     .fill("SECRET-UNSELECTED");
   await page.getByRole("button", { name: "Continue", exact: true }).click();
   await page.getByRole("button", { name: "Skip quiet and reflect" }).click();
   await page.getByLabel("What did you notice?").fill("SELECTED-INSIGHT");
+  await page.getByText("Ask the companion to reflect", { exact: true }).click();
   await page.getByRole("checkbox", { name: /What I noticed/ }).check();
   await page.getByRole("button", { name: "Share selected & reflect" }).click();
   await expect(
@@ -248,6 +259,9 @@ test("short mobile viewport keeps all filled action text visible and status by c
     .getByRole("button", { name: "Conflict with someone", exact: true })
     .click();
   await page.getByRole("button", { name: "Try this practice" }).click();
+  await page
+    .getByRole("button", { name: "Show all prompts", exact: true })
+    .click();
   const action = page.getByLabel("My next action", { exact: true });
   await action.fill(
     "If we both feel ready, I will acknowledge my hurtful words without demanding a response. I will respect their choice and timing. I can take a pause and ask a trusted person for support first.",

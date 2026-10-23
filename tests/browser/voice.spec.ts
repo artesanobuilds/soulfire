@@ -86,6 +86,9 @@ async function simulate(page: import("@playwright/test").Page) {
     r.fulfill({ json: { text: "A dictated thought to edit." } }),
   );
   await page.goto("/");
+  await page
+    .getByRole("button", { name: "Begin journey", exact: true })
+    .click();
 }
 const state = (page: import("@playwright/test").Page) =>
   page.evaluate(() => {
@@ -116,6 +119,10 @@ test("dictation remains editable and targets a private field without model submi
   });
   await page.getByRole("button", { name: /Try the example/ }).click();
   await page.getByRole("button", { name: "Try this practice" }).click();
+  await page
+    .getByRole("button", { name: "Show all prompts", exact: true })
+    .click();
+  await page.locator(".companion-disclosure:visible > summary").click();
   await page.getByLabel("Dictation destination").selectOption("feeling");
   await page.getByRole("button", { name: "Dictate", exact: true }).click();
   await expect(
@@ -135,13 +142,37 @@ test("dictation remains editable and targets a private field without model submi
 test("live protocol merges transcripts once, interrupts, mutes and cleans up for quiet", async ({
   page,
 }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("soulfire.ambient.enabled", "off");
+    const list: HTMLAudioElement[] = [];
+    Object.defineProperty(window, "__ambientAudio", { value: list });
+    const NativeAudio = window.Audio;
+    window.Audio = class extends NativeAudio {
+      constructor(src?: string) {
+        super(src);
+        this.muted = true;
+        list.push(this);
+      }
+    };
+  });
   await simulate(page);
+  await page.getByText("Sound off", { exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "Play sound", exact: true }),
+  ).toBeEnabled();
+  await page.getByRole("button", { name: "Play sound", exact: true }).click();
+  await expect(page.getByText("Sound on", { exact: true })).toBeVisible();
+  await page.getByText("Sound on", { exact: true }).click();
   let handshake = "";
   page.on("request", (r) => {
     if (r.url().includes("/api/realtime")) handshake = r.postData() || "";
   });
   await page.getByRole("button", { name: /Try the example/ }).click();
   await page.getByRole("button", { name: "Try this practice" }).click();
+  await page
+    .getByRole("button", { name: "Show all prompts", exact: true })
+    .click();
+  await page.locator(".companion-disclosure:visible > summary").click();
   await page
     .getByLabel("Name what is here", { exact: true })
     .fill("NEVER-SEND-PRIVATE");
@@ -151,6 +182,15 @@ test("live protocol merges transcripts once, interrupts, mutes and cleans up for
   await expect(
     page.getByText("Live voice · microphone on", { exact: true }),
   ).toBeVisible();
+  await expect
+    .poll(() =>
+      page.evaluate(() =>
+        (
+          window as unknown as { __ambientAudio: HTMLAudioElement[] }
+        ).__ambientAudio.every((a) => a.paused),
+      ),
+    )
+    .toBe(true);
   await page.evaluate(() => {
     const s = (
       window as unknown as { __voiceTest: { emit: (e: unknown) => void } }
@@ -193,6 +233,7 @@ test("live protocol merges transcripts once, interrupts, mutes and cleans up for
   await expect(
     page.getByLabel("Name what is here", { exact: true }),
   ).toHaveValue("NEVER-SEND-PRIVATE");
+  await page.locator(".companion-disclosure:visible > summary").click();
   await expect(page.getByLabel("Talk this through")).toHaveValue(
     "UNSENT-CONVERSATION",
   );

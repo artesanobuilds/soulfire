@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "source": "OpenAI Responses",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "httpStatus": 200,
+  "requests": 1,
+  "browserDirectProviderCalls": 0,
+  "elapsedMs": 3597,
+  "syntheticPrompt": "Synthetic test only: a fictional person is preparing a two-minute talk about paper airplanes tomorrow. Suggest a short plain-language practice separating useful preparation from uncontrollable audience reactions.",
+  "renderedPersonalizedPractice": true,
+  "physicalMicrophoneTested": false,
+  "providerReceiptPresent": true,
+  "unitTestsPassed": 45,
+  "browserTestsPassed": 70,
+  "productionBuild": "passed",
+  "typecheck": "passed",
+  "lint": "passed",
+  "credentialsCommitted": false,
+  "clientBundleSecretMatches": 0
+}

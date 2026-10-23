@@ -1,0 +1,51 @@
+{
+  "voice": "af_heart",
+  "speed": 0.84,
+  "sourceSeconds": 23.44654166666667,
+  "decodedSeconds": 23.466666666666665,
+  "sampleRate": 24000,
+  "finite": true,
+  "peakDbFS": -3.02623712594233,
+  "clippedSamples": 0,
+  "rmsDbFS": -22.395320493912088,
+  "directListening": false,
+  "ASR": "No installed recognizer or cached Whisper model found in the checked local locations; no model downloaded.",
+  "segments": [
+    {
+      "text": "Welcome to SoulFire.",
+      "start": 0.3,
+      "seconds": 1.6640416666666666,
+      "rmsDbFS": -20.9163544118716
+    },
+    {
+      "text": "A space to bring the principles of twelve-step practice into everyday life.",
+      "start": 2.664041666666667,
+      "seconds": 4.672,
+      "rmsDbFS": -21.321566463255586
+    },
+    {
+      "text": "Bring whatever is on your mind.",
+      "start": 8.236041666666667,
+      "seconds": 2.017541666666667,
+      "rmsDbFS": -21.23810835707832
+    },
+    {
+      "text": "Make room to reflect, pause for a moment of stillness if you choose,",
+      "start": 11.753583333333333,
+      "seconds": 4.2026666666666666,
+      "rmsDbFS": -20.80970703520859
+    },
+    {
+      "text": "and find one small action to carry into your day.",
+      "start": 17.45625,
+      "seconds": 3.1561666666666666,
+      "rmsDbFS": -21.094152200213774
+    },
+    {
+      "text": "You set the pace.",
+      "start": 21.46241666666667,
+      "seconds": 1.234125,
+      "rmsDbFS": -19.888256490312514
+    }
+  ]
+}

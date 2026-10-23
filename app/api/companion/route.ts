@@ -66,7 +66,14 @@ export async function POST(req: Request) {
         reply,
         provenance: {
           schemaVersion: 1,
-          model: process.env.OPENAI_MODEL || "gpt-4.1-mini",
+          model:
+            typeof data.model === "string"
+              ? data.model
+              : process.env.OPENAI_MODEL || "gpt-4.1-mini",
+          responseId:
+            typeof data.id === "string" && data.id.startsWith("resp_")
+              ? data.id
+              : undefined,
           source: "OpenAI Responses",
           references: [
             "creator-vision",

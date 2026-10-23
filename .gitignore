@@ -8,3 +8,20 @@ playwright-report/
 .DS_Store
 # Standalone gallery is a Library deliverable; linked PNG gallery remains versioned.
 docs/design/review/soulfire-design-review.html
+
+# Local scratch files, diagnostic logs and superseded review exports.
+:memory:.ses
+*.log
+__pycache__/
+docs/design/arrival-review/
+docs/design/audio-sun-fix/
+docs/design/autoplay-review/
+docs/design/immersive-review/
+docs/design/zen-review/
+docs/design/intro-controls-review/index.html
+docs/implementation/evidence/*browser-results.json
+docs/implementation/evidence/audio-retry-*.json
+docs/implementation/evidence/sun-glow-results.json
+docs/implementation/evidence/live-openai-smoke.json
+# Original download notes contain private account usage; public provenance is in README.md.
+assets/audio-originals/generation_notes.txt

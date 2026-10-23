@@ -1,0 +1,50 @@
+{
+  "provider": "Local Kokoro-82M via kokoro-onnx",
+  "voice": "af_heart",
+  "language": "en-us",
+  "speed": 0.84,
+  "seconds": 23.44654166666667,
+  "cues": [
+    0,
+    11.753583333333333,
+    17.45625
+  ],
+  "segments": [
+    {
+      "text": "Welcome to SoulFire.",
+      "start": 0.3,
+      "seconds": 1.6640416666666666
+    },
+    {
+      "text": "A space to bring the principles of twelve-step practice into everyday life.",
+      "start": 2.664041666666667,
+      "seconds": 4.672
+    },
+    {
+      "text": "Bring whatever is on your mind.",
+      "start": 8.236041666666667,
+      "seconds": 2.017541666666667
+    },
+    {
+      "text": "Make room to reflect, pause for a moment of stillness if you choose,",
+      "start": 11.753583333333333,
+      "seconds": 4.2026666666666666
+    },
+    {
+      "text": "and find one small action to carry into your day.",
+      "start": 17.45625,
+      "seconds": 3.1561666666666666
+    },
+    {
+      "text": "You set the pace.",
+      "start": 21.46241666666667,
+      "seconds": 1.234125
+    }
+  ],
+  "sampleRate": 24000,
+  "peakDbFS": -3.0,
+  "gain": 1.1345446246355715,
+  "timeStretch": false,
+  "directListening": false,
+  "sourceWorkflow": "Existing local PTO English af_heart pipeline; no PTO assets changed."
+}

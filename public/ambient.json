@@ -1,0 +1,18 @@
+{
+  "tracks": [
+    {
+      "id": "quiet-ember-01",
+      "title": "Quiet Ember 01",
+      "src": "/audio/quiet-ember-01-loop.m4a",
+      "sourceDuration": 179.8,
+      "crossfadeSeconds": 4
+    },
+    {
+      "id": "quiet-ember-02",
+      "title": "Quiet Ember 02",
+      "src": "/audio/quiet-ember-02-loop.m4a",
+      "sourceDuration": 179.92,
+      "crossfadeSeconds": 4
+    }
+  ]
+}

@@ -18,7 +18,7 @@ body {
   background: var(--ivory);
   color: var(--ink);
   font:
-    15px/1.65 Arial,
+    17px/1.65 Arial,
     Helvetica,
     sans-serif;
 }
@@ -104,13 +104,13 @@ h1 em {
 }
 small,
 .small {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--muted);
 }
 .eyebrow {
   display: block;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.16em;
   color: var(--sage);
@@ -219,7 +219,7 @@ nav button {
   transform: rotate(12deg);
 }
 .soft-note {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
 }
 .composer {
@@ -262,7 +262,7 @@ nav button {
   padding-top: 17px;
 }
 .composer-bottom small {
-  font-size: 10px;
+  font-size: 14px;
   max-width: 145px;
 }
 .composer-bottom button {
@@ -275,7 +275,7 @@ nav button {
   flex-wrap: wrap;
 }
 .voice-controls button {
-  font-size: 12px;
+  font-size: 14px;
   padding: 7px 11px;
   min-height: 38px;
 }
@@ -289,13 +289,13 @@ nav button {
   background: var(--wash);
   padding: 14px;
   border-radius: 10px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .voice-consent p {
   margin: 8px 0;
 }
 .listening {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--deep);
 }
 .language-label {
@@ -304,18 +304,18 @@ nav button {
   justify-content: space-between;
   gap: 15px;
   margin: 16px 0 25px;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
 }
 .language-label select {
   width: auto;
   max-width: 66%;
   padding: 8px 27px 8px 8px;
-  font-size: 11px;
+  font-size: 14px;
   background: transparent;
 }
 .starting .eyebrow {
-  font-size: 9px;
+  font-size: 14px;
   margin-bottom: 9px;
 }
 .starting > button {
@@ -325,7 +325,7 @@ nav button {
   border-radius: 0;
   justify-content: flex-start;
   padding: 13px 0;
-  font-size: 13px;
+  font-size: 14px;
   min-height: 46px;
 }
 .starting > button svg {
@@ -334,7 +334,7 @@ nav button {
 }
 .topic-number {
   color: #8b7958;
-  font-size: 10px;
+  font-size: 14px;
   margin-right: 6px;
 }
 .below {
@@ -351,7 +351,7 @@ nav button {
   font-size: 14px;
 }
 .below .eyebrow {
-  font-size: 9px;
+  font-size: 14px;
 }
 .preview-card {
   background: var(--wash);
@@ -372,7 +372,7 @@ nav button {
   margin-bottom: 18px;
 }
 .mini-columns > span {
-  font-size: 11px;
+  font-size: 14px;
   border: 1px solid #d4dccc;
   background: #f7f8f0;
   border-radius: 9px;
@@ -391,7 +391,7 @@ nav button {
   padding: 7px 0;
   min-height: 32px;
   color: var(--sage);
-  font-size: 13px;
+  font-size: 14px;
   text-decoration: underline;
   text-underline-offset: 4px;
   justify-content: flex-start;
@@ -402,7 +402,7 @@ nav button {
 }
 .service-state {
   margin: 12px 8% 30px;
-  font-size: 11px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -427,7 +427,7 @@ footer {
   justify-content: space-between;
   gap: 20px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 14px;
 }
 footer > span {
   display: flex;
@@ -441,13 +441,13 @@ footer .mark {
   height: 28px;
 }
 footer button {
-  font-size: 11px;
+  font-size: 14px;
   border: 0;
   padding: 8px;
   min-height: 30px;
 }
 footer small {
-  font-size: 9px;
+  font-size: 14px;
 }
 .page-narrow {
   max-width: 740px;
@@ -459,7 +459,7 @@ footer small {
   padding: 6px 0;
   border-radius: 0;
   color: var(--sage);
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 34px;
   justify-content: flex-start;
 }
@@ -505,7 +505,7 @@ aside {
   background: linear-gradient(155deg, #fcfaf2, #f5f4eb);
 }
 aside .eyebrow {
-  font-size: 9px;
+  font-size: 14px;
   margin-top: 10px;
 }
 aside h2 {
@@ -537,10 +537,10 @@ aside p {
   padding: 13px;
 }
 .side-composer .composer label {
-  font-size: 11px;
+  font-size: 14px;
 }
 .side-composer .composer textarea {
-  font-size: 12px;
+  font-size: 14px;
 }
 .side-composer .composer-bottom {
   flex-wrap: wrap;
@@ -559,7 +559,7 @@ aside p {
   gap: 20px;
 }
 .section-top .eyebrow {
-  font-size: 9px;
+  font-size: 14px;
 }
 .intro {
   margin-top: 13px;
@@ -572,7 +572,7 @@ aside p {
   font-size: 25px;
 }
 .exercise-block > p {
-  font-size: 13px;
+  font-size: 14px;
   margin: 10px 0 17px;
 }
 .sort-grid {
@@ -617,7 +617,7 @@ aside p {
   background: transparent;
   border-radius: 0;
   padding: 2px;
-  font-size: 12px;
+  font-size: 14px;
   width: 100%;
   min-height: 30px;
 }
@@ -630,7 +630,7 @@ aside p {
   gap: 4px;
 }
 .thought-tools select {
-  font-size: 9px;
+  font-size: 14px;
   background: none;
   border: 0;
   padding: 5px 0;
@@ -645,7 +645,7 @@ aside p {
   flex-shrink: 0;
 }
 .add-thought {
-  font-size: 11px;
+  font-size: 14px;
   padding: 7px 9px;
   border-radius: 8px;
   color: var(--sage);
@@ -675,7 +675,7 @@ aside p {
   font-size: 25px;
 }
 .action-card p {
-  font-size: 12px;
+  font-size: 14px;
   margin: 9px 0 14px;
 }
 textarea,
@@ -704,11 +704,11 @@ textarea::placeholder {
   margin-bottom: 12px;
 }
 .practice-bottom small {
-  font-size: 10px;
+  font-size: 14px;
   max-width: 210px;
 }
 .practice-bottom button {
-  font-size: 12px;
+  font-size: 14px;
 }
 .choices {
   display: flex;
@@ -719,7 +719,7 @@ textarea::placeholder {
   border-radius: 10px;
   text-align: left;
   justify-content: flex-start;
-  font-size: 13px;
+  font-size: 14px;
   background: var(--paper);
   min-height: 51px;
 }
@@ -778,7 +778,7 @@ button.chosen {
   font-variant-numeric: tabular-nums;
 }
 .timer-orbit > span:last-child {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--sage);
   margin-top: 6px;
 }
@@ -797,7 +797,7 @@ button.chosen {
   margin: 29px 0 22px;
 }
 .duration button {
-  font-size: 12px;
+  font-size: 14px;
   min-height: 35px;
   padding: 6px 18px;
 }
@@ -833,7 +833,7 @@ button.chosen {
   margin-bottom: 10px;
 }
 .sharing-card > p {
-  font-size: 13px;
+  font-size: 14px;
 }
 .sharing-item {
   display: flex;
@@ -850,7 +850,7 @@ button.chosen {
   accent-color: var(--sage);
 }
 .sharing-item strong {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   display: block;
 }
@@ -953,11 +953,11 @@ button.chosen {
   padding-right: 8px;
 }
 .step-card p {
-  font-size: 11px;
+  font-size: 14px;
   margin: 11px 0 9px;
 }
 .step-card .small {
-  font-size: 9px;
+  font-size: 14px;
 }
 .step-card button {
   position: absolute;
@@ -974,10 +974,10 @@ button.chosen {
   border-top: 1px solid var(--line);
 }
 .journey-examples p {
-  font-size: 13px;
+  font-size: 14px;
 }
 .journey-examples button {
-  font-size: 12px;
+  font-size: 14px;
 }
 .notice {
   margin: 18px 6%;
@@ -989,7 +989,7 @@ button.chosen {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  font-size: 13px;
+  font-size: 14px;
 }
 .notice.error {
   background: #faf0e3;
@@ -999,10 +999,10 @@ button.chosen {
 .notice button {
   min-height: 32px;
   padding: 5px 9px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .transcript {
-  font-size: 12px;
+  font-size: 14px;
   border-top: 1px solid var(--line);
   margin-top: 20px;
   padding: 15px 0;
@@ -1023,7 +1023,7 @@ button.chosen {
 .transcript strong {
   display: block;
   color: var(--deep);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   margin-bottom: 5px;
 }
@@ -1147,7 +1147,7 @@ dialog p {
     gap: 3px;
   }
   nav button {
-    font-size: 11px;
+    font-size: 14px;
     padding: 8px;
   }
   .nav-info {
@@ -1161,7 +1161,7 @@ dialog p {
     font-size: 46px;
   }
   .eyebrow {
-    font-size: 9px;
+    font-size: 14px;
     margin-bottom: 17px;
   }
   .invitation .lede {
@@ -1173,7 +1173,7 @@ dialog p {
     display: none;
   }
   .soft-note {
-    font-size: 11px;
+    font-size: 14px;
     margin: 0 0 24px;
   }
   .hero-composer {
@@ -1189,23 +1189,23 @@ dialog p {
     flex-wrap: nowrap;
   }
   .composer-bottom small {
-    font-size: 9px;
+    font-size: 14px;
     max-width: 125px;
   }
   .composer-bottom .primary {
-    font-size: 12px;
+    font-size: 14px;
     padding: 11px 15px;
   }
   .language-label {
-    font-size: 10px;
+    font-size: 14px;
     gap: 8px;
   }
   .language-label select {
-    font-size: 10px;
+    font-size: 14px;
     max-width: 62%;
   }
   .starting > button {
-    font-size: 12px;
+    font-size: 14px;
     min-height: 46px;
   }
   .below {
@@ -1217,7 +1217,7 @@ dialog p {
     font-size: 31px;
   }
   .below > div p {
-    font-size: 13px;
+    font-size: 14px;
   }
   .preview-card {
     width: 100%;
@@ -1227,7 +1227,7 @@ dialog p {
   .service-state {
     margin: 8px 23px 27px;
     align-items: flex-start;
-    font-size: 10px;
+    font-size: 14px;
   }
   .status-dot {
     margin-top: 5px;
@@ -1239,13 +1239,13 @@ dialog p {
     padding: 22px 0;
   }
   footer > span {
-    font-size: 13px;
+    font-size: 14px;
   }
   footer > small {
     width: 100%;
   }
   footer button {
-    font-size: 10px;
+    font-size: 14px;
   }
   .page-narrow {
     padding: 30px 23px 45px;
@@ -1267,10 +1267,10 @@ dialog p {
     font-size: 30px;
   }
   .principle-card p {
-    font-size: 13px;
+    font-size: 14px;
   }
   .actions button {
-    font-size: 12px;
+    font-size: 14px;
   }
   .practice-layout {
     display: block;
@@ -1293,7 +1293,7 @@ dialog p {
     display: none;
   }
   aside p {
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 5px;
   }
   .landscape,
@@ -1302,7 +1302,7 @@ dialog p {
   }
   aside > .text-link {
     margin-top: 9px;
-    font-size: 12px;
+    font-size: 14px;
   }
   .practice-main {
     padding: 27px 23px 35px;
@@ -1311,13 +1311,13 @@ dialog p {
     font-size: 37px;
   }
   .section-top .eyebrow {
-    font-size: 8px;
+    font-size: 14px;
   }
   .section-top .small {
-    font-size: 9px;
+    font-size: 14px;
   }
   .intro {
-    font-size: 13px;
+    font-size: 14px;
   }
   .exercise-block {
     margin: 25px 0;
@@ -1362,7 +1362,7 @@ dialog p {
     font-size: 14px;
   }
   .thought-tools select {
-    font-size: 11px;
+    font-size: 14px;
     min-height: 36px;
   }
   .thought-tools button {
@@ -1370,7 +1370,7 @@ dialog p {
   }
   .add-thought {
     min-height: 40px;
-    font-size: 12px;
+    font-size: 14px;
   }
   .action-card {
     padding: 19px;
@@ -1383,7 +1383,7 @@ dialog p {
     width: 20px;
   }
   .action-card textarea {
-    font-size: 13px;
+    font-size: 14px;
   }
   .practice-bottom {
     display: block;
@@ -1392,7 +1392,7 @@ dialog p {
     display: block;
     max-width: none;
     margin-bottom: 16px;
-    font-size: 10px;
+    font-size: 14px;
   }
   .practice-bottom .actions {
     justify-content: space-between;
@@ -1414,7 +1414,7 @@ dialog p {
   }
   .choices button {
     width: 100%;
-    font-size: 13px;
+    font-size: 14px;
   }
   .quiet-page h1 {
     font-size: 43px;
@@ -1434,7 +1434,7 @@ dialog p {
     padding: 10px 13px;
   }
   .quiet-page > .text-link {
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.7;
   }
   .sharing-card {
@@ -1444,10 +1444,10 @@ dialog p {
     font-size: 29px;
   }
   .sharing-card > p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .sharing-item small {
-    font-size: 11px;
+    font-size: 14px;
   }
   .review-page > .actions {
     align-items: stretch;
@@ -1464,7 +1464,7 @@ dialog p {
     flex-direction: column;
   }
   .finish-page > .small {
-    font-size: 11px;
+    font-size: 14px;
   }
   .map-page {
     padding: 34px 23px;
@@ -1498,7 +1498,7 @@ dialog p {
     margin: 7px 0;
   }
   .step-card .small {
-    font-size: 10px;
+    font-size: 14px;
   }
   .step-card button {
     right: 17px;
@@ -1513,7 +1513,7 @@ dialog p {
   }
   .notice {
     margin: 15px 23px;
-    font-size: 12px;
+    font-size: 14px;
     padding: 12px;
   }
   dialog {
@@ -1523,7 +1523,7 @@ dialog p {
     font-size: 31px;
   }
   dialog p {
-    font-size: 13px;
+    font-size: 14px;
   }
   .voice-consent .actions {
     flex-direction: column;
@@ -1543,12 +1543,12 @@ dialog p {
 }
 
 .composer .dictation-target {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--muted);
   margin: 10px 0;
 }
 .dictation-target select {
-  font-size: 10px;
+  font-size: 14px;
   margin-top: 4px;
   padding: 7px;
 }
@@ -1561,7 +1561,7 @@ textarea {
   display: flex;
   align-items: flex-start;
   gap: 7px;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--muted);
   margin-top: 14px;
@@ -1571,4 +1571,1271 @@ textarea {
 }
 dialog:focus {
   outline: none;
+}
+
+/* Quiet landscape direction — October 22. Artwork is local, code-native SVG. */
+body {
+  background: #f6f3e9;
+}
+header {
+  height: 88px;
+  padding-inline: 5%;
+  border-color: #d5dcd0;
+}
+.home-grid {
+  margin: 24px 3% 0;
+  padding: 0;
+  gap: 0;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #fffdf7;
+  box-shadow: 0 18px 65px #233e3410;
+}
+.invitation {
+  position: relative;
+  isolation: isolate;
+  padding: 58px 48px;
+  min-height: 780px;
+  background: #30574c url("/quiet-landscape.svg") center bottom / cover;
+  display: flex;
+  flex-direction: column;
+}
+.invitation::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, #133c39db, #143d3830 55%, transparent);
+}
+.invitation .eyebrow {
+  color: #e5d6a8;
+  font-size: 14px;
+  letter-spacing: 0.17em;
+}
+.invitation h1 {
+  color: #fff7e7;
+  font-size: clamp(40px, 3.5vw, 55px);
+  line-height: 1.12;
+}
+.invitation h1 em {
+  color: #e9d9af;
+}
+.invitation .lede {
+  color: #f0eee0;
+  font-size: 20px;
+  max-width: 330px;
+  line-height: 1.55;
+}
+.landscape-caption {
+  margin-top: auto;
+  color: #fff6db;
+  font:
+    italic 22px Georgia,
+    serif;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.landscape-caption span {
+  width: 38px;
+  height: 1px;
+  background: #e4c68b;
+}
+.entry {
+  padding: 38px;
+  min-width: 0;
+}
+.composer {
+  border-radius: 20px;
+  padding: 24px;
+  background: #fffefb;
+  box-shadow: 0 5px 25px #254e3707;
+}
+.hero-composer {
+  border: 0;
+  padding: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.hero-composer label {
+  font-size: 30px;
+  line-height: 1.2;
+}
+.hero-composer textarea {
+  min-height: 118px;
+  font-size: 18px;
+  margin: 16px 0;
+  padding: 16px;
+  border-radius: 12px;
+  background: #f0f2e9;
+}
+textarea::placeholder {
+  color: #647267;
+  opacity: 1;
+}
+.composer-status {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 14px;
+}
+.composer-bottom {
+  align-items: center;
+}
+.composer-bottom small {
+  font-size: 14px;
+  max-width: 180px;
+}
+.voice-controls button {
+  font-size: 15px;
+  min-height: 44px;
+  padding: 10px 14px;
+}
+button.primary {
+  background: #345848;
+  border-color: #345848;
+  box-shadow: 0 3px 0 #203e2910;
+}
+button:disabled {
+  opacity: 0.65;
+}
+.preferences {
+  margin: 22px 0;
+  border-block: 1px solid var(--line);
+  padding-block: 16px;
+}
+.preferences summary {
+  cursor: pointer;
+  color: var(--deep);
+  font-size: 16px;
+}
+.language-label {
+  margin: 20px 0 0;
+  align-items: flex-start;
+  flex-direction: column;
+  font-size: 16px;
+}
+.language-label select {
+  width: 100%;
+  max-width: 100%;
+  font-size: 16px;
+}
+.starting .eyebrow {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.starting > button {
+  font-size: 17px;
+  padding-block: 13px;
+  min-height: 52px;
+  gap: 12px;
+}
+.topic-number {
+  font:
+    italic 18px Georgia,
+    serif;
+}
+.below {
+  margin: 0 6%;
+  padding: 48px 0;
+  border-top: 0;
+  gap: 7%;
+}
+.below .eyebrow {
+  font-size: 14px;
+}
+.below h2 {
+  font-size: 36px;
+}
+.below > div p {
+  font-size: 18px;
+}
+.preview-card {
+  background: linear-gradient(120deg, #e9eddf, #f5edda);
+  padding: 28px;
+  border-radius: 22px;
+}
+.preview-card h3 {
+  font-size: 32px;
+}
+.mini-columns span {
+  font-size: 16px;
+}
+.service-state {
+  font-size: 14px;
+}
+.practice-layout {
+  gap: 4%;
+}
+.practice-layout aside .landscape {
+  height: 220px;
+  border-radius: 100px 100px 16px 16px;
+  background: url("/quiet-landscape.svg") center 62% / cover;
+  margin-block: 28px;
+}
+.practice-main .intro,
+.exercise-block > p,
+aside > p {
+  font-size: 17px;
+}
+.thought input {
+  font-size: 16px;
+}
+.thought-tools select {
+  font-size: 14px;
+}
+.sort-column {
+  background: linear-gradient(#ecf0e4, #f7f8f0);
+  border-radius: 22px;
+}
+.sort-column:nth-child(2) {
+  background: linear-gradient(#e8efeb, #f7f8f1);
+}
+.sort-column:nth-child(3) {
+  background: linear-gradient(#f0ead9, #faf8ef);
+}
+.group-icon {
+  background: #fffdf8a6;
+  border-radius: 50%;
+  padding: 12px;
+  width: 50px;
+  height: 50px;
+  margin-inline: auto;
+}
+.principle-card {
+  background: linear-gradient(120deg, #e5ecdf, #f5efd9);
+  border-radius: 24px;
+}
+.page-narrow {
+  max-width: 850px;
+}
+.breath-circle {
+  box-shadow:
+    0 0 0 24px #91a78c12,
+    0 0 0 50px #91a78c08;
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .entry {
+    padding: 28px;
+  }
+  .invitation {
+    padding: 44px 30px;
+  }
+  .composer-bottom {
+    flex-wrap: wrap;
+  }
+  .sort-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  body {
+    font-size: 17px;
+  }
+  header {
+    height: 76px;
+    padding-inline: 22px;
+  }
+  nav button {
+    font-size: 15px;
+  }
+  .home-grid {
+    display: block;
+    margin: 12px 14px 0;
+    border-radius: 22px;
+  }
+  .invitation {
+    padding: 32px 24px 24px;
+    min-height: 430px;
+    background-position: center 58%;
+  }
+  .invitation h1 {
+    font-size: 39px;
+  }
+  .invitation .eyebrow {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+  .invitation .lede {
+    font-size: 18px;
+    margin-top: 18px;
+    max-width: 260px;
+  }
+  .landscape-caption {
+    font-size: 19px;
+  }
+  .entry {
+    padding: 28px 22px;
+  }
+  .hero-composer label {
+    font-size: 27px;
+  }
+  .composer-bottom {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .composer-bottom small {
+    max-width: 100%;
+    font-size: 14px;
+  }
+  .composer-bottom .primary {
+    width: 100%;
+  }
+  .starting > button {
+    font-size: 16px;
+  }
+  .below {
+    margin: 0 24px;
+    padding-block: 36px;
+    gap: 24px;
+  }
+  .below h2 {
+    font-size: 30px;
+  }
+  .below > div p {
+    font-size: 17px;
+  }
+  .preview-card {
+    padding: 24px;
+  }
+  .preview-card h3 {
+    font-size: 29px;
+  }
+  .mini-columns {
+    gap: 6px;
+  }
+  .mini-columns span {
+    font-size: 14px;
+  }
+  .practice-layout aside .landscape {
+    display: block;
+    height: 150px;
+    border-radius: 18px;
+    background-position: center 62%;
+  }
+  .practice-main .section-top {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .practice-main h1 {
+    font-size: 36px;
+  }
+  .thought input {
+    font-size: 16px;
+  }
+  footer {
+    gap: 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+.practice-context {
+  margin: 22px 0;
+  font-size: 16px;
+}
+.practice-context summary {
+  cursor: pointer;
+  color: var(--sage);
+}
+.practice-context p {
+  font-size: 17px;
+}
+.quiet-page .lede {
+  font-size: 18px;
+}
+.timer-orbit {
+  width: 290px;
+  height: 290px;
+  background:
+    linear-gradient(#153f39b8, #173e34b8),
+    url("/quiet-landscape.svg") center / cover;
+  box-shadow:
+    0 0 0 24px #91a78c10,
+    0 0 0 48px #91a78c08;
+  border-color: #c2a76e;
+}
+.timer-orbit .timer {
+  color: #fff8e8;
+  font-size: 60px;
+}
+.timer-orbit .mark {
+  color: #e3d2a2;
+}
+.timer-orbit > span:last-child {
+  color: #f1e7cf;
+  font-size: 16px;
+}
+.duration button {
+  min-height: 44px;
+  font-size: 16px;
+}
+@media (max-width: 760px) {
+  .timer-orbit {
+    width: 250px;
+    height: 250px;
+  }
+  .quiet-page h1 {
+    font-size: 40px;
+  }
+}
+.practice-layout aside .landscape {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: 0;
+}
+
+/* Immersive, progressive guidance. State remains in Soulfire across each prompt. */
+[hidden] {
+  display: none !important;
+}
+.sensory-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  padding: 12px 5%;
+  position: relative;
+  z-index: 5;
+}
+.motion-toggle {
+  border: 0;
+  min-height: 36px;
+  font-size: 14px;
+  padding: 6px;
+}
+.sound-controls summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  min-height: 36px;
+  font-size: 14px;
+}
+.sound-popover {
+  position: absolute;
+  right: 5%;
+  top: 54px;
+  width: min(320px, 90vw);
+  padding: 22px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 40px #183b3420;
+  border-radius: 18px;
+}
+.sound-popover p {
+  margin-top: 0;
+  font-size: 16px;
+}
+.sound-popover label {
+  display: block;
+  margin-top: 18px;
+}
+.sound-popover input {
+  width: 100%;
+}
+.quiet-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+.immersive-home {
+  margin-top: 0;
+}
+.immersive-home .invitation {
+  background: #234e42;
+  min-height: 660px;
+}
+.immersive-home .invitation::before {
+  background: linear-gradient(90deg, #153b3880, transparent 75%);
+}
+.immersive-home.is-arrival {
+  display: block;
+}
+.is-arrival .invitation {
+  min-height: min(730px, 76vh);
+  padding: 68px 7%;
+  justify-content: center;
+}
+.arrival-copy {
+  max-width: 560px;
+}
+.arrival-copy h1 {
+  font-size: clamp(48px, 5vw, 76px);
+}
+.arrival-begin {
+  margin-top: 32px;
+  background: #f3e4c0;
+  color: #244738;
+  border: 1px solid #eddbb1;
+  min-width: 150px;
+  font-size: 19px;
+  padding: 16px 25px;
+}
+.arrival-begin:hover {
+  background: #fff5d9;
+}
+.is-arrival .quiet-scene {
+  object-position: center;
+}
+.is-open .invitation {
+  justify-content: flex-end;
+  padding: 40px;
+}
+.is-open .entry .back {
+  margin: 0 0 22px;
+}
+.is-open .landscape-caption {
+  margin-top: auto;
+}
+.example-entry {
+  width: 100%;
+  border-radius: 16px;
+  justify-content: space-between;
+  text-align: left;
+  margin-top: 24px;
+  padding: 12px 16px;
+  background: #eef1e5;
+}
+.example-entry .prompt-art {
+  width: 90px;
+  height: 65px;
+  margin: 0;
+  flex-shrink: 0;
+}
+.example-entry strong {
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+}
+.example-entry span span {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+}
+.starting summary,
+.principle-detail summary,
+.companion-disclosure summary,
+.sharing-disclosure summary {
+  cursor: pointer;
+  color: var(--deep);
+  padding: 12px 0;
+  font-size: 17px;
+}
+.starting > button {
+  padding-inline: 8px;
+}
+.water-glimmer {
+  opacity: 0.12;
+}
+.water-ring {
+  opacity: 0.16;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+[data-motion="on"] .water-glimmer {
+  animation: water-light 14s ease-in-out infinite;
+}
+[data-motion="on"] .water-ring {
+  animation: water-spread 16s ease-out infinite;
+}
+[data-motion="on"] .ring-two {
+  animation-delay: -8s;
+}
+[data-motion="off"] .water-glimmer,
+[data-motion="off"] .water-ring {
+  animation-play-state: paused;
+}
+@keyframes water-light {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: translateX(-3px);
+  }
+  50% {
+    opacity: 0.27;
+    transform: translateX(4px);
+  }
+}
+@keyframes water-spread {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.23;
+  }
+  100% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+}
+.prompt-art {
+  display: block;
+  width: 220px;
+  height: 100px;
+  margin: 12px auto 24px;
+}
+.suggestion {
+  text-align: center;
+}
+.suggestion .back {
+  display: flex;
+}
+.suggestion .prompt-art {
+  margin-top: 32px;
+  height: 120px;
+  width: 260px;
+}
+.suggestion .actions {
+  justify-content: center;
+}
+.principle-detail {
+  max-width: 520px;
+  margin: 12px auto;
+}
+.practice-layout {
+  grid-template-columns: 260px minmax(0, 1fr);
+}
+.practice-layout aside {
+  padding: 32px 24px;
+}
+.practice-layout aside .landscape {
+  position: relative;
+  isolation: isolate;
+  height: 280px;
+  overflow: hidden;
+  background: #345c4e;
+}
+.practice-layout aside .landscape .quiet-scene {
+  z-index: 0;
+}
+.practice-layout aside h2 {
+  font-size: 32px;
+}
+.practice-main {
+  padding: 36px 5% 48px;
+  min-width: 0;
+}
+.practice-title {
+  font:
+    22px/1.4 Georgia,
+    serif !important;
+  color: #61705f;
+  letter-spacing: -0.02em;
+}
+.prompt-navigation {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 24px;
+}
+.prompt-navigation button:not(.overview-toggle) {
+  width: 42px;
+  height: 42px;
+  min-height: 42px;
+  padding: 0;
+}
+.prompt-navigation [aria-current="step"] {
+  background: var(--deep);
+  color: var(--paper);
+  border-color: var(--deep);
+}
+.prompt-navigation .overview-toggle {
+  margin-left: auto;
+  font-size: 15px;
+}
+.exercise-block > h2 {
+  font-size: 34px;
+  text-align: center;
+  max-width: 620px;
+  margin-inline: auto;
+}
+.exercise-block > p {
+  font-size: 18px;
+  max-width: 580px;
+  margin: 16px auto 28px;
+  text-align: center;
+}
+.exercise-block h2:focus,
+.action-card h2:focus {
+  outline: none;
+}
+.exercise-block {
+  margin-top: 20px;
+}
+.exercise-block > textarea {
+  min-height: 140px;
+  font-size: 18px;
+}
+.practice-main .action-card {
+  display: block;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+.action-card h2 {
+  text-align: center;
+  font-size: 34px;
+}
+.action-card p {
+  text-align: center;
+  font-size: 17px;
+}
+.action-card textarea {
+  font-size: 18px;
+}
+.companion-disclosure .composer {
+  margin-top: 12px;
+}
+.practice-bottom {
+  margin-top: 35px;
+}
+.review-page {
+  text-align: center;
+  max-width: 720px;
+}
+.review-page .field-label,
+.sharing-disclosure {
+  text-align: left;
+}
+.review-page .actions {
+  justify-content: center;
+}
+.review-page .sharing-disclosure {
+  margin-top: 20px;
+  border-block: 1px solid var(--line);
+  padding: 4px 0;
+}
+.review-page .sharing-card {
+  margin-top: 8px;
+}
+.finish-page > .prompt-art {
+  width: 210px;
+  height: 105px;
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .practice-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .sensory-controls {
+    padding: 6px 22px 10px;
+    gap: 18px;
+  }
+  .immersive-home.is-arrival .invitation {
+    min-height: 580px;
+    padding: 36px 28px;
+    justify-content: flex-start;
+  }
+  .arrival-copy h1 {
+    font-size: 48px;
+  }
+  .arrival-copy .eyebrow {
+    font-size: 12px;
+  }
+  .arrival-begin {
+    font-size: 18px;
+    margin-top: 24px;
+  }
+  .immersive-home.is-open .invitation {
+    min-height: 150px;
+    height: 150px;
+    padding: 24px;
+  }
+  .is-open .landscape-caption {
+    font-size: 20px;
+  }
+  .is-open .invitation .quiet-scene {
+    height: 260px;
+    top: -65px;
+  }
+  .example-entry {
+    padding: 10px;
+    gap: 8px;
+  }
+  .example-entry .prompt-art {
+    width: 65px;
+  }
+  .example-entry strong {
+    font-size: 17px;
+  }
+  .example-entry span span {
+    font-size: 14px;
+  }
+  .practice-layout {
+    display: block;
+  }
+  .practice-layout aside {
+    padding: 18px 24px 0;
+    background: transparent;
+    border: 0;
+  }
+  .practice-layout aside > :not(.back) {
+    display: none;
+  }
+  .practice-layout aside .back {
+    margin: 0;
+  }
+  .practice-main {
+    padding: 22px 24px 36px;
+  }
+  .practice-title {
+    font-size: 20px !important;
+  }
+  .prompt-navigation {
+    gap: 6px;
+  }
+  .prompt-navigation .overview-toggle {
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 0;
+    margin: 4px 0 0;
+  }
+  .prompt-art {
+    width: 180px;
+    height: 85px;
+    margin-bottom: 18px;
+  }
+  .exercise-block > h2,
+  .action-card h2 {
+    font-size: 30px;
+  }
+  .exercise-block > p {
+    font-size: 17px;
+    margin-bottom: 24px;
+  }
+  .practice-bottom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .practice-bottom .actions {
+    gap: 10px;
+  }
+  .companion-disclosure {
+    margin-top: 24px;
+  }
+  .practice-main .mobile-composer {
+    display: block;
+  }
+  .practice-main details:not([open]) > :not(summary) {
+    display: none;
+  }
+  .review-page h1 {
+    font-size: 38px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .water-glimmer,
+  .water-ring {
+    animation: none !important;
+  }
+}
+/* Preserve scene sizing inside the legacy landscape container. */
+.practice-layout aside .landscape .quiet-scene {
+  width: 100%;
+  height: 100%;
+}
+.water-glimmer {
+  animation: water-light 14s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.water-ring {
+  animation: water-spread 16s ease-out infinite;
+  animation-play-state: paused;
+}
+.ring-two {
+  animation-delay: -8s;
+}
+[data-motion="on"] .water-glimmer,
+[data-motion="on"] .water-ring {
+  animation-play-state: running;
+}
+.sound-popover select {
+  width: 100%;
+  margin: 8px 0 18px;
+}
+.sound-popover label:first-child {
+  margin-top: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .water-glimmer,
+  .water-ring {
+    animation: none !important;
+  }
+}
+[data-motion="off"] .running {
+  animation-play-state: paused;
+}
+/* Cover motion stays in the visible water, including wide desktop crops. */
+.scene-depth {
+  transform-box: view-box;
+  transform-origin: center;
+  animation: scene-drift 24s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.water-glimmer {
+  animation: water-light-visible 12s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.water-ring {
+  animation: water-spread-visible 14s ease-out infinite;
+  animation-play-state: paused;
+}
+.ring-two {
+  animation-delay: -7s;
+}
+[data-motion="on"] .scene-depth {
+  animation-play-state: running;
+}
+[data-motion="on"] .water-glimmer {
+  animation-name: water-light-visible;
+  animation-duration: 12s;
+}
+[data-motion="on"] .water-ring {
+  animation-name: water-spread-visible;
+  animation-duration: 14s;
+}
+[data-motion="on"] .ring-two {
+  animation-delay: -7s;
+}
+@keyframes scene-drift {
+  0%,
+  100% {
+    transform: scale(1.035) translate(-7px, 2px);
+  }
+  50% {
+    transform: scale(1.035) translate(7px, -2px);
+  }
+}
+@keyframes water-light-visible {
+  0%,
+  100% {
+    opacity: 0.24;
+    transform: translateX(-10px);
+  }
+  50% {
+    opacity: 0.52;
+    transform: translateX(10px);
+  }
+}
+@keyframes water-spread-visible {
+  0% {
+    transform: scale(0.55);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.48;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+.ambient-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.sound-toggle {
+  border: 0;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 8px;
+}
+.sound-status {
+  font-size: 14px;
+  max-width: 290px;
+  color: var(--deep);
+}
+@media (max-width: 760px) {
+  .sensory-controls {
+    flex-wrap: wrap;
+  }
+  .sound-status {
+    flex-basis: 100%;
+    text-align: right;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-depth,
+  .water-glimmer,
+  .water-ring {
+    animation: none !important;
+    transform: none;
+  }
+}
+/* Anchor below the entire sensory toolbar, including wrapped autoplay status. */
+.sound-popover {
+  top: calc(100% + 6px);
+}
+/* Only the original sun halo changes intensity; the disk and scene stay steady. */
+.sun-glow {
+  opacity: 0.7;
+  animation: sun-warmth 18s ease-in-out infinite;
+  animation-play-state: paused;
+}
+[data-motion="on"] .sun-glow {
+  animation-play-state: running;
+}
+@keyframes sun-warmth {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sun-glow {
+    animation: none !important;
+    opacity: 0.7;
+  }
+}
+
+/* Arrival stays in the existing landscape; narration is optional and never gates entry. */
+.welcome-arrival {
+  max-width: 580px;
+  width: 100%;
+}
+.welcome-arrival .arrival-purpose {
+  color: #faf2df;
+  font-size: 21px;
+  line-height: 1.55;
+  max-width: 430px;
+  margin: 20px 0 25px;
+}
+.welcome-arrival .intro-controls,
+.arrival-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+}
+.welcome-arrival .intro-controls button,
+.arrival-secondary {
+  color: #fff7e7;
+  background: #143c35b8;
+  border: 1px solid #ded7b958;
+  font-size: 16px;
+  min-height: 44px;
+  padding: 9px 14px;
+}
+.welcome-arrival .intro-controls button:hover,
+.arrival-secondary:hover {
+  background: #143c35;
+  border-color: #f3e4c0;
+}
+.welcome-arrival .arrival-actions {
+  margin-top: 24px;
+}
+.welcome-arrival .arrival-begin {
+  margin-top: 0;
+}
+.welcome-arrival .arrival-secondary {
+  background: transparent;
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.intro-moment {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 14px 0 18px;
+  color: #fff7e7;
+}
+.intro-moment .prompt-art {
+  width: 98px;
+  height: 64px;
+  flex: 0 0 98px;
+  margin: 0;
+  filter: drop-shadow(0 2px 10px #102f32);
+}
+.intro-moment p {
+  color: #fff7e7;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  line-height: 1.25;
+  margin: 0;
+}
+.welcome-arrival.intro-started h1 {
+  font-size: clamp(40px, 4vw, 58px);
+}
+.welcome-arrival.intro-started .arrival-purpose {
+  margin: 12px 0;
+  font-size: 19px;
+}
+.intro-caption {
+  background: #163c35e0;
+  border-left: 2px solid #e4cd96;
+  color: #fff8e8;
+  padding: 12px 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  max-width: 530px;
+  min-height: 96px;
+  margin: 16px 0 0;
+}
+.intro-error {
+  background: #fff7e7;
+  color: #663b26;
+  padding: 12px;
+  border-radius: 8px;
+}
+.welcome-arrival button:focus-visible,
+.welcome-arrival summary:focus-visible {
+  outline: 3px solid #fff0b8;
+  outline-offset: 5px;
+}
+.save-practice {
+  margin: 20px 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  font-size: 16px;
+}
+.save-practice summary {
+  cursor: pointer;
+  padding: 6px 0;
+}
+.save-practice label,
+.save-choice {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 16px 0;
+}
+.save-practice input,
+.save-choice input {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.save-practice p {
+  max-width: 620px;
+  font-size: 16px;
+}
+.is-open .entry {
+  animation: arrival-reveal 650ms ease both;
+}
+@keyframes arrival-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 760px) {
+  .welcome-arrival .arrival-purpose {
+    font-size: 19px;
+    max-width: 300px;
+  }
+  .welcome-arrival .arrival-actions {
+    gap: 8px;
+  }
+  .welcome-arrival .arrival-begin {
+    width: 100%;
+    justify-content: center;
+  }
+  .welcome-arrival .intro-controls {
+    gap: 8px;
+  }
+  .welcome-arrival .intro-controls button {
+    font-size: 15px;
+    padding: 8px 10px;
+  }
+  .welcome-arrival.intro-started h1 {
+    font-size: 40px;
+  }
+  .intro-moment {
+    gap: 10px;
+  }
+  .intro-moment .prompt-art {
+    width: 70px;
+    flex-basis: 70px;
+  }
+  .intro-moment p {
+    font-size: 22px;
+  }
+  .intro-caption {
+    min-height: 0;
+    font-size: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .is-open .entry {
+    animation: none;
+  }
+}
+[data-motion="off"] .is-open .entry {
+  animation: none;
+}
+
+.is-arrival .invitation::before {
+  background: linear-gradient(
+    90deg,
+    #102f2cbb 0%,
+    #153b385c 48%,
+    transparent 78%
+  );
+}
+@media (max-width: 760px) {
+  .is-arrival .invitation::before {
+    background: linear-gradient(90deg, #102f2cb5, #143d3870);
+  }
+}
+
+/* The two arrival choices remain adjacent; playback history is independent of entry. */
+.welcome-arrival .intro-play {
+  color: #fff7e7;
+  background: #143c35b8;
+  border: 1px solid #ded7b958;
+  font-size: 18px;
+  padding: 16px 20px;
+  min-height: 59px;
+}
+.welcome-arrival .intro-play:hover {
+  background: #143c35;
+  border-color: #f3e4c0;
+}
+.welcome-arrival .intro-controls {
+  margin-top: 18px;
+}
+.welcome-arrival .intro-skip {
+  margin-top: 14px;
+}
+@media (max-width: 760px) {
+  .welcome-arrival .arrival-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+  .welcome-arrival .arrival-actions > button {
+    min-width: 0;
+    padding: 12px 10px;
+    font-size: 16px;
+    min-height: 64px;
+  }
+  .welcome-arrival .arrival-actions > button svg {
+    flex-shrink: 0;
+    width: 16px;
+  }
+  .welcome-arrival .arrival-actions .arrival-secondary {
+    grid-column: 1/-1;
+  }
 }

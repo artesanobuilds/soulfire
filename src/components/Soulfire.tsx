@@ -18,6 +18,10 @@ import {
 } from "lucide-react";
 import { AutoTextarea } from "./AutoTextarea";
 import { Mark } from "./Mark";
+import { QuietScene, PromptArt } from "./QuietScene";
+import { AmbientAudio } from "./AmbientAudio";
+import { Arrival } from "./Arrival";
+import { readSavedPractice, savedPracticeKey } from "../lib/saved-practice";
 import { VoiceControls } from "./VoiceControls";
 import { safetyNotice } from "../lib/safety";
 import { samples, steps, topics } from "../lib/catalog";
@@ -35,6 +39,43 @@ type Card = { id: string; text: string; group: number };
 type Drafts = Record<string, string>;
 export function Soulfire() {
   const [mobile, setMobile] = useState(false);
+  const [homeStarted, setHomeStarted] = useState(false);
+  const [practiceStep, setPracticeStep] = useState(0);
+  const [showAll, setShowAll] = useState(false);
+  const [motion, setMotion] = useState(false);
+  const motionPreference = useRef(true);
+  const [reducedMotion, setReducedMotion] = useState(true);
+  const [pageVisible, setPageVisible] = useState(true);
+  const promptHeading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    try {
+      motionPreference.current =
+        localStorage.getItem("soulfire.motion.enabled") !== "off";
+    } catch {}
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => {
+      setReducedMotion(media.matches);
+      setMotion(!media.matches && motionPreference.current);
+    };
+    const visibility = () => setPageVisible(!document.hidden);
+    sync();
+    visibility();
+    media.addEventListener("change", sync);
+    document.addEventListener("visibilitychange", visibility);
+    return () => {
+      media.removeEventListener("change", sync);
+      document.removeEventListener("visibilitychange", visibility);
+    };
+  }, []);
+  useEffect(() => {
+    if (view === "practice") {
+      promptHeading.current?.focus({ preventScroll: true });
+      promptHeading.current
+        ?.closest("section")
+        ?.scrollIntoView({ block: "start", behavior: "instant" });
+    }
+  }, [practiceStep, showAll]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const [dictationTarget, setDictationTarget] = useState("conversation");
   const [view, setView] = useState<View>("home");
   const [draft, setDraft] = useState("");
@@ -62,6 +103,102 @@ export function Soulfire() {
   const [duration, setDuration] = useState(60);
   const [running, setRunning] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [returning, setReturning] = useState(false);
+  const [narrating, setNarrating] = useState(false);
+  const [rememberPractice, setRememberPractice] = useState(false);
+  const [storageReady, setStorageReady] = useState(false);
+  const [saveStatus, setSaveStatus] = useState("");
+  const introDone = useRef(false);
+  const resumeView = useRef<
+    "suggestion" | "practice" | "meditation" | "review" | "finish"
+  >("practice");
+  useEffect(() => {
+    try {
+      introDone.current =
+        localStorage.getItem("soulfire.introduction.v1") === "done";
+      setReturning(introDone.current);
+      const saved = readSavedPractice(localStorage.getItem(savedPracticeKey));
+      if (saved) {
+        setExercise(saved.exercise);
+        setExample(saved.example);
+        setFields(saved.fields);
+        setCards(saved.cards);
+        setAction(saved.action);
+        setReflection(saved.reflection);
+        setLanguage(saved.language);
+        setPracticeStep(
+          Math.min(saved.practiceStep, saved.exercise.blocks.length),
+        );
+        resumeView.current = saved.view;
+        setRememberPractice(true);
+      }
+    } catch {
+      setSaveStatus(
+        "Device storage is unavailable. This practice will stay in this tab only.",
+      );
+    }
+    setStorageReady(true);
+  }, []);
+  useEffect(() => {
+    if (view !== "home" && view !== "map") resumeView.current = view;
+    if (!storageReady || !rememberPractice || !exercise) return;
+    try {
+      localStorage.setItem(
+        savedPracticeKey,
+        JSON.stringify({
+          version: 1,
+          exercise,
+          example,
+          fields,
+          cards,
+          action,
+          reflection,
+          language,
+          practiceStep,
+          view: resumeView.current,
+        }),
+      );
+      setSaveStatus("Saved on this device. Conversations are not saved.");
+    } catch {
+      setSaveStatus(
+        "Couldn’t save on this device. Keep this tab open to retain your answers.",
+      );
+    }
+  }, [
+    storageReady,
+    rememberPractice,
+    exercise,
+    example,
+    fields,
+    cards,
+    action,
+    reflection,
+    language,
+    practiceStep,
+    view,
+  ]);
+  function markIntroDone() {
+    introDone.current = true;
+    try {
+      localStorage.setItem("soulfire.introduction.v1", "done");
+    } catch {}
+  }
+  function beginJourney() {
+    setHomeStarted(true);
+    requestAnimationFrame(() => document.getElementById("opening")?.focus());
+  }
+  function remember(value: boolean) {
+    if (!value) {
+      try {
+        localStorage.removeItem(savedPracticeKey);
+      } catch {
+        setSaveStatus("Couldn’t remove the saved copy. Please try again.");
+        return;
+      }
+      setSaveStatus("Saved copy removed. Your answers are still in this tab.");
+    }
+    setRememberPractice(value);
+  }
   const pending = useRef<{
     messages: Message[];
     content: string;
@@ -150,7 +287,9 @@ export function Soulfire() {
     setView(next);
     setError("");
   }
+  const replacementSample = useRef<string | null>(null);
   function openDialog(next: typeof dialog) {
+    replacementSample.current = null;
     quiet();
     cancel();
     setRunning(false);
@@ -158,6 +297,8 @@ export function Soulfire() {
   }
   function loadExercise(next: Exercise, isExample: boolean) {
     setExercise(next);
+    setPracticeStep(0);
+    setShowAll(false);
     setDictationTarget("conversation");
     setExample(isExample);
     setFields({});
@@ -180,6 +321,30 @@ export function Soulfire() {
     );
   }
   function sample(id: string) {
+    const hasAnswers =
+      exercise &&
+      (rememberPractice ||
+        reflection ||
+        Object.values(fields).some(Boolean) ||
+        action !== exercise.actionSuggestion ||
+        exercise.blocks.some(
+          (b) =>
+            b.type === "sort" &&
+            JSON.stringify(
+              cards[b.id]?.map((c) => ({ text: c.text, group: c.group })),
+            ) !==
+              JSON.stringify(
+                b.items.map((text, i) => ({
+                  text,
+                  group: i % b.options.length,
+                })),
+              ),
+        ));
+    if (hasAnswers) {
+      openDialog("new");
+      replacementSample.current = id;
+      return;
+    }
     loadExercise(samples[id], true);
     setReply(
       "A sample of the kind of practice you can shape with soulfire. These are example words, not a live AI response.",
@@ -290,6 +455,18 @@ export function Soulfire() {
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
   function reset() {
+    try {
+      localStorage.removeItem(savedPracticeKey);
+    } catch {
+      if (rememberPractice) {
+        setError(
+          "Couldn’t remove the saved practice. Your answers are still here.",
+        );
+        return;
+      }
+    }
+    setRememberPractice(false);
+    setSaveStatus("");
     cancel();
     quiet();
     setDraft("");
@@ -303,6 +480,14 @@ export function Soulfire() {
     setSelected([]);
     setDialog(null);
     setView("home");
+    setHomeStarted(true);
+    if (replacementSample.current) {
+      const id = replacementSample.current;
+      replacementSample.current = null;
+      loadExercise(samples[id], true);
+      setReply("An example practice, not a live AI response.");
+      setView("suggestion");
+    }
   }
   const composer = (hero = false, id = "message") => (
     <div className={`composer ${hero ? "hero-composer" : ""}`}>
@@ -381,7 +566,7 @@ export function Soulfire() {
           ? "Checking AI connection…"
           : configured
             ? "AI configured · text, dictation & live voice"
-            : "AI not connected · text & voice need server setup. Explore an example below or in the practice map."}
+            : "AI not connected · explore an example below."}
       </div>
       <div className="composer-bottom">
         <small>Sent messages are processed by OpenAI.</small>
@@ -419,14 +604,21 @@ export function Soulfire() {
     </>
   );
   return (
-    <div className="app-shell">
+    <div
+      className="app-shell"
+      data-motion={motion && !reducedMotion && pageVisible ? "on" : "off"}
+    >
       <a className="skip-link" href="#main">
         Skip to content
       </a>
       <header>
         <button
           className="brand"
-          onClick={() => go("home")}
+          onClick={() => {
+            setHomeStarted(false);
+            setReturning(introDone.current);
+            go("home");
+          }}
           aria-label="soulfire home"
         >
           <Mark />
@@ -451,6 +643,36 @@ export function Soulfire() {
           </button>
         </nav>
       </header>
+      <div className="sensory-controls">
+        <button
+          className="motion-toggle"
+          disabled={reducedMotion}
+          aria-pressed={motion && !reducedMotion}
+          onClick={() => {
+            const next = !motion;
+            motionPreference.current = next;
+            setMotion(next);
+            try {
+              localStorage.setItem(
+                "soulfire.motion.enabled",
+                next ? "on" : "off",
+              );
+            } catch {}
+          }}
+        >
+          {motion && !reducedMotion ? <Pause size={15} /> : <Play size={15} />}
+          {reducedMotion
+            ? "Still scene"
+            : motion
+              ? "Pause motion"
+              : "Play motion"}
+        </button>
+        <AmbientAudio
+          voiceActive={voiceActive}
+          paused={dialog !== null}
+          ducked={narrating}
+        />
+      </div>
       <main id="main">
         {error && (
           <div className="notice error" role="alert">
@@ -468,106 +690,107 @@ export function Soulfire() {
         )}
         {view === "home" && (
           <>
-            <section className="home-grid">
+            <section
+              className={`home-grid immersive-home ${homeStarted ? "is-open" : "is-arrival"}`}
+            >
               <div className="invitation">
-                <span className="eyebrow">A LITTLE ROOM TO BEGIN</span>
-                <h1 ref={heading} tabIndex={-1}>
-                  Meet what’s here.
-                  <br />
-                  <em>Find your next step.</em>
-                </h1>
-                <p className="lede">
-                  A spiritual practice companion for the things you’re carrying.
-                  Reflection, quiet, and small actions — shaped around you.
-                </p>
-                <div className="hero-art" aria-hidden="true">
-                  <div className="orbit one" />
-                  <div className="orbit two" />
-                  <Mark large />
-                  <span>A practice you can return to.</span>
-                </div>
-                <p className="soft-note">
-                  No perfect words. No particular belief required.
-                </p>
+                <QuietScene />
+                {!homeStarted ? (
+                  <Arrival
+                    paused={dialog !== null}
+                    returning={returning}
+                    hasPractice={!!exercise}
+                    headingRef={heading}
+                    onBegin={beginJourney}
+                    onDone={markIntroDone}
+                    onNarrating={setNarrating}
+                    onResume={() => go(resumeView.current)}
+                    onNew={() => openDialog("new")}
+                  />
+                ) : (
+                  <div className="landscape-caption" aria-hidden="true">
+                    <span /> One thing at a time.
+                  </div>
+                )}
               </div>
-              <div className="entry">
-                {composer(true)}
-                <label className="language-label">
-                  Language that feels right
-                  <select
-                    value={language}
-                    onChange={(e) =>
-                      setLanguage(e.target.value as typeof language)
-                    }
+              {homeStarted && (
+                <div className="entry">
+                  <button
+                    className="back"
+                    onClick={() => {
+                      quiet();
+                      setHomeStarted(false);
+                      setReturning(introDone.current);
+                    }}
                   >
-                    <option value="open">
-                      I’m open / still finding my words
-                    </option>
-                    <option value="spiritual">
-                      Spiritual / higher-power language
-                    </option>
-                    <option value="plain">
-                      Plain language, without spiritual terms
-                    </option>
-                  </select>
-                </label>
-                <div className="starting">
-                  <span className="eyebrow">
-                    OR START WITH SOMETHING FAMILIAR
-                  </span>
-                  {topics.map((t, i) => (
-                    <button key={t.id} onClick={() => setDraft(t.text)}>
-                      <span className="topic-number">0{i + 1}</span>
-                      {t.label}
-                      <ArrowRight size={16} />
-                    </button>
-                  ))}
+                    {" "}
+                    <ArrowLeft size={16} /> Back to the water
+                  </button>
+                  <h1 className="sr-only" ref={heading} tabIndex={-1}>
+                    What’s here today?
+                  </h1>
+                  {composer(true)}
+                  <details className="preferences">
+                    <summary>Make this space yours</summary>
+                    <label className="language-label">
+                      Language that feels right
+                      <select
+                        value={language}
+                        onChange={(e) =>
+                          setLanguage(e.target.value as typeof language)
+                        }
+                      >
+                        <option value="open">
+                          I’m open / still finding my words
+                        </option>
+                        <option value="spiritual">
+                          Spiritual / higher-power language
+                        </option>
+                        <option value="plain">
+                          Plain language, without spiritual terms
+                        </option>
+                      </select>
+                    </label>
+                  </details>
+                  <details className="starting">
+                    <summary>Need a place to start?</summary>
+                    {topics.map((t, i) => (
+                      <button
+                        key={t.id}
+                        onClick={() => {
+                          setDraft(t.text);
+                          document.getElementById("opening")?.focus();
+                        }}
+                      >
+                        <span className="topic-number">0{i + 1}</span>
+                        {t.label}
+                        <ArrowRight size={16} />
+                      </button>
+                    ))}
+                  </details>
+                  <button
+                    className="example-entry"
+                    onClick={() => sample("worry")}
+                  >
+                    <PromptArt kind="sort" />
+                    <span>
+                      <strong>Try the example</strong>
+                      <span>Prepare. Influence. Release.</span>
+                    </span>
+                    <ArrowRight size={20} />
+                  </button>
                 </div>
-              </div>
+              )}
             </section>
-            <section className="below">
-              <div>
-                <span className="eyebrow">FROM CONVERSATION TO PRACTICE</span>
-                <h2>Something you can work with.</h2>
-                <p>
-                  Make space for what’s happening. Explore one principle. Leave
-                  with one thing that feels possible.
-                </p>
+            {!homeStarted && (
+              <div className="service-state" role="status">
+                {configured === null
+                  ? "Checking AI connection…"
+                  : configured
+                    ? "AI connected · sound starts off"
+                    : "AI is not connected · examples available"}
               </div>
-              <button className="preview-card" onClick={() => sample("worry")}>
-                <span className="eyebrow">EXPLORE AN EXAMPLE · STEP 1</span>
-                <h3>
-                  Prepare what’s yours.
-                  <br />
-                  Release the rest.
-                </h3>
-                <div className="mini-columns">
-                  <span>
-                    <Leaf />
-                    Prepare
-                  </span>
-                  <span>
-                    <Waves />
-                    Influence
-                  </span>
-                  <span>
-                    <Cloud />
-                    Release
-                  </span>
-                </div>
-                <span className="text-link">
-                  Try the example <ArrowRight size={16} />
-                </span>
-              </button>
-            </section>
-            <div className="service-state" role="status">
-              <span className={`status-dot ${configured ? "ready" : ""}`} />
-              {configured === null
-                ? "Checking companion connection…"
-                : configured
-                  ? "AI service configured · responses may take a moment"
-                  : "AI is not connected in this local preview. Examples are available; live responses need server setup."}
-            </div>
+            )}
             {messages.length > 0 && !voiceActive && (
               <div className="conversation-practice">
                 <button
@@ -590,7 +813,14 @@ export function Soulfire() {
         )}
         {view === "suggestion" && exercise && (
           <section className="suggestion page-narrow">
-            <button className="back" onClick={() => go("home")}>
+            <button
+              className="back"
+              onClick={() => {
+                setHomeStarted(true);
+                setReturning(introDone.current);
+                go("home");
+              }}
+            >
               <ArrowLeft size={16} /> Back to conversation
             </button>
             <span className="eyebrow">
@@ -600,18 +830,14 @@ export function Soulfire() {
             <h1 ref={heading} tabIndex={-1}>
               {exercise.title}
             </h1>
-            <p className="lede">{exercise.purpose}</p>
-            <div className="principle-card">
-              <Leaf size={30} />
-              <div>
-                <span className="eyebrow">A PRINCIPLE TO EXPLORE</span>
-                <h2>{exercise.principle}</h2>
-                <p>{exercise.blocks[0]?.prompt}</p>
-              </div>
-            </div>
+            <PromptArt kind={exercise.blocks[0]?.type || "reflect"} />
+            <details className="principle-detail">
+              <summary>{exercise.principle} · about this practice</summary>
+              <p>{exercise.purpose}</p>
+            </details>
             <p className="small">
               {example
-                ? "This is a labeled example for exploring the experience. It was not generated from your message."
+                ? "Example practice · not generated from your message."
                 : "This is an AI suggestion, not a verdict. You can change it, decline it, or use your own words."}
             </p>
             <div className="actions">
@@ -622,7 +848,14 @@ export function Soulfire() {
                 Choose a different practice
               </button>
             </div>
-            <button className="text-link" onClick={() => go("home")}>
+            <button
+              className="text-link"
+              onClick={() => {
+                setHomeStarted(true);
+                setReturning(introDone.current);
+                go("home");
+              }}
+            >
               Not now — return to conversation
             </button>
           </section>
@@ -630,29 +863,41 @@ export function Soulfire() {
         {view === "practice" && exercise && (
           <div className="practice-layout">
             <aside>
-              <button className="back" onClick={() => go("home")}>
+              <button
+                className="back"
+                onClick={() => {
+                  setHomeStarted(true);
+                  setReturning(introDone.current);
+                  go("home");
+                }}
+              >
                 <ArrowLeft size={16} /> Back to conversation
               </button>
               <span className="eyebrow">
                 STEP {exercise.step} · {exercise.principle.toUpperCase()}
               </span>
-              <h2>
-                A moment
-                <br />
-                for your practice.
-              </h2>
-              <p>{exercise.purpose}</p>
-              <div className="landscape" aria-hidden="true">
-                <Waves size={120} />
+              <h2>{exercise.principle}</h2>
+              <details className="practice-context">
+                <summary>About this practice</summary>
+                <p>{exercise.purpose}</p>
+              </details>
+              <div className="landscape">
+                <QuietScene />
               </div>
               <button className="text-link" onClick={() => go("map")}>
                 <Leaf size={17} /> Try a different practice
               </button>
               {!mobile && (
-                <div className="side-composer">
+                <details
+                  className="side-composer companion-disclosure"
+                  onToggle={(e) => {
+                    if (!e.currentTarget.open) quiet();
+                  }}
+                >
+                  <summary>Talk this through</summary>
                   {composer()}
                   {transcript}
-                </div>
+                </details>
               )}
             </aside>
             <section className="practice-main">
@@ -664,169 +909,253 @@ export function Soulfire() {
                 </span>
                 <span className="small">At your pace</span>
               </div>
-              <h1 ref={heading} tabIndex={-1}>
+              <h1 className="practice-title" ref={heading} tabIndex={-1}>
                 {exercise.title}
               </h1>
-              <p className="intro">
-                Suggestions are yours to change. Leave anything blank.
-              </p>
-              {exercise.blocks.map((block) => (
-                <section
-                  className={`exercise-block ${block.type}`}
-                  key={block.id}
+              <div className="prompt-navigation" aria-label="Practice prompts">
+                {exercise.blocks.map((b, i) => (
+                  <button
+                    key={b.id}
+                    aria-label={`Prompt ${i + 1}: ${b.title}`}
+                    aria-current={
+                      !showAll && practiceStep === i ? "step" : undefined
+                    }
+                    onClick={() => {
+                      quiet();
+                      cancel();
+                      setShowAll(false);
+                      setPracticeStep(i);
+                    }}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+                <button
+                  aria-label="Action prompt"
+                  aria-current={
+                    !showAll && practiceStep === exercise.blocks.length
+                      ? "step"
+                      : undefined
+                  }
+                  onClick={() => {
+                    quiet();
+                    cancel();
+                    setShowAll(false);
+                    setPracticeStep(exercise.blocks.length);
+                  }}
                 >
-                  <h2>{block.title}</h2>
-                  <p>{block.prompt}</p>
-                  {block.type === "sort" ? (
-                    <div className="sort-grid">
-                      {block.options.map((group, g) => (
-                        <div className="sort-column" key={group}>
-                          <div className="group-icon">
-                            {g === 0 ? (
-                              <Leaf />
-                            ) : g === 1 ? (
-                              <Waves />
-                            ) : (
-                              <Cloud />
-                            )}
-                          </div>
-                          <h3>{group}</h3>
-                          {(cards[block.id] || [])
-                            .filter((c) => c.group === g)
-                            .map((card) => (
-                              <div className="thought" key={card.id}>
-                                <input
-                                  aria-label="Thought"
-                                  maxLength={180}
-                                  value={card.text}
-                                  onChange={(e) =>
-                                    setCards((v) => ({
-                                      ...v,
-                                      [block.id]: v[block.id].map((c) =>
-                                        c.id === card.id
-                                          ? { ...c, text: e.target.value }
-                                          : c,
-                                      ),
-                                    }))
-                                  }
-                                />
-                                <div className="thought-tools">
-                                  <select
-                                    aria-label={`Move ${card.text || "thought"}`}
-                                    value={card.group}
-                                    onChange={(e) =>
-                                      setCards((v) => ({
-                                        ...v,
-                                        [block.id]: v[block.id].map((c) =>
-                                          c.id === card.id
-                                            ? {
-                                                ...c,
-                                                group: Number(e.target.value),
-                                              }
-                                            : c,
-                                        ),
-                                      }))
-                                    }
-                                  >
-                                    {block.options.map((o, i) => (
-                                      <option key={o} value={i}>
-                                        {o}
-                                      </option>
-                                    ))}
-                                  </select>
-                                  <button
-                                    aria-label={`Remove ${card.text || "thought"}`}
-                                    onClick={() =>
-                                      setCards((v) => ({
-                                        ...v,
-                                        [block.id]: v[block.id].filter(
-                                          (c) => c.id !== card.id,
-                                        ),
-                                      }))
-                                    }
-                                  >
-                                    <X size={14} />
-                                  </button>
-                                </div>
-                              </div>
-                            ))}
-                          <button
-                            className="add-thought"
-                            disabled={(cards[block.id] || []).length >= 12}
-                            onClick={() =>
-                              setCards((v) => ({
-                                ...v,
-                                [block.id]: [
-                                  ...(v[block.id] || []),
-                                  {
-                                    id: crypto.randomUUID(),
-                                    text: "",
-                                    group: g,
-                                  },
-                                ],
-                              }))
-                            }
-                          >
-                            <Plus size={16} /> Add a thought
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  ) : block.type === "choose" ? (
-                    <div
-                      className="choices"
-                      role="group"
-                      aria-label={block.title}
+                  <Leaf size={18} />
+                </button>
+                <button
+                  className="text-link overview-toggle"
+                  onClick={() => {
+                    quiet();
+                    cancel();
+                    setShowAll((v) => !v);
+                  }}
+                >
+                  {showAll ? "One prompt at a time" : "Show all prompts"}
+                </button>
+              </div>
+              {exercise.blocks.map(
+                (block, index) =>
+                  (showAll || index === practiceStep) && (
+                    <section
+                      className={`exercise-block ${block.type}`}
+                      key={block.id}
                     >
-                      {block.options.map((o) => (
-                        <button
-                          className={fields[block.id] === o ? "chosen" : ""}
-                          aria-pressed={fields[block.id] === o}
-                          key={o}
-                          onClick={() =>
+                      <PromptArt kind={block.type} />
+                      <h2
+                        ref={index === practiceStep ? promptHeading : undefined}
+                        tabIndex={-1}
+                      >
+                        {block.title}
+                      </h2>
+                      <p>{block.prompt}</p>
+                      {block.type === "sort" ? (
+                        <div className="sort-grid">
+                          {block.options.map((group, g) => (
+                            <div className="sort-column" key={group}>
+                              <div className="group-icon">
+                                {g === 0 ? (
+                                  <Leaf />
+                                ) : g === 1 ? (
+                                  <Waves />
+                                ) : (
+                                  <Cloud />
+                                )}
+                              </div>
+                              <h3>{group}</h3>
+                              {(cards[block.id] || [])
+                                .filter((c) => c.group === g)
+                                .map((card) => (
+                                  <div className="thought" key={card.id}>
+                                    <input
+                                      aria-label="Thought"
+                                      maxLength={180}
+                                      value={card.text}
+                                      onChange={(e) =>
+                                        setCards((v) => ({
+                                          ...v,
+                                          [block.id]: v[block.id].map((c) =>
+                                            c.id === card.id
+                                              ? { ...c, text: e.target.value }
+                                              : c,
+                                          ),
+                                        }))
+                                      }
+                                    />
+                                    <div className="thought-tools">
+                                      <select
+                                        aria-label={`Move ${card.text || "thought"}`}
+                                        value={card.group}
+                                        onChange={(e) =>
+                                          setCards((v) => ({
+                                            ...v,
+                                            [block.id]: v[block.id].map((c) =>
+                                              c.id === card.id
+                                                ? {
+                                                    ...c,
+                                                    group: Number(
+                                                      e.target.value,
+                                                    ),
+                                                  }
+                                                : c,
+                                            ),
+                                          }))
+                                        }
+                                      >
+                                        {block.options.map((o, i) => (
+                                          <option key={o} value={i}>
+                                            {o}
+                                          </option>
+                                        ))}
+                                      </select>
+                                      <button
+                                        aria-label={`Remove ${card.text || "thought"}`}
+                                        onClick={() =>
+                                          setCards((v) => ({
+                                            ...v,
+                                            [block.id]: v[block.id].filter(
+                                              (c) => c.id !== card.id,
+                                            ),
+                                          }))
+                                        }
+                                      >
+                                        <X size={14} />
+                                      </button>
+                                    </div>
+                                  </div>
+                                ))}
+                              <button
+                                className="add-thought"
+                                disabled={(cards[block.id] || []).length >= 12}
+                                onClick={() =>
+                                  setCards((v) => ({
+                                    ...v,
+                                    [block.id]: [
+                                      ...(v[block.id] || []),
+                                      {
+                                        id: crypto.randomUUID(),
+                                        text: "",
+                                        group: g,
+                                      },
+                                    ],
+                                  }))
+                                }
+                              >
+                                <Plus size={16} /> Add a thought
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      ) : block.type === "choose" ? (
+                        <div
+                          className="choices"
+                          role="group"
+                          aria-label={block.title}
+                        >
+                          {block.options.map((o) => (
+                            <button
+                              className={fields[block.id] === o ? "chosen" : ""}
+                              aria-pressed={fields[block.id] === o}
+                              key={o}
+                              onClick={() =>
+                                setFields((v) => ({
+                                  ...v,
+                                  [block.id]: v[block.id] === o ? "" : o,
+                                }))
+                              }
+                            >
+                              {fields[block.id] === o ? (
+                                <Check size={18} />
+                              ) : (
+                                <span className="choice-circle" />
+                              )}
+                              {o}
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        <AutoTextarea
+                          aria-label={block.title}
+                          maxLength={1500}
+                          rows={3}
+                          placeholder="A few words, if you like…"
+                          value={fields[block.id] || ""}
+                          onChange={(e) =>
                             setFields((v) => ({
                               ...v,
-                              [block.id]: v[block.id] === o ? "" : o,
+                              [block.id]: e.target.value,
                             }))
                           }
-                        >
-                          {fields[block.id] === o ? (
-                            <Check size={18} />
-                          ) : (
-                            <span className="choice-circle" />
-                          )}
-                          {o}
-                        </button>
-                      ))}
-                    </div>
-                  ) : (
-                    <AutoTextarea
-                      aria-label={block.title}
-                      maxLength={1500}
-                      rows={3}
-                      placeholder="A few words, if you like…"
-                      value={fields[block.id] || ""}
-                      onChange={(e) =>
-                        setFields((v) => ({ ...v, [block.id]: e.target.value }))
+                        />
+                      )}
+                    </section>
+                  ),
+              )}
+              {(showAll || practiceStep === exercise.blocks.length) && (
+                <section className="action-card">
+                  <PromptArt kind="action" />
+                  <div>
+                    <h2
+                      ref={
+                        practiceStep === exercise.blocks.length
+                          ? promptHeading
+                          : undefined
                       }
+                      tabIndex={-1}
+                    >
+                      {exercise.actionPrompt}
+                    </h2>
+                    <p>Choose your own words. Small is enough.</p>
+                    <AutoTextarea
+                      aria-label="My next action"
+                      maxLength={600}
+                      value={action}
+                      rows={2}
+                      onChange={(e) => setAction(e.target.value)}
                     />
-                  )}
+                  </div>
                 </section>
-              ))}
-              <section className="action-card">
-                <Leaf />
-                <div>
-                  <h2>{exercise.actionPrompt}</h2>
-                  <p>Choose your own words. Small is enough.</p>
-                  <AutoTextarea
-                    aria-label="My next action"
-                    maxLength={600}
-                    value={action}
-                    rows={2}
-                    onChange={(e) => setAction(e.target.value)}
-                  />
-                </div>
-              </section>
+              )}
+              <details className="save-practice">
+                <summary>Save and return later</summary>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={rememberPractice}
+                    onChange={(e) => remember(e.target.checked)}
+                  />{" "}
+                  Keep this practice on this device
+                </label>
+                <p>
+                  Answers are stored only in this browser, unencrypted. Anyone
+                  using this browser may resume them. Uncheck to remove the
+                  saved copy.
+                </p>
+                {saveStatus && <p role="status">{saveStatus}</p>}
+              </details>
               <div className="practice-bottom">
                 <small>
                   Draft answers stay here until you choose to share.
@@ -835,7 +1164,27 @@ export function Soulfire() {
                   <button onClick={() => openDialog("pause")}>
                     Pause practice
                   </button>
-                  <button className="primary" onClick={() => go("meditation")}>
+                  {!showAll && practiceStep > 0 && (
+                    <button
+                      onClick={() => {
+                        quiet();
+                        cancel();
+                        setPracticeStep((v) => v - 1);
+                      }}
+                    >
+                      Previous prompt
+                    </button>
+                  )}
+                  <button
+                    className="primary"
+                    onClick={() => {
+                      quiet();
+                      cancel();
+                      if (showAll || practiceStep === exercise.blocks.length)
+                        go("meditation");
+                      else setPracticeStep((v) => v + 1);
+                    }}
+                  >
                     Continue <ArrowRight size={17} />
                   </button>
                 </div>
@@ -847,10 +1196,16 @@ export function Soulfire() {
                 Grounding, if you need it
               </button>
               {mobile && (
-                <div className="mobile-composer">
+                <details
+                  className="mobile-composer companion-disclosure"
+                  onToggle={(e) => {
+                    if (!e.currentTarget.open) quiet();
+                  }}
+                >
+                  <summary>Talk this through</summary>
                   {composer(false, "mobile-message")}
                   {transcript}
-                </div>
+                </details>
               )}
             </section>
           </div>
@@ -865,8 +1220,8 @@ export function Soulfire() {
               Nothing to get right.
             </h1>
             <p className="lede">
-              Let your attention rest on the room around you, or on an easy
-              breath. Eyes open is welcome. Stop whenever you like.
+              Rest your attention on an easy breath or the room around you. Eyes
+              open. Stop anytime.
             </p>
             <div className={`timer-orbit ${running ? "running" : ""}`}>
               <Mark />
@@ -959,9 +1314,7 @@ export function Soulfire() {
             <h1 ref={heading} tabIndex={-1}>
               What are you taking with you?
             </h1>
-            <p className="lede">
-              A shift, a question, or nothing yet. There is no score for this.
-            </p>
+            <PromptArt kind="reflect" />
             <label className="field-label">
               What did you notice?
               <AutoTextarea
@@ -972,50 +1325,56 @@ export function Soulfire() {
                 placeholder="You can keep this just for yourself…"
               />
             </label>
-            <div className="sharing-card">
-              <Shield size={25} />
-              <h2>Choose what to share.</h2>
-              <p>
-                Only checked answers will be sent to the AI companion for
-                reflection, alongside your submitted conversation. Everything
-                else stays in this tab.
-              </p>
-              {sharingItems.map((i) => (
-                <label className="sharing-item" key={i.id}>
-                  <input
-                    type="checkbox"
-                    checked={selected.includes(i.id)}
-                    disabled={!i.value.trim()}
-                    onChange={(e) =>
-                      setSelected((v) =>
-                        e.target.checked
-                          ? [...v, i.id]
-                          : v.filter((x) => x !== i.id),
-                      )
-                    }
-                  />
-                  <span>
-                    <strong>{i.label}</strong>
-                    <small>{i.value || "No answer — nothing to share"}</small>
-                  </span>
-                </label>
-              ))}
-            </div>
+            <details className="sharing-disclosure">
+              <summary>Ask the companion to reflect</summary>
+              <div className="sharing-card">
+                <Shield size={25} />
+                <h2>Choose what to share.</h2>
+                <p>
+                  Only checked answers will be sent to the AI companion for
+                  reflection, alongside your submitted conversation. Everything
+                  else stays in this tab.
+                </p>
+                {sharingItems.map((i) => (
+                  <label className="sharing-item" key={i.id}>
+                    <input
+                      type="checkbox"
+                      checked={selected.includes(i.id)}
+                      disabled={!i.value.trim()}
+                      onChange={(e) =>
+                        setSelected((v) =>
+                          e.target.checked
+                            ? [...v, i.id]
+                            : v.filter((x) => x !== i.id),
+                        )
+                      }
+                    />
+                    <span>
+                      <strong>{i.label}</strong>
+                      <small>{i.value || "No answer — nothing to share"}</small>
+                    </span>
+                  </label>
+                ))}
+              </div>
+              <div className="actions">
+                <button
+                  className="primary"
+                  disabled={busy || !selected.length}
+                  onClick={share}
+                >
+                  Share selected & reflect <ArrowRight size={17} />
+                </button>
+              </div>
+            </details>
             <div className="actions">
               <button
                 className="primary"
-                disabled={busy || !selected.length}
-                onClick={share}
-              >
-                Share selected & reflect <ArrowRight size={17} />
-              </button>
-              <button
                 onClick={() => {
                   setReply("");
                   go("finish");
                 }}
               >
-                Keep private & continue
+                Keep private & continue <ArrowRight size={17} />
               </button>
             </div>
             <button className="text-link" onClick={() => go("practice")}>
@@ -1025,7 +1384,7 @@ export function Soulfire() {
         )}
         {view === "finish" && exercise && (
           <section className="page-narrow finish-page">
-            <Mark large />
+            <PromptArt kind="action" />
             <span className="eyebrow">A SMALL STEP INTO YOUR DAY</span>
             <h1 ref={heading} tabIndex={-1}>
               Let this be enough
@@ -1051,10 +1410,7 @@ export function Soulfire() {
                 />
               </label>
             </div>
-            <p>
-              Consider who in your life could support you in this. You don’t
-              have to carry it alone.
-            </p>
+
             <div className="actions centered">
               <button className="primary" onClick={download}>
                 <Download size={17} /> Download my note
@@ -1064,9 +1420,10 @@ export function Soulfire() {
               </button>
             </div>
             <p className="small">
-              Nothing is saved by soulfire. Downloading creates a plain-text
-              file on this device. Closing or reloading this tab clears your
-              drafts.
+              {rememberPractice
+                ? "This practice is saved in this browser. You can remove it from Pause & return."
+                : "This practice stays in this tab unless you choose to save it from Pause & return."}{" "}
+              Downloading creates a plain-text file on this device.
             </p>
             <button className="text-link" onClick={() => openDialog("new")}>
               Start fresh & clear this session
@@ -1210,6 +1567,19 @@ export function Soulfire() {
               Your drafts are still here in this tab. Microphone, playback and
               the timer have stopped.
             </p>
+            <label className="save-choice">
+              <input
+                type="checkbox"
+                checked={rememberPractice}
+                onChange={(e) => remember(e.target.checked)}
+              />{" "}
+              Keep this practice on this device
+            </label>
+            <p className="small">
+              Optional, unencrypted browser storage. Uncheck to remove the saved
+              copy.
+            </p>
+            {saveStatus && <p role="status">{saveStatus}</p>}
             <button className="primary" onClick={() => setDialog(null)}>
               Return when ready
             </button>
@@ -1280,8 +1650,9 @@ export function Soulfire() {
           <>
             <h2>Begin with a clear page?</h2>
             <p>
-              This clears conversation and private drafts from this tab.
-              Download a note first if you want to keep one.
+              Starting fresh clears this practice and its saved copy from this
+              device. Your sound and motion preferences stay the same. Keep this
+              session to return without losing answers.
             </p>
             <div className="actions">
               <button className="primary" onClick={reset}>
@@ -1306,10 +1677,14 @@ export function Soulfire() {
               private exercise fields.
             </p>
             <p>
-              No accounts, analytics, database or automatic saving in this
-              prototype. Drafts disappear on reload. OpenAI’s processing and
-              retention are separate; this is not a promise of zero provider
-              retention.
+              No accounts, analytics or server database. Introduction, sound and
+              motion preferences are remembered in this browser. Practice
+              answers stay in this tab unless you choose “Keep this practice on
+              this device”. That optional saved copy is unencrypted browser
+              storage; anyone using this browser can resume it. Uncheck the
+              option to remove it. Conversations are never saved. OpenAI’s
+              processing and retention are separate; this is not a promise of
+              zero provider retention.
             </p>
             <p>
               This is a self-help exploration, not clinical care or a claim of

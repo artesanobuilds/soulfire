@@ -50,3 +50,15 @@ Browser-native screens preserve the sheltered flame, selected palette, serif hie
 After reviewing mobile invitation, full acceptance practice, privacy and conflict screenshots, the reviewer requested: connection status beside the composer/voice controls; automatically expanding filled action/practice textareas; tested dialog focus trapping/restoration; short-height mobile checks. All are implemented. Native modal keyboard traversal needed an explicit first/last focus loop; Escape restores the invoking control. Practice fields remain editable and private until selected for sharing.
 
 Actual browser screenshots and the section gallery live in [review](review/index.html). Loading/service-error/microphone-denial captures are clearly identified as simulations. No live model or audio round-trip claim follows from those images.
+
+## October 22: arrival and returning visits
+
+Approved arrival is one continuous landscape with the purpose “Twelve-step wisdom, practiced in everyday life.” Optional narration accompanies three sparse visual moments; Begin and Skip remain immediately available. Entry preserves the landscape element and ambient player, stops narration and restores music volume. Intro completion is remembered only on explicit entry/skip or completed playback.
+
+Returning visits show no private answers. Resume restores the current saved practice; starting new confirms clearing. Saving answers is explicitly opt-in, unencrypted and confined to this browser; unchecking removes the saved copy while preserving current in-memory edits. No existing record is deleted or migrated on load. Conversation and sharing consent are not persisted. Sound selection, volume, explicit mute and motion preferences are remembered; reduced motion overrides animation.
+
+The user rejected the initial Samantha narration. The selected replacement is local Kokoro `af_heart`, the same English voice used in the PTO workflow, at 0.84 synthesis speed with sentence pauses. Runtime 23.45s; no time stretching, cloning, cloud service, credentials or changes to PTO assets. Objective audio checks and silent browser tests do not constitute subjective listening approval.
+
+## October 23: introduction controls
+
+Play introduction sits beside Begin journey on first arrival and on returns without proven playback. Replay introduction appears only after the browser's playing event, stored separately from the older visit/skip/completion flag. Failed attempts do not count. Existing visit and saved-practice data remain untouched. The visible transcript panel is removed; optional synchronized captions and a screen-reader text equivalent preserve access. Kokoro voice, landscape, music and core practice flow remain unchanged.

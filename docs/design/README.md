@@ -31,3 +31,9 @@ All images below are preserved as exploration artifacts, not production assets o
 The decisions log and this cross-section index remain at the design root. Future sections can have their own directories as screens are designed.
 
 The creator's original MidJourney grid and cropped color reference were shared in the conversation. They are not separate source-image files in this archive; the comparisons here retain generated interpretations. Do not describe these as exact reproductions of the original marks.
+
+## Latest implemented review
+
+- [Arrival and replay controls](intro-controls-review/README.md): current desktop/mobile UI.
+- [Real personalized practice](live-ai-review/README.md): one synthetic OpenAI request rendered by the production app.
+- Current scene and motion are code-native in `src/components/LandscapeArtwork.tsx` and `QuietScene.tsx`. Selected music, narration and reproducible sources are included under `public/audio` and `assets`.
