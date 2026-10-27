@@ -1,0 +1,32 @@
+{
+  "url": "http://127.0.0.1:3100",
+  "syntheticOnly": true,
+  "results": [
+    {
+      "device": "desktop",
+      "catalogCount": 23,
+      "fixtureVoiceCompleted": true,
+      "localAudioFiles": 4,
+      "scenarioSnapshotSaved": true,
+      "feedback": true,
+      "export": true,
+      "confirmedDelete": true,
+      "paidConsentGate": true,
+      "providerRequests": 0,
+      "pageErrors": []
+    },
+    {
+      "device": "mobile",
+      "catalogCount": 23,
+      "fixtureVoiceCompleted": true,
+      "localAudioFiles": 4,
+      "scenarioSnapshotSaved": true,
+      "feedback": true,
+      "export": true,
+      "confirmedDelete": true,
+      "paidConsentGate": true,
+      "providerRequests": 0,
+      "pageErrors": []
+    }
+  ]
+}

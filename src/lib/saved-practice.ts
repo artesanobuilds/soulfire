@@ -4,6 +4,7 @@ export const savedPracticeKey = "soulfire.saved-practice.v1";
 export const savedPracticeSchema = z
   .object({
     version: z.literal(1),
+    sceneVersion: z.literal(1).optional(),
     exercise: exerciseSchema,
     example: z.boolean(),
     fields: z.record(z.string().max(40), z.string().max(1500)),

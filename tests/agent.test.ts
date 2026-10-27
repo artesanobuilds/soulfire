@@ -180,7 +180,7 @@ describe("server boundary", () => {
       ),
     );
     const r = await POST(req(input));
-    expect(r.status).toBe(502);
+    expect(r.status).toBe(422);
     expect(JSON.stringify(await r.json())).not.toContain(
       "private provider text",
     );

@@ -33,8 +33,10 @@ async function simulate(page: import("@playwright/test").Page) {
       mimeType = "audio/webm";
       ondataavailable: ((e: { data: Blob }) => void) | null = null;
       onstop: (() => void) | null = null;
+      onstart: (() => void) | null = null;
       start() {
         this.state = "recording";
+        this.onstart?.();
       }
       stop() {
         this.state = "inactive";
@@ -136,6 +138,9 @@ test("dictation remains editable and targets a private field without model submi
   await page
     .getByLabel("Name what is here", { exact: true })
     .fill("I edited my private thought.");
+  await expect(page.locator(".draft-review:visible")).toContainText(
+    "private practice",
+  );
   expect(modelCalls).toBe(0);
   expect((await state(page)).stops).toBeGreaterThan(0);
 });
@@ -259,4 +264,179 @@ test("explicit danger transcript interrupts voice with an application safety not
   await expect(page.getByRole("dialog")).toContainText("Safety notice:");
   expect((await state(page)).stops).toBeGreaterThan(0);
   expect((await state(page)).closed).toBe(true);
+});
+
+for (const event of [
+  {
+    type: "error",
+    error: { code: "server_error", message: "PRIVATE-PROVIDER-DETAIL" },
+  },
+  { type: "error", error: { code: "future_provider_error" } },
+  { type: "response.done", response: { status: "failed" } },
+  { type: "conversation.item.input_audio_transcription.failed" },
+])
+  test(`fatal voice event releases microphone: ${JSON.stringify(event)}`, async ({
+    page,
+  }) => {
+    await simulate(page);
+    await page.getByRole("button", { name: "Live voice", exact: true }).click();
+    await page
+      .getByRole("button", { name: "Allow microphone & start" })
+      .click();
+    await expect(
+      page.getByText("Live voice · microphone on", { exact: true }),
+    ).toBeVisible();
+    await page.evaluate(
+      (event) =>
+        (
+          window as unknown as { __voiceTest: { emit: (e: unknown) => void } }
+        ).__voiceTest.emit(event),
+      event,
+    );
+    await expect(
+      page.getByRole("button", { name: "Live voice", exact: true }),
+    ).toBeVisible();
+    expect((await state(page)).closed).toBe(true);
+    expect((await state(page)).stops).toBeGreaterThan(0);
+    await expect(page.locator("body")).not.toContainText(
+      "PRIVATE-PROVIDER-DETAIL",
+    );
+  });
+test("cancel race remains live; stale provider callbacks after stop are ignored", async ({
+  page,
+}) => {
+  await simulate(page);
+  await page.getByRole("button", { name: "Live voice", exact: true }).click();
+  await page.getByRole("button", { name: "Allow microphone & start" }).click();
+  await expect(
+    page.getByText("Live voice · microphone on", { exact: true }),
+  ).toBeVisible();
+  await page.evaluate(() =>
+    (
+      window as unknown as { __voiceTest: { emit: (e: unknown) => void } }
+    ).__voiceTest.emit({
+      type: "error",
+      error: { code: "response_cancel_not_active" },
+    }),
+  );
+  await expect(
+    page.getByText("Live voice · microphone on", { exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "End voice", exact: true }).click();
+  await page.evaluate(() =>
+    (
+      window as unknown as { __voiceTest: { emit: (e: unknown) => void } }
+    ).__voiceTest.emit({
+      type: "response.output_audio_transcript.done",
+      item_id: "late",
+      transcript: "STALE-TURN",
+    }),
+  );
+  await expect(page.locator("body")).not.toContainText("STALE-TURN");
+});
+
+test("a connected session survives the setup deadline, and offline releases it", async ({
+  page,
+}) => {
+  await simulate(page);
+  await page.clock.install();
+  await page.getByRole("button", { name: "Live voice", exact: true }).click();
+  await page.getByRole("button", { name: "Allow microphone & start" }).click();
+  await expect(
+    page.getByText("Live voice · microphone on", { exact: true }),
+  ).toBeVisible();
+  await page.clock.fastForward(26000);
+  await expect(
+    page.getByText("Live voice · microphone on", { exact: true }),
+  ).toBeVisible();
+  await page.evaluate(() => window.dispatchEvent(new Event("offline")));
+  await expect(
+    page.getByRole("button", { name: "Live voice", exact: true }),
+  ).toBeVisible();
+  expect((await state(page)).closed).toBe(true);
+  expect((await state(page)).stops).toBeGreaterThan(0);
+});
+test("status setup timeout returns to retryable controls without microphone access", async ({
+  page,
+}) => {
+  await simulate(page);
+  await page.route("**/api/status", () => {});
+  await page.clock.install();
+  await page.getByRole("button", { name: "Live voice", exact: true }).click();
+  await page.getByRole("button", { name: "Allow microphone & start" }).click();
+  await expect(
+    page.getByText("Connecting voice…", { exact: true }),
+  ).toBeVisible();
+  await page.clock.fastForward(26000);
+  await expect(
+    page.getByRole("button", { name: "Live voice", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator("body")).toContainText("Voice setup timed out");
+});
+test("fatal voice error preserves opt-in history final turns and ends the session once", async ({
+  page,
+  request,
+  baseURL,
+}) => {
+  test.skip(process.env.SOULFIRE_TEST_ISOLATED !== "1", "Requires an explicitly isolated data directory and no provider key.");
+  expect((await (await request.get("/api/status")).json()).configured).toBe(
+    false,
+  );
+  await simulate(page);
+  await page.getByRole("button", { name: "History", exact: true }).click();
+  await page
+    .getByLabel(
+      "Save future submitted text and final voice transcripts on this Mac.",
+    )
+    .check();
+  await page
+    .getByRole("button", { name: "Start saving future turns", exact: true })
+    .click();
+  await expect(page.getByRole("dialog")).toContainText("History on");
+  const sessions = (await (await page.request.get("/api/history")).json())
+    .sessions;
+  const id = sessions[0].id;
+  await page.getByRole("button", { name: "Close dialog" }).click();
+  await page.getByRole("button", { name: "Live voice", exact: true }).click();
+  await page.getByRole("button", { name: "Allow microphone & start" }).click();
+  await expect(
+    page.getByText("Live voice · microphone on", { exact: true }),
+  ).toBeVisible();
+  await page.evaluate(() => {
+    const s = (
+      window as unknown as { __voiceTest: { emit: (e: unknown) => void } }
+    ).__voiceTest;
+    const turn = {
+      type: "conversation.item.input_audio_transcription.completed",
+      item_id: "history-final",
+      transcript: "Synthetic final voice turn.",
+    };
+    s.emit(turn);
+    s.emit(turn);
+    s.emit({
+      type: "error",
+      error: { code: "server_error", message: "NEVER-STORE-PROVIDER-PAYLOAD" },
+    });
+  });
+  await expect(
+    page.getByRole("button", { name: "Live voice", exact: true }),
+  ).toBeVisible();
+  await expect
+    .poll(async () => {
+      const detail = await (
+        await page.request.get("/api/history?id=" + id)
+      ).json();
+      return detail.events.filter((e: { kind: string }) => e.kind === "ended")
+        .length;
+    })
+    .toBe(1);
+  const detail = await (await page.request.get("/api/history?id=" + id)).json();
+  expect(
+    detail.events.filter((e: { kind: string }) => e.kind === "message"),
+  ).toHaveLength(1);
+  expect(JSON.stringify(detail)).not.toContain("NEVER-STORE-PROVIDER-PAYLOAD");
+  await page.request.delete("/api/history", {
+    headers: { Origin: baseURL! },
+    data: { id, confirm: true },
+  });
 });

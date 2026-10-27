@@ -1,6 +1,10 @@
 import { test, expect } from "@playwright/test";
 import { samples } from "../../src/lib/catalog";
 test.beforeEach(async ({ page }) => {
+  // This suite intercepts model transport; advertise the matching configured fixture.
+  await page.route("**/api/status", (r) =>
+    r.fulfill({ json: { configured: true } }),
+  );
   await page.goto("/");
   await page
     .getByRole("button", { name: "Begin journey", exact: true })
@@ -115,7 +119,7 @@ test("simulated model transport renders validated responses and shares only chec
     .getByLabel("What’s weighing on you today?")
     .fill("My presentation is tomorrow.");
   await page
-    .getByRole("button", { name: "Find a practice", exact: true })
+    .getByRole("button", { name: "Send & find a practice", exact: true })
     .click();
   await page.getByRole("button", { name: "Try this practice" }).click();
   await page
@@ -153,7 +157,7 @@ test("failure and interruption retain draft; repeated clicks produce one request
       .catch(() => {});
   });
   await page
-    .getByRole("button", { name: "Find a practice", exact: true })
+    .getByRole("button", { name: "Send & find a practice", exact: true })
     .click();
   await page
     .getByRole("button", { name: "Stop response", exact: true })
@@ -162,7 +166,7 @@ test("failure and interruption retain draft; repeated clicks produce one request
     "Keep my message",
   );
   await page
-    .getByRole("button", { name: "Find a practice", exact: true })
+    .getByRole("button", { name: "Send & find a practice", exact: true })
     .click();
   await expect(page.locator("main [role=alert]")).toContainText(
     "Service unavailable",
@@ -195,7 +199,7 @@ test("microphone denial leaves text and recovery available", async ({
     "Still here",
   );
   await expect(
-    page.getByRole("button", { name: "Find a practice", exact: true }),
+    page.getByRole("button", { name: "Send & find a practice", exact: true }),
   ).toBeEnabled();
 });
 test("distinct journeys and decline keep the map available", async ({
@@ -251,9 +255,7 @@ test("short mobile viewport keeps all filled action text visible and status by c
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 450 });
-  await expect(page.locator(".composer-status")).toContainText(
-    "AI not connected",
-  );
+  await expect(page.locator(".composer-status")).toContainText("AI configured");
   await page.getByRole("button", { name: "The practice", exact: true }).click();
   await page
     .getByRole("button", { name: "Conflict with someone", exact: true })

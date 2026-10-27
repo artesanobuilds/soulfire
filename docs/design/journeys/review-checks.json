@@ -1,0 +1,20 @@
+[
+  {
+    "viewport": "desktop",
+    "images": true,
+    "diagrams": 4,
+    "overflow": false,
+    "brokenRelativeLinks": 0,
+    "scenarios": 8,
+    "pageErrors": 0
+  },
+  {
+    "viewport": "mobile",
+    "images": true,
+    "diagrams": 4,
+    "overflow": false,
+    "brokenRelativeLinks": 0,
+    "scenarios": 8,
+    "pageErrors": 0
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "syntheticOnly": true,
+  "providerConfigured": false,
+  "historyAndFeedbackSurviveRestart": true,
+  "exportStableAcrossRestart": true,
+  "unfinishedSimulationResumesAtSavedCursor": true,
+  "deletionSurvivesRestart": true,
+  "paidCalls": 0
+}

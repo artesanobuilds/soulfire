@@ -1,0 +1,30 @@
+{
+  "url": "http://127.0.0.1:3100",
+  "syntheticOnly": true,
+  "results": [
+    {
+      "device": "desktop",
+      "configuredKeyRecognized": true,
+      "fixtureCompleted": true,
+      "feedback": true,
+      "export": true,
+      "confirmedDelete": true,
+      "syntheticImport": true,
+      "personalMemoryRead": false,
+      "providerRequests": 0,
+      "pageErrors": []
+    },
+    {
+      "device": "mobile",
+      "configuredKeyRecognized": true,
+      "fixtureCompleted": true,
+      "feedback": true,
+      "export": true,
+      "confirmedDelete": true,
+      "syntheticImport": true,
+      "personalMemoryRead": false,
+      "providerRequests": 0,
+      "pageErrors": []
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "provenance": "fixture text + local Kokoro-82M / kokoro-onnx",
+  "directListening": false,
+  "realAgentAudioRoundTrip": false,
+  "turns": [
+    {
+      "scenario": "first-presentation",
+      "turn": 0,
+      "role": "user",
+      "voice": "am_michael",
+      "seconds": 6.904333333333334,
+      "sampleRate": 24000,
+      "peakDbFS": -3.098038673400879,
+      "file": "first-presentation-0.m4a"
+    },
+    {
+      "scenario": "first-presentation",
+      "turn": 1,
+      "role": "assistant",
+      "voice": "af_heart",
+      "seconds": 6.748666666666667,
+      "sampleRate": 24000,
+      "peakDbFS": -3.098038673400879,
+      "file": "first-presentation-1.m4a"
+    },
+    {
+      "scenario": "first-presentation",
+      "turn": 2,
+      "role": "user",
+      "voice": "am_michael",
+      "seconds": 5.527416666666666,
+      "sampleRate": 24000,
+      "peakDbFS": -3.098039388656616,
+      "file": "first-presentation-2.m4a"
+    },
+    {
+      "scenario": "first-presentation",
+      "turn": 3,
+      "role": "assistant",
+      "voice": "af_heart",
+      "seconds": 10.538666666666666,
+      "sampleRate": 24000,
+      "peakDbFS": -3.098039388656616,
+      "file": "first-presentation-3.m4a"
+    },
+    {
+      "scenario": "gentle-boundary",
+      "turn": 0,
+      "role": "user",
+      "voice": "am_michael",
+      "seconds": 7.317583333333333,
+      "sampleRate": 24000,
+      "peakDbFS": -3.098039388656616,
+      "file": "gentle-boundary-0.m4a"
+    },
+    {
+      "scenario": "gentle-boundary",
+      "turn": 1,
+      "role": "assistant",
+      "voice": "af_heart",
+      "seconds": 8.042666666666667,
+      "sampleRate": 24000,
+      "peakDbFS": -3.098039388656616,
+      "file": "gentle-boundary-1.m4a"
+    },
+    {
+      "scenario": "gentle-boundary",
+      "turn": 2,
+      "role": "user",
+      "voice": "am_michael",
+      "seconds": 4.546708333333333,
+      "sampleRate": 24000,
+      "peakDbFS": -3.098039388656616,
+      "file": "gentle-boundary-2.m4a"
+    },
+    {
+      "scenario": "gentle-boundary",
+      "turn": 3,
+      "role": "assistant",
+      "voice": "af_heart",
+      "seconds": 10.377458333333333,
+      "sampleRate": 24000,
+      "peakDbFS": -3.098039388656616,
+      "file": "gentle-boundary-3.m4a"
+    }
+  ]
+}

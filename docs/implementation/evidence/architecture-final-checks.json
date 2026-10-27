@@ -1,0 +1,9 @@
+{
+  "envIgnored": true,
+  "envUntracked": true,
+  "exampleHasNoKeyPattern": true,
+  "clientBundlesScanned": 20,
+  "clientKeyPatternFound": false,
+  "productionForeignOriginRejected": true,
+  "noPaidRequest": true
+}

@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-25",
+  "source": {
+    "version": 1,
+    "sourceFilename": "Where Mental Health Care Falls Short_ The 20 Biggest Struggles Worldwide and Why Therapy Often Isn't Enough.md",
+    "sourceSha256": "712968fc5ff08fc9aef8515ca0af9479e5109e687df1ac7b35fd97376f324c93",
+    "sourceTopics": [
+      {
+        "number": 1,
+        "title": "Depression that doesn't remit: chronic, recurrent and treatment-resistant"
+      },
+      {
+        "number": 2,
+        "title": "Anxiety disorders: GAD, panic and social anxiety"
+      },
+      {
+        "number": 3,
+        "title": "Adolescent depression, anxiety and hopelessness"
+      },
+      {
+        "number": 4,
+        "title": "Suicidal thoughts and behaviour"
+      },
+      {
+        "number": 5,
+        "title": "Addiction and substance use disorders, especially alcohol"
+      },
+      {
+        "number": 6,
+        "title": "Co-occurring mental illness and addiction"
+      },
+      {
+        "number": 7,
+        "title": "PTSD and complex trauma, especially in veterans"
+      },
+      {
+        "number": 8,
+        "title": "Eating disorders, especially anorexia nervosa"
+      },
+      {
+        "number": 9,
+        "title": "Obsessive-compulsive disorder"
+      },
+      {
+        "number": 10,
+        "title": "Borderline personality disorder and severe emotion dysregulation"
+      },
+      {
+        "number": 11,
+        "title": "Perinatal and postpartum depression"
+      },
+      {
+        "number": 12,
+        "title": "Loneliness and social disconnection"
+      },
+      {
+        "number": 13,
+        "title": "Chronic stress and burnout"
+      },
+      {
+        "number": 14,
+        "title": "Deprivation and poverty"
+      },
+      {
+        "number": 15,
+        "title": "LGBTQ+ young people"
+      },
+      {
+        "number": 16,
+        "title": "People in low- and middle-income countries"
+      },
+      {
+        "number": 17,
+        "title": "Dropout and disengagement: the \"silent failure\""
+      },
+      {
+        "number": 18,
+        "title": "Hidden waits and between-session gaps"
+      },
+      {
+        "number": 19,
+        "title": "Unrecognized need, low mental-health literacy and stigma"
+      },
+      {
+        "number": 20,
+        "title": "Older adults: under-reached rather than under-responsive"
+      }
+    ],
+    "scope": "Topic headings only; rankings, prevalence, efficacy and novelty claims not adopted or independently validated. No source personal cases copied.",
+    "crossCuttingReason": "One separate psychosis/mania boundary variant because the source explicitly omits this area; no additional clinical expansion."
+  },
+  "catalog": {
+    "total": 23,
+    "preserved": 2,
+    "sourceTopics": 20,
+    "extraSafetyVariants": 1
+  },
+  "checks": {
+    "unitPassed": 130,
+    "focusedReopenPassed": 47,
+    "browserPassed": 124,
+    "typecheck": "passed",
+    "lint": "passed",
+    "isolatedBuild": "passed",
+    "productionBuild": "passed",
+    "productionDesktopMobile": "passed",
+    "visualReview": "desktop/mobile inspected"
+  },
+  "limits": {
+    "paidModelCalls": 0,
+    "realMicrophoneCapture": false,
+    "subjectiveAudioListening": false,
+    "clinicalValidation": false,
+    "liveScenarioModelQualityTested": false
+  },
+  "preview": "http://127.0.0.1:3100",
+  "sourceDirectory": "/Users/miguelalvarado/Coding/soulfire",
+  "pushed": false
+}

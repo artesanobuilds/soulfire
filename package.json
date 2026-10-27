@@ -9,7 +9,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "simulate": "vite-node scripts/simulate.ts"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

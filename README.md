@@ -12,7 +12,7 @@ A local, responsive practice prototype based on the repository vision and select
 
 ## Run locally
 
-Requires Node 22+ and npm. In this directory:
+Validated with Node 22.15.0 and npm (built-in SQLite is experimental in this runtime). In this directory:
 
 ```sh
 npm ci
@@ -47,6 +47,7 @@ For microphone use, choose Dictate or Live voice, read the disclosure, then expl
 ## Implemented experience
 
 - Invitation with four starting situations and revisable language preference.
+- Versioned visual influence map, trusted scene renderer and replaceable model/memory repository boundaries. [Architecture](docs/implementation/architecture.md) · [validation](docs/implementation/architecture-validation.md) · [journey review](docs/design/journeys/index.html).
 - Real model endpoint that proposes a principle and personalized specification using trusted sort, reflection and choice components. The UI never executes model HTML, code or tool URLs.
 - Acceptance, protective planning, small care and careful repair examples, clearly labeled as examples.
 - Editable/movable/removable/addable thought cards; choice controls; optional responses; user-written next action.
@@ -54,12 +55,15 @@ For microphone use, choose Dictate or Live voice, read the disclosure, then expl
 - Reflection review with **unchecked-by-default, per-answer sharing**. Only chosen answers are included in the reflection request.
 - Optional plain-text note download and opt-in saved practice on this browser, with explicit removal and confirmation before starting fresh.
 - Twelve-step map with a bounded first slice (1, 3, 10, 11); later exercises explicitly marked.
-- Editable dictation into the conversation or selected private reflection/action field. Audio is processed before text submission, disclosed explicitly.
+- Editable dictation into the conversation or selected private reflection/action field. A local audio-level waveform appears only during active capture; Stop releases the microphone immediately, then final text arrives as an editable draft. No interim transcript or timed automatic submission. Discard uploads nothing. Audio is processed before text submission, disclosed explicitly. [Dictation validation](docs/implementation/dictation-validation.md).
 - Live WebRTC voice with transcript continuity, event deduplication, interrupt, microphone mute, speaker mute, end, disconnection recovery and ten-minute cap. Current practice title and submitted conversation are context; unsent/private fields are excluded. End voice then choose “Shape a practice from our conversation” to generate a validated exercise.
+
+- Opt-in local conversation history for submitted text and finalized live voice, with feedback, export and delete.
+- Simulation studio: witnessed or silent background runs, two fictional scenarios, two local Kokoro voices, pause/stop/replay, saved synthetic provenance and optional bounded model-generated text or voice. Voice combines model-generated turns with local synthesized playback, separately labeled from real speech-to-speech testing. Background jobs continue on the running local server after the tab closes; a server restart requires explicit resume. [History and simulation guide](docs/implementation/history-and-simulations.md).
 
 ## Privacy and support boundaries
 
-No accounts, database, analytics, or application content logging. Browser local storage remembers introduction completion and sound/motion preferences. Private drafts are memory-only by default. “Keep this practice on this device” explicitly enables unencrypted browser storage of the current practice answers and position; anyone using that browser can resume it. Uncheck to remove the saved copy. Conversations and reflection-sharing selections are never persisted. Downloaded notes are unencrypted files chosen by the user. Submitted text and audio go to OpenAI; provider processing/retention is separate from app storage. `store:false` is not a zero-retention guarantee.
+No accounts or external analytics. Conversation history is an explicit opt-in on each visit, separate from personalization memory. Explicit user-authored memory uses a local SQLite database outside the repository; it is unencrypted and visible to anyone using this local app. It is never imported from practice answers. Storage permission and per-request AI use are separate, with edit, pause and delete controls. Browser local storage remembers introduction completion and sound/motion preferences. Private drafts are memory-only by default. “Keep this practice on this device” explicitly enables unencrypted browser storage of the current practice answers and position; anyone using that browser can resume it. Uncheck to remove the saved copy. Only newly submitted conversation turns and finalized live-voice transcripts are saved when History is on. Private exercise answers, unsubmitted drafts, reflection-sharing requests and raw audio are excluded. History is unencrypted local SQLite with review, feedback, export, delete and 30-day retention checked on access; clearing this browser’s local access cookie loses access to its saved history. Downloaded notes are unencrypted files chosen by the user. Submitted text and audio go to OpenAI; provider processing/retention is separate from app storage. `store:false` is not a zero-retention guarantee.
 
 Always-available pause/skip/grounding/support controls are outside model control. Narrow deterministic checks interrupt explicit immediate-harm, dangerous-withdrawal and no-contact/abuse requests with labeled safety notices. They are a backstop, **not a comprehensive clinical classifier**; voice also uses model instructions, and support remains accessible. Qualified review and live safety evaluation are required before an external pilot.
 
@@ -82,7 +86,7 @@ Design captures: [review gallery](docs/design/review/index.html). Decisions: [de
 
 ## Deferred
 
-Broader live-provider evaluation and physical microphone/speaker testing; real iOS/Android/Safari/background/keyboard testing; full reviewed exercises for the other eight steps; accounts and encrypted persistence; reminders; native apps; external messaging; retrieval over the unverified research dossier; public deployment and clinical efficacy claims. The alternative UI brainstorm is deliberately deferred until the core milestone is complete or parent explicitly authorizes the exploration.
+Broader live-provider evaluation and physical microphone/speaker testing; real iOS/Android/Safari/background/keyboard testing; full reviewed exercises for the other eight steps; accounts and encrypted persistence; reminders; native apps; external messaging; retrieval over the unverified research dossier; public deployment and clinical efficacy claims. The larger journey and twelve-step visual scene expansion remains a proposal pending feedback; the architecture slice implements one scene family. BB multi-model critique remains blocked on isolated context configuration.
 
 ## API references checked
 
@@ -102,3 +106,9 @@ Narration is synthesized locally with the existing Kokoro-82M / kokoro-onnx pipe
 The local production build was tested through its actual UI using one synthetic, non-personal paper-airplane presentation scenario. OpenAI returned `gpt-4.1-mini-2025-04-14`, the app validated the exercise specification and rendered the personalized practice without fallback. See [live validation](docs/implementation/live-ai-validation.md). The private API key stays in ignored `.env.local`; it is not needed or included in this repository.
 
 The opt-in `node scripts/smoke-live-companion.mjs --allow-one-paid-request` performs one real request and can incur API charges. Ordinary regression tests use an unconfigured local server and simulated provider/media transports. Do not use personal journal data for smoke tests.
+
+## Local memory and isolated validation
+
+The default database is `~/Library/Application Support/soulfire/memory.sqlite`; no file is created until an explicit save. `SOULFIRE_DATA_DIR` can point to a private folder outside the checkout for isolated tests. Keep it outside Git and do not copy personal databases into fixtures or backups of source. Local memory is one Mac profile, not a multi-user service. See the architecture report for revisions, deletion and the Postgres migration plan.
+
+The architecture browser CRUD tests deliberately require `SOULFIRE_TEST_URL=http://127.0.0.1:3101`, an unconfigured server and a separate synthetic data directory. They skip the normal preview rather than modifying its memory. Use a credential-free source copy, `OPENAI_API_KEY=""`, and `SOULFIRE_DATA_DIR=/tmp/soulfire-test-memory` when starting that isolated server. Never run test data against the real profile.

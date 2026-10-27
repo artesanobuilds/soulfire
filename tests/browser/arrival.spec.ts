@@ -1,4 +1,13 @@
 import { test, expect, type Page } from "@playwright/test";
+async function editableThought(p: Page) {
+  const controls = p.locator(".simple-scene-controls").first();
+  if (
+    !(await controls.getAttribute("open")) &&
+    !(await controls.evaluate((el) => (el as HTMLDetailsElement).open))
+  )
+    await controls.locator("summary").click();
+  return p.getByRole("textbox", { name: "Thought", exact: true }).first();
+}
 const intro = (p: Page) => p.locator("audio[data-intro]");
 const flag = (p: Page) =>
   p.evaluate(() => localStorage.getItem("soulfire.introduction.v1"));
@@ -206,10 +215,7 @@ test("saving is opt-in; return hides private text, resume restores it, and new p
 }) => {
   await page.goto("/");
   await example(page);
-  await page
-    .getByRole("textbox", { name: "Thought", exact: true })
-    .first()
-    .fill("PRIVATE THOUGHT");
+  await (await editableThought(page)).fill("PRIVATE THOUGHT");
   await page.getByRole("button", { name: "Continue", exact: true }).click();
   await page
     .getByLabel("Name what is here", { exact: true })
@@ -241,9 +247,7 @@ test("saving is opt-in; return hides private text, resume restores it, and new p
   await page
     .getByRole("button", { name: "Previous prompt", exact: true })
     .click();
-  await expect(
-    page.getByRole("textbox", { name: "Thought", exact: true }).first(),
-  ).toHaveValue("PRIVATE THOUGHT");
+  await expect(await editableThought(page)).toHaveValue("PRIVATE THOUGHT");
   await page
     .getByRole("button", { name: "soulfire home", exact: true })
     .click();
@@ -256,9 +260,7 @@ test("saving is opt-in; return hides private text, resume restores it, and new p
   await page
     .getByRole("button", { name: "Resume practice", exact: true })
     .click();
-  await expect(
-    page.getByRole("textbox", { name: "Thought", exact: true }).first(),
-  ).toHaveValue("PRIVATE THOUGHT");
+  await expect(await editableThought(page)).toHaveValue("PRIVATE THOUGHT");
   await page
     .getByRole("button", { name: "soulfire home", exact: true })
     .click();
@@ -299,10 +301,7 @@ test("removing a saved copy retains current answers and explicit sound mute surv
     .click();
   await page.getByRole("button", { name: /Try the example/ }).click();
   await page.getByRole("button", { name: "Try this practice" }).click();
-  await page
-    .getByRole("textbox", { name: "Thought", exact: true })
-    .first()
-    .fill("Keep in tab");
+  await (await editableThought(page)).fill("Keep in tab");
   await page.getByText("Save and return later", { exact: true }).click();
   const save = page.getByRole("checkbox", {
     name: "Keep this practice on this device",
@@ -314,9 +313,7 @@ test("removing a saved copy retains current answers and explicit sound mute surv
       localStorage.getItem("soulfire.saved-practice.v1"),
     ),
   ).toBeNull();
-  await expect(
-    page.getByRole("textbox", { name: "Thought", exact: true }).first(),
-  ).toHaveValue("Keep in tab");
+  await expect(await editableThought(page)).toHaveValue("Keep in tab");
 });
 
 test("failed narration has a readable fallback, keyboard entry and reduced motion still work", async ({
@@ -433,10 +430,7 @@ test("device storage failure retains current answers with an honest save error",
   });
   await page.goto("/");
   await example(page);
-  await page
-    .getByRole("textbox", { name: "Thought", exact: true })
-    .first()
-    .fill("Still here");
+  await (await editableThought(page)).fill("Still here");
   await page.getByText("Save and return later", { exact: true }).click();
   await page
     .getByRole("checkbox", { name: "Keep this practice on this device" })
@@ -446,9 +440,7 @@ test("device storage failure retains current answers with an honest save error",
       "Couldn’t save on this device. Keep this tab open to retain your answers.",
     ),
   ).toBeVisible();
-  await expect(
-    page.getByRole("textbox", { name: "Thought", exact: true }).first(),
-  ).toHaveValue("Still here");
+  await expect(await editableThought(page)).toHaveValue("Still here");
 });
 
 test("sound selection and volume persist, and a hidden tab pauses unfinished narration", async ({

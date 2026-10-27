@@ -2839,3 +2839,216 @@ aside > p {
     grid-column: 1/-1;
   }
 }
+
+/* Dictation amplitude is measured locally, only while capture is active. */
+.dictation-listening {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 8px 0;
+}
+.dictation-listening .listening {
+  font-size: 16px;
+}
+.dictation-waveform {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 36px;
+  width: 117px;
+  color: var(--sage);
+}
+.dictation-waveform i {
+  display: block;
+  width: 5px;
+  height: 4px;
+  border-radius: 3px;
+  background: currentColor;
+  transition: height 60ms linear;
+}
+[data-motion="off"] .dictation-waveform i {
+  height: 4px !important;
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dictation-waveform i {
+    height: 4px !important;
+    transition: none;
+  }
+}
+
+/* Version-one trusted visual scene. Movement responds to a deliberate placement. */
+.visual-exercise {
+  margin: 22px 0;
+}
+.scene-art svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.scene-instruction {
+  font-size: 17px;
+  margin: 18px 0 12px;
+}
+.thought-picker {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.thought-picker button {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 10px;
+  border-radius: 18px;
+  background: #f6f5ec;
+  line-height: 1.4;
+  max-width: 100%;
+}
+.thought-picker button span {
+  flex: 0 0 25px;
+  text-align: center;
+  color: #486451;
+}
+.thought-picker button[aria-pressed="true"] {
+  border-color: #45674e;
+  background: #e5ecdc;
+}
+.scene-zones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin: 20px 0;
+}
+.scene-zones button {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  border-radius: 18px;
+  min-height: 88px;
+  align-items: center;
+  justify-content: center;
+  background: #fffaf0;
+}
+.scene-zones button span {
+  font-size: 13px;
+  color: #52654f;
+}
+.scene-zones button[aria-pressed="true"] {
+  border-color: #987538;
+  background: #f3e6c8;
+}
+[data-motion="on"] .thought-stone {
+  transition: transform 0.65s ease;
+}
+.simple-scene-controls {
+  margin: 18px 0;
+}
+.simple-scene-controls > summary {
+  cursor: pointer;
+  padding: 14px 0;
+  color: #45644e;
+}
+.memory-panel {
+  max-width: 620px;
+}
+.memory-field {
+  display: block;
+  margin: 20px 0;
+  font-size: 17px;
+}
+.memory-field textarea {
+  margin-top: 8px;
+}
+.memory-request {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  margin: 14px 0;
+}
+.memory-delete {
+  margin-top: 20px;
+  padding: 18px;
+  background: #f5ecdf;
+  border-radius: 14px;
+}
+.memory-delete button {
+  margin: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .thought-stone {
+    transition: none !important;
+  }
+}
+@media (max-width: 760px) {
+  header nav {
+    gap: 7px;
+  }
+  header nav button {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
+
+/* Keep the send decision adjacent to a reviewable draft, even after long dictation.
+   Private exercise/action textareas retain their full expanding behavior. */
+.composer textarea {
+  min-height: 110px;
+  max-height: clamp(110px, 28svh, 240px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.composer-bottom {
+  display: block;
+  margin: 10px 0 18px;
+  padding-top: 12px;
+}
+.composer-send-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.composer-send-row small { max-width: 280px; }
+.composer-send-row .primary { min-height: 48px; }
+.draft-review { margin: 0 0 10px; color: var(--deep); font-size: 16px; }
+@media (max-width: 760px) {
+  .composer-send-row { flex-direction: column-reverse; align-items: stretch; gap: 8px; }
+  .composer-send-row small { max-width: none; }
+}
+
+.history-capture { display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin:14px 0;color:var(--deep); }
+.history-capture small { flex-basis:100%;font-size:14px; }
+.history-capture .text-link { min-height:40px; }
+.history-panel p { line-height:1.6; }
+.history-list { padding:0;list-style:none; }
+.history-list button { text-align:left;width:100%;margin:5px 0; }
+.history-detail ol { padding-left:24px; }
+.history-event { margin:24px 0;padding:16px;border:1px solid var(--line);border-radius:12px; }
+.history-text { white-space:pre-wrap;overflow-wrap:anywhere; }
+.history-feedback { border:1px solid var(--line);padding:14px;margin-top:16px; }
+.history-feedback label { display:block;margin:10px 0; }
+.history-feedback textarea,.history-feedback select { display:block;width:100%; }
+.history-feedback textarea { min-height:90px; }
+.history-import { display:block;max-width:100%;font-size:15px; }
+.history-import input { display:block;max-width:100%; }
+@media(max-width:760px){header{height:auto;min-height:76px;flex-wrap:wrap;gap:8px;padding-block:12px}header nav{gap:10px;flex-wrap:wrap}.history-event{padding:10px}.history-detail ol{padding-left:16px}}
+
+.simulation-panel fieldset { border:1px solid var(--line);padding:18px;border-radius:14px; }
+.simulation-panel label { display:block;margin:12px 0; }
+.simulation-panel select { width:100%;display:block; }
+.simulation-panel .save-choice { display:flex; }
+.simulation-turns { list-style:none;padding:0; }
+.simulation-turns li { padding:18px;margin:16px 0;border:1px solid var(--line);border-radius:16px;background:#f5f4e9; }
+.simulation-turns [data-speaking="true"] { border-color:#a8894f;background:#f4e6bf; }
+.simulation-turns p { white-space:pre-wrap;overflow-wrap:anywhere; }
+.simulation-status { padding:12px;background:#e9efdf;border-radius:12px; }
+
+.simulation-setup { margin:20px 0; }
+.simulation-setup > summary { cursor:pointer;padding:12px 0;font-weight:600; }
+.simulation-controls { position:sticky;top:0;background:#fffdf7;padding:12px 0;border-bottom:1px solid var(--line);z-index:2; }
+.simulation-turns li { scroll-margin-top:150px; }

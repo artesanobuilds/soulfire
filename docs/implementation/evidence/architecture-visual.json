@@ -1,0 +1,26 @@
+[
+  {
+    "viewport": "desktop",
+    "memoryDialogVisible": true,
+    "overflow": false,
+    "pageErrors": 0
+  },
+  {
+    "viewport": "desktop",
+    "productionSceneVisible": true,
+    "overflow": false,
+    "pageErrors": 0
+  },
+  {
+    "viewport": "mobile",
+    "memoryDialogVisible": true,
+    "overflow": false,
+    "pageErrors": 0
+  },
+  {
+    "viewport": "mobile",
+    "productionSceneVisible": true,
+    "overflow": false,
+    "pageErrors": 0
+  }
+]

@@ -1,90 +1,38 @@
-import { requestSchema, replySchema, outputJsonSchema } from "@/src/lib/schema";
-import { safetyNotice } from "@/src/lib/safety";
-import { instructions } from "@/src/lib/agent";
-import {
-  guard,
-  jsonBody,
-  provider,
-  failure,
-  HttpError,
-} from "@/src/lib/server";
+import { runRecordedCompanion } from "@/src/application/recorded-companion";
+import { localHistory } from "@/src/infrastructure/sqlite-history";
+import { requiredOwner } from "@/src/infrastructure/history-http";
+import { HistoryError } from "@/src/domain/history";
+import { requestSchema } from "@/src/lib/schema";
+import { guard, jsonBody, failure, HttpError } from "@/src/lib/server";
+import { ModelFailure } from "@/src/application/companion";
+import { OpenAIResponses } from "@/src/infrastructure/openai-responses";
+import { localMemory } from "@/src/infrastructure/sqlite-memory";
 export const runtime = "nodejs";
 export async function POST(req: Request) {
   try {
     guard(req);
     const input = requestSchema.parse(await jsonBody(req));
-    const notice = safetyNotice(
-      input.messages.filter((m) => m.role === "user").at(-1)?.content || "",
+    const result = await runRecordedCompanion(
+      input,
+      req.signal,
+      new OpenAIResponses(),
+      localMemory(),
+      input.history
+        ? {
+            ...input.history,
+            owner: requiredOwner(req),
+            repository: localHistory(),
+          }
+        : undefined,
     );
-    if (notice)
-      return Response.json(
-        {
-          reply: { message: notice, kind: "support", exercise: null },
-          provenance: { source: "Application safety notice" },
-        },
-        { headers: { "Cache-Control": "no-store" } },
-      );
-    const res = await provider(
-      "responses",
-      JSON.stringify({
-        model: process.env.OPENAI_MODEL || "gpt-4.1-mini",
-        store: false,
-        instructions: `${instructions}\nCurrent language preference: ${input.language}. Current intent: ${input.intent}. ${input.step ? `Requested step: ${input.step}.` : ""}`,
-        input: input.messages.map((m) => ({
-          role: m.role,
-          content: m.content,
-        })),
-        text: {
-          format: {
-            type: "json_schema",
-            name: "soulfire_reply",
-            strict: true,
-            schema: outputJsonSchema,
-          },
-        },
-        max_output_tokens: 2200,
-      }),
-      req,
-      "application/json",
-    );
-    const data = await res.json();
-    if (data.status === "incomplete")
-      throw new HttpError(
-        502,
-        "The practice was incomplete. Try again; your current practice has not changed.",
-      );
-    const text = (data.output || [])
-      .flatMap(
-        (o: { content?: { type: string; text?: string }[] }) => o.content || [],
-      )
-      .filter((c: { type: string }) => c.type === "output_text")
-      .map((c: { text: string }) => c.text)
-      .join("");
-    const reply = replySchema.parse(JSON.parse(text));
-    return Response.json(
-      {
-        reply,
-        provenance: {
-          schemaVersion: 1,
-          model:
-            typeof data.model === "string"
-              ? data.model
-              : process.env.OPENAI_MODEL || "gpt-4.1-mini",
-          responseId:
-            typeof data.id === "string" && data.id.startsWith("resp_")
-              ? data.id
-              : undefined,
-          source: "OpenAI Responses",
-          references: [
-            "creator-vision",
-            "prototype-use-cases",
-            "proposed-core-principles",
-          ],
-        },
-      },
-      { headers: { "Cache-Control": "no-store" } },
-    );
+    return Response.json(result, { headers: { "Cache-Control": "no-store" } });
   } catch (e) {
-    return failure(e);
+    return failure(
+      e instanceof HistoryError
+        ? new HttpError(e.status, e.message)
+        : e instanceof ModelFailure
+          ? new HttpError(e.kind === "refused" ? 422 : 502, e.message)
+          : e,
+    );
   }
 }

@@ -61,6 +61,11 @@ export const requestSchema = z
     language: z.enum(["open", "spiritual", "plain"]),
     intent: z.enum(["practice", "conversation", "reflection"]),
     step: z.enum(["1", "3", "10", "11"]).optional(),
+    useMemory: z.boolean().optional(),
+    history: z
+      .object({ sessionId: z.string().uuid(), turnKey: z.string().uuid() })
+      .strict()
+      .optional(),
   })
   .strict();
 export const outputJsonSchema = z.toJSONSchema(replySchema, {

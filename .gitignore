@@ -25,3 +25,9 @@ docs/implementation/evidence/sun-glow-results.json
 docs/implementation/evidence/live-openai-smoke.json
 # Original download notes contain private account usage; public provenance is in README.md.
 assets/audio-originals/generation_notes.txt
+
+# Durable personal memory must never be tracked.
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*

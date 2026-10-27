@@ -1,4 +1,13 @@
 import { test, expect, type Page } from "@playwright/test";
+async function editableThought(p: Page) {
+  const controls = p.locator(".simple-scene-controls").first();
+  if (
+    !(await controls.getAttribute("open")) &&
+    !(await controls.evaluate((el) => (el as HTMLDetailsElement).open))
+  )
+    await controls.locator("summary").click();
+  return p.getByRole("textbox", { name: "Thought", exact: true }).first();
+}
 
 test("one prompt at a time preserves edits, focus and the private full journey", async ({
   page,
@@ -15,10 +24,7 @@ test("one prompt at a time preserves edits, focus and the private full journey",
   await expect(
     page.getByLabel("Name what is here", { exact: true }),
   ).toHaveCount(0);
-  await page
-    .getByRole("textbox", { name: "Thought", exact: true })
-    .first()
-    .fill("My preserved thought");
+  await (await editableThought(page)).fill("My preserved thought");
   await page.getByRole("button", { name: "Continue", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "Name what is here", exact: true }),
@@ -27,9 +33,7 @@ test("one prompt at a time preserves edits, focus and the private full journey",
     .getByLabel("Name what is here", { exact: true })
     .fill("I feel a little more space.");
   await page.getByRole("button", { name: "Previous prompt" }).click();
-  await expect(
-    page.getByRole("textbox", { name: "Thought", exact: true }).first(),
-  ).toHaveValue("My preserved thought");
+  await expect(await editableThought(page)).toHaveValue("My preserved thought");
   await page.getByRole("button", { name: "Continue", exact: true }).click();
   await expect(
     page.getByLabel("Name what is here", { exact: true }),

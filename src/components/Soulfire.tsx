@@ -1,4 +1,7 @@
 "use client";
+import { SimulationPanel } from "./SimulationPanel";
+import { HistoryPanel } from "./HistoryPanel";
+import { useConversationHistory } from "../hooks/useConversationHistory";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
@@ -22,22 +25,32 @@ import { QuietScene, PromptArt } from "./QuietScene";
 import { AmbientAudio } from "./AmbientAudio";
 import { Arrival } from "./Arrival";
 import { readSavedPractice, savedPracticeKey } from "../lib/saved-practice";
+import { MemoryPanel } from "./MemoryPanel";
+import { SceneRenderer } from "./SceneRenderer";
+import { sceneFor } from "../domain/scene";
+import { createRequestGate, type JourneyState } from "../domain/session";
+import type { MemorySnapshot } from "../domain/memory";
 import { VoiceControls } from "./VoiceControls";
 import { safetyNotice } from "../lib/safety";
 import { samples, steps, topics } from "../lib/catalog";
 import { replySchema, type Exercise, type Message } from "../lib/schema";
 
-type View =
-  | "home"
-  | "suggestion"
-  | "practice"
-  | "meditation"
-  | "review"
-  | "finish"
-  | "map";
+type View = JourneyState;
 type Card = { id: string; text: string; group: number };
 type Drafts = Record<string, string>;
 export function Soulfire() {
+  const history = useConversationHistory();
+  const [simulationSpeaking, setSimulationSpeaking] = useState(false);
+  const [historyFocus, setHistoryFocus] = useState<string | null>(null);
+  const recordedTurn = useRef<{ sessionId: string; turnKey: string } | null>(
+    null,
+  );
+  const [memoryAvailable, setMemoryAvailable] = useState(false);
+  const [useMemory, setUseMemory] = useState(false);
+  const memoryChanged = (snapshot: MemorySnapshot) => {
+    setMemoryAvailable(!!snapshot.memory?.content.useWithAI);
+    setUseMemory(false);
+  };
   const [mobile, setMobile] = useState(false);
   const [homeStarted, setHomeStarted] = useState(false);
   const [practiceStep, setPracticeStep] = useState(0);
@@ -77,6 +90,7 @@ export function Soulfire() {
   }, [practiceStep, showAll]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [dictationTarget, setDictationTarget] = useState("conversation");
+  const [dictationReview, setDictationReview] = useState("");
   const [view, setView] = useState<View>("home");
   const [draft, setDraft] = useState("");
   const [language, setLanguage] = useState<"open" | "spiritual" | "plain">(
@@ -97,7 +111,15 @@ export function Soulfire() {
   const [quietToken, setQuietToken] = useState(0);
   const [voiceActive, setVoiceActive] = useState(false);
   const [dialog, setDialog] = useState<
-    "pause" | "ground" | "privacy" | "support" | "new" | null
+    | "pause"
+    | "ground"
+    | "privacy"
+    | "support"
+    | "new"
+    | "memory"
+    | "history"
+    | "simulation"
+    | null
   >(null);
   const [seconds, setSeconds] = useState(60);
   const [duration, setDuration] = useState(60);
@@ -147,6 +169,7 @@ export function Soulfire() {
         savedPracticeKey,
         JSON.stringify({
           version: 1,
+          sceneVersion: 1,
           exercise,
           example,
           fields,
@@ -205,7 +228,7 @@ export function Soulfire() {
     intent: string;
   } | null>(null);
   const abort = useRef<AbortController | null>(null);
-  const turn = useRef(0);
+  const turn = useRef(createRequestGate());
   const lock = useRef(false);
   const dialogReturn = useRef<HTMLElement | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -221,6 +244,12 @@ export function Soulfire() {
     return () => media.removeEventListener("change", sync);
   }, []);
   useEffect(() => {
+    fetch("/api/memory")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data) memoryChanged(data);
+      })
+      .catch(() => {});
     fetch("/api/status")
       .then((r) => r.json())
       .then((r) => setConfigured(r.configured))
@@ -269,7 +298,20 @@ export function Soulfire() {
     setVoiceActive(false);
   }
   function cancel() {
-    turn.current++;
+    if (
+      recordedTurn.current &&
+      recordedTurn.current.sessionId === history.sessionId
+    ) {
+      const t = recordedTurn.current;
+      history.record({
+        eventKey: `${t.turnKey}:client-cancel`,
+        turnKey: t.turnKey,
+        channel: "text",
+        kind: "canceled",
+      });
+      recordedTurn.current = null;
+    }
+    turn.current.cancel();
     abort.current?.abort();
     if (pending.current) {
       setMessages(pending.current.messages);
@@ -360,11 +402,15 @@ export function Soulfire() {
     lock.current = true;
     setBusy(true);
     setError("");
+    setDictationReview("");
+    setUseMemory(false);
     quiet();
-    const current = ++turn.current;
+    const current = turn.current.begin();
     const controller = new AbortController();
     abort.current = controller;
     pending.current = { messages, content, intent };
+    const recording = intent !== "reflection" ? history.forText() : undefined;
+    recordedTurn.current = recording || null;
     const submitted = [...messages, { role: "user" as const, content }].slice(
       -30,
     );
@@ -374,10 +420,19 @@ export function Soulfire() {
       const res = await fetch("/api/companion", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: submitted, language, intent, step }),
+        body: JSON.stringify({
+          messages: submitted,
+          language,
+          intent,
+          step,
+          ...(recording ? { history: recording } : {}),
+          ...(useMemory && intent !== "reflection" ? { useMemory: true } : {}),
+        }),
         signal: controller.signal,
       });
       const data = await res.json();
+      if (!res.ok && recording && [401, 404, 409].includes(res.status))
+        void history.pause();
       if (!res.ok)
         throw new Error(
           data.error || "The companion could not respond. Try again.",
@@ -387,8 +442,10 @@ export function Soulfire() {
         throw new Error(
           "The response could not be read safely. Try again or choose an example.",
         );
-      if (current !== turn.current) return;
+      if (!turn.current.isCurrent(current)) return;
       pending.current = null;
+      recordedTurn.current = null;
+      if (data.history) history.textSaveResult(data.history.saved === true);
       setMessages([
         ...submitted,
         { role: "assistant", content: parsed.data.message },
@@ -403,7 +460,7 @@ export function Soulfire() {
         setDialog("support");
       }
     } catch (e) {
-      if (current === turn.current) {
+      if (turn.current.isCurrent(current)) {
         setError(
           e instanceof Error
             ? e.message
@@ -413,8 +470,9 @@ export function Soulfire() {
         setMessages(messages);
       }
     } finally {
-      if (current === turn.current) {
+      if (turn.current.isCurrent(current)) {
         pending.current = null;
+        recordedTurn.current = null;
         lock.current = false;
         setBusy(false);
       }
@@ -498,7 +556,18 @@ export function Soulfire() {
         id={hero ? "opening" : id}
         maxLength={3000}
         value={draft}
-        onChange={(e) => setDraft(e.target.value)}
+        onChange={(e) => {
+          setDraft(e.target.value);
+          setDictationReview("");
+        }}
+        aria-describedby={`${hero ? "opening" : id}-send-help`}
+        onKeyDown={(e) => {
+          if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+            e.preventDefault();
+            if (configured && !busy && !voiceActive && draft.trim())
+              void send(draft, hero ? "practice" : "conversation");
+          }
+        }}
         placeholder={
           hero
             ? "Begin wherever you are…"
@@ -526,7 +595,72 @@ export function Soulfire() {
           </select>
         </label>
       )}
+      {memoryAvailable && (
+        <label className="memory-request">
+          <input
+            type="checkbox"
+            checked={useMemory}
+            disabled={busy || voiceActive}
+            onChange={(e) => setUseMemory(e.target.checked)}
+          />
+          Include my saved memory with this request
+        </label>
+      )}
+      <div className="composer-bottom">
+        {dictationReview && (
+          <p className="draft-review" role="status">
+            {dictationReview}
+          </p>
+        )}
+        <div className="composer-send-row">
+          <small id={`${hero ? "opening" : id}-send-help`}>
+            {busy
+              ? "Your message is being processed. You can stop it."
+              : voiceActive
+                ? "Finish or cancel voice input before sending."
+                : configured === null
+                  ? "Checking the AI connection before sending…"
+                  : !configured
+                    ? "AI is not connected. Your draft stays here; you can explore an example."
+                    : !draft.trim()
+                      ? "Type or dictate a draft to send."
+                      : "Review your words. Send shares this draft with OpenAI."}
+          </small>
+          {busy ? (
+            <button onClick={cancel}>
+              <SquareIcon /> Stop
+            </button>
+          ) : (
+            <button
+              className="primary"
+              aria-describedby={`${hero ? "opening" : id}-send-help`}
+              aria-keyshortcuts="Control+Enter Meta+Enter"
+              disabled={!draft.trim() || voiceActive || !configured}
+              onClick={() => send(draft, hero ? "practice" : "conversation")}
+            >
+              {hero ? "Send & find a practice" : "Send"}{" "}
+              <ArrowRight size={17} />
+            </button>
+          )}
+        </div>
+      </div>
+      <div className="history-capture">
+        <span role="status">
+          {history.sessionId ? "History on" : "History off"}
+        </span>
+        <button
+          className="text-link"
+          onClick={() =>
+            history.sessionId ? void history.pause() : openDialog("history")
+          }
+        >
+          {history.sessionId ? "Stop saving" : "Save future conversations"}
+        </button>
+        <small>{history.status}</small>
+      </div>
       <VoiceControls
+        onHistoryEvent={history.record}
+        motionEnabled={motion && !reducedMotion && pageVisible}
         messages={messages}
         language={language}
         onDraft={(text) => {
@@ -540,6 +674,20 @@ export function Soulfire() {
                 : text,
             }));
           else setDraft((v) => (v ? `${v}\n${text}` : text));
+          const privateTarget = !hero && dictationTarget !== "conversation";
+          setDictationReview(
+            privateTarget
+              ? "Added to your private practice. Review it there; it has not been shared."
+              : "Draft ready. Review your words, then choose Send.",
+          );
+          requestAnimationFrame(() => {
+            const input = document.getElementById(hero ? "opening" : id);
+            if (!privateTarget) input?.focus({ preventScroll: true });
+            input
+              ?.closest(".composer")
+              ?.querySelector(".composer-bottom")
+              ?.scrollIntoView({ block: "nearest", behavior: "instant" });
+          });
         }}
         onMessage={(m) => {
           const notice = m.role === "user" ? safetyNotice(m.content) : null;
@@ -567,22 +715,6 @@ export function Soulfire() {
           : configured
             ? "AI configured · text, dictation & live voice"
             : "AI not connected · explore an example below."}
-      </div>
-      <div className="composer-bottom">
-        <small>Sent messages are processed by OpenAI.</small>
-        {busy ? (
-          <button onClick={cancel}>
-            <SquareIcon /> Stop
-          </button>
-        ) : (
-          <button
-            className="primary"
-            disabled={!draft.trim() || voiceActive}
-            onClick={() => send(draft, hero ? "practice" : "conversation")}
-          >
-            {hero ? "Find a practice" : "Send"} <ArrowRight size={17} />
-          </button>
-        )}
       </div>
     </div>
   );
@@ -625,6 +757,16 @@ export function Soulfire() {
           soulfire
         </button>
         <nav aria-label="Main navigation">
+          <button onClick={() => openDialog("memory")}>My memory</button>
+          <button
+            onClick={() => {
+              setHistoryFocus(null);
+              openDialog("history");
+            }}
+          >
+            History
+          </button>
+          <button onClick={() => openDialog("simulation")}>Simulations</button>
           <button
             className={view === "map" ? "nav-active" : ""}
             onClick={() => go("map")}
@@ -668,7 +810,7 @@ export function Soulfire() {
               : "Play motion"}
         </button>
         <AmbientAudio
-          voiceActive={voiceActive}
+          voiceActive={voiceActive || simulationSpeaking}
           paused={dialog !== null}
           ducked={narrating}
         />
@@ -964,7 +1106,7 @@ export function Soulfire() {
                       className={`exercise-block ${block.type}`}
                       key={block.id}
                     >
-                      <PromptArt kind={block.type} />
+                      {block.type !== "sort" && <PromptArt kind={block.type} />}
                       <h2
                         ref={index === practiceStep ? promptHeading : undefined}
                         tabIndex={-1}
@@ -973,102 +1115,131 @@ export function Soulfire() {
                       </h2>
                       <p>{block.prompt}</p>
                       {block.type === "sort" ? (
-                        <div className="sort-grid">
-                          {block.options.map((group, g) => (
-                            <div className="sort-column" key={group}>
-                              <div className="group-icon">
-                                {g === 0 ? (
-                                  <Leaf />
-                                ) : g === 1 ? (
-                                  <Waves />
-                                ) : (
-                                  <Cloud />
-                                )}
-                              </div>
-                              <h3>{group}</h3>
-                              {(cards[block.id] || [])
-                                .filter((c) => c.group === g)
-                                .map((card) => (
-                                  <div className="thought" key={card.id}>
-                                    <input
-                                      aria-label="Thought"
-                                      maxLength={180}
-                                      value={card.text}
-                                      onChange={(e) =>
-                                        setCards((v) => ({
-                                          ...v,
-                                          [block.id]: v[block.id].map((c) =>
-                                            c.id === card.id
-                                              ? { ...c, text: e.target.value }
-                                              : c,
-                                          ),
-                                        }))
-                                      }
-                                    />
-                                    <div className="thought-tools">
-                                      <select
-                                        aria-label={`Move ${card.text || "thought"}`}
-                                        value={card.group}
-                                        onChange={(e) =>
-                                          setCards((v) => ({
-                                            ...v,
-                                            [block.id]: v[block.id].map((c) =>
-                                              c.id === card.id
-                                                ? {
-                                                    ...c,
-                                                    group: Number(
-                                                      e.target.value,
-                                                    ),
-                                                  }
-                                                : c,
-                                            ),
-                                          }))
-                                        }
-                                      >
-                                        {block.options.map((o, i) => (
-                                          <option key={o} value={i}>
-                                            {o}
-                                          </option>
-                                        ))}
-                                      </select>
-                                      <button
-                                        aria-label={`Remove ${card.text || "thought"}`}
-                                        onClick={() =>
-                                          setCards((v) => ({
-                                            ...v,
-                                            [block.id]: v[block.id].filter(
-                                              (c) => c.id !== card.id,
-                                            ),
-                                          }))
-                                        }
-                                      >
-                                        <X size={14} />
-                                      </button>
-                                    </div>
+                        <>
+                          {sceneFor(exercise, block.id) && (
+                            <SceneRenderer
+                              scene={sceneFor(exercise, block.id)!}
+                              thoughts={cards[block.id] || []}
+                              onMove={(id, group) =>
+                                setCards((v) => ({
+                                  ...v,
+                                  [block.id]: (v[block.id] || []).map((c) =>
+                                    c.id === id ? { ...c, group } : c,
+                                  ),
+                                }))
+                              }
+                            />
+                          )}
+                          <details
+                            className="simple-scene-controls"
+                            open={showAll}
+                          >
+                            <summary>Edit thoughts / simple controls</summary>
+                            <div className="sort-grid">
+                              {block.options.map((group, g) => (
+                                <div className="sort-column" key={group}>
+                                  <div className="group-icon">
+                                    {g === 0 ? (
+                                      <Leaf />
+                                    ) : g === 1 ? (
+                                      <Waves />
+                                    ) : (
+                                      <Cloud />
+                                    )}
                                   </div>
-                                ))}
-                              <button
-                                className="add-thought"
-                                disabled={(cards[block.id] || []).length >= 12}
-                                onClick={() =>
-                                  setCards((v) => ({
-                                    ...v,
-                                    [block.id]: [
-                                      ...(v[block.id] || []),
-                                      {
-                                        id: crypto.randomUUID(),
-                                        text: "",
-                                        group: g,
-                                      },
-                                    ],
-                                  }))
-                                }
-                              >
-                                <Plus size={16} /> Add a thought
-                              </button>
+                                  <h3>{group}</h3>
+                                  {(cards[block.id] || [])
+                                    .filter((c) => c.group === g)
+                                    .map((card) => (
+                                      <div className="thought" key={card.id}>
+                                        <input
+                                          aria-label="Thought"
+                                          maxLength={180}
+                                          value={card.text}
+                                          onChange={(e) =>
+                                            setCards((v) => ({
+                                              ...v,
+                                              [block.id]: v[block.id].map(
+                                                (c) =>
+                                                  c.id === card.id
+                                                    ? {
+                                                        ...c,
+                                                        text: e.target.value,
+                                                      }
+                                                    : c,
+                                              ),
+                                            }))
+                                          }
+                                        />
+                                        <div className="thought-tools">
+                                          <select
+                                            aria-label={`Move ${card.text || "thought"}`}
+                                            value={card.group}
+                                            onChange={(e) =>
+                                              setCards((v) => ({
+                                                ...v,
+                                                [block.id]: v[block.id].map(
+                                                  (c) =>
+                                                    c.id === card.id
+                                                      ? {
+                                                          ...c,
+                                                          group: Number(
+                                                            e.target.value,
+                                                          ),
+                                                        }
+                                                      : c,
+                                                ),
+                                              }))
+                                            }
+                                          >
+                                            {block.options.map((o, i) => (
+                                              <option key={o} value={i}>
+                                                {o}
+                                              </option>
+                                            ))}
+                                          </select>
+                                          <button
+                                            aria-label={`Remove ${card.text || "thought"}`}
+                                            onClick={() =>
+                                              setCards((v) => ({
+                                                ...v,
+                                                [block.id]: v[block.id].filter(
+                                                  (c) => c.id !== card.id,
+                                                ),
+                                              }))
+                                            }
+                                          >
+                                            <X size={14} />
+                                          </button>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  <button
+                                    className="add-thought"
+                                    disabled={
+                                      (cards[block.id] || []).length >= 12
+                                    }
+                                    onClick={() =>
+                                      setCards((v) => ({
+                                        ...v,
+                                        [block.id]: [
+                                          ...(v[block.id] || []),
+                                          {
+                                            id: crypto.randomUUID(),
+                                            text: "",
+                                            group: g,
+                                          },
+                                        ],
+                                      }))
+                                    }
+                                  >
+                                    <Plus size={16} /> Add a thought
+                                  </button>
+                                </div>
+                              ))}
                             </div>
-                          ))}
-                        </div>
+                          </details>
+                        </>
                       ) : block.type === "choose" ? (
                         <div
                           className="choices"
@@ -1559,7 +1730,15 @@ export function Soulfire() {
         >
           <X />
         </button>
-        {dialog === "pause" ? (
+        {dialog === "simulation" ? null : dialog === "history" ? (
+          <HistoryPanel
+            capture={history}
+            onDeleted={history.deleted}
+            initialId={historyFocus}
+          />
+        ) : dialog === "memory" ? (
+          <MemoryPanel onChanged={memoryChanged} />
+        ) : dialog === "pause" ? (
           <>
             <span className="eyebrow">YOU SET THE PACE</span>
             <h2>A pause is part of the practice.</h2>
@@ -1677,14 +1856,17 @@ export function Soulfire() {
               private exercise fields.
             </p>
             <p>
-              No accounts, analytics or server database. Introduction, sound and
+              No accounts or external analytics. Optional local memory and
+              conversation history are separate choices. Introduction, sound and
               motion preferences are remembered in this browser. Practice
               answers stay in this tab unless you choose “Keep this practice on
               this device”. That optional saved copy is unencrypted browser
               storage; anyone using this browser can resume it. Uncheck the
-              option to remove it. Conversations are never saved. OpenAI’s
-              processing and retention are separate; this is not a promise of
-              zero provider retention.
+              option to remove it. Conversation history is off each visit unless
+              you explicitly start saving future turns. It is unencrypted,
+              separate from memory, and retained locally for up to 30 days.
+              OpenAI’s processing and retention are separate; this is not a
+              promise of zero provider retention.
             </p>
             <p>
               This is a self-help exploration, not clinical care or a claim of
@@ -1695,6 +1877,14 @@ export function Soulfire() {
             </button>
           </>
         )}
+        <SimulationPanel
+          visible={dialog === "simulation"}
+          onPlayback={setSimulationSpeaking}
+          onReview={(id) => {
+            setHistoryFocus(id);
+            setDialog("history");
+          }}
+        />
       </dialog>
     </div>
   );

@@ -1,0 +1,13 @@
+{
+  "syntheticOnly": true,
+  "providerConfigured": false,
+  "actualLocalSynthesis": true,
+  "cachedAudioBytes": 331452,
+  "cachedAudioSha256": "1f72cecf057eb311a0e967a42e1bd9c445ff39b8cfabce5502be7d9acfae44f9",
+  "audioSurvivesServerRestart": true,
+  "anonymousAudioDenied": true,
+  "audioDeletionSurvivesRestart": true,
+  "crossRouteStopAbortsActualSynthesis": true,
+  "partialTranscriptPreserved": true,
+  "paidCalls": 0
+}

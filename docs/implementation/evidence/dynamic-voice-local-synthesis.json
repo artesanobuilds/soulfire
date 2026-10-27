@@ -1,0 +1,38 @@
+{
+  "syntheticOnly": true,
+  "provider": "in-process mock",
+  "mockedModelCalls": 4,
+  "paidRequests": 0,
+  "localTts": "Kokoro-82M",
+  "serverJobCompleted": true,
+  "seconds": 6.335,
+  "audio": [
+    {
+      "turn": 0,
+      "voice": "am_michael",
+      "bytes": 137854,
+      "format": "audio/wav"
+    },
+    {
+      "turn": 1,
+      "voice": "af_heart",
+      "bytes": 118292,
+      "format": "audio/wav"
+    },
+    {
+      "turn": 2,
+      "voice": "am_michael",
+      "bytes": 144446,
+      "format": "audio/wav"
+    },
+    {
+      "turn": 3,
+      "voice": "af_heart",
+      "bytes": 95276,
+      "format": "audio/wav"
+    }
+  ],
+  "actualChildAbortObserved": true,
+  "directListening": false,
+  "realSpeechToSpeech": false
+}

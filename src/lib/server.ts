@@ -8,7 +8,7 @@ export class HttpError extends Error {
   }
 }
 const attempts: number[] = [];
-export function guard(req: Request) {
+export function guard(req: Request, countAttempt = true) {
   const url = new URL(req.url);
   const origin = req.headers.get("origin");
   if (!["127.0.0.1", "localhost", "[::1]"].includes(url.hostname))
@@ -24,6 +24,7 @@ export function guard(req: Request) {
       403,
       "This request must come from the local soulfire page.",
     );
+  if (!countAttempt) return;
   const now = Date.now();
   while (attempts.length && attempts[0] < now - 60000) attempts.shift();
   if (attempts.length >= 20)
@@ -70,7 +71,7 @@ export async function jsonBody(req: Request, max = 40000) {
 export async function provider(
   path: string,
   body: BodyInit,
-  req: Request,
+  req: Pick<Request, "signal">,
   contentType?: string,
 ) {
   const res = await fetch(`https://api.openai.com/v1/${path}`, {
