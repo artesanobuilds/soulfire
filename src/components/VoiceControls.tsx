@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Mic, AudioLines, Square, Volume2, VolumeX } from "lucide-react";
+import { VoiceLevelMeter } from "./VoiceLevelMeter";
+import { voiceGreeting } from "../lib/voice-greeting";
 import { DictationWaveform } from "./DictationWaveform";
 import type { Message } from "../lib/schema";
 
@@ -8,6 +10,7 @@ import { classifyVoiceError } from "../lib/voice-reliability";
 import type { BrowserHistoryEvent } from "../domain/history";
 
 type Props = {
+  configured: boolean | null;
   onHistoryEvent?: (event: Omit<BrowserHistoryEvent, "clientOrder">) => void;
   messages: Message[];
   motionEnabled: boolean;
@@ -32,6 +35,17 @@ export function VoiceControls(p: Props) {
     | "live"
   >("off");
   const [muted, setMuted] = useState(false);
+  const [name, setName] = useState("");
+  const greetingVariant = useRef(0);
+  const [phase, setPhase] = useState<
+    "ready" | "thinking" | "interrupted" | "ended" | "error"
+  >("ready");
+  const [inputSpeaking, setInputSpeaking] = useState(false);
+  const [outputSpeaking, setOutputSpeaking] = useState(false);
+  const [providerSpeaking, setProviderSpeaking] = useState(false);
+  const [audioPlaying, setAudioPlaying] = useState(false);
+  const [playbackBlocked, setPlaybackBlocked] = useState(false);
+  const [outputStream, setOutputStream] = useState<MediaStream>();
   const [micMuted, setMicMuted] = useState(false);
   const resources = useRef<{
     stream?: MediaStream;
@@ -41,15 +55,27 @@ export function VoiceControls(p: Props) {
     audio?: HTMLAudioElement;
     abort?: AbortController;
     timer?: ReturnType<typeof setTimeout>;
-    playbackTimer?: ReturnType<typeof setTimeout>;
+    replyTimer?: ReturnType<typeof setTimeout>;
     submitRecording?: boolean;
     epoch: number;
     historyVoiceId?: string;
+    opened?: boolean;
+    responding?: boolean;
+    responseId?: string;
+    outputActive?: boolean;
   }>({ epoch: 0 });
   const props = useRef(p);
   props.current = p;
   function stop() {
     const r = resources.current;
+    if (r.stream || r.pc) setPhase("ended");
+    setName("");
+    setInputSpeaking(false);
+    setOutputSpeaking(false);
+    setProviderSpeaking(false);
+    setOutputStream(undefined);
+    setAudioPlaying(false);
+    setPlaybackBlocked(false);
     const release = (action: () => void) => {
       try {
         action();
@@ -70,7 +96,7 @@ export function VoiceControls(p: Props) {
     resources.current = { epoch: r.epoch };
     r.abort?.abort();
     clearTimeout(r.timer);
-    clearTimeout(r.playbackTimer);
+    clearTimeout(r.replyTimer);
     if (r.pc) {
       r.pc.ontrack = null;
       r.pc.onconnectionstatechange = null;
@@ -92,6 +118,11 @@ export function VoiceControls(p: Props) {
     release(() => r.dc?.close());
     release(() => r.pc?.close());
     if (r.audio) {
+      r.audio.onplaying = null;
+      r.audio.onpause = null;
+      r.audio.onended = null;
+      r.audio.onwaiting = null;
+      r.audio.onerror = null;
       release(() => r.audio?.pause());
       r.audio.srcObject = null;
     }
@@ -127,6 +158,8 @@ export function VoiceControls(p: Props) {
     stop();
     const r = resources.current;
     const epoch = r.epoch;
+    setPhase("ready");
+    props.current.onError("");
     setMode(kind === "dictation" ? "requesting-microphone" : "connecting");
     p.onActive(true);
     r.abort = new AbortController();
@@ -135,6 +168,7 @@ export function VoiceControls(p: Props) {
       if (!current()) return;
       props.current.onError(message);
       stop();
+      setPhase("error");
     };
     r.timer = setTimeout(
       () => fail("Voice setup timed out. Try again or keep typing."),
@@ -278,23 +312,61 @@ export function VoiceControls(p: Props) {
         rec.start(1000);
         return;
       }
+      // Queue the opening response before transmitting input audio.
+      stream.getAudioTracks().forEach((track) => {
+        track.enabled = false;
+      });
       const pc = new RTCPeerConnection();
       r.pc = pc;
       const audio = new Audio();
       audio.autoplay = true;
       r.audio = audio;
+      audio.onplaying = () => {
+        if (current()) {
+          setAudioPlaying(true);
+          setPlaybackBlocked(false);
+        }
+      };
+      audio.onpause =
+        audio.onended =
+        audio.onwaiting =
+          () => {
+            if (current()) {
+              setAudioPlaying(false);
+              setOutputSpeaking(false);
+            }
+          };
+      audio.onerror = () => {
+        if (current()) {
+          setAudioPlaying(false);
+          setPlaybackBlocked(true);
+          props.current.onError(
+            "Voice audio could not play. Retry audio or continue with text.",
+          );
+        }
+      };
       pc.ontrack = (e) => {
         if (!current()) return;
-        audio.srcObject = e.streams[0];
-        audio
+        const incoming = e.streams[0] || new MediaStream([e.track]);
+        setOutputStream(incoming);
+        audio.srcObject = incoming;
+        void audio
           .play()
-          .catch(
-            () =>
-              current() &&
+          .then(() => {
+            if (current()) {
+              setAudioPlaying(true);
+              setPlaybackBlocked(false);
+            }
+          })
+          .catch(() => {
+            if (current()) {
+              setAudioPlaying(false);
+              setPlaybackBlocked(true);
               props.current.onError(
-                "Audio playback was blocked. Use the speaker control to try again; transcripts remain available.",
-              ),
-          );
+                "Audio playback was blocked. Retry audio; transcripts remain available.",
+              );
+            }
+          });
       };
       stream.getTracks().forEach((t) => pc.addTrack(t, stream));
       const dc = pc.createDataChannel("oai-events");
@@ -305,7 +377,8 @@ export function VoiceControls(p: Props) {
       dc.onclose = () =>
         fail("Voice disconnected. Start voice again or keep typing.");
       dc.onopen = () => {
-        if (resources.current.epoch !== epoch) return;
+        if (resources.current.epoch !== epoch || r.opened) return;
+        r.opened = true;
         clearTimeout(r.timer);
         r.timer = setTimeout(() => {
           if (resources.current.epoch === epoch) {
@@ -333,13 +406,42 @@ export function VoiceControls(p: Props) {
                   role: m.role,
                   content: [
                     {
-                      type: m.role === "user" ? "input_text" : "text",
+                      type: m.role === "user" ? "input_text" : "output_text",
                       text: m.content,
                     },
                   ],
                 },
               }),
             );
+          if (!r.responding) {
+            const greeting = voiceGreeting(
+              name,
+              props.current.messages.some((m) => m.role === "user"),
+              greetingVariant.current++,
+            );
+            dc.send(
+              JSON.stringify({
+                type: "response.create",
+                response: {
+                  input: [],
+                  instructions: `Give a brief opening. Say exactly this greeting and then wait for the person: ${JSON.stringify(greeting)}. Do not add prior context, assumptions, a diagnosis or framework names.`,
+                  metadata: { purpose: "welcome" },
+                  max_output_tokens: 512,
+                },
+              }),
+            );
+            setPhase("thinking");
+            r.replyTimer = setTimeout(
+              () =>
+                fail(
+                  "Voice did not begin its reply. Start voice again or keep typing.",
+                ),
+              15000,
+            );
+          }
+          stream.getAudioTracks().forEach((track) => {
+            track.enabled = true;
+          });
         } catch {
           fail("Voice transport failed. Start voice again or keep typing.");
         }
@@ -348,6 +450,90 @@ export function VoiceControls(p: Props) {
         if (resources.current.epoch !== epoch) return;
         try {
           const event = JSON.parse(e.data);
+          if (!event || typeof event.type !== "string") return;
+          if (event.type === "response.created") {
+            if (typeof event.response?.id === "string")
+              r.responseId = event.response.id;
+            r.responding = true;
+            if (r.audio?.srcObject)
+              void r.audio
+                .play()
+                .then(() => {
+                  if (current()) {
+                    setAudioPlaying(true);
+                    setPlaybackBlocked(false);
+                  }
+                })
+                .catch(() => {
+                  if (current()) {
+                    setAudioPlaying(false);
+                    setPlaybackBlocked(true);
+                  }
+                });
+            clearTimeout(r.replyTimer);
+            r.replyTimer = setTimeout(
+              () =>
+                fail(
+                  "Voice response timed out. Start voice again or keep typing.",
+                ),
+              45000,
+            );
+            setPhase("thinking");
+          }
+          if (event.type === "response.done") {
+            if (
+              typeof event.response?.id === "string" &&
+              r.responseId &&
+              event.response.id !== r.responseId
+            )
+              return;
+            r.responding = false;
+            clearTimeout(r.replyTimer);
+            setPhase((previous) =>
+              previous === "interrupted" ? previous : "ready",
+            );
+          }
+          if (event.type === "input_audio_buffer.speech_started") {
+            setInputSpeaking(true);
+            r.audio?.pause();
+            setAudioPlaying(false);
+            setPhase("ready");
+            r.outputActive = false;
+            setProviderSpeaking(false);
+            setOutputSpeaking(false);
+          }
+          if (event.type === "input_audio_buffer.speech_stopped") {
+            setInputSpeaking(false);
+            setPhase("thinking");
+          }
+          if (event.type === "output_audio_buffer.started") {
+            r.outputActive = true;
+            setProviderSpeaking(true);
+            if (r.audio?.srcObject)
+              void r.audio
+                .play()
+                .then(() => {
+                  if (current()) {
+                    setAudioPlaying(true);
+                    setPlaybackBlocked(false);
+                  }
+                })
+                .catch(() => {
+                  if (current()) {
+                    setAudioPlaying(false);
+                    setPlaybackBlocked(true);
+                  }
+                });
+          }
+          if (
+            event.type === "output_audio_buffer.stopped" ||
+            event.type === "output_audio_buffer.cleared"
+          ) {
+            r.outputActive = false;
+            setProviderSpeaking(false);
+            setOutputSpeaking(false);
+            setPhase("ready");
+          }
           if (event.type === "error") {
             const diagnostic = classifyVoiceError(event.error);
             if (!diagnostic.fatal) return;
@@ -475,6 +661,7 @@ export function VoiceControls(p: Props) {
               : "Voice could not start. Use text or try again.",
         );
         stop();
+        setPhase("error");
       }
     }
   }
@@ -490,6 +677,10 @@ export function VoiceControls(p: Props) {
   }
   function interrupt() {
     const r = resources.current;
+    r.outputActive = false;
+    setProviderSpeaking(false);
+    setOutputSpeaking(false);
+    setPhase("interrupted");
     if (r.historyVoiceId)
       props.current.onHistoryEvent?.({
         eventKey: crypto.randomUUID(),
@@ -511,10 +702,7 @@ export function VoiceControls(p: Props) {
     }
     if (r.audio) {
       r.audio.pause();
-      clearTimeout(r.playbackTimer);
-      r.playbackTimer = setTimeout(() => {
-        if (resources.current === r) void r.audio?.play().catch(() => {});
-      }, 100);
+      setAudioPlaying(false);
     }
   }
   return (
@@ -524,7 +712,7 @@ export function VoiceControls(p: Props) {
           <button
             type="button"
             className="icon-label"
-            disabled={p.disabled}
+            disabled={p.disabled || p.configured !== true}
             onClick={() => setMode("consent-dictation")}
           >
             <Mic size={17} /> Dictate
@@ -532,11 +720,25 @@ export function VoiceControls(p: Props) {
           <button
             type="button"
             className="icon-label"
-            disabled={p.disabled}
+            disabled={p.disabled || p.configured !== true}
             onClick={() => setMode("consent-live")}
           >
             <AudioLines size={18} /> Live voice
           </button>
+          {p.configured !== true && (
+            <small role="note">
+              {p.configured === null
+                ? "Checking voice availability…"
+                : "Voice is unavailable in this preview. You can still use local examples."}
+            </small>
+          )}
+          {(phase === "ended" || phase === "error") && (
+            <span role="status">
+              {phase === "error"
+                ? "Voice error · microphone off"
+                : "Voice ended · microphone off"}
+            </span>
+          )}
         </>
       )}
       {(mode === "consent-dictation" || mode === "consent-live") && (
@@ -551,6 +753,17 @@ export function VoiceControls(p: Props) {
               ? "After recording, audio is sent to OpenAI for transcription. Review and edit the words before submitting them. Tap Stop when you’re finished, or Discard to delete the recording without sending it."
               : "Your microphone audio and submitted conversation go to OpenAI. You’ll hear an AI-generated voice. Private exercise fields are not sent. You can interrupt, mute, or end at any time."}
           </p>
+          {mode === "consent-live" && (
+            <label className="voice-name">
+              What should I call you? (optional, this voice session only)
+              <input
+                value={name}
+                maxLength={40}
+                onChange={(e) => setName(e.target.value)}
+                autoComplete="off"
+              />
+            </label>
+          )}
           <div className="actions">
             <button
               className="primary"
@@ -600,6 +813,60 @@ export function VoiceControls(p: Props) {
           <span className="listening" role="status">
             {micMuted ? "Microphone muted" : "Live voice · microphone on"}
           </span>
+          <div className="voice-activity" aria-live="polite">
+            <span>
+              {playbackBlocked
+                ? "Audio blocked · retry to hear the reply"
+                : !muted && audioPlaying && (providerSpeaking || outputSpeaking)
+                  ? "Soulfire is speaking"
+                  : micMuted
+                    ? "Listening paused"
+                    : inputSpeaking
+                      ? "Hearing you"
+                      : phase === "thinking"
+                        ? "Soulfire is thinking"
+                        : phase === "interrupted"
+                          ? "Interrupted · ready when you are"
+                          : "Ready · listening"}
+            </span>
+          </div>
+          {!micMuted && resources.current.stream && (
+            <VoiceLevelMeter
+              stream={resources.current.stream}
+              motionEnabled={p.motionEnabled}
+              onActivity={setInputSpeaking}
+              label="Microphone input level"
+            />
+          )}
+          {outputStream && audioPlaying && !muted && (
+            <VoiceLevelMeter
+              stream={outputStream}
+              motionEnabled={p.motionEnabled}
+              onActivity={setOutputSpeaking}
+              label="Assistant audio level"
+            />
+          )}
+          {playbackBlocked && (
+            <button
+              onClick={() => {
+                const r = resources.current;
+                void r.audio
+                  ?.play()
+                  .then(() => {
+                    if (resources.current === r) {
+                      setAudioPlaying(true);
+                      setPlaybackBlocked(false);
+                      props.current.onError("");
+                    }
+                  })
+                  .catch(() => {
+                    if (resources.current === r) setPlaybackBlocked(true);
+                  });
+              }}
+            >
+              Retry audio
+            </button>
+          )}
           <div className="actions">
             <button onClick={interrupt}>
               <Square size={14} /> Interrupt

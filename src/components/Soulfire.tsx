@@ -659,6 +659,7 @@ export function Soulfire() {
         <small>{history.status}</small>
       </div>
       <VoiceControls
+        configured={configured}
         onHistoryEvent={history.record}
         motionEnabled={motion && !reducedMotion && pageVisible}
         messages={messages}

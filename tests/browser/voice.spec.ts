@@ -70,6 +70,18 @@ async function simulate(page: import("@playwright/test").Page) {
       async setRemoteDescription() {
         this.connectionState = "connected";
         this.dc.onopen?.();
+        this.dc.onmessage?.({
+          data: JSON.stringify({
+            type: "response.created",
+            response: { id: "mock-greeting" },
+          }),
+        });
+        this.dc.onmessage?.({
+          data: JSON.stringify({
+            type: "response.done",
+            response: { id: "mock-greeting", status: "completed" },
+          }),
+        });
       }
       close() {
         state.closed = true;
@@ -378,7 +390,10 @@ test("fatal voice error preserves opt-in history final turns and ends the sessio
   request,
   baseURL,
 }) => {
-  test.skip(process.env.SOULFIRE_TEST_ISOLATED !== "1", "Requires an explicitly isolated data directory and no provider key.");
+  test.skip(
+    process.env.SOULFIRE_TEST_ISOLATED !== "1",
+    "Requires an explicitly isolated data directory and no provider key.",
+  );
   expect((await (await request.get("/api/status")).json()).configured).toBe(
     false,
   );

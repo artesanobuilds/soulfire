@@ -69,6 +69,18 @@ export async function simulateVoice(page: import("@playwright/test").Page) {
       async setRemoteDescription() {
         this.connectionState = "connected";
         this.dc.onopen?.();
+        this.dc.onmessage?.({
+          data: JSON.stringify({
+            type: "response.created",
+            response: { id: "mock-greeting" },
+          }),
+        });
+        this.dc.onmessage?.({
+          data: JSON.stringify({
+            type: "response.done",
+            response: { id: "mock-greeting", status: "completed" },
+          }),
+        });
       }
       close() {
         state.closed = true;

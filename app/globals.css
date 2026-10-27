@@ -3052,3 +3052,11 @@ aside > p {
 .simulation-setup > summary { cursor:pointer;padding:12px 0;font-weight:600; }
 .simulation-controls { position:sticky;top:0;background:#fffdf7;padding:12px 0;border-bottom:1px solid var(--line);z-index:2; }
 .simulation-turns li { scroll-margin-top:150px; }
+
+.voice-activity { color: var(--deep); font-size: 14px; min-height: 1.5em; }
+.voice-meter { display: inline-flex; align-items: center; padding: 4px 8px; }
+.voice-name { display: grid; gap: 6px; font-size: 14px; margin: 12px 0; }
+.voice-name input { padding: 9px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--deep); }
+
+.voice-meter-label { font-size: 12px; margin-right: 7px; color: var(--muted); }
+.voice-meter[data-source="assistant"] .dictation-waveform i { background: var(--gold); }
