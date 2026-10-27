@@ -21,9 +21,15 @@ The user explicitly chose Current, retaining the rich river concept while asking
 
 The lighter Current concept was delivered on 2026-10-27:
 
-- Filename: `soulfire-current-light-concept.png`
+- First-delivery filename: `soulfire-current-light-concept.png`
 - Library ID: `libfile_8699801f8b188191b065e923b75f1758`
-- Backing file ID: `file_0000000044a88243bfc766af5bc0d683`
-- [Open/download the Current light concept](https://chatgpt.com/api/library/files/libfile_8699801f8b188191b065e923b75f1758/download) — access follows the Library file's permissions.
+- Follow the latest version of this Library identity; do not pin later reads to the first-delivery backing file.
+- [Open/download the latest Current light concept](https://chatgpt.com/api/library/files/libfile_8699801f8b188191b065e923b75f1758/download) — access follows the Library file's permissions.
 
 The parent delivered and reviewed this reference. Local PNG bytes are not archived; no repeat image transfer was attempted after the earlier transfer failures. This reference does not claim independent local pixel inspection, byte verification or an implemented feature. The Current name and lighter palette/direction are selected; the board's detailed layout remains a concept for review. See the [product/design brief](product-design-brief.md) for the palette and remaining decisions.
+
+## Brand hierarchy revision — same Library identity
+
+The user clarified that **Soulfire** remains the masterbrand. Keep its existing logo/wordmark in the global app header. Current is only the feature name/title, with a smaller distinct river/current emblem and rich feature imagery in the content below. Preserve the selected lighter cream/sage/gold daylight-river direction; do not turn Current into a separate app brand or competing header.
+
+The visual revision updates the same Library identity, `libfile_8699801f8b188191b065e923b75f1758`. Use the latest available version through the link above rather than assuming the original PNG bytes or backing-file ID. This documentation records the user's hierarchy decision; it does not claim local inspection or verification of a revised image version. See [D002](decisions.md) for the decision and scope boundary.

@@ -7,7 +7,7 @@ Status: **Current** and its lighter river direction are selected; other items re
 | Entry and boundaries | Is a separate full-page destination preferable to a panel? What should happen to other audio when it opens? | Separate Current upper-nav entry proposed; no route/UI built |
 | Goals | Are Focus, Unwinding, Settling a busy mind and Just exploring the right first choices? | Nonclinical intent options proposed; wording needs review |
 | Optional context | Do we need free text at all, or are goal + sound preferences sufficient initially? | Minimize sensitive text; no default retention |
-| Identity | How should the selected Current identity be executed in the light palette, and what descriptive subtitle helps? | Current selected; cream/sage/gold/daylight river direction selected; detailed logo/layout, scene names and clearance pending |
+| Identity | How should the selected Current identity be executed in the light palette, and what descriptive subtitle helps? | Current and light river direction selected; global Soulfire logo remains, with smaller Current emblem/title below; exact emblem/layout, scene names and clearance pending |
 | Content and rights | Which stems can we own/license, redistribute, cache and remix? | No assets acquired or paid generation authorized |
 | Engine | Stem mixing, procedural synthesis, generated stems or full-track generation? | Controllable owned/licensed stems recommended for comparison, not selected |
 | Transparency | How much ingredient and “why this mix” detail belongs on the primary card? | Honest recipe explanation; no inferred brain state |

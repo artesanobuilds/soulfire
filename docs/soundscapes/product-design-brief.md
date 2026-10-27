@@ -6,7 +6,7 @@ Status: exploratory proposal, 2026-10-27. Review alongside the [original researc
 
 Give someone a small, welcoming place to choose a listening goal, hear an understandable sound mix and adjust it to their own taste. The goal is useful, controllable listening rather than a claim that Soulfire can diagnose a state or prescribe an acoustic treatment.
 
-The user selected **Current** as the feature name and direction. The initial proposal is a separate **Current** item in the upper navigation, with a descriptive subtitle such as “Soundscapes” or “Personalized listening” if useful. The exact subtitle remains open. It would open a dedicated surface rather than silently adding sound to an existing practice. Where soundscapes might fit within the underlying twelve-step-informed model is explicitly undecided. No integration is proposed for implementation now.
+The user selected **Current** as the feature name and direction. The initial proposal is a separate **Current** item in the upper navigation, with a descriptive subtitle such as “Soundscapes” or “Personalized listening” if useful. The exact subtitle remains open. Keep the existing **Soulfire logo/wordmark in the global app header**. Current is the feature name/title in the content below it, with a smaller distinct river/current emblem and its own scene imagery; it is not a separate app brand. It would open a dedicated surface rather than silently adding sound to an existing practice. Where soundscapes might fit within the underlying twelve-step-informed model is explicitly undecided. No integration is proposed for implementation now.
 
 ## A possible first journey
 
@@ -25,12 +25,15 @@ The user selected **Current** and asked to keep its graphically rich UI while ma
 
 | Element | Selected direction | Detail still to resolve |
 | --- | --- | --- |
+| Brand hierarchy | Existing Soulfire logo in the global header; Current feature title and smaller river/current emblem below | Exact emblem drawing and title/subtitle spacing |
 | Main surface | Warm ivory/cream, consistent with Soulfire | Exact tone, spacing and card treatment |
 | Secondary surfaces | Pale sage | Layer separation without losing contrast |
 | Accent | Soft gold | Clear selected states without relying on color alone |
 | Text and controls | Dark teal text and clear, readable controls | Contrast, focus, disabled and active states |
 | Hero/scene art | Daylight river landscape with layered depth and rich graphic detail | Composition, crop and relationship to the player |
 | Overall feel | Light, warm and immersive rather than a dark standalone product | Balance illustration with accessible controls |
+
+The feature imagery should distinguish Current within Soulfire without replacing the global Soulfire identity or suggesting a different app. The Current emblem is subordinate to the masterbrand; avoid a second competing app header.
 
 Lightening the composition should preserve the river's depth, layered contours and sense of flow. It should not flatten the concept into a plain card or retain a predominantly dark surface that feels disconnected from Soulfire. Keep explanatory text and player controls on readable surfaces; pale artwork must not wash out focus or playback state.
 
