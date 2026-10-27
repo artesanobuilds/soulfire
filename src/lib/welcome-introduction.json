@@ -1,0 +1,35 @@
+{
+  "version": "v2",
+  "audioPath": "/audio/welcome-kokoro-heart-v2.m4a",
+  "manifestPath": "/audio/welcome-introduction-v2.json",
+  "moments": [
+    {
+      "title": "Bring what’s on your mind",
+      "kind": "choose",
+      "sentences": [
+        "Welcome to Soulfire.",
+        "A different way to navigate everyday life, especially when things feel overwhelming, uncertain, or hard to carry.",
+        "Does life feel like it's taking more effort than it should?",
+        "Maybe there's friction at work, tension with family, or a struggle between what you want and the patterns you keep returning to.",
+        "You might feel disconnected from yourself or others, or caught in habits, urges, or addictive patterns that feel hard to step away from.",
+        "You don't need to have the right words or everything figured out to begin."
+      ]
+    },
+    {
+      "title": "Make space to reflect",
+      "kind": "reflect",
+      "sentences": [
+        "Soulfire invites you to pause, make sense of what you're experiencing, and explore what matters to you.",
+        "Through thoughtful conversation and small, practical steps, you can find new ways to respond, reconnect, and move toward the life you want to live."
+      ]
+    },
+    {
+      "title": "Find one small next step",
+      "kind": "action",
+      "sentences": [
+        "Start where you are, with whatever's on your mind.",
+        "When you're ready, let's begin."
+      ]
+    }
+  ]
+}

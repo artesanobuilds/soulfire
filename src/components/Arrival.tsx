@@ -3,26 +3,14 @@ import { useEffect, useRef, useState, type Ref } from "react";
 import { ArrowRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { PromptArt } from "./QuietScene";
 
-const moments = [
-  {
-    title: "Bring what’s on your mind",
-    kind: "choose" as const,
-    caption:
-      "Welcome to SoulFire. A space to bring the principles of twelve-step practice into everyday life. Bring whatever is on your mind.",
-  },
-  {
-    title: "Make space to reflect",
-    kind: "reflect" as const,
-    caption:
-      "Make room to reflect, pause for a moment of stillness if you choose,",
-  },
-  {
-    title: "Find one small next step",
-    kind: "action" as const,
-    caption:
-      "and find one small action to carry into your day. You set the pace.",
-  },
-];
+import welcome from "../lib/welcome-introduction.json";
+import recording from "../../public/audio/welcome-introduction-v2.json";
+const moments = welcome.moments.map((moment) => ({
+  ...moment,
+  kind: moment.kind as "choose" | "reflect" | "action",
+  caption: moment.sentences.join(" "),
+}));
+const cues = recording.cues;
 export function Arrival({
   returning,
   hasPractice,
@@ -53,7 +41,7 @@ export function Arrival({
   const [captions, setCaptions] = useState(true);
   const [stage, setStage] = useState(0);
   const [error, setError] = useState("");
-  const [cues, setCues] = useState([0, 11.753583, 17.45625]);
+  const [segment, setSegment] = useState(0);
   const audio = useRef<HTMLAudioElement>(null);
   const attempt = useRef(0);
   const starting = useRef(false);
@@ -65,22 +53,6 @@ export function Arrival({
         localStorage.getItem("soulfire.introduction.played.v1") === "yes",
       );
     } catch {}
-    const controller = new AbortController();
-    fetch("/audio/welcome-introduction.json?v=kokoro-heart-v1", {
-      signal: controller.signal,
-    })
-      .then((r) => r.json())
-      .then((d) => {
-        if (
-          Array.isArray(d.cues) &&
-          d.cues.length === 3 &&
-          d.cues.every(
-            (n: unknown) => typeof n === "number" && Number.isFinite(n),
-          )
-        )
-          setCues(d.cues);
-      })
-      .catch(() => {});
     const el = audio.current;
     const generation = attempt;
     const hidden = () => {
@@ -94,7 +66,6 @@ export function Arrival({
     };
     document.addEventListener("visibilitychange", hidden);
     return () => {
-      controller.abort();
       generation.current++;
       el?.pause();
       callbacks.current.onNarrating(false);
@@ -131,6 +102,7 @@ export function Arrival({
     if (completed || el.ended) {
       el.currentTime = 0;
       setStage(0);
+      setSegment(0);
       setCompleted(false);
     }
     el.muted = muted;
@@ -165,11 +137,17 @@ export function Arrival({
       <audio
         ref={audio}
         data-intro="true"
-        src="/audio/welcome-kokoro-heart.m4a"
+        src={welcome.audioPath}
         preload="none"
         onTimeUpdate={() => {
           const time = audio.current?.currentTime || 0;
           setStage(time >= cues[2] ? 2 : time >= cues[1] ? 1 : 0);
+          setSegment(
+            Math.max(
+              0,
+              recording.segments.findLastIndex((s) => time >= s.start),
+            ),
+          );
         }}
         onPlaying={() => {
           if (paused || document.hidden) {
@@ -219,7 +197,7 @@ export function Arrival({
         )}
       </h1>
       <p className="arrival-purpose">
-        Twelve-step wisdom, practiced in everyday life.
+        {welcome.moments[0].sentences.slice(0, 2).join(" ")}
       </p>
       <div className="arrival-actions">
         <button className="intro-play" onClick={hear}>
@@ -296,7 +274,7 @@ export function Arrival({
       )}
       {started && showIntro && captions && (
         <p className="intro-caption" aria-live="off">
-          {moments[stage].caption}
+          {recording.segments[segment].text}
         </p>
       )}
       {error && (

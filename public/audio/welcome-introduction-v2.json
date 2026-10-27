@@ -1,0 +1,83 @@
+{
+  "provider": "Local Kokoro-82M via kokoro-onnx",
+  "voice": "af_heart",
+  "language": "en-us",
+  "speed": 0.84,
+  "seconds": 62.74225,
+  "cues": [
+    0,
+    38.556375,
+    56.721375
+  ],
+  "segments": [
+    {
+      "text": "Welcome to Soulfire.",
+      "start": 0.3,
+      "seconds": 1.6615,
+      "moment": 0
+    },
+    {
+      "text": "A different way to navigate everyday life, especially when things feel overwhelming, uncertain, or hard to carry.",
+      "start": 2.6615,
+      "seconds": 8.003541666666667,
+      "moment": 0
+    },
+    {
+      "text": "Does life feel like it's taking more effort than it should?",
+      "start": 11.365041666666666,
+      "seconds": 3.1142916666666665,
+      "moment": 0
+    },
+    {
+      "text": "Maybe there's friction at work, tension with family, or a struggle between what you want and the patterns you keep returning to.",
+      "start": 15.179333333333332,
+      "seconds": 7.918916666666667,
+      "moment": 0
+    },
+    {
+      "text": "You might feel disconnected from yourself or others, or caught in habits, urges, or addictive patterns that feel hard to step away from.",
+      "start": 23.79825,
+      "seconds": 8.810666666666666,
+      "moment": 0
+    },
+    {
+      "text": "You don't need to have the right words or everything figured out to begin.",
+      "start": 33.30891666666667,
+      "seconds": 4.147458333333334,
+      "moment": 0
+    },
+    {
+      "text": "Soulfire invites you to pause, make sense of what you're experiencing, and explore what matters to you.",
+      "start": 38.556375,
+      "seconds": 6.613333333333333,
+      "moment": 1
+    },
+    {
+      "text": "Through thoughtful conversation and small, practical steps, you can find new ways to respond, reconnect, and move toward the life you want to live.",
+      "start": 45.869708333333335,
+      "seconds": 9.751666666666667,
+      "moment": 1
+    },
+    {
+      "text": "Start where you are, with whatever's on your mind.",
+      "start": 56.721375,
+      "seconds": 2.7319166666666668,
+      "moment": 2
+    },
+    {
+      "text": "When you're ready, let's begin.",
+      "start": 60.153291666666675,
+      "seconds": 1.8889583333333333,
+      "moment": 2
+    }
+  ],
+  "sampleRate": 24000,
+  "peakDbFS": -2.999999523162842,
+  "gain": 0.9293024879940058,
+  "timeStretch": false,
+  "directListening": false,
+  "audioSha256": "c4d58a5e3fd6ff97a2ec7ab5425a2acd1c82cdc949fac2382bc3f5f7d30e794c",
+  "sourceScriptSha256": "3d748870b09ad88f0ba7dad5a7ad5921e9bd9bbdeff2f0a9dbb23d11c8e89614",
+  "sourceScript": "src/lib/welcome-introduction.json",
+  "sourceWorkflow": "Existing local Kokoro English af_heart pipeline; no paid calls or unrelated assets changed."
+}

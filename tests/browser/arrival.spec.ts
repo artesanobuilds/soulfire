@@ -1,4 +1,8 @@
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { test, expect, type Page } from "@playwright/test";
+import welcome from "../../src/lib/welcome-introduction.json";
+import recording from "../../public/audio/welcome-introduction-v2.json";
 async function editableThought(p: Page) {
   const controls = p.locator(".simple-scene-controls").first();
   if (
@@ -47,7 +51,10 @@ test("loading alone is not completion; deliberate skip and motion preference per
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
   await expect(
-    page.getByText("Twelve-step wisdom, practiced in everyday life."),
+    page.getByText(
+      "Welcome to Soulfire. A different way to navigate everyday life, especially when things feel overwhelming, uncertain, or hard to carry.",
+      { exact: true },
+    ),
   ).toBeVisible();
   expect(await flag(page)).toBeNull();
   expect(await intro(page).evaluate((a: HTMLAudioElement) => a.paused)).toBe(
@@ -116,18 +123,18 @@ test("real local narration decodes, captions follow cues, mute pause replay and 
   await page
     .getByRole("button", { name: "Resume introduction", exact: true })
     .click();
-  await intro(page).evaluate((a: HTMLAudioElement) => {
-    a.currentTime = 13;
-  });
+  await intro(page).evaluate((a: HTMLAudioElement, cue) => {
+    a.currentTime = cue;
+  }, recording.cues[1] + 0.1);
   await expect(
     page.getByText("Make space to reflect", { exact: true }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Captions on", exact: true }).click();
   await expect(page.locator(".intro-caption")).toHaveCount(0);
   await page.getByRole("button", { name: "Captions off", exact: true }).click();
-  await intro(page).evaluate((a: HTMLAudioElement) => {
-    a.currentTime = 20;
-  });
+  await intro(page).evaluate((a: HTMLAudioElement, cue) => {
+    a.currentTime = cue;
+  }, recording.cues[2] + 0.1);
   await expect(
     page.getByText("Find one small next step", { exact: true }),
   ).toBeVisible();
@@ -320,7 +327,7 @@ test("failed narration has a readable fallback, keyboard entry and reduced motio
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.route("**/audio/welcome-kokoro-heart.m4a", (r) => r.abort());
+  await page.route("**/audio/welcome-kokoro-heart-v2.m4a", (r) => r.abort());
   await page.goto("/");
   await page
     .getByRole("button", { name: "Play introduction", exact: true })
@@ -328,7 +335,7 @@ test("failed narration has a readable fallback, keyboard entry and reduced motio
   await expect(page.locator(".intro-error")).toBeVisible();
   await expect(page.locator(".intro-transcript")).toHaveCount(0);
   await expect(page.locator(".intro-accessible-copy")).toContainText(
-    "You set the pace.",
+    "When you're ready, let's begin.",
   );
   await expect(
     page.getByRole("button", { name: "Still scene", exact: true }),
@@ -498,7 +505,7 @@ test("fresh arrival puts Play beside Begin and beginning alone never creates pla
   ).toHaveCount(0);
   await expect(page.locator(".intro-transcript")).toHaveCount(0);
   await expect(page.locator(".intro-accessible-copy")).toContainText(
-    "You set the pace.",
+    "When you're ready, let's begin.",
   );
   await begin.click();
   expect(
@@ -538,7 +545,7 @@ test("legacy arrival completion is not treated as evidence of playing the introd
 test("successful partial playback persists Replay on return while a failed attempt remains Play", async ({
   page,
 }) => {
-  await page.route("**/audio/welcome-kokoro-heart.m4a", (r) => r.abort());
+  await page.route("**/audio/welcome-kokoro-heart-v2.m4a", (r) => r.abort());
   await page.goto("/");
   await page
     .getByRole("button", { name: "Play introduction", exact: true })
@@ -552,7 +559,7 @@ test("successful partial playback persists Replay on return while a failed attem
   await expect(
     page.getByRole("button", { name: "Play introduction", exact: true }),
   ).toBeVisible();
-  await page.unroute("**/audio/welcome-kokoro-heart.m4a");
+  await page.unroute("**/audio/welcome-kokoro-heart-v2.m4a");
   await page.reload();
   await page
     .getByRole("button", { name: "Play introduction", exact: true })
@@ -575,4 +582,53 @@ test("successful partial playback persists Replay on return while a failed attem
   await expect(
     page.getByRole("button", { name: "Play introduction", exact: true }),
   ).toHaveCount(0);
+});
+
+test("welcome text, timed captions and served narration use the same approved script", async ({
+  page,
+  request,
+}) => {
+  const sentences = welcome.moments.flatMap((m) => m.sentences);
+  expect(recording.segments.map((s) => s.text)).toEqual(sentences);
+  expect(
+    createHash("sha256")
+      .update(readFileSync("src/lib/welcome-introduction.json"))
+      .digest("hex"),
+  ).toBe(recording.sourceScriptSha256);
+  const response = await request.get(welcome.audioPath);
+  expect(response.ok()).toBe(true);
+  expect(
+    createHash("sha256")
+      .update(await response.body())
+      .digest("hex"),
+  ).toBe(recording.audioSha256);
+  await page.goto("/");
+  await expect(page.locator(".intro-accessible-copy")).toHaveText(
+    sentences.join(" "),
+  );
+  await expect(page.locator(".arrival-copy")).not.toContainText(
+    /twelve.?step|12.?step/i,
+  );
+  await expect(page.locator(".intro-accessible-copy")).toContainText(
+    "friction at work, tension with family",
+  );
+  await expect(page.locator(".intro-accessible-copy")).toContainText(
+    "habits, urges, or addictive patterns",
+  );
+  await page
+    .getByRole("button", { name: "Play introduction", exact: true })
+    .click();
+  await expect
+    .poll(() => intro(page).evaluate((a: HTMLAudioElement) => a.currentTime))
+    .toBeGreaterThan(0.1);
+  const duration = await intro(page).evaluate(
+    (a: HTMLAudioElement) => a.duration,
+  );
+  expect(Math.abs(duration - recording.seconds)).toBeLessThan(0.1);
+  for (const segment of recording.segments) {
+    await intro(page).evaluate((a: HTMLAudioElement, time) => {
+      a.currentTime = time;
+    }, segment.start + 0.1);
+    await expect(page.locator(".intro-caption")).toHaveText(segment.text);
+  }
 });
