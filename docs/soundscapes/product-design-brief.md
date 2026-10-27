@@ -1,4 +1,4 @@
-# Custom soundscapes: preliminary product and design brief
+# Current: preliminary soundscape product and design brief
 
 Status: exploratory proposal, 2026-10-27. Review alongside the [original research and provenance](research/PROVENANCE.md). This is a design brief, not an implementation specification or a statement of clinical efficacy.
 
@@ -6,32 +6,37 @@ Status: exploratory proposal, 2026-10-27. Review alongside the [original researc
 
 Give someone a small, welcoming place to choose a listening goal, hear an understandable sound mix and adjust it to their own taste. The goal is useful, controllable listening rather than a claim that Soulfire can diagnose a state or prescribe an acoustic treatment.
 
-The initial proposal is a separate **Soundscapes** item in the upper navigation. It would open a dedicated surface rather than silently adding sound to an existing practice. Where soundscapes might fit within the underlying twelve-step-informed model is explicitly undecided. No integration is proposed for implementation now.
+The user selected **Current** as the feature name and direction. The initial proposal is a separate **Current** item in the upper navigation, with a descriptive subtitle such as “Soundscapes” or “Personalized listening” if useful. The exact subtitle remains open. It would open a dedicated surface rather than silently adding sound to an existing practice. Where soundscapes might fit within the underlying twelve-step-informed model is explicitly undecided. No integration is proposed for implementation now.
 
 ## A possible first journey
 
 1. **Choose a goal.** Ask **“What would you like support with?”** Offer **Focus**, **Unwinding**, **Settling a busy mind** and **Just exploring**. An optional short text field can add context without requiring a diagnosis, health history or account. The wording and choices remain candidates for review.
 2. **Choose sound taste and exclusions.** Let the person prefer or avoid water, nature, soft instrumental textures, rhythmic movement and noise. Ask about intensity, desired duration and whether voices or abrupt changes should be avoided. Skip is a valid answer; no location, personality or clinical inference fills the gaps.
-3. **Suggest an editable mix.** Show a descriptive name, a small visual identity and the actual ingredients. For example, **Quiet Current** could be a water layer plus a soft instrumental texture. Explain the connection to explicit choices: “A gentle water layer and slow changes, because those are the sounds you chose.” Do not imply the app measured a brain state.
+3. **Suggest an editable mix.** Show a descriptive name, a small visual identity and the actual ingredients. For example, **Soft Horizon** could be a water layer plus a soft instrumental texture. Explain the connection to explicit choices: “A gentle water layer and slow changes, because those are the sounds you chose.” Do not imply the app measured a brain state.
 4. **Preview deliberately.** Present a clear Play preview button and a quiet initial volume. Creating or selecting a mix must not start playback. Explain what will play and provide an accessible Stop control throughout.
 5. **Adjust and compare.** Allow layer mute and level changes, overall volume, gentler/more-present texture, duration and fades. Keep changes gradual and let the person return to the previous recipe. Raw “brainwave” or frequency prescriptions are not part of this proposed first experience.
 6. **Keep only by choice.** Ask whether to save the recipe/preferences separately from any journal or conversation history. A recipe can be named without retaining sensitive free text. An optional “helpful / distracting / unpleasant” check-in can inform the next choice without turning it into a clinical score.
 
 These are proposed interaction steps only. No screens, player, backend or generation service have been built for them.
 
-## Look and feel directions to compare
+## Selected direction: a lighter Current
 
-Keep Soulfire's warm ivory, deep green, quiet gold, generous spacing and readable controls. The soundscape identity should feel like part of the same place. The [delivered concept board](concept-reference.md) explores Soundscapes / Current / IsoTune. The parent review recommends a plain Soundscapes nav label with Current's immersive deep-teal river art direction; the user has not selected a final direction. The additional possibilities below are written explorations, not an independent description of the board's pixels.
+The user selected **Current** and asked to keep its graphically rich UI while making it lighter to match the rest of Soulfire. This supersedes the earlier plain-Soundscapes-name recommendation and dark deep-teal treatment. See the [decision record](decisions.md) and [concept references](concept-reference.md).
 
-| Direction | Visual idea | How it relates to listening | Watch-out |
-| --- | --- | --- | --- |
-| **Water and horizon** | A small landscape or layered contour mark, slow water-like forms | A clear scene identity with familiar Soulfire materials | Do not imply every goal is relaxation; focus mixes also need a place |
-| **Quiet layers** | Translucent bands or a few rounded contour lines | Makes the constituent layers and editable recipe understandable | Avoid a technical mixing-desk appearance as the default |
-| **Evening grove** | Soft botanical silhouettes and restrained grain | Warm, tactile identity for nature-led scenes | Keep contrast high; do not make dark visuals imply a sleep treatment |
+| Element | Selected direction | Detail still to resolve |
+| --- | --- | --- |
+| Main surface | Warm ivory/cream, consistent with Soulfire | Exact tone, spacing and card treatment |
+| Secondary surfaces | Pale sage | Layer separation without losing contrast |
+| Accent | Soft gold | Clear selected states without relying on color alone |
+| Text and controls | Dark teal text and clear, readable controls | Contrast, focus, disabled and active states |
+| Hero/scene art | Daylight river landscape with layered depth and rich graphic detail | Composition, crop and relationship to the player |
+| Overall feel | Light, warm and immersive rather than a dark standalone product | Balance illustration with accessible controls |
 
-Motion should remain optional and restrained. Use a static alternative for reduced motion. Do not use flashing, strobing, or visual flicker synchronized to experimental audio frequencies. During listening, an optional subtle level-responsive cue should describe actual playback, with text status available independently of animation.
+Lightening the composition should preserve the river's depth, layered contours and sense of flow. It should not flatten the concept into a plain card or retain a predominantly dark surface that feels disconnected from Soulfire. Keep explanatory text and player controls on readable surfaces; pale artwork must not wash out focus or playback state.
 
-**Naming is open.** “Soundscapes” is a useful descriptive navigation label. Experiential candidates such as “Quiet Current,” “Soft Horizon” or “Inner Weather” are brainstorming examples, not cleared names. The source proposes IsoTune, Sintonía, Heartscape, Cadence and Inner Tempo. None is adopted or independently cleared for trademark, store or domain availability. Names suggesting a neurological or physiological mechanism may overstate what a first version does.
+Motion remains optional and restrained, with a static alternative for reduced motion. Do not use flashing, strobing or frequency-synchronized visual flicker. An optional level-responsive cue should describe actual playback, with text status independent of animation.
+
+**Naming decision:** Current is selected for this feature. A descriptive subtitle can explain that it contains customizable soundscapes without replacing the chosen name. Individual mix names such as “Soft Horizon” or “Inner Weather,” the final logo execution and detailed interface remain exploratory. Selection does not establish trademark, store or domain clearance. Source-report alternatives such as IsoTune, Sintonía, Heartscape, Cadence and Inner Tempo are retained as historical research, not competing approved feature names.
 
 ## Player, accessibility and privacy requirements to resolve
 
@@ -71,4 +76,4 @@ An initial evaluation should ask whether people understand the suggestion, can t
 
 ## Before building
 
-Choose a visual direction and working label, review the proposed journey, settle the first engine/content-rights approach, define audio interruption/privacy behavior, and approve a small usability/listening test plan. Track unresolved decisions in [Open questions](open-questions.md). No practice-model integration, UI implementation or remote publication is authorized by this documentation commit.
+Refine the selected light-Current direction and descriptive subtitle, review the proposed journey, settle the first engine/content-rights approach, define audio interruption/privacy behavior, and approve a small usability/listening test plan. Track unresolved decisions in [Open questions](open-questions.md). No practice-model integration, UI implementation or remote publication is authorized by this documentation commit.

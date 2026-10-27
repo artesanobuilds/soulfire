@@ -1,13 +1,13 @@
-# Soundscapes: open questions before implementation
+# Current: open questions before implementation
 
-Status: unresolved unless explicitly marked below. These questions preserve decision space; they are not an implementation backlog approved for execution.
+Status: **Current** and its lighter river direction are selected; other items remain unresolved unless explicitly marked below. See the [decision record](decisions.md). These questions preserve decision space; they are not an implementation backlog approved for execution.
 
 | Area | Question | Current position |
 | --- | --- | --- |
-| Entry and boundaries | Is a separate full-page destination preferable to a panel? What should happen to other audio when it opens? | Separate upper-nav entry proposed; no route/UI built |
+| Entry and boundaries | Is a separate full-page destination preferable to a panel? What should happen to other audio when it opens? | Separate Current upper-nav entry proposed; no route/UI built |
 | Goals | Are Focus, Unwinding, Settling a busy mind and Just exploring the right first choices? | Nonclinical intent options proposed; wording needs review |
 | Optional context | Do we need free text at all, or are goal + sound preferences sufficient initially? | Minimize sensitive text; no default retention |
-| Identity | Which visual direction and feature/scene names feel right beside Soulfire? | All names/logo concepts exploratory; clearance pending |
+| Identity | How should the selected Current identity be executed in the light palette, and what descriptive subtitle helps? | Current selected; cream/sage/gold/daylight river direction selected; detailed logo/layout, scene names and clearance pending |
 | Content and rights | Which stems can we own/license, redistribute, cache and remix? | No assets acquired or paid generation authorized |
 | Engine | Stem mixing, procedural synthesis, generated stems or full-track generation? | Controllable owned/licensed stems recommended for comparison, not selected |
 | Transparency | How much ingredient and “why this mix” detail belongs on the primary card? | Honest recipe explanation; no inferred brain state |
@@ -22,4 +22,4 @@ Status: unresolved unless explicitly marked below. These questions preserve deci
 | Deferred sensing | Is there any later reason to consider HRV/EEG, clinical measures or other health data? | Outside initial scope; requires a separate review/consent plan |
 | Practice model | Where, if anywhere, does this fit within the underlying twelve-step-informed framework? | Explicitly undecided; do not integrate now |
 
-Next review deliverable: agree on one small experience concept and technical comparison to test. Implementation requires a subsequent explicit decision; this research archive and brief do not start that work.
+Next review deliverable: refine the selected light-Current concept, settle remaining player/flow details and agree on a technical comparison to test. Implementation requires a subsequent explicit decision; this research archive and brief do not start that work.
