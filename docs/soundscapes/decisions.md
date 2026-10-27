@@ -31,3 +31,13 @@ Preserve D001's lighter palette: warm ivory/cream, pale sage, soft gold, dayligh
 **Design reference:** the [latest Current light concept](concept-reference.md) remains under Library `libfile_8699801f8b188191b065e923b75f1758`. The visual revision uses that same identity, so consumers should follow the latest Library version rather than an old backing-file ID. No local revised PNG bytes are assumed or archived by this decision.
 
 **Scope boundary:** documentation/design only; no UI, audio/backend implementation, framework integration, remote push or app restart. The standalone Current entry and undecided later practice-model integration are unchanged.
+
+## 2026-10-27 — D003: standalone local prototype authorized
+
+The user subsequently asked to build Current fully into the prototype beside Simulations in the top navigation, and separately authorized publication of the Current documentation/research. This supersedes the earlier documentation-only execution boundary for the local prototype, not its privacy/evidence limits.
+
+The prototype uses local procedural Web Audio textures and soft synthesized tones, deterministic versioned recipes, deliberate playback and opt-in browser-local recipe saving. It requires no new audio service, account, credentials or model calls. Sound choice is based on explicit goals/preferences/exclusions and simple local sound-word matches, not diagnosis or inferred neurological states.
+
+Documentation publication is a separate commit directly on published main: `4d2ba91d6cbda67a0d1c03e827be0ab049965352`, branch `docs/current-experience`. That branch does not include the unpublished welcome/voice or Current implementation ancestors. The user explicitly approved publishing the original uploaded research and related docs to `artesanobuilds/soulfire` after the initial approval review rejection.
+
+Current implementation remains local until separately requested for publication. Integration into the underlying practice model is still undecided and not implemented. See [implementation and validation](implementation.md).

@@ -1,4 +1,5 @@
 "use client";
+import { CurrentPanel } from "./CurrentPanel";
 import { SimulationPanel } from "./SimulationPanel";
 import { HistoryPanel } from "./HistoryPanel";
 import { useConversationHistory } from "../hooks/useConversationHistory";
@@ -35,7 +36,7 @@ import { safetyNotice } from "../lib/safety";
 import { samples, steps, topics } from "../lib/catalog";
 import { replySchema, type Exercise, type Message } from "../lib/schema";
 
-type View = JourneyState;
+type View = JourneyState | "current";
 type Card = { id: string; text: string; group: number };
 type Drafts = Record<string, string>;
 export function Soulfire() {
@@ -162,7 +163,8 @@ export function Soulfire() {
     setStorageReady(true);
   }, []);
   useEffect(() => {
-    if (view !== "home" && view !== "map") resumeView.current = view;
+    if (view !== "home" && view !== "map" && view !== "current")
+      resumeView.current = view;
     if (!storageReady || !rememberPractice || !exercise) return;
     try {
       localStorage.setItem(
@@ -769,6 +771,12 @@ export function Soulfire() {
           </button>
           <button onClick={() => openDialog("simulation")}>Simulations</button>
           <button
+            className={view === "current" ? "nav-active" : ""}
+            onClick={() => go("current")}
+          >
+            Current
+          </button>
+          <button
             className={view === "map" ? "nav-active" : ""}
             onClick={() => go("map")}
           >
@@ -812,11 +820,21 @@ export function Soulfire() {
         </button>
         <AmbientAudio
           voiceActive={voiceActive || simulationSpeaking}
-          paused={dialog !== null}
+          paused={dialog !== null || view === "current"}
           ducked={narrating}
         />
       </div>
       <main id="main">
+        {view === "current" && (
+          <CurrentPanel
+            blocked={
+              dialog !== null || voiceActive || simulationSpeaking || narrating
+            }
+            motionEnabled={motion && !reducedMotion && pageVisible}
+            headingRef={heading}
+            onBack={() => go("home")}
+          />
+        )}
         {error && (
           <div className="notice error" role="alert">
             <span>{error}</span>
