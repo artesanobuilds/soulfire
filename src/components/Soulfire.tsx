@@ -1,4 +1,5 @@
 "use client";
+import { EmberPanel } from "./EmberPanel";
 import { CurrentPanel } from "./CurrentPanel";
 import { SimulationPanel } from "./SimulationPanel";
 import { HistoryPanel } from "./HistoryPanel";
@@ -36,7 +37,7 @@ import { safetyNotice } from "../lib/safety";
 import { samples, steps, topics } from "../lib/catalog";
 import { replySchema, type Exercise, type Message } from "../lib/schema";
 
-type View = JourneyState | "current";
+type View = JourneyState | "current" | "ember";
 type Card = { id: string; text: string; group: number };
 type Drafts = Record<string, string>;
 export function Soulfire() {
@@ -163,7 +164,12 @@ export function Soulfire() {
     setStorageReady(true);
   }, []);
   useEffect(() => {
-    if (view !== "home" && view !== "map" && view !== "current")
+    if (
+      view !== "home" &&
+      view !== "map" &&
+      view !== "current" &&
+      view !== "ember"
+    )
       resumeView.current = view;
     if (!storageReady || !rememberPractice || !exercise) return;
     try {
@@ -777,6 +783,12 @@ export function Soulfire() {
             Current
           </button>
           <button
+            className={view === "ember" ? "nav-active" : ""}
+            onClick={() => go("ember")}
+          >
+            Ember
+          </button>
+          <button
             className={view === "map" ? "nav-active" : ""}
             onClick={() => go("map")}
           >
@@ -820,11 +832,21 @@ export function Soulfire() {
         </button>
         <AmbientAudio
           voiceActive={voiceActive || simulationSpeaking}
-          paused={dialog !== null || view === "current"}
+          paused={dialog !== null || view === "current" || view === "ember"}
           ducked={narrating}
         />
       </div>
       <main id="main">
+        {view === "ember" && (
+          <EmberPanel
+            blocked={
+              dialog !== null || voiceActive || simulationSpeaking || narrating
+            }
+            motionEnabled={motion && !reducedMotion && pageVisible}
+            headingRef={heading}
+            onBack={() => go("home")}
+          />
+        )}
         {view === "current" && (
           <CurrentPanel
             blocked={

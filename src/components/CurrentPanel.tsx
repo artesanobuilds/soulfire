@@ -79,7 +79,13 @@ export function CurrentPanel({
   const listening = useRef<HTMLDivElement>(null);
   const playerRegion = useRef<HTMLDivElement>(null);
   function focusPlayer() {
+    const from = document.activeElement;
     requestAnimationFrame(() => {
+      if (
+        document.activeElement !== from &&
+        document.activeElement !== document.body
+      )
+        return;
       playerRegion.current?.focus({ preventScroll: true });
       if (window.matchMedia("(max-width:850px)").matches)
         listening.current?.scrollIntoView({

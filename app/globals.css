@@ -3136,3 +3136,298 @@ aside > p {
 .current-preferences label { min-height: 32px; }
 .current-landscape-caption h2, .current-saved-grid h3 { overflow-wrap: anywhere; }
 .current-player:focus { outline: 2px solid var(--line); outline-offset: 4px; }
+
+
+/* Ember remains a feature inside Soulfire's light shell. */
+.ember-page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 28px 32px 100px;
+  color: #304c43;
+}
+.ember-heading {
+  max-width: 700px;
+  margin: 24px 0 36px;
+}
+.ember-heading h1 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 64px;
+  font-weight: 400;
+  margin: 9px 0;
+}
+.ember-heading p {
+  font-size: 19px;
+  line-height: 1.65;
+  color: #66746b;
+}
+.ember-heading .eyebrow {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  color: #8a6c3b;
+}
+.ember-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.3fr);
+  gap: 48px;
+}
+.ember-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.ember-settings h2 {
+  font-size: 23px;
+  margin: 0;
+}
+.ember-settings fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.ember-settings legend {
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #687268;
+}
+.ember-settings label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.ember-settings select {
+  width: 100%;
+  border: 1px solid #d8dccd;
+  background: #fffcf5;
+  border-radius: 12px;
+  padding: 12px;
+  color: #304c43;
+  min-height: 45px;
+}
+.ember-goals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+.ember-goals label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 10px;
+  border: 1px solid #d9ddcf;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #fbfaf2;
+}
+.ember-goals .selected {
+  background: #e7eddf;
+  border-color: #8b9b7d;
+}
+.ember-page input[type="radio"],
+.ember-page input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  accent-color: #667d57;
+}
+.ember-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.ember-settings details {
+  padding: 15px;
+  border: 1px solid #e1dfcf;
+  border-radius: 14px;
+}
+.ember-settings details summary {
+  cursor: pointer;
+  font-size: 14px;
+}
+.ember-settings details label {
+  margin-top: 16px;
+}
+.ember-settings details p,
+.ember-expectations {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #6b7367;
+}
+.ember-settings .ember-consent {
+  flex-direction: row;
+  align-items: center;
+}
+.ember-settings .ember-save button {
+  margin-top: 10px;
+}
+.ember-experience {
+  min-width: 0;
+  background: #fcfaf2;
+  border: 1px solid #e2dfcd;
+  border-radius: 26px;
+  padding: 22px;
+  text-align: center;
+  align-self: start;
+  scroll-margin-top: 25px;
+}
+.ember-art {
+  overflow: hidden;
+  border-radius: 18px;
+  margin-bottom: 25px;
+  background: #eee9da;
+}
+.ember-art svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ember-experience h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: 36px;
+  margin: 14px 0;
+}
+.ember-experience > p {
+  color: #72786d;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.ember-caption {
+  padding: 22px 14px;
+  min-height: 126px;
+  line-height: 1.8;
+  color: #405b4c;
+  font-size: 17px;
+}
+.ember-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  margin: 16px 0;
+}
+.ember-progress progress {
+  accent-color: #8a9d71;
+  flex: 1;
+  width: 0;
+  height: 7px;
+}
+.ember-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ember-experience details {
+  margin-top: 20px;
+  text-align: left;
+  border-top: 1px solid #e1dfd1;
+  padding-top: 20px;
+}
+.ember-experience summary {
+  cursor: pointer;
+  font-size: 14px;
+}
+.ember-transcript {
+  padding-left: 22px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+.ember-transcript li {
+  padding: 12px 4px;
+}
+.ember-transcript li span,
+.ember-transcript small {
+  color: #7c8074;
+}
+.ember-transcript li p {
+  margin: 6px 0;
+}
+.ember-experience .ember-provenance {
+  font-size: 11px;
+}
+.ember-ground-bar {
+  position: sticky;
+  bottom: 12px;
+  z-index: 8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 28px auto 0;
+  padding: 10px 14px;
+  max-width: 680px;
+  border: 1px solid #d9dccb;
+  background: #faf9edee;
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  font-size: 13px;
+  box-shadow: 0 8px 30px #4f513012;
+}
+.ember-grounding {
+  padding: 24px;
+  max-width: 720px;
+  margin: 25px auto;
+  border: 1px solid #b9c7ad;
+  background: #eef2e5;
+  border-radius: 18px;
+  line-height: 1.8;
+}
+.ember-footer {
+  text-align: center;
+  margin-top: 30px;
+  color: #798171;
+  font-size: 13px;
+}
+.ember-moving .ember-glow {
+  animation: ember-warmth 9s ease-in-out infinite;
+  transform-origin: 320px 212px;
+}
+@keyframes ember-warmth {
+  50% {
+    opacity: 0.72;
+    transform: scale(0.95);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ember-moving .ember-glow {
+    animation: none !important;
+  }
+}
+@media (max-width: 850px) {
+  .ember-page {
+    padding: 20px 18px 90px;
+  }
+  .ember-heading h1 {
+    font-size: 50px;
+  }
+  .ember-heading p {
+    font-size: 17px;
+  }
+  .ember-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .ember-experience {
+    padding: 15px;
+  }
+  .ember-heading {
+    margin-bottom: 28px;
+  }
+  .ember-caption {
+    font-size: 16px;
+  }
+  .ember-options {
+    grid-template-columns: 1fr;
+  }
+  .ember-ground-bar > span {
+    font-size: 11px;
+  }
+  .ember-ground-bar .button {
+    font-size: 13px;
+  }
+}

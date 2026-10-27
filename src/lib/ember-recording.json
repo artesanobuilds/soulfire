@@ -1,0 +1,74 @@
+{
+  "provider": "Offline local Kokoro-82M",
+  "voice": "af_heart",
+  "speed": 0.84,
+  "directListening": false,
+  "clips": {
+    "arrival": {
+      "text": "Welcome to Ember. Choose a comfortable position. Your eyes can stay open. You can pause or stop at any time. Nothing needs to be forced.",
+      "seconds": 10.103375,
+      "path": "/audio/ember/arrival.m4a",
+      "sha256": "fe5c0f8c427f384b3b5c8d5938f9148ca1ead69cfd88d27a2d37e130b4bd7be1"
+    },
+    "natural": {
+      "text": "Let your breathing find its own rhythm. There is no need to make it deeper or slower. You might notice the support beneath you, or a sound in the room.",
+      "seconds": 9.632291666666667,
+      "path": "/audio/ember/natural.m4a",
+      "sha256": "4a537024a566b93f97a947042901769db101d9ca1ca996acaa07944e7d532ce3"
+    },
+    "comfortable": {
+      "text": "If it feels comfortable, allow a gentle breath in, and an easy breath out. Follow your own pace, without holding your breath. Return to natural breathing whenever you like.",
+      "seconds": 11.254666666666667,
+      "path": "/audio/ember/comfortable.m4a",
+      "sha256": "c3f0a5b9c9da086762e06d56043997747cdf7bb8bc3d220e0e0833ad4fd79075"
+    },
+    "arrive": {
+      "text": "Notice something steady around you. It might be the ground, the light, or an ordinary sound. Let that be enough for this moment.",
+      "seconds": 8.375833333333333,
+      "path": "/audio/ember/arrive.m4a",
+      "sha256": "9f97d13d15c680982029fc0ead3b35d1a7e812fb221b3f85188a5134cfb0afb8"
+    },
+    "focus": {
+      "text": "Choose one simple anchor, perhaps a sound or the feeling of your feet on the floor. When attention wanders, gently return. Wandering is part of the practice.",
+      "seconds": 10.688,
+      "path": "/audio/ember/focus.m4a",
+      "sha256": "9155d81de597d41eb6638611e7422039cb74a7957bf75c3e8397376f8bb7d4fa"
+    },
+    "kindness": {
+      "text": "You might offer yourself a few kind words. May I meet this moment with patience. If those words do not fit, choose your own, or simply rest with the sounds around you.",
+      "seconds": 11.278875,
+      "path": "/audio/ember/kindness.m4a",
+      "sha256": "874859553eb5d6be4c20c5e7c29e9eafee16d58e2fb848f8e4d5974a61b9a4b1"
+    },
+    "rest": {
+      "text": "There is nothing to finish right now. Let your attention settle somewhere comfortable. You can keep your eyes open, change position, or stop whenever you wish.",
+      "seconds": 10.354666666666667,
+      "path": "/audio/ember/rest.m4a",
+      "sha256": "df54c36d2d53b58116d52f90daa8c42978a98a5ce5aeda19bc98898ae513d56f"
+    },
+    "space": {
+      "text": "There is some space here to practice in your own way. Let the sounds come and go. You do not need to empty your mind.",
+      "seconds": 7.348625,
+      "path": "/audio/ember/space.m4a",
+      "sha256": "404e04c92b260785148e8a06c1cf07e0b80532cc40078440691aa867472a70d8"
+    },
+    "return": {
+      "text": "If you have become distracted, there is no need to start over. Notice where you are, and gently choose what to attend to next.",
+      "seconds": 8.265416666666667,
+      "path": "/audio/ember/return.m4a",
+      "sha256": "d2ab975fcc7da24b30a83dc24ae72013fa7705545cc8504ccb12b50dc9d40135"
+    },
+    "close": {
+      "text": "As this practice comes to a close, notice the room around you. You might move your fingers, look toward the light, and take your time with whatever comes next.",
+      "seconds": 9.78075,
+      "path": "/audio/ember/close.m4a",
+      "sha256": "9ccd10dc8600cba2115bed08b9115ecb18f0ea741f7b188cde8df61cb135eea5"
+    },
+    "restClose": {
+      "text": "The guidance will end here. You can keep resting, or stop and return to your day in your own time. Nothing more is asked of you.",
+      "seconds": 8.119125,
+      "path": "/audio/ember/restClose.m4a",
+      "sha256": "167b48655dd684ee238f0752ac995efe9441fe7a1f0c627b9910a00dc49cc660"
+    }
+  }
+}
