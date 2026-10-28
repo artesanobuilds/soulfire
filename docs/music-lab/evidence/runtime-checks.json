@@ -1,0 +1,48 @@
+{
+  "realGeneratedFilePlayback": [
+    {
+      "viewport": "desktop",
+      "modes": [
+        {
+          "mode": "bed",
+          "duration": 30
+        },
+        {
+          "mode": "narration",
+          "duration": 30
+        },
+        {
+          "mode": "loop",
+          "duration": 180
+        }
+      ],
+      "noHorizontalOverflow": true
+    },
+    {
+      "viewport": "mobile",
+      "modes": [
+        {
+          "mode": "bed",
+          "duration": 30
+        },
+        {
+          "mode": "narration",
+          "duration": 30
+        },
+        {
+          "mode": "loop",
+          "duration": 180
+        }
+      ],
+      "noHorizontalOverflow": true
+    }
+  ],
+  "realApiCancellation": {
+    "earlyCancellationPreventsLatePost": true,
+    "activeWorkerCancelled": true,
+    "noPartialSample": true
+  },
+  "successfulApiGenerationSample": "9be5ebc5-e26b-422a-9ed4-bd3a94a58751",
+  "subjectiveAuditionPerformed": false,
+  "stableAccessAccepted": false
+}

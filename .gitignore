@@ -31,3 +31,8 @@ assets/audio-originals/generation_notes.txt
 *.sqlite-*
 *.db
 *.db-*
+
+# Music Lab runtimes and generated files are local, never repository artifacts.
+music-models/
+music-lab-data/
+music-lab-results/

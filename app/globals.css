@@ -3431,3 +3431,359 @@ aside > p {
     font-size: 13px;
   }
 }
+
+/* Music Lab is a local experiment inside the Soulfire shell. */
+.music-lab {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 30px 28px 80px;
+  color: #304b43;
+}
+.music-lab-heading {
+  margin: 30px 0;
+  max-width: 750px;
+}
+.music-lab-heading .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.music-lab-heading h1 {
+  font-size: 58px;
+  font-weight: 400;
+  margin: 15px 0;
+}
+.music-lab-heading > p {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #6a776c;
+}
+.music-models,
+.music-protocol,
+.music-sample-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.music-models > article {
+  border: 1px solid #dce0d0;
+  background: #f9faef;
+  border-radius: 18px;
+  padding: 21px;
+}
+.music-model-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.music-model-title h2 {
+  font-size: 20px;
+  margin: 0;
+}
+.music-models p,
+.music-models small {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #6b7468;
+}
+.music-ready,
+.music-pending {
+  font-size: 11px;
+  border-radius: 20px;
+  padding: 5px 9px;
+  background: #e2ebd5;
+  white-space: nowrap;
+}
+.music-pending {
+  background: #f1e5c9;
+}
+.music-protocol {
+  margin: 32px 0;
+  padding: 28px;
+  border: 1px solid #dce0d0;
+  border-radius: 20px;
+  gap: 38px;
+}
+.music-protocol h2,
+.music-listening h2 {
+  font-size: 26px;
+  margin: 0 0 20px;
+}
+.music-lab label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  margin: 15px 0;
+  min-width: 0;
+}
+.music-lab select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid #d7ddca;
+  background: #fffcf5;
+  border-radius: 11px;
+  color: #304b43;
+}
+.music-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.music-brief {
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 18px;
+  background: #eef1e3;
+  border-radius: 12px;
+}
+.music-lab .music-small {
+  font-size: 12px;
+  color: #737b6b;
+  line-height: 1.7;
+}
+.music-generate,
+.music-reveal {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+.music-protocol > div > p {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.music-job {
+  padding: 15px;
+  margin: 18px 0;
+  background: #f2eddc;
+  border-radius: 13px;
+  font-size: 13px;
+}
+.music-lab details {
+  margin: 20px 0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.music-lab summary {
+  cursor: pointer;
+}
+.music-lab details li {
+  padding: 5px 0;
+}
+.music-listening {
+  border-top: 1px solid #dce0d0;
+  padding-top: 30px;
+}
+.music-listening-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.music-listening-title h2 {
+  margin-top: 12px;
+}
+.music-listening > label {
+  max-width: 500px;
+}
+.music-empty {
+  text-align: center;
+  padding: 55px 25px;
+  border: 1px dashed #cbd5ba;
+  border-radius: 20px;
+  background: #f8f8ec;
+}
+.music-empty svg {
+  color: #8b9d71;
+}
+.music-empty p {
+  font-size: 14px;
+  color: #727b6a;
+  line-height: 1.8;
+}
+.music-blind-status {
+  font-size: 14px;
+  color: #72805e;
+  margin: 25px 0;
+}
+.music-sample {
+  padding: 22px;
+  border: 1px solid #d5ddc6;
+  border-radius: 21px;
+  background: #fcfbf3;
+  min-width: 0;
+}
+.music-sample-top {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+.music-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #e6edd8;
+  color: #526a40;
+  font-size: 23px;
+}
+.music-sample h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+.music-sample-top p {
+  font-size: 12px;
+  color: #7e8373;
+  line-height: 1.5;
+  margin: 0;
+}
+.music-sample > .primary {
+  min-width: 120px;
+}
+.music-matched {
+  font-size: 12px;
+  color: #7c806e;
+}
+.music-sample fieldset {
+  padding: 18px 0 0;
+  border: 0;
+  border-top: 1px solid #e2e5d7;
+  margin: 25px 0 0;
+}
+.music-sample legend {
+  padding: 0 8px 0 0;
+  font-size: 13px;
+  color: #6b775e;
+}
+.music-sample fieldset label {
+  display: grid;
+  grid-template-columns: 1fr minmax(110px, 0.8fr);
+  align-items: center;
+  gap: 15px;
+  font-size: 13px;
+}
+.music-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  font-size: 12px;
+}
+.music-metrics dt {
+  color: #7b8270;
+}
+.music-metrics dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.music-metrics code {
+  font-size: 10px;
+}
+.music-save {
+  margin: 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.music-save .music-consent {
+  flex-direction: row;
+  align-items: center;
+  flex-basis: 100%;
+  gap: 10px;
+}
+.music-lab input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  accent-color: #75845c;
+}
+.music-save > p {
+  flex-basis: 100%;
+  font-size: 13px;
+}
+.music-player-bar {
+  position: sticky;
+  bottom: 12px;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 17px;
+  border: 1px solid #d4dcc4;
+  border-radius: 18px;
+  background: #f6f8e9f2;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 25px #55602b12;
+  margin-top: 28px;
+}
+.music-player-bar > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 120px;
+  font-size: 12px;
+}
+.music-player-bar > div span {
+  font-variant-numeric: tabular-nums;
+  color: #798169;
+}
+.music-player-bar > input {
+  flex: 1;
+  width: 0;
+  min-width: 30px;
+  accent-color: #83966d;
+}
+.music-playback-status {
+  font-size: 13px;
+  color: #6f7e5d;
+  line-height: 1.7;
+}
+@media (max-width: 850px) {
+  .music-lab {
+    padding: 22px 16px 65px;
+  }
+  .music-lab-heading h1 {
+    font-size: 46px;
+  }
+  .music-lab-heading > p {
+    font-size: 17px;
+  }
+  .music-models,
+  .music-protocol,
+  .music-sample-grid {
+    grid-template-columns: 1fr;
+  }
+  .music-protocol {
+    padding: 20px;
+    gap: 24px;
+  }
+  .music-player-bar {
+    gap: 10px;
+    padding: 10px;
+    flex-wrap: wrap;
+  }
+  .music-player-bar > div {
+    min-width: 110px;
+  }
+  .music-player-bar > .button {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+  .music-sample {
+    padding: 18px;
+  }
+  .music-input-row {
+    grid-template-columns: 1fr;
+  }
+  .music-sample fieldset label {
+    grid-template-columns: 1fr 115px;
+  }
+}

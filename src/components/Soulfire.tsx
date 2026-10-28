@@ -1,4 +1,5 @@
 "use client";
+import { MusicLabPanel } from "./MusicLabPanel";
 import { EmberPanel } from "./EmberPanel";
 import { CurrentPanel } from "./CurrentPanel";
 import { SimulationPanel } from "./SimulationPanel";
@@ -37,7 +38,7 @@ import { safetyNotice } from "../lib/safety";
 import { samples, steps, topics } from "../lib/catalog";
 import { replySchema, type Exercise, type Message } from "../lib/schema";
 
-type View = JourneyState | "current" | "ember";
+type View = JourneyState | "current" | "ember" | "music-lab";
 type Card = { id: string; text: string; group: number };
 type Drafts = Record<string, string>;
 export function Soulfire() {
@@ -168,7 +169,8 @@ export function Soulfire() {
       view !== "home" &&
       view !== "map" &&
       view !== "current" &&
-      view !== "ember"
+      view !== "ember" &&
+      view !== "music-lab"
     )
       resumeView.current = view;
     if (!storageReady || !rememberPractice || !exercise) return;
@@ -789,6 +791,12 @@ export function Soulfire() {
             Ember
           </button>
           <button
+            className={view === "music-lab" ? "nav-active" : ""}
+            onClick={() => go("music-lab")}
+          >
+            Music Lab
+          </button>
+          <button
             className={view === "map" ? "nav-active" : ""}
             onClick={() => go("map")}
           >
@@ -832,11 +840,25 @@ export function Soulfire() {
         </button>
         <AmbientAudio
           voiceActive={voiceActive || simulationSpeaking}
-          paused={dialog !== null || view === "current" || view === "ember"}
+          paused={
+            dialog !== null ||
+            view === "current" ||
+            view === "ember" ||
+            view === "music-lab"
+          }
           ducked={narrating}
         />
       </div>
       <main id="main">
+        {view === "music-lab" && (
+          <MusicLabPanel
+            blocked={
+              dialog !== null || voiceActive || simulationSpeaking || narrating
+            }
+            headingRef={heading}
+            onBack={() => go("home")}
+          />
+        )}
         {view === "ember" && (
           <EmberPanel
             blocked={
