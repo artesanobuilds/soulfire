@@ -1,0 +1,46 @@
+{
+  "verifiedAt": "2026-10-29T18:37:07.908854+00:00",
+  "url": "http://127.0.0.1:3100",
+  "http": 200,
+  "voiceConfigured": true,
+  "aceReady": true,
+  "distinctPlayablePcm": 46,
+  "generatedEligibleConcepts": 36,
+  "eligibleSourceAreas": 18,
+  "piecesPerArea": 2,
+  "excludedConcepts": 4,
+  "buildId": "6rFOCUsjTcgC5bzczTbTI",
+  "sourceCommit": "b7e9778957b1582084494afa7602625db1de67e0",
+  "servingPid": 98584,
+  "servedAssetMatchesBuild": true,
+  "actualSessionPlayback": {
+    "verifiedAt": "2026-10-29T18:36:40.218Z",
+    "jobId": "021a33b6-6672-4eab-be17-6483f85174b4",
+    "sequence": "3 movements \u00b7 270 seconds of distinct music\n\nEach movement fades to quiet before the next. Tonal or pulse compatibility is uncertain. Longer listening cycles this sequence, rather than claiming unlimited new music.\n\nEvening Shore / Horizon\nRemove\nEvening Shore / Garden\nRemove\nEvening Shore / Daylight\nRemove\nAlways leave a quiet moment between movements",
+    "playing": {
+      "contexts": [
+        "running"
+      ],
+      "rms": 0.01808596597928292,
+      "peak": 0.04610510915517807,
+      "starts": 1
+    },
+    "stopped": {
+      "contexts": [
+        "closed",
+        "closed"
+      ],
+      "rms": 0,
+      "peak": 0,
+      "starts": 2
+    },
+    "overflow": false,
+    "pageErrors": [],
+    "muted": true,
+    "humanAudition": false,
+    "microphone": false
+  },
+  "publication": "not pushed",
+  "microphone": false,
+  "paidCalls": 0
+}
