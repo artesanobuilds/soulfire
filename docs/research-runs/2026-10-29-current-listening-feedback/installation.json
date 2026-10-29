@@ -1,0 +1,13 @@
+{
+  "url": "http://localhost:3100",
+  "sourceCommit": "6af63cac33abeb0b9b7b938392f335b05ba9fd5a",
+  "catalogueVersion": "current-listening-20261029-v1",
+  "activeSeeds": 36,
+  "archivedRecords": 49,
+  "voiceConfigured": true,
+  "httpStatus": 200,
+  "actualPlaybackEvidence": "installed-catalogue-playback.json",
+  "realCustomGenerationEvidence": "future-generation-proof-v2.json",
+  "remotePush": false,
+  "humanAudition": false
+}
