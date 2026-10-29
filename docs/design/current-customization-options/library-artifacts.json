@@ -1,0 +1,13 @@
+{
+  "A": {
+    "libraryFileId": "libfile_6820ed960a008191831d7be01b7d43a7",
+    "fileId": "file_00000000b60081f884018f2eabc9abb1",
+    "version": 0
+  },
+  "B": {
+    "libraryFileId": "libfile_bb282d5c39cc8191a1c5e52fe6e27822",
+    "fileId": "file_000000009fb881f5b09f77f63135d56d",
+    "version": 0
+  },
+  "status": "Concepts only; not implemented; rendered and visually checked"
+}

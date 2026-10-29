@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CONCEPT A — Catalogue + selected player (not shipped)</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ---------- Concept A: catalogue with persistent selected player ---------- */
+.page{max-width:1360px;margin:0 auto;padding:22px 40px 0;display:grid;grid-template-columns:minmax(0,1fr) 452px;gap:36px;align-items:start}
+.cat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:16px}
+.cat-head h1{font-size:40px;line-height:1.05}
+.cat-head p{color:var(--muted);margin-top:6px}
+.cat-head .back{font-size:13px;color:var(--deep);display:flex;gap:6px;align-items:center;margin-bottom:10px}
+.goals{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.shelf-meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);margin:0 0 10px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{display:grid;grid-template-columns:76px 1fr auto;gap:14px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:10px 14px 10px 10px;position:relative}
+.card .thumb{width:76px;height:64px;border-radius:30px 30px 10px 10px;overflow:hidden;background:#e6ead7}
+.card h3{font-size:19px;line-height:1.15}
+.card .meta{font-size:12px;color:var(--muted);margin-top:3px}
+.card .state{font-size:12px;color:var(--sage);display:flex;align-items:center;gap:6px}
+.card.sel{border:2px solid var(--deep);background:#f3f5ec;box-shadow:0 10px 26px -18px #2e483d}
+.card.sel .state{font-weight:700;color:var(--deep)}
+.card.sel::after{content:"";position:absolute;right:-38px;top:50%;width:38px;height:2px;background:var(--deep);opacity:.35}
+.card .tag{position:absolute;top:-9px;left:96px;background:var(--deep);color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:3px 8px;border-radius:999px}
+.more{margin-top:14px;display:flex;gap:10px;align-items:center}
+
+/* persistent player panel */
+.player{position:sticky;top:18px;background:var(--paper);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -44px #2e483d99}
+.player .hero{height:150px;position:relative;border-radius:0 0 0 0;overflow:hidden}
+.player .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0000 35%,#2e483dcc)}
+.player .hero .cap{position:absolute;left:22px;right:22px;bottom:14px;z-index:1;color:#fff}
+.player .hero .cap .eyebrow{color:#f5e7c4}
+.player .hero h2{color:#fff;font-size:28px;line-height:1.1;margin-top:3px}
+.player .hero .pill{position:absolute;top:14px;right:14px;z-index:1;background:#fffdf8e6;color:var(--deep);font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px}
+.player .body{padding:16px 22px 18px}
+.transport{display:flex;align-items:center;gap:10px}
+.transport .primary{padding:10px 22px;font-weight:700}
+.time{margin-left:auto;font-size:12px;color:var(--muted)}
+.progress{height:4px;border-radius:4px;background:#e2e5db;margin:12px 0 4px}
+.status{font-size:12px;color:var(--muted)}
+.shape-h{display:flex;align-items:baseline;justify-content:space-between;margin:16px 0 6px;border-top:1px solid var(--line);padding-top:14px}
+.shape-h h3{font-size:20px}
+.player .slider{grid-template-columns:86px 1fr 62px;gap:12px;margin:2px 0}
+.row2{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+.row2 .lbl{font-size:13px;font-weight:700;color:var(--deep)}
+.foot{display:flex;gap:10px;align-items:center;margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+details{font-size:13px;color:var(--deep)}
+.disclaim{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.4}
+
+/* mobile dock + sheet (hidden on desktop) */
+.dock,.sheet,.scrim{display:none}
+
+@media (max-width:700px){
+  body{font-size:14px}
+  .site{height:54px;padding:0 18px}
+  .site nav{display:none}
+  .site .menu{display:inline-flex;min-height:38px;padding:6px 13px;font-size:13px}
+  .brand{font-size:21px}
+  .page{display:block;padding:14px 18px 190px}
+  .cat-head{display:block;margin-bottom:12px}
+  .cat-head h1{font-size:30px}
+  .cat-head p{font-size:13px}
+  .cat-head .refresh{display:none}
+  .goals{flex-wrap:nowrap;overflow-x:auto;margin:0 -18px 12px;padding:0 18px;scrollbar-width:none}
+  .goals::-webkit-scrollbar{display:none}
+  .cards{grid-template-columns:1fr;gap:10px}
+  .card{grid-template-columns:62px 1fr auto;padding:8px 12px 8px 8px}
+  .card .thumb{width:62px;height:54px}
+  .card h3{font-size:17px}
+  .card.sel::after{display:none}
+  .card .tag{left:82px}
+  .player{display:none}
+  .dock{display:block;position:fixed;left:10px;right:10px;bottom:10px;z-index:5;background:var(--deep);color:#fff;border-radius:24px;padding:12px;box-shadow:0 18px 40px -16px #1d2f27}
+  .dock .top{display:grid;grid-template-columns:48px 1fr 52px;gap:12px;align-items:center}
+  .dock .thumb{width:48px;height:48px;border-radius:16px;overflow:hidden}
+  .dock .eyebrow{color:#e9d39a;font-size:10px}
+  .dock b{display:block;font-family:var(--serif);font-weight:400;font-size:18px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dock .play{width:52px;height:52px;min-height:52px;padding:0;border-radius:50%;background:#fffdf8;border-color:#fffdf8;color:var(--deep)}
+  .dock .shape{width:100%;margin-top:10px;background:#fffdf81f;border-color:#fffdf855;color:#fff;justify-content:space-between;padding:10px 16px;min-height:48px}
+  .dock .shape span{display:flex;gap:8px;align-items:center;font-weight:700}
+  .dock .shape small{font-size:12px;opacity:.8}
+  /* sheet state (#sheet) */
+  body.sheet-open .scrim{display:block;position:fixed;inset:0;background:#29302b66;z-index:6}
+  body.sheet-open .sheet{display:block;position:fixed;left:0;right:0;bottom:0;z-index:7;background:var(--paper);border-radius:26px 26px 0 0;padding:8px 20px 18px;box-shadow:0 -20px 40px -20px #2e483d88}
+  body.sheet-open .dock{display:none}
+  .sheet .grab{width:44px;height:5px;border-radius:5px;background:#cfd5c7;margin:0 auto 10px}
+  .sheet .hd{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center}
+  .sheet .thumb{width:56px;height:56px;border-radius:20px 20px 8px 8px;overflow:hidden}
+  .sheet h2{font-size:22px;line-height:1.1}
+  .sheet .done{min-height:40px;padding:6px 14px;font-size:13px}
+  .sheet .transport{margin:14px 0 2px}
+  .sheet .slider{grid-template-columns:78px 1fr 56px;gap:10px;margin:4px 0}
+  .sheet .shape-h{margin-top:12px;padding-top:12px}
+  .sheet .row2{margin-top:10px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="mark" viewBox="0 0 64 64"><path d="M42 8C20 3 8 22 13 41c4 16 22 21 37 10C31 57 19 46 21 30c1-10 9-18 21-22Z" fill="currentColor"/><path d="M35 19c6 15-9 18-6 28 2 6 12 7 16-1-9 4-10-3-5-9 4-5 3-11-5-18Z" fill="#B88945"/></symbol>
+  <symbol id="play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+  <symbol id="stop" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="sliders" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h9m4 0h3M4 17h3m4 0h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></g></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="bookmark" viewBox="0 0 24 24"><path d="M7 4h10v16l-5-3.5L7 20z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="refresh" viewBox="0 0 24 24"><path d="M19 8a7.5 7.5 0 0 0-13 1M5 16a7.5 7.5 0 0 0 13-1M19 4v4h-4M5 20v-4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="ribbon"><b>Concept A</b> Design mockup · not shipped · no audio</div>
+<header class="site">
+  <div class="brand"><svg><use href="#mark"/></svg>soulfire</div>
+  <nav><span>My memory</span><span>History</span><span>Simulations</span><span class="on">Current</span><span>Ember</span><span>The practice</span></nav>
+  <button class="menu">Menu</button>
+</header>
+
+<main class="page">
+  <section class="catalogue" aria-label="Current catalogue">
+    <div class="cat-head">
+      <div>
+        <div class="back"><svg class="i"><use href="#back"/></svg>Back to Soulfire</div>
+        <h1>Find your Current.</h1>
+        <p>Pick a starting place. Shape it on the right while you browse.</p>
+      </div>
+      <button class="quiet refresh"><svg class="i"><use href="#refresh"/></svg>New suggestions</button>
+    </div>
+    <div class="goals" role="group" aria-label="What would you like support with?">
+      <span class="chip">Find my focus</span><span class="chip">Feel calmer</span><span class="chip">Less overwhelmed</span><span class="chip on">Wind down</span><span class="chip">A gentle lift</span><span class="chip">A little company</span>
+    </div>
+    <div class="shelf-meta"><span>Wind down · soft piano · 6 of 46 pieces</span><span>Sorted by your sound preference</span></div>
+    <div class="cards">
+      <article class="card"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:30% 60%"></div><div><h3>Evening Shore / Daylight</h3><div class="meta">Soft piano · 90s piece</div></div><span class="state"><svg class="i"><use href="#arrow"/></svg></span></article>
+      <article class="card sel" aria-current="true"><span class="tag">Selected</span><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:62% 55%"></div><div><h3>Evening Shore / Horizon</h3><div class="meta">Soft piano · 90s piece</div></div><span class="state"><svg class="i"><use href="#check"/></svg></span></article>
+      <article class="card"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:80% 70%;filter:hue-rotate(-12deg) saturate(.9)"></div><div><h3>Evening Shore / Garden</h3><div class="meta">Soft piano · 90s piece</div></div><span class="state"><svg class="i"><use href="#arrow"/></svg></span></article>
+      <article class="card"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:10% 80%;filter:sepia(.18)"></div><div><h3>Off the Clock</h3><div class="meta">Soft piano · 30s piece</div></div><span class="state"><svg class="i"><use href="#arrow"/></svg></span></article>
+      <article class="card"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:55% 30%"></div><div><h3>A Moment for Me</h3><div class="meta">Soft piano · 30s piece</div></div><span class="state"><svg class="i"><use href="#arrow"/></svg></span></article>
+      <article class="card"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:90% 40%;filter:hue-rotate(10deg)"></div><div><h3>In My Own Words</h3><div class="meta">Soft piano · 30s piece</div></div><span class="state"><svg class="i"><use href="#arrow"/></svg></span></article>
+      <article class="card"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:40% 90%"></div><div><h3>Steady Shore</h3><div class="meta">Soft piano · 30s piece</div></div><span class="state"><svg class="i"><use href="#arrow"/></svg></span></article>
+      <article class="card"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:70% 20%;filter:sepia(.12)"></div><div><h3>A Quiet Place</h3><div class="meta">Soft piano · 30s piece</div></div><span class="state"><svg class="i"><use href="#arrow"/></svg></span></article>
+    </div>
+    <div class="more"><button class="quiet">Browse all 46 pieces</button><span class="note">Measured audio · not clinically validated</span></div>
+  </section>
+
+  <!-- Persistent, adjacent selected player: customization always beside the catalogue -->
+  <aside class="player" aria-label="Selected Current">
+    <div class="hero"><img class="art" src="river.svg" alt=""><span class="pill">Ready · nothing playing</span>
+      <div class="cap"><span class="eyebrow">Selected · Wind down</span><h2>Evening Shore / Horizon</h2></div></div>
+    <div class="body">
+      <div class="transport">
+        <button class="primary"><svg class="i"><use href="#play"/></svg>Play</button>
+        <button class="quiet"><svg class="i"><use href="#stop"/></svg>Stop</button>
+        <span class="time">0:00 / 5:00</span>
+      </div>
+      <div class="progress"></div>
+      <div class="shape-h"><h3>Shape it</h3><span class="note">Changes apply instantly</span></div>
+      <div class="slider"><label>Volume</label><input type="range" value="40" style="--v:40%"><output>Quiet</output></div>
+      <div class="slider"><label>Brightness</label><input type="range" value="55" style="--v:55%"><output>Warm</output></div>
+      <div class="slider"><label>Space</label><input type="range" value="32" style="--v:32%"><output>Close</output></div>
+      <div class="row2"><span class="lbl">Listening time</span><span class="seg"><span>3 min</span><span class="on">5 min</span><span>10 min</span><span>20 min</span></span></div>
+      <div class="row2"><label class="switch"><i></i>Quiet moment between movements</label></div>
+      <div class="foot">
+        <button class="quiet"><svg class="i"><use href="#bookmark"/></svg>Save Current</button>
+        <details><summary>3 movements · edit order</summary></details>
+      </div>
+      <p class="disclaim">Level, tone and reverb only. Doesn’t change instruments or guarantee an effect.</p>
+    </div>
+  </aside>
+</main>
+
+<!-- Mobile: selected-player dock with an obvious Shape entry -->
+<div class="dock" aria-label="Selected Current">
+  <div class="top">
+    <div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:62% 55%"></div>
+    <div><span class="eyebrow">Selected · ready</span><b>Evening Shore / Horizon</b></div>
+    <button class="play" aria-label="Play"><svg class="i" style="width:24px;height:24px"><use href="#play"/></svg></button>
+  </div>
+  <button class="shape"><span><svg class="i"><use href="#sliders"/></svg>Shape sound</span><small>Volume · Brightness · Space</small><svg class="i"><use href="#up"/></svg></button>
+</div>
+
+<div class="scrim"></div>
+<section class="sheet" aria-label="Shape Evening Shore / Horizon">
+  <div class="grab"></div>
+  <div class="hd">
+    <div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:62% 55%"></div>
+    <div><span class="eyebrow">Shape now</span><h2>Evening Shore / Horizon</h2></div>
+    <button class="quiet done">Done</button>
+  </div>
+  <div class="transport">
+    <button class="primary"><svg class="i"><use href="#play"/></svg>Play</button>
+    <button class="quiet"><svg class="i"><use href="#stop"/></svg>Stop</button>
+    <span class="time">0:00 / 5:00</span>
+  </div>
+  <div class="shape-h"><h3>Shape it</h3><span class="note">Applies instantly</span></div>
+  <div class="slider"><label>Volume</label><input type="range" value="40" style="--v:40%"><output>Quiet</output></div>
+  <div class="slider"><label>Brightness</label><input type="range" value="55" style="--v:55%"><output>Warm</output></div>
+  <div class="slider"><label>Space</label><input type="range" value="32" style="--v:32%"><output>Close</output></div>
+  <div class="row2"><span class="lbl">Time</span><span class="seg"><span>3</span><span class="on">5 min</span><span>10</span><span>20</span></span></div>
+  <div class="row2"><label class="switch"><i></i>Quiet moment between movements</label></div>
+  <div class="foot"><button class="quiet"><svg class="i"><use href="#bookmark"/></svg>Save</button><details><summary>3 movements</summary></details></div>
+</section>
+<script>if(location.hash==="#sheet")document.body.classList.add("sheet-open")</script>
+</body>
+</html>

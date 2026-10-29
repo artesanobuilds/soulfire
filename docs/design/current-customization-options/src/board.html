@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Concept board (not shipped)</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+body{background:#efe9dc;padding:46px 56px 50px;width:max-content}
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:28px}
+.top h1{font-size:44px;line-height:1.05}
+.top p{max-width:820px;color:var(--muted);font-size:17px;margin-top:8px}
+.stamp{border:2px solid #8b642c;color:#8b642c;border-radius:10px;padding:10px 16px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:13px;transform:rotate(-2deg);background:#fdf3dc}
+.row{display:flex;gap:40px;align-items:flex-start}
+figure{margin:0}
+figcaption{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px;display:flex;justify-content:space-between}
+figcaption span{font-weight:400;letter-spacing:0;text-transform:none;color:var(--muted)}
+.frame{border-radius:18px;overflow:hidden;border:1px solid #d3cbb8;box-shadow:0 30px 60px -40px #2e483d;background:#fff}
+.frame img{display:block}
+.d img{width:1152px;height:800px}
+.m{border-radius:34px;border:8px solid #2b332e}
+.m img{width:374px;height:809px}
+ol{margin:12px 0 0;padding-left:20px;font-size:14px;color:var(--ink);max-width:1152px}
+ol li{margin:3px 0}
+.mnotes{max-width:374px;font-size:13px;color:var(--muted);margin-top:10px}
+</style></head><body>
+<div class="top"><div><span class="eyebrow" id="eb"></span><h1 id="t"></h1><p id="p"></p></div><div class="stamp">Concept · not shipped</div></div>
+<div class="row" id="row"></div>
+<script>
+const C={
+ a:{eb:"Current customization · option A",t:"Catalogue + selected player",p:"Choosing a piece never hides the controls. On desktop the selected Current lives in a persistent panel beside the catalogue; on mobile a player dock rides above the list with an unmistakable “Shape sound” entry.",
+  frames:[["d","frames/a-desktop.png","Desktop · 1440×1000","First viewport, no scrolling"],["m","frames/a-mobile.png","Mobile · 390×844","Dock: Play + Shape entry"],["m","frames/a-mobile-sheet.png","Mobile · Shape sheet","After tapping Shape sound"]],
+  notes:["Selected card is marked and visually tied to the panel; browsing doesn’t lose the choice.","Name, Play/Stop, Volume, Brightness and Space all sit above the fold at 1440×1000.","Listening time, quiet gaps, Save and movement order stay one glance away — not buried below the shelf."],
+  m:["Dock keeps the selected name and Play reachable while scrolling the catalogue.","Sheet shows the full shaping set in one view; Done returns to the list."]},
+ b:{eb:"Current customization · option B",t:"Focused “Now shaping” view",p:"Selecting a Current moves you into a calm, single-purpose room: the river art, the name and a large Play button, with Volume, Brightness and Space immediately beside it. “Change Current” is always the first control.",
+  frames:[["d","frames/b-desktop.png","Desktop · 1440×1000","Now shaping — first viewport"],["m","frames/b-mobile-catalogue.png","Mobile · catalogue","Cards say “Shape”"],["m","frames/b-mobile.png","Mobile · 390×844","Now shaping — first viewport"]],
+  notes:["“Change Current” and breadcrumb make the way back explicit; neighbours let you step sideways without leaving.","Name, Play, progress and all three shaping sliders are visible without scrolling; endpoint labels explain each slider.","Movements appear as chips on the art; editing them is secondary."],
+  m:["Tap “Shape” on any card…","…to land here: name, Play and all three sliders fit on the first screen."]}
+};
+const c=C[new URLSearchParams(location.search).get("c")];
+eb.textContent=c.eb;t.textContent=c.t;p.textContent=c.p;
+c.frames.forEach(([k,src,cap,sub],i)=>{const f=document.createElement("figure");
+ f.innerHTML=`<figcaption>${cap}<span>${sub}</span></figcaption><div class="frame ${k}"><img src="${src}" alt=""></div>`+
+ (k==="d"?`<ol>${c.notes.map(n=>`<li>${n}</li>`).join("")}</ol>`:`<p class="mnotes">${c.m[i-1]||""}</p>`);row.append(f)});
+</script></body></html>

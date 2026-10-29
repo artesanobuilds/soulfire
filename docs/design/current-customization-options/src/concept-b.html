@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CONCEPT B — Focused “Now shaping” view (not shipped)</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ---------- Concept B: selecting a Current enters a focused Now shaping view ---------- */
+.returnbar{max-width:1360px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;gap:14px}
+.returnbar .change{background:var(--paper);font-weight:700;color:var(--deep)}
+.crumbs{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center}
+.crumbs b{color:var(--deep)}
+.returnbar .nav2{margin-left:auto;display:flex;gap:8px}
+.returnbar .nav2 button{min-height:40px;padding:6px 14px;font-size:13px;background:var(--paper)}
+.stage{max-width:1360px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:minmax(0,1fr) 470px;gap:28px}
+.scene{position:relative;height:690px;border-radius:150px 150px 32px 32px;overflow:hidden;border:1px solid #d5ddc9;box-shadow:0 30px 60px -44px #4c6456}
+.scene:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0000 45%,#24392fd9)}
+.scene .over{position:absolute;left:44px;right:44px;bottom:36px;z-index:1;color:#fff}
+.scene .eyebrow{color:#f2dfb0}
+.scene h1{color:#fff;font-size:58px;line-height:1.02;margin:8px 0 6px}
+.scene .sub{color:#f3efe2;font-size:15px}
+.bigplay{display:flex;align-items:center;gap:18px;margin-top:22px}
+.bigplay .play{width:72px;height:72px;min-height:72px;padding:0;border-radius:50%;background:#fffdf8;border-color:#fffdf8;color:var(--deep);box-shadow:0 10px 30px -10px #0008}
+.bigplay .play svg{width:30px;height:30px}
+.bigplay .ghost{border-color:#fffdf880;color:#fff;background:#fffdf814}
+.bar{flex:1;display:grid;gap:6px;font-size:12px;color:#f3efe2}
+.bar i{display:block;height:4px;border-radius:4px;background:#fffdf855}
+.movs{position:absolute;top:30px;right:34px;z-index:1;display:flex;gap:6px}
+.movs span{background:#fffdf8e8;color:var(--deep);font-size:12px;padding:5px 11px;border-radius:999px}
+.movs .on{background:var(--deep);color:#fff}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:26px 28px;align-self:start}
+.panel h2{font-size:30px;margin:4px 0 4px}
+.panel .lead{color:var(--muted);font-size:14px;margin-bottom:18px}
+.ctl{padding:14px 0;border-top:1px solid var(--line)}
+.ctl .slider{grid-template-columns:100px 1fr 64px}
+.ctl .slider label{font-size:16px}
+.ctl .ends{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin:2px 64px 0 114px}
+input[type=range]{height:34px}
+input[type=range]::-webkit-slider-runnable-track{height:8px}
+input[type=range]::-webkit-slider-thumb{width:26px;height:26px;margin-top:-9px}
+.row2{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.row2 .lbl{font-size:14px;font-weight:700;color:var(--deep)}
+.panel .foot{display:flex;gap:10px;padding-top:16px;border-top:1px solid var(--line)}
+.disclaim{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.4}
+
+/* mobile catalogue entry state (#catalogue) — shown only on the concept board */
+.catalogue{display:none}
+
+@media (max-width:700px){
+  body{font-size:14px}
+  .site{height:52px;padding:0 16px}
+  .site nav{display:none}
+  .site .menu{display:inline-flex;min-height:38px;padding:6px 13px;font-size:13px}
+  .brand{font-size:21px}
+  .returnbar{padding:10px 16px;gap:8px}
+  .returnbar .change{min-height:40px;padding:6px 14px;font-size:13px}
+  .crumbs{display:none}
+  .returnbar .nav2 button{min-height:40px;padding:6px 12px}
+  .returnbar .nav2 .lbl{display:none}
+  .stage{display:block;padding:0 16px 24px}
+  .scene{height:250px;border-radius:90px 90px 22px 22px}
+  .scene .over{left:20px;right:20px;bottom:16px}
+  .scene h1{font-size:30px;margin:4px 0 0}
+  .scene .sub{display:none}
+  .movs{top:16px;right:16px}
+  .movs span{font-size:11px;padding:3px 8px}
+  .bigplay{margin-top:12px;gap:12px}
+  .bigplay .play{width:54px;height:54px;min-height:54px}
+  .bigplay .play svg{width:24px;height:24px}
+  .bigplay .ghost{display:none}
+  .panel{border:0;background:transparent;padding:10px 2px 0;border-radius:0}
+  .panel .eyebrow,.panel h2,.panel .lead{display:none}
+  .ctl{padding:8px 0}
+  .ctl:first-of-type{border-top:0}
+  .ctl .slider{grid-template-columns:86px 1fr 52px;gap:10px}
+  .ctl .slider label{font-size:15px}
+  .ctl .ends{margin:0 52px 0 96px}
+  .row2{padding:10px 0}
+
+  body.cat .returnbar,body.cat .stage{display:none}
+  body.cat .catalogue{display:block;padding:14px 16px}
+  .catalogue h1{font-size:30px;line-height:1.05}
+  .catalogue p{color:var(--muted);font-size:13px;margin:6px 0 12px}
+  .goals{display:flex;gap:8px;overflow:hidden;margin:0 -16px 12px;padding:0 16px}
+  .c{display:grid;grid-template-columns:62px 1fr auto;gap:12px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:8px 10px 8px 8px;margin-bottom:10px}
+  .c .thumb{width:62px;height:54px;border-radius:26px 26px 8px 8px;overflow:hidden}
+  .c h3{font-size:17px;line-height:1.15}
+  .c .meta{font-size:12px;color:var(--muted)}
+  .c .go{min-height:40px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--deep);background:var(--wash);border-color:#c9d3c3}
+  .c.tap{border:2px solid var(--deep)}
+  .c.tap .go{background:var(--deep);color:#fff}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="mark" viewBox="0 0 64 64"><path d="M42 8C20 3 8 22 13 41c4 16 22 21 37 10C31 57 19 46 21 30c1-10 9-18 21-22Z" fill="currentColor"/><path d="M35 19c6 15-9 18-6 28 2 6 12 7 16-1-9 4-10-3-5-9 4-5 3-11-5-18Z" fill="#B88945"/></symbol>
+  <symbol id="play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+  <symbol id="stop" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="prev" viewBox="0 0 24 24"><path d="m14 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="next" viewBox="0 0 24 24"><path d="m10 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="bookmark" viewBox="0 0 24 24"><path d="M7 4h10v16l-5-3.5L7 20z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="sliders" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h9m4 0h3M4 17h3m4 0h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></g></symbol>
+</svg>
+
+<div class="ribbon"><b>Concept B</b> Design mockup · not shipped · no audio</div>
+<header class="site">
+  <div class="brand"><svg><use href="#mark"/></svg>soulfire</div>
+  <nav><span>My memory</span><span>History</span><span>Simulations</span><span class="on">Current</span><span>Ember</span><span>The practice</span></nav>
+  <button class="menu">Menu</button>
+</header>
+
+<!-- Focused view: one clear way back, everything for shaping in the first viewport -->
+<div class="returnbar">
+  <button class="change"><svg class="i"><use href="#back"/></svg>Change Current</button>
+  <span class="crumbs">Current <span>/</span> Wind down <span>/</span> <b>Now shaping</b></span>
+  <span class="nav2"><button aria-label="Previous suggestion"><svg class="i"><use href="#prev"/></svg><span class="lbl">Off the Clock</span></button><button aria-label="Next suggestion"><span class="lbl">Steady Shore</span><svg class="i"><use href="#next"/></svg></button></span>
+</div>
+
+<main class="stage">
+  <section class="scene" aria-label="Now shaping: Evening Shore / Horizon">
+    <img class="art" src="river.svg" alt="">
+    <div class="movs" aria-label="Movements"><span class="on">1 Horizon</span><span>2 Garden</span><span>3 Daylight</span></div>
+    <div class="over">
+      <span class="eyebrow">Now shaping · Wind down</span>
+      <h1>Evening Shore / Horizon</h1>
+      <p class="sub">Soft piano · 3 movements · 270 seconds of distinct music</p>
+      <div class="bigplay">
+        <button class="play" aria-label="Play"><svg class="i"><use href="#play"/></svg></button>
+        <div class="bar"><i></i><span>Ready · nothing plays until you press Play · 0:00 / 5:00</span></div>
+        <button class="ghost"><svg class="i"><use href="#stop"/></svg>Stop</button>
+      </div>
+    </div>
+  </section>
+
+  <aside class="panel" aria-label="Shape this Current">
+    <span class="eyebrow">Shape now</span>
+    <h2>Make it yours</h2>
+    <p class="lead">Changes level, tone and reverb right away — no regenerating.</p>
+    <div class="ctl"><div class="slider"><label>Volume</label><input type="range" value="40" style="--v:40%"><output>40%</output></div><div class="ends"><span>Softer</span><span>Fuller</span></div></div>
+    <div class="ctl"><div class="slider"><label>Brightness</label><input type="range" value="55" style="--v:55%"><output>Warm</output></div><div class="ends"><span>Warmer</span><span>Brighter</span></div></div>
+    <div class="ctl"><div class="slider"><label>Space</label><input type="range" value="32" style="--v:32%"><output>Close</output></div><div class="ends"><span>Close</span><span>Open</span></div></div>
+    <div class="row2"><span class="lbl">Listening time</span><span class="seg"><span>3 min</span><span class="on">5 min</span><span>10 min</span><span>20 min</span></span></div>
+    <div class="row2"><label class="switch"><i></i>Quiet moment between movements</label></div>
+    <div class="foot"><button class="quiet"><svg class="i"><use href="#bookmark"/></svg>Save Current</button><button class="quiet">Edit movements</button></div>
+    <p class="disclaim">Doesn’t change instruments or guarantee an effect. Start quietly; device volume still matters.</p>
+  </aside>
+</main>
+
+<!-- Mobile catalogue state: cards say "Shape" so the next step is obvious -->
+<section class="catalogue" aria-label="Current catalogue">
+  <h1>Find your Current.</h1>
+  <p>Wind down · soft piano. Tap one to hear and shape it.</p>
+  <div class="goals"><span class="chip">Feel calmer</span><span class="chip on">Wind down</span><span class="chip">A gentle lift</span><span class="chip">Find my focus</span></div>
+  <article class="c"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:30% 60%"></div><div><h3>Evening Shore / Daylight</h3><div class="meta">Soft piano · 90s</div></div><button class="go">Shape</button></article>
+  <article class="c tap"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:62% 55%"></div><div><h3>Evening Shore / Horizon</h3><div class="meta">Soft piano · 90s</div></div><button class="go">Shape</button></article>
+  <article class="c"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:80% 70%;filter:hue-rotate(-12deg)"></div><div><h3>Evening Shore / Garden</h3><div class="meta">Soft piano · 90s</div></div><button class="go">Shape</button></article>
+  <article class="c"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:10% 80%;filter:sepia(.18)"></div><div><h3>Off the Clock</h3><div class="meta">Soft piano · 30s</div></div><button class="go">Shape</button></article>
+  <article class="c"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:55% 30%"></div><div><h3>A Moment for Me</h3><div class="meta">Soft piano · 30s</div></div><button class="go">Shape</button></article>
+  <article class="c"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:90% 40%"></div><div><h3>Steady Shore</h3><div class="meta">Soft piano · 30s</div></div><button class="go">Shape</button></article>
+  <article class="c"><div class="thumb"><img class="art" src="river.svg" alt="" style="object-position:40% 90%"></div><div><h3>In My Own Words</h3><div class="meta">Soft piano · 30s</div></div><button class="go">Shape</button></article>
+</section>
+<script>if(location.hash==="#catalogue")document.body.classList.add("cat")</script>
+</body>
+</html>

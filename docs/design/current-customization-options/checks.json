@@ -1,0 +1,382 @@
+{
+  "generated": "2026-10-29T19:41:27.087Z",
+  "note": "Static concept mockups; no audio, network, microphone or provider calls.",
+  "results": [
+    {
+      "name": "a-desktop",
+      "file": "concept-a.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true,
+      "overflow": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "wideElements": []
+      },
+      "controls": [
+        {
+          "sel": "aside.player h2",
+          "box": {
+            "x": 931,
+            "y": 222.203125,
+            "width": 406,
+            "height": 30.796875
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": "aside.player .primary",
+          "box": {
+            "x": 931,
+            "y": 283,
+            "width": 103.859375,
+            "height": 44
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": "aside.player .slider >> nth=0",
+          "box": {
+            "x": 931,
+            "y": 410,
+            "width": 406,
+            "height": 28
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".player .slider >> nth=1",
+          "box": {
+            "x": 931,
+            "y": 440,
+            "width": 406,
+            "height": 28
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".player .slider >> nth=2",
+          "box": {
+            "x": 931,
+            "y": 470,
+            "width": 406,
+            "height": 28
+          },
+          "inFirstViewport": true
+        }
+      ]
+    },
+    {
+      "name": "a-mobile",
+      "file": "concept-a.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "overflow": {
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "wideElements": []
+      },
+      "controls": [
+        {
+          "sel": ".dock b",
+          "box": {
+            "x": 82,
+            "y": 738.15625,
+            "width": 222,
+            "height": 20.6875
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".dock .play",
+          "box": {
+            "x": 316,
+            "y": 712,
+            "width": 52,
+            "height": 52
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".dock .shape",
+          "box": {
+            "x": 22,
+            "y": 774,
+            "width": 346,
+            "height": 48
+          },
+          "inFirstViewport": true
+        }
+      ]
+    },
+    {
+      "name": "a-mobile-sheet",
+      "file": "concept-a.html#sheet",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "overflow": {
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "wideElements": []
+      },
+      "controls": [
+        {
+          "sel": ".sheet h2",
+          "box": {
+            "x": 88,
+            "y": 414.125,
+            "width": 208.921875,
+            "height": 48.375
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".sheet .primary",
+          "box": {
+            "x": 20,
+            "y": 476.5,
+            "width": 101.8125,
+            "height": 44
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".sheet .slider >> nth=0",
+          "box": {
+            "x": 20,
+            "y": 581.5,
+            "width": 350,
+            "height": 28
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".sheet .slider >> nth=1",
+          "box": {
+            "x": 20,
+            "y": 613.5,
+            "width": 350,
+            "height": 28
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".sheet .slider >> nth=2",
+          "box": {
+            "x": 20,
+            "y": 645.5,
+            "width": 350,
+            "height": 28
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".sheet .done",
+          "box": {
+            "x": 308.921875,
+            "y": 407.8125,
+            "width": 61.078125,
+            "height": 40
+          },
+          "inFirstViewport": true
+        }
+      ]
+    },
+    {
+      "name": "b-desktop",
+      "file": "concept-b.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pass": true,
+      "overflow": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "wideElements": []
+      },
+      "controls": [
+        {
+          "sel": ".change",
+          "box": {
+            "x": 80,
+            "y": 108,
+            "width": 178.34375,
+            "height": 44
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".scene h1",
+          "box": {
+            "x": 125,
+            "y": 637.34375,
+            "width": 692,
+            "height": 59.15625
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".bigplay .play",
+          "box": {
+            "x": 125,
+            "y": 747,
+            "width": 72,
+            "height": 72
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".ctl >> nth=0",
+          "box": {
+            "x": 919,
+            "y": 307.5,
+            "width": 412,
+            "height": 81.5
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".ctl >> nth=1",
+          "box": {
+            "x": 919,
+            "y": 389,
+            "width": 412,
+            "height": 81.5
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".ctl >> nth=2",
+          "box": {
+            "x": 919,
+            "y": 470.5,
+            "width": 412,
+            "height": 81.5
+          },
+          "inFirstViewport": true
+        }
+      ]
+    },
+    {
+      "name": "b-mobile",
+      "file": "concept-b.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "overflow": {
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "wideElements": []
+      },
+      "controls": [
+        {
+          "sel": ".change",
+          "box": {
+            "x": 16,
+            "y": 92,
+            "width": 155.234375,
+            "height": 40
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".scene h1",
+          "box": {
+            "x": 37,
+            "y": 247.8125,
+            "width": 316,
+            "height": 61.1875
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".bigplay .play",
+          "box": {
+            "x": 37,
+            "y": 321,
+            "width": 54,
+            "height": 54
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".ctl >> nth=0",
+          "box": {
+            "x": 18,
+            "y": 402,
+            "width": 354,
+            "height": 66.5
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".ctl >> nth=1",
+          "box": {
+            "x": 18,
+            "y": 468.5,
+            "width": 354,
+            "height": 67.5
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".ctl >> nth=2",
+          "box": {
+            "x": 18,
+            "y": 536,
+            "width": 354,
+            "height": 67.5
+          },
+          "inFirstViewport": true
+        }
+      ]
+    },
+    {
+      "name": "b-mobile-catalogue",
+      "file": "concept-b.html#catalogue",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "overflow": {
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "wideElements": []
+      },
+      "controls": [
+        {
+          "sel": ".catalogue h1",
+          "box": {
+            "x": 16,
+            "y": 96,
+            "width": 358,
+            "height": 31.5
+          },
+          "inFirstViewport": true
+        },
+        {
+          "sel": ".c.tap .go",
+          "box": {
+            "x": 296.984375,
+            "y": 311.5,
+            "width": 65.015625,
+            "height": 40
+          },
+          "inFirstViewport": true
+        }
+      ]
+    }
+  ]
+}
