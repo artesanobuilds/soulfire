@@ -1,0 +1,8 @@
+{
+  "reason": "Derived CSV reports standardized to LF so Git storage and local/archive hashes agree. No uploaded original, MIDI, audio or raw critique content was changed.",
+  "affected": [
+    "piece-summary.csv",
+    "study-comparison.csv"
+  ],
+  "readmeUpdate": "Added verification-tool paths after initial private archive version."
+}

@@ -31,8 +31,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5785,
-      "sha256": "a58b9cd9192feec16279cbea61f8d5b2fa23411a2fdcb516b4c856a1f896218d"
+      "bytes": 6145,
+      "sha256": "0787e52e27f047e9a951740cfeb69784114bcf86161baff44ef4c632def6c65c"
     },
     {
       "path": "SYNTHESIS.md",
@@ -106,8 +106,13 @@
     },
     {
       "path": "piece-summary.csv",
-      "bytes": 11121,
-      "sha256": "76551045d49359d6f0d2b4b6e796a7d615d82da69828f6c30b6c947f6583416e"
+      "bytes": 11071,
+      "sha256": "610813b0f47d622eed68317e93ea0e3b3f7415a14248b7f865a7158b25607fd9"
+    },
+    {
+      "path": "provenance-correction.json",
+      "bytes": 338,
+      "sha256": "0b70ec81cdf0054e4312cda0fec68d6bac20f3dd8e84a7e2da4400af58b3beee"
     },
     {
       "path": "raw/adapter-baseline.py",
@@ -121,8 +126,8 @@
     },
     {
       "path": "study-comparison.csv",
-      "bytes": 5877,
-      "sha256": "3ccf0cad8f7307ebc38662bf4a63c2976f7de02074463b78bebca3ce8be6c3bd"
+      "bytes": 5858,
+      "sha256": "f89e40d2d8e1736c93179a00a7cb227c0253526441d5b382f5502ea561d10669"
     },
     {
       "path": "study-comparison.json",
