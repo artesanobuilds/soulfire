@@ -14,3 +14,5 @@ Synthesis and design: [Current music evolution](../current-music-evolution/READM
 - [2026-10-29 goal-first catalogue source](2026-10-29-goal-first-catalogue/README.md): unchanged 20-topic original, independently matching prior recorded SHA256.
 
 - [2026-10-29 Current musicality](2026-10-29-current-musicality/README.md): complete source-linked inventory, inferred MIDI for 49 original records and 12 actual study candidates, full independent Fable 5/Opus 5.5 critiques, measured comparison and blind-listening aid. Originals preserved; no subjective winner.
+
+- [2026-10-29 · Current listening feedback and fresh catalogue](2026-10-29-current-listening-feedback/README.md): unchanged blind ratings, resolved preferences, source-boundary diagnosis, 72 new candidates/36 selected, final inferred MIDI, reversible catalogue policy and before/after listening evidence.

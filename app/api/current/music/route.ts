@@ -13,6 +13,7 @@ import { currentTechnicalIssues } from "@/src/domain/current-music";
 import {
   musicCatalog,
   modelAvailability,
+  musicCataloguePolicy,
 } from "@/src/infrastructure/music-lab-runtime";
 import {
   startMusicJob,
@@ -38,13 +39,22 @@ export async function GET(req: Request) {
         { headers: { "Cache-Control": "no-store" } },
       );
     }
-    const [samples, models] = await Promise.all([
-      musicCatalog(),
+    const [all, models, catalogue] = await Promise.all([
+      musicCatalog(true),
       modelAvailability(),
+      musicCataloguePolicy(),
     ]);
+    const retired = new Set(catalogue?.retiredSampleIds || []);
+    const samples = all.filter((s) => !retired.has(s.id));
     return Response.json(
       {
         samples: samples.filter((s) => !currentTechnicalIssues(s).length),
+        archivedSamples: all.filter(
+          (s) => retired.has(s.id) && !currentTechnicalIssues(s).length,
+        ),
+        catalogue: catalogue
+          ? { version: catalogue.version, description: catalogue.description }
+          : null,
         excludedCount: samples.filter(
           (s) => s.request.model === "ace" && currentTechnicalIssues(s).length,
         ).length,

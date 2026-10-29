@@ -4,7 +4,7 @@ import { open, stat } from "node:fs/promises";
 import { historyGuard } from "@/src/infrastructure/history-http";
 import { failure, HttpError } from "@/src/lib/server";
 import {
-  musicCatalog,
+  musicSample,
   musicLabDirectory,
 } from "@/src/infrastructure/music-lab-runtime";
 export const runtime = "nodejs";
@@ -17,7 +17,7 @@ export async function GET(req: Request) {
     const mode = z
       .enum(["bed", "narration", "loop"])
       .parse(u.searchParams.get("mode"));
-    const sample = (await musicCatalog()).find((s) => s.id === id);
+    const sample = await musicSample(id);
     if (!sample)
       throw new HttpError(404, "This measured sample is not available.");
     if (sample.currentOnly && mode !== "bed")

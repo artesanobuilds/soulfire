@@ -2,6 +2,7 @@ import { readFile, stat, mkdir, readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { homedir } from "node:os";
 import { z } from "zod";
+import { currentCataloguePolicySchema } from "../domain/current-catalogue";
 import {
   musicSampleSchema,
   type MusicSample,
@@ -128,7 +129,9 @@ export async function modelAvailability(): Promise<MusicAvailability[]> {
     }),
   );
 }
-export async function musicCatalog(): Promise<MusicSample[]> {
+export async function musicCatalog(
+  includeRetired = false,
+): Promise<MusicSample[]> {
   const base = join(musicLabDirectory(), "samples");
   let names: string[] = [];
   try {
@@ -151,9 +154,45 @@ export async function musicCatalog(): Promise<MusicSample[]> {
         }
       }),
   );
+  const policy = await musicCataloguePolicy();
+  if (
+    policy?.seedSampleIds.some(
+      (id) => !items.some((sample) => sample?.id === id),
+    )
+  )
+    throw Error(
+      "The published catalogue is incomplete. Earlier audio is retained; nothing was substituted.",
+    );
+  const retired = new Set(policy?.retiredSampleIds || []);
   return items
     .filter((s): s is MusicSample => !!s)
+    .filter((s) => includeRetired || !retired.has(s.id))
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+}
+export async function musicCataloguePolicy() {
+  let bytes: Buffer;
+  try {
+    bytes = await readFile(join(musicLabDirectory(), "catalogue.json"));
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code === "ENOENT") return null;
+    throw e;
+  }
+  if (bytes.length > 100000)
+    throw Error("The local catalogue manifest exceeds its bound.");
+  return currentCataloguePolicySchema.parse(JSON.parse(bytes.toString()));
+}
+export async function musicSample(id: string) {
+  if (!/^[a-f0-9-]{36}$/.test(id)) return null;
+  try {
+    const bytes = await readFile(
+      join(musicLabDirectory(), "samples", id, "sample.json"),
+    );
+    if (bytes.length > 20000) return null;
+    const sample = musicSampleSchema.parse(JSON.parse(bytes.toString()));
+    return sample.id === id ? sample : null;
+  } catch {
+    return null;
+  }
 }
 export async function ensureMusicStorage() {
   await mkdir(join(musicLabDirectory(), "samples"), { recursive: true });
@@ -169,7 +208,7 @@ export async function musicStorageBytes() {
     for (const item of await readdir(path, { withFileTypes: true }).catch(
       () => [],
     )) {
-      if (++count > 3000)
+      if (++count > 10000)
         throw Error("Local result inventory exceeds its bound.");
       const next = join(path, item.name);
       if (item.isDirectory()) await visit(next);
@@ -177,5 +216,7 @@ export async function musicStorageBytes() {
     }
   }
   await visit(join(musicLabDirectory(), "samples"));
+  await visit(join(musicLabDirectory(), "catalogue-staging"));
+  await visit(join(musicLabDirectory(), "current-sessions"));
   return total;
 }

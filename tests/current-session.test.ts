@@ -28,7 +28,10 @@ it("source concepts change actual musical descriptions and retain friendly names
       taste: seed.style as "piano" | "ambient" | "acoustic",
       conceptId: seed.id,
     };
-    expect(currentMusicPrompt(options)).toContain(seed.character);
+    expect(currentMusicPrompt(options)).toContain(
+      "coherent gently moving harmony",
+    );
+    expect(currentMusicPrompt(options)).not.toContain("treatment");
     expect(currentStarterName(options.taste, seed.seed, options)).toBe(
       seed.name,
     );

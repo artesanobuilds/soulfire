@@ -1,0 +1,183 @@
+{
+  "changed": [
+    {
+      "id": "3cd1067e-1016-494a-ae8a-6f1dc8ae88ed",
+      "name": "Small Morning",
+      "beforeMasterSha256": "4e55b52592318d84e73eebe7fc375c382403fd2ba5746547256b841d3d93b68c",
+      "afterMasterSha256": "98d5d58028a2580b394406cbab998b3b4417c77c8f87cd7b88ae1de39b6a4c09",
+      "beforeSeconds": 55.65,
+      "afterSeconds": 54.48
+    },
+    {
+      "id": "e992df8f-f15f-4248-be74-4598837438b2",
+      "name": "Room to Settle",
+      "beforeMasterSha256": "75285f8f6f5cf7d0409ed458f89420e37a1ea9a19a561717f39df513d82f7aac",
+      "afterMasterSha256": "9fa29b2bdb8a66807d59776c58b0f10825b0eb2b85bbf1cf4b3fc8e6bc4ef748",
+      "beforeSeconds": 56.97,
+      "afterSeconds": 56.26
+    },
+    {
+      "id": "7bdd9446-1f0a-49dd-a232-ca44a0661341",
+      "name": "Open Horizon",
+      "beforeMasterSha256": "3dae0773cabe2972108da7351d138bfdabdf436a4044705a1df082a8e2b13820",
+      "afterMasterSha256": "8a484887c5757e47050029b9246de4f97722c4df5a6acdbddfb2b4b2cfd514e6",
+      "beforeSeconds": 58.23,
+      "afterSeconds": 57.36
+    },
+    {
+      "id": "a7e54c9c-ca5a-4c63-ab94-81bc7ba49fb7",
+      "name": "One Moment",
+      "beforeMasterSha256": "fa9aa4d92c0477ac686e1dbc1b242c9535b7ee9bb1c0a28800d5c74017a8f57e",
+      "afterMasterSha256": "c2da62feea8c4e56cfe1cdac70f0ce7969873e7d3b2a894bbe2c671be91e63ca",
+      "beforeSeconds": 57.31,
+      "afterSeconds": 56.6
+    },
+    {
+      "id": "7a9fa191-8163-4cf8-8468-1124576dec54",
+      "name": "Steady Ground",
+      "beforeMasterSha256": "ed9293328b915f0510828f2f3d176931ee92c08e0a3574df229b604dde2f516d",
+      "afterMasterSha256": "f3ac62e7d8b5c1748fb2b1c3d97fdda6f89f2b555e64cb2c3ace61e0485171cd",
+      "beforeSeconds": 58.27,
+      "afterSeconds": 57.44
+    },
+    {
+      "id": "f13e3ffb-42e4-4129-a0f8-e6df5aebf45c",
+      "name": "Gentle Next Step",
+      "beforeMasterSha256": "cb0a88bc5f13ad5761a640eb04a5066e98421e0ae9f94b56a4851d26fc82a077",
+      "afterMasterSha256": "bf38f9ca8f1a640a13d3da3a4ec9faa67ea01e52af72cbeee21d58cc0ac091c8",
+      "beforeSeconds": 56.69,
+      "afterSeconds": 55.84
+    },
+    {
+      "id": "0f93883d-aa68-4c59-a150-227d90628f0f",
+      "name": "Wide Awake Garden",
+      "beforeMasterSha256": "09c0c35d2c313b1b48a267565da46ccfeb452d795e509dda1f56b7594add9298",
+      "afterMasterSha256": "d58f42ed257bb5e0dfe1682a4a272ecb9137fba4e1332158947d84d51db874da",
+      "beforeSeconds": 58.83,
+      "afterSeconds": 57.22
+    },
+    {
+      "id": "3c880d8a-160d-413f-87c2-044d57872af6",
+      "name": "Unmeasured Time",
+      "beforeMasterSha256": "e97fd621602ecc750895908ecd309b34ab4639007acbd5b4bd7dc11789df941f",
+      "afterMasterSha256": "820329c2e1cea89aa50ed31b5270b61e64cd48a9118f8dcb7d694b90acb137d9",
+      "beforeSeconds": 53.77,
+      "afterSeconds": 53.06
+    },
+    {
+      "id": "723e9dec-9a89-4de1-9dff-b7cece5765e7",
+      "name": "Soft Clearing",
+      "beforeMasterSha256": "1b58c3b63c0fd85bbccc515ecd2934dc543ceb082493ae55c51ff99814998641",
+      "afterMasterSha256": "5483b8af4ccf743d085d5d78fcd9a57c75ed9becade241f811035d438be7092b",
+      "beforeSeconds": 57.15,
+      "afterSeconds": 56.3
+    },
+    {
+      "id": "c5a3255a-736a-47b7-a4e8-cdda1e5d9302",
+      "name": "Room for Uncertainty",
+      "beforeMasterSha256": "25bb4864e8c5e673a8f6679013f25c36fda242266f6085bb444a7fd82a7ed2a1",
+      "afterMasterSha256": "ff87be290717c7aab757112c5ff4fa9944652a1af40981f47f47b99131a4356f",
+      "beforeSeconds": 55.25,
+      "afterSeconds": 54.52
+    },
+    {
+      "id": "5a903cbb-1f00-443f-87fa-ce5899759170",
+      "name": "A Little Distance",
+      "beforeMasterSha256": "6cddda8a6fc6d308709c612f8d34d007228dd3afd6aba47c254ab6767b637279",
+      "afterMasterSha256": "ad19bda11e56fcd058d5cfa369374ff421d25a105f151fec93660b10cca70663",
+      "beforeSeconds": 56.19,
+      "afterSeconds": 55.42
+    },
+    {
+      "id": "d0e6b022-742c-42d1-833d-ecdcd2958271",
+      "name": "A Moment for Me",
+      "beforeMasterSha256": "5c90d723832ef819878b64283e191ad102b3bd2cf7a1897a37f12302226c7cd0",
+      "afterMasterSha256": "cf20590eaba35744dc3f21cd2f384b648f82c4f4f914983292bd4ba9a30015de",
+      "beforeSeconds": 57.33,
+      "afterSeconds": 56.18
+    },
+    {
+      "id": "bb50f9e6-5455-41e8-a080-93b208db6684",
+      "name": "Daylight Corner",
+      "beforeMasterSha256": "a7f6d95fd5f705cdf804fb2a4b0724528f6d8099a408a3b44d3934be3a3190d4",
+      "afterMasterSha256": "1219428bb9720e9f4840589bfec891d0a903f5f6c0f682b5635a38dd2bb9f811",
+      "beforeSeconds": 58.39,
+      "afterSeconds": 56.8
+    },
+    {
+      "id": "5c47764c-448e-458f-8b8c-ea69df13b0e8",
+      "name": "Nearer",
+      "beforeMasterSha256": "5545306d7ef691722a60bec73e997e329642aa2b8cef704fe1d7c40dcda04db0",
+      "afterMasterSha256": "e0d92d28009f76239ec0e36f0f7b413d0e678155d1204485240299d5f1d57f79",
+      "beforeSeconds": 57.41,
+      "afterSeconds": 56.64
+    },
+    {
+      "id": "5c222f09-0c5a-49c6-be4b-138e53e0b261",
+      "name": "Shared Daylight",
+      "beforeMasterSha256": "0d3e0e0f68a3833a9d7bd984ea354f52e5968198c723d4b3ab04752c04c8ba11",
+      "afterMasterSha256": "5959f4cf198a5a0d8049511a3ca006fc309fe445f120da006ecf0f4234fa51db",
+      "beforeSeconds": 57.25,
+      "afterSeconds": 56.44
+    },
+    {
+      "id": "ef9559c6-9c10-4989-ad74-9578a2b04412",
+      "name": "A Breathing Space",
+      "beforeMasterSha256": "9206515e8833c17b8c5909518bab147d472c8a733194ba5ac4afe7fd7a5c14a3",
+      "afterMasterSha256": "21a8c7b9f48dc05471cf2fc478abc865138f9e35a7544bd9de3971591b8684a0",
+      "beforeSeconds": 56.77,
+      "afterSeconds": 55.96
+    },
+    {
+      "id": "5faa37cb-6b54-4322-b4bf-f8c2f6a44e0e",
+      "name": "Your Own Light",
+      "beforeMasterSha256": "d7ceb8857273e92527cbe0d222f186ed3779a826f02f433f75f411f14f592208",
+      "afterMasterSha256": "50c0f8297791f26e59dbea1ae60c0ed9fed595205cd96734fe39527f9445b45a",
+      "beforeSeconds": 58.47,
+      "afterSeconds": 57.7
+    },
+    {
+      "id": "5ee0d579-49be-493b-bbe2-3252d57252f4",
+      "name": "Begin Again",
+      "beforeMasterSha256": "0ebcc0386e80d0243e8b507b22d49c4f4c897a770c874a798ee845465a75082e",
+      "afterMasterSha256": "9219ccc936ecc67fdcfb194979506f89398d8c1f90a2c1300940034f1c4737f7",
+      "beforeSeconds": 56.61,
+      "afterSeconds": 55.66
+    },
+    {
+      "id": "80d4ed43-82fe-41a4-8acd-ac9402a7425d",
+      "name": "A Small Anchor",
+      "beforeMasterSha256": "4304c75c4b9d08bce705ab61dd97039859a8fe200ed3d0d9cbb3cfce06c2881b",
+      "afterMasterSha256": "b1910a39a144700c2cc5516f6c78cc7396233f9e3e57911c729b4e9f83d5830a",
+      "beforeSeconds": 58.85,
+      "afterSeconds": 58.04
+    },
+    {
+      "id": "fbbd41cb-580b-41bb-ac21-f5ce6c8843ee",
+      "name": "In My Own Words",
+      "beforeMasterSha256": "1d2e92bc2514560f61a346ba59e7efd093e49b542b3ed9f9f268580c6fad457a",
+      "afterMasterSha256": "35bb4c368aba2626fb34c6d9d1e760911492ebc4bdba85be727289cb3260feb3",
+      "beforeSeconds": 55.53,
+      "afterSeconds": 54.56
+    },
+    {
+      "id": "3eecc36a-5bba-4176-8ad2-00c0e04ddab8",
+      "name": "First Light",
+      "beforeMasterSha256": "6719d473c749d4b65d639c71e297d6e041085abf815683da766c9478fa9caccb",
+      "afterMasterSha256": "1b965f49b85bf83474daca0767e57c95c2ec40a4933902af5e4f98925cfc47f6",
+      "beforeSeconds": 57.55,
+      "afterSeconds": 56.3
+    },
+    {
+      "id": "f5d72bd0-4b10-45bd-a14b-6c96263f6dc3",
+      "name": "Familiar Afternoon",
+      "beforeMasterSha256": "ee9fda7664198bef05a8dd2e502af66667e5f87fb1ca6d754bf8f2d3f9496761",
+      "afterMasterSha256": "e7c1c49d34ee33b5a1c190aae9d266073f122c7782c9a61fe4808ce23113b611",
+      "beforeSeconds": 56.63,
+      "afterSeconds": 55.76
+    }
+  ],
+  "noRegeneration": true,
+  "rawSourcesUnchanged": true,
+  "reason": "Post-fade low-activity tails rechecked before first catalogue publication"
+}

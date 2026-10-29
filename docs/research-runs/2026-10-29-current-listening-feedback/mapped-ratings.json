@@ -1,0 +1,437 @@
+{
+  "rawLibraryId": "libfile_c9730009bad88191bf25d29ed57b81a5",
+  "rawBytes": 15886,
+  "rawSha256": "896ea6aa5152a00552254b8060981372963eaaa236afefc469c3d9d0601eabf7",
+  "artifactsScale": "1 least distracting, 5 most distracting; confirmed from scripts/build-current-musicality-audition.py",
+  "nullRatings": "Missing, excluded from summary statistics; never zero",
+  "blind": true,
+  "preferredArmCounts": {
+    "A": 1,
+    "B": 3,
+    "C": 2
+  },
+  "preferred": [
+    {
+      "groupId": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+      "name": "In My Own Words",
+      "palette": "piano",
+      "displayLabel": "C",
+      "actualArm": "A",
+      "preferred": true,
+      "bedSha256": "e98537ddea69ea0d3bc889b676ee15be464df23d3584e63cf80b134c5e631e87",
+      "audioUrl": "audio/73f423f59453191b.wav"
+    },
+    {
+      "groupId": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+      "name": "Begin Again",
+      "palette": "piano",
+      "displayLabel": "B",
+      "actualArm": "B",
+      "preferred": true,
+      "bedSha256": "81205dc0fd8dfa248e22ec2fe57f00d2aad9f6c95f14451e0c706d2ede2fac0e",
+      "audioUrl": "audio/e7d0642930010c61.wav"
+    },
+    {
+      "groupId": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+      "name": "Gentle Company",
+      "palette": "ambient",
+      "displayLabel": "A",
+      "actualArm": "C",
+      "preferred": true,
+      "bedSha256": "fb5b88dc04bdefd3f9d44b933796983f728e9883b7bea5fe1cf4ea4cbd136921",
+      "audioUrl": "audio/f18d1369095bba29.wav"
+    },
+    {
+      "groupId": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+      "name": "First Light",
+      "palette": "ambient",
+      "displayLabel": "B",
+      "actualArm": "B",
+      "preferred": true,
+      "bedSha256": "1c1d2a2b546ddfd1de110264f028ada2d37c4634bc2aa5e5c3a2e21827b1dd29",
+      "audioUrl": "audio/803fa8d001a19f0d.wav"
+    },
+    {
+      "groupId": "6e69ff71-4425-43af-8648-cda30c1ff766",
+      "name": "Familiar Afternoon",
+      "palette": "acoustic",
+      "displayLabel": "C",
+      "actualArm": "B",
+      "preferred": true,
+      "bedSha256": "1f589f5ef2a977fc383bd1f3676a482a7575af7d9c2f2987b5681aed13fbea39",
+      "audioUrl": "audio/da2bddfb8775c845.wav"
+    },
+    {
+      "groupId": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+      "name": "In the Meantime",
+      "palette": "acoustic",
+      "displayLabel": "C",
+      "actualArm": "C",
+      "preferred": true,
+      "bedSha256": "f6d216391e7d199db9f6ac7c0c3be6f5a8f735b8de1e485b741ade4e56d8869f",
+      "audioUrl": "audio/cbc9d35a9916d312.wav"
+    }
+  ],
+  "rows": [
+    {
+      "groupId": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+      "name": "In My Own Words",
+      "palette": "piano",
+      "displayLabel": "A",
+      "actualArm": "C",
+      "preferred": false,
+      "bedSha256": "03714c4bfe8021784a38c2e46290c9e7ed349f217e9154349bc6290f0c0ab7ae",
+      "audioUrl": "audio/91f4b72a8e128bba.wav",
+      "ratings": {
+        "label": "In My Own Words A",
+        "progression": 3,
+        "phrasing": 4,
+        "paletteFit": 4,
+        "artifacts": 4,
+        "notes": "0:06 chord sounds odd\n0:11 high note does not make sense\n0:24 very odd silience ",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+      "name": "In My Own Words",
+      "palette": "piano",
+      "displayLabel": "B",
+      "actualArm": "B",
+      "preferred": false,
+      "bedSha256": "bdb99f0769c5324d7010fcdcdfead04bf5e9520a97aa098bf1b1a9094feb0856",
+      "audioUrl": "audio/6da1b4daa70e890a.wav",
+      "ratings": {
+        "label": "In My Own Words B",
+        "progression": 3,
+        "phrasing": 4,
+        "paletteFit": 4,
+        "artifacts": 3,
+        "notes": "0:06 - weird note\n0:21 - weird chord ",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+      "name": "In My Own Words",
+      "palette": "piano",
+      "displayLabel": "C",
+      "actualArm": "A",
+      "preferred": true,
+      "bedSha256": "e98537ddea69ea0d3bc889b676ee15be464df23d3584e63cf80b134c5e631e87",
+      "audioUrl": "audio/73f423f59453191b.wav",
+      "ratings": {
+        "label": "In My Own Words C",
+        "progression": 4,
+        "phrasing": 4,
+        "paletteFit": 5,
+        "artifacts": 2,
+        "notes": "0:13 - one high note in the chord sounds out of place",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+      "name": "Begin Again",
+      "palette": "piano",
+      "displayLabel": "A",
+      "actualArm": "A",
+      "preferred": false,
+      "bedSha256": "8384ceff2bd0f3caab922798619f2d74724480a3e0b37059cd986ee00926ba51",
+      "audioUrl": "audio/2854a49ec0c6c85c.wav",
+      "ratings": {
+        "label": "Begin Again A",
+        "progression": 5,
+        "phrasing": 3,
+        "paletteFit": 5,
+        "artifacts": 5,
+        "notes": "0:16 - low note sounsd odd\n0:23 a lot of silence at the end ",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+      "name": "Begin Again",
+      "palette": "piano",
+      "displayLabel": "B",
+      "actualArm": "B",
+      "preferred": true,
+      "bedSha256": "81205dc0fd8dfa248e22ec2fe57f00d2aad9f6c95f14451e0c706d2ede2fac0e",
+      "audioUrl": "audio/e7d0642930010c61.wav",
+      "ratings": {
+        "label": "Begin Again B",
+        "progression": 5,
+        "phrasing": 3,
+        "paletteFit": 5,
+        "artifacts": 1,
+        "notes": "0:24 tons of slience at the end",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+      "name": "Begin Again",
+      "palette": "piano",
+      "displayLabel": "C",
+      "actualArm": "C",
+      "preferred": false,
+      "bedSha256": "1c0d4a3cd7d0df6193299307aa40de79a3aed1d22b07b991b74c461c088a81dd",
+      "audioUrl": "audio/610a855b3322823d.wav",
+      "ratings": {
+        "label": "Begin Again C",
+        "progression": 5,
+        "phrasing": 1,
+        "paletteFit": null,
+        "artifacts": null,
+        "notes": "0:18 there is a weird note artifact\n0:24 ends super abrubt",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+      "name": "Gentle Company",
+      "palette": "ambient",
+      "displayLabel": "A",
+      "actualArm": "C",
+      "preferred": true,
+      "bedSha256": "fb5b88dc04bdefd3f9d44b933796983f728e9883b7bea5fe1cf4ea4cbd136921",
+      "audioUrl": "audio/f18d1369095bba29.wav",
+      "ratings": {
+        "label": "Gentle Company A",
+        "progression": 5,
+        "phrasing": 1,
+        "paletteFit": 5,
+        "artifacts": 1,
+        "notes": "0:26 ends very abrubt",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+      "name": "Gentle Company",
+      "palette": "ambient",
+      "displayLabel": "B",
+      "actualArm": "A",
+      "preferred": false,
+      "bedSha256": "443c115187fc30e48ea716b41046cc921fd310e6892be553c1e8e732affebb1c",
+      "audioUrl": "audio/9c841dd1b3a13286.wav",
+      "ratings": {
+        "label": "Gentle Company B",
+        "progression": 4,
+        "phrasing": 1,
+        "paletteFit": 5,
+        "artifacts": 1,
+        "notes": "0:26 abrubt ending",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+      "name": "Gentle Company",
+      "palette": "ambient",
+      "displayLabel": "C",
+      "actualArm": "B",
+      "preferred": false,
+      "bedSha256": "4974ed2a739f197f066d4361d70e4640f27f6c35bca2970e1b27df12e6c00562",
+      "audioUrl": "audio/cb3a2079770314e2.wav",
+      "ratings": {
+        "label": "Gentle Company C",
+        "progression": 5,
+        "phrasing": 1,
+        "paletteFit": 5,
+        "artifacts": null,
+        "notes": "0:20 A low note starts and ends to fast\n0:26 ends very abruptly",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+      "name": "First Light",
+      "palette": "ambient",
+      "displayLabel": "A",
+      "actualArm": "C",
+      "preferred": false,
+      "bedSha256": "6bf7fb43201795283ab5dcc2c2d9dada688fbd8de6679e9d61415d47f4bc728f",
+      "audioUrl": "audio/2560aa9fdcd5f673.wav",
+      "ratings": {
+        "label": "First Light A",
+        "progression": 5,
+        "phrasing": 1,
+        "paletteFit": 4,
+        "artifacts": 1,
+        "notes": "0:24 ends abrubtly and single note plays for  abit",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+      "name": "First Light",
+      "palette": "ambient",
+      "displayLabel": "B",
+      "actualArm": "B",
+      "preferred": true,
+      "bedSha256": "1c1d2a2b546ddfd1de110264f028ada2d37c4634bc2aa5e5c3a2e21827b1dd29",
+      "audioUrl": "audio/803fa8d001a19f0d.wav",
+      "ratings": {
+        "label": "First Light B",
+        "progression": 4,
+        "phrasing": 1,
+        "paletteFit": 5,
+        "artifacts": 1,
+        "notes": "0:26 ends abrubt",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+      "name": "First Light",
+      "palette": "ambient",
+      "displayLabel": "C",
+      "actualArm": "A",
+      "preferred": false,
+      "bedSha256": "36a03bf0bb5f428b2302fc23686a628414ca25c44e73da9778654da43a396d36",
+      "audioUrl": "audio/3e95da2596b8b5e1.wav",
+      "ratings": {
+        "label": "First Light C",
+        "progression": 2,
+        "phrasing": 1,
+        "paletteFit": 4,
+        "artifacts": 1,
+        "notes": "0:26 ends abrubtly",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "6e69ff71-4425-43af-8648-cda30c1ff766",
+      "name": "Familiar Afternoon",
+      "palette": "acoustic",
+      "displayLabel": "A",
+      "actualArm": "A",
+      "preferred": false,
+      "bedSha256": "41ead967128c50aaf90ef235ac8644e0801cb3263cc04e96d3fed5bb927704ac",
+      "audioUrl": "audio/927f7e2dc5b1ced9.wav",
+      "ratings": {
+        "label": "Familiar Afternoon A",
+        "progression": 4,
+        "phrasing": 2,
+        "paletteFit": 5,
+        "artifacts": 1,
+        "notes": "0:24 abrubt ending",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "6e69ff71-4425-43af-8648-cda30c1ff766",
+      "name": "Familiar Afternoon",
+      "palette": "acoustic",
+      "displayLabel": "B",
+      "actualArm": "C",
+      "preferred": false,
+      "bedSha256": "36c825fbb95ec8f1bc26ce3a8578333b02db79d47de0318f2e281ecec6424cfd",
+      "audioUrl": "audio/af0d80c99db1f6bd.wav",
+      "ratings": {
+        "label": "Familiar Afternoon B",
+        "progression": 5,
+        "phrasing": 3,
+        "paletteFit": 5,
+        "artifacts": 1,
+        "notes": "",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "6e69ff71-4425-43af-8648-cda30c1ff766",
+      "name": "Familiar Afternoon",
+      "palette": "acoustic",
+      "displayLabel": "C",
+      "actualArm": "B",
+      "preferred": true,
+      "bedSha256": "1f589f5ef2a977fc383bd1f3676a482a7575af7d9c2f2987b5681aed13fbea39",
+      "audioUrl": "audio/da2bddfb8775c845.wav",
+      "ratings": {
+        "label": "Familiar Afternoon C",
+        "progression": 5,
+        "phrasing": 4,
+        "paletteFit": 5,
+        "artifacts": 1,
+        "notes": "",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+      "name": "In the Meantime",
+      "palette": "acoustic",
+      "displayLabel": "A",
+      "actualArm": "A",
+      "preferred": false,
+      "bedSha256": "a8afd3b18fd0c54bb6574721e296754f305e3c75f5636ef1f53dad06f13988be",
+      "audioUrl": "audio/67d4c3381a63a61e.wav",
+      "ratings": {
+        "label": "In the Meantime A",
+        "progression": 5,
+        "phrasing": 3,
+        "paletteFit": 5,
+        "artifacts": 1,
+        "notes": "",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+      "name": "In the Meantime",
+      "palette": "acoustic",
+      "displayLabel": "B",
+      "actualArm": "B",
+      "preferred": false,
+      "bedSha256": "d230a5884b33c3d5376043b4cb9929b2c2727966d2b3e6fbf3076d42c19a64a5",
+      "audioUrl": "audio/743a4404ab24cdbf.wav",
+      "ratings": {
+        "label": "In the Meantime B",
+        "progression": 5,
+        "phrasing": 5,
+        "paletteFit": 4,
+        "artifacts": 1,
+        "notes": "",
+        "ratedAfterReveal": false
+      }
+    },
+    {
+      "groupId": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+      "name": "In the Meantime",
+      "palette": "acoustic",
+      "displayLabel": "C",
+      "actualArm": "C",
+      "preferred": true,
+      "bedSha256": "f6d216391e7d199db9f6ac7c0c3be6f5a8f735b8de1e485b741ade4e56d8869f",
+      "audioUrl": "audio/cbc9d35a9916d312.wav",
+      "ratings": {
+        "label": "In the Meantime C",
+        "progression": 5,
+        "phrasing": null,
+        "paletteFit": 5,
+        "artifacts": 1,
+        "notes": "",
+        "ratedAfterReveal": false
+      }
+    }
+  ],
+  "statistics": {
+    "progression": {
+      "rated": 18,
+      "median": 5.0
+    },
+    "phrasing": {
+      "rated": 17,
+      "median": 3
+    },
+    "paletteFit": {
+      "rated": 17,
+      "median": 5
+    },
+    "artifacts": {
+      "rated": 16,
+      "median": 1.0
+    }
+  }
+}

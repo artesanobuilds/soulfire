@@ -4,6 +4,7 @@ import { defaultCurrentMusic } from "../src/domain/current-music";
 const f = vi.hoisted(() => ({ start: vi.fn(), cancel: vi.fn(), get: vi.fn() }));
 vi.mock("../src/infrastructure/music-lab-runtime", () => ({
   musicCatalog: async () => [musicFixture(), musicFixture("stable")],
+  musicCataloguePolicy: async () => null,
   modelAvailability: async () => [{ model: "ace", ready: true }],
 }));
 vi.mock("../src/infrastructure/music-lab-jobs", () => ({

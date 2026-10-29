@@ -1,9 +1,10 @@
 import { musicLabCommand as command } from "./music-lab-command";
-import {
-  currentMusicPrompt,
-  currentTechnicalIssues,
-} from "../domain/current-music";
+import { currentTechnicalIssues } from "../domain/current-music";
 import { randomUUID } from "node:crypto";
+import {
+  currentGenerationRecipe,
+  currentCatalogueVersion,
+} from "../domain/current-generation";
 import { writeFile, mkdir, rename, rm, stat, statfs } from "node:fs/promises";
 import { join } from "node:path";
 import { homedir } from "node:os";
@@ -75,13 +76,13 @@ export async function startMusicJob(
         507,
         "Less than 50 GiB is free. No model was started.",
       );
-    if ((await musicStorageBytes()) > 2 * 1024 ** 3 - 200 * 1024 ** 2)
+    if ((await musicStorageBytes()) > 6 * 1024 ** 3 - 200 * 1024 ** 2)
       throw new HttpError(
         507,
-        "The 2 GiB local result budget is nearly full. Archive samples deliberately before generating more.",
+        "The 6 GiB local result budget is nearly full. Archive samples deliberately before generating more.",
       );
-    const catalog = await musicCatalog();
-    if (catalog.length >= 100)
+    const catalog = await musicCatalog(true);
+    if (catalog.length >= 180)
       throw new HttpError(
         409,
         "The local sample limit is reached. Archive or remove samples deliberately before generating more.",
@@ -118,22 +119,50 @@ async function run(active: Active) {
   try {
     await mkdir(folder, { recursive: true, mode: 0o700 });
     const runtime = (await getModelRuntime(job.request.model))!;
+    const composition = job.request.current
+      ? currentGenerationRecipe(job.request.current, job.request.seconds)
+      : undefined;
     const result = await command(
       runtime.python,
       [join(process.cwd(), "scripts/run-music-model.py")],
       {
         runtime,
         request: job.request,
-        prompt: job.request.current
-          ? currentMusicPrompt(job.request.current)
+        prompt: composition
+          ? composition.caption
           : musicBriefs[job.request.style],
-        output: join(folder, "source.wav"),
+        ...(composition ? { composition } : {}),
+        output: join(
+          folder,
+          job.request.current ? "raw-source.wav" : "source.wav",
+        ),
       },
       abort.signal,
       900000,
     );
     abort.signal.throwIfAborted();
     const timing = JSON.parse(result.text);
+    let preparation;
+    if (job.request.current) {
+      job.message =
+        "Preparing a gentle release and checking terminal padding; interior musical rests are retained…";
+      const finished = await command(
+        runtime.python,
+        [join(process.cwd(), "scripts/current_audio_finish.py")],
+        {
+          folder,
+          requestedSeconds: job.request.seconds,
+          style: job.request.style,
+        },
+        abort.signal,
+        120000,
+      );
+      abort.signal.throwIfAborted();
+      preparation = {
+        ...JSON.parse(finished.text),
+        catalogueVersion: currentCatalogueVersion,
+      };
+    }
     const source = await stat(join(folder, "source.wav"));
     if (source.size > 100000000)
       throw Error("Audio output exceeded its bound.");
@@ -159,6 +188,7 @@ async function run(active: Active) {
       id: job.id,
       ...(job.request.current ? { currentOnly: true } : {}),
       request: job.request,
+      ...(preparation ? { preparation } : {}),
       modelVersion:
         job.request.model === "ace"
           ? "acestep-v15-turbo / MLX / 8 steps / CFG 1 / no LM rewrite"

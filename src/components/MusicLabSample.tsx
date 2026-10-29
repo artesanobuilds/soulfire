@@ -132,11 +132,22 @@ export function MusicLabSample({
               seconds
             </dd>
             <dt>Cold process total</dt>
-            <dd>{sample.latencySeconds.toFixed(2)} s</dd>
+            <dd>
+              {sample.latencySeconds == null
+                ? "not captured"
+                : sample.latencySeconds.toFixed(2)}{" "}
+              s
+            </dd>
             <dt>Load / inference</dt>
             <dd>
-              {sample.loadSeconds.toFixed(2)} /{" "}
-              {sample.inferenceSeconds.toFixed(2)} s
+              {sample.loadSeconds == null
+                ? "not captured"
+                : sample.loadSeconds.toFixed(2)}{" "}
+              /{" "}
+              {sample.inferenceSeconds == null
+                ? "not captured"
+                : sample.inferenceSeconds.toFixed(2)}{" "}
+              s
             </dd>
             <dt>Peak process RSS</dt>
             <dd>

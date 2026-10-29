@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "policyVersion": "current-boundary-master-v1",
+  "rawDuration": 60.0,
+  "playableDuration": 58.39,
+  "requestedDuration": 60,
+  "startSeconds": 0,
+  "endSeconds": 58.39,
+  "fadeInSeconds": 0.08,
+  "fadeOutSeconds": 4.0,
+  "tailRemovedSeconds": 1.6099999999999994,
+  "reason": "low-activity terminal padding only",
+  "terminalDropSeconds": null,
+  "interiorMaxSampleDifference": 0.0,
+  "rawSha256": "2d8a662b74051324f42f143a65319221092aed3e0c98f8e6f1dc3bbfb9df95ad",
+  "masterSha256": "a7f6d95fd5f705cdf804fb2a4b0724528f6d8099a408a3b44d3934be3a3190d4",
+  "last100msRmsDbfs": -125.68984985351562,
+  "stems": false,
+  "catalogueVersion": "current-listening-20261029-v1"
+}

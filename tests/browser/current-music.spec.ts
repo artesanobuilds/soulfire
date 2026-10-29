@@ -1,7 +1,10 @@
 // Synthetic PCM and mocked jobs; never reads a microphone or invokes a provider.
 import { test, expect, type Page } from "@playwright/test";
 import { musicFixture } from "../fixtures/music-lab";
-import { currentMusicStorageKey } from "../../src/domain/current-music";
+import {
+  currentMusicStorageKey,
+  defaultCurrentMusic,
+} from "../../src/domain/current-music";
 const sample = musicFixture();
 function tone() {
   const sr = 12000,
@@ -769,4 +772,77 @@ test("checkbox rows align, wrap and toggle through labels and keyboard", async (
     await page.keyboard.press("Space");
     await expect(checkbox).toBeChecked({ checked: initial });
   }
+});
+
+test("catalogue replacement hides old starters but restores an exact saved earlier version", async ({
+  page,
+}) => {
+  await open(page);
+  const replacement = {
+    ...sample,
+    id: "99999999-9999-4999-8999-999999999999",
+    metrics: { ...sample.metrics, pcmSha256: "d".repeat(64) },
+  };
+  await page.route("**/api/current/music**", (r) =>
+    r.fulfill({
+      json: {
+        samples: [replacement],
+        archivedSamples: [sample],
+        catalogue: {
+          version: "replacement-test",
+          description: "New stereo music catalogue",
+        },
+        availability: { model: "ace", ready: true },
+      },
+    }),
+  );
+  await page.evaluate(
+    ({ key, old }) => localStorage.setItem(key, JSON.stringify([old])),
+    {
+      key: currentMusicStorageKey,
+      old: {
+        version: 2,
+        id: "88888888-8888-4888-8888-888888888888",
+        name: "Earlier favorite",
+        sampleId: sample.id,
+        pcmSha256: sample.metrics.pcmSha256,
+        options: defaultCurrentMusic,
+        minutes: 5,
+        volume: 0.22,
+        brightness: 0.55,
+        space: 0.08,
+      },
+    },
+  );
+  await page.reload();
+  await page.getByRole("button", { name: "Current", exact: true }).click();
+  await expect(
+    page.locator(`.cm-starter[data-sample-id="${sample.id}"]`),
+  ).toHaveCount(0);
+  await expect(
+    page.locator(`.cm-starter[data-sample-id="${replacement.id}"]`),
+  ).toHaveCount(1);
+  await page
+    .locator(".cm-saved")
+    .getByRole("button", { name: "Earlier favorite", exact: true })
+    .click();
+  await expect(
+    page.getByText(/Earlier catalogue version, retained/),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("textbox", { name: "Current name", exact: true }),
+  ).toHaveValue("Earlier favorite");
+  let audioId = "";
+  page.on("request", (r) => {
+    if (r.url().includes("/api/music-lab/audio"))
+      audioId = new URL(r.url()).searchParams.get("id") || "";
+  });
+  await page.getByRole("button", { name: "Play Current", exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "Pause Current", exact: true }),
+  ).toBeVisible();
+  expect(audioId).toBe(sample.id);
+  await page
+    .getByRole("button", { name: "Stop Current audio", exact: true })
+    .click();
 });

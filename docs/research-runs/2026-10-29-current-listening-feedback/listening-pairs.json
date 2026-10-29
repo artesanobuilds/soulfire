@@ -1,0 +1,50 @@
+[
+  {
+    "name": "In My Own Words",
+    "before": "../audio/73f423f59453191b.wav",
+    "after": "audio/94bedc0a-2e6e-4c60-91b1-a1bcaa72bef8.wav",
+    "seconds": 56.75,
+    "id": "94bedc0a-2e6e-4c60-91b1-a1bcaa72bef8",
+    "oldArm": "A"
+  },
+  {
+    "name": "Begin Again",
+    "before": "../audio/e7d0642930010c61.wav",
+    "after": "audio/000f286b-fba5-42ab-a2e9-acf7ddfda3df.wav",
+    "seconds": 57.69,
+    "id": "000f286b-fba5-42ab-a2e9-acf7ddfda3df",
+    "oldArm": "B"
+  },
+  {
+    "name": "Gentle Company",
+    "before": "../audio/f18d1369095bba29.wav",
+    "after": "audio/ac292e43-8e37-425a-a813-eb2ed9ba826e.wav",
+    "seconds": 58.37,
+    "id": "ac292e43-8e37-425a-a813-eb2ed9ba826e",
+    "oldArm": "C"
+  },
+  {
+    "name": "First Light",
+    "before": "../audio/803fa8d001a19f0d.wav",
+    "after": "audio/92da126b-f393-446d-8078-6666a5c6b230.wav",
+    "seconds": 58.71,
+    "id": "92da126b-f393-446d-8078-6666a5c6b230",
+    "oldArm": "B"
+  },
+  {
+    "name": "Familiar Afternoon",
+    "before": "../audio/da2bddfb8775c845.wav",
+    "after": "audio/f5d72bd0-4b10-45bd-a14b-6c96263f6dc3.wav",
+    "seconds": 55.76,
+    "id": "f5d72bd0-4b10-45bd-a14b-6c96263f6dc3",
+    "oldArm": "B"
+  },
+  {
+    "name": "In the Meantime",
+    "before": "../audio/cbc9d35a9916d312.wav",
+    "after": "audio/c99a8a1e-f188-454d-955e-5a50b2a6ec49.wav",
+    "seconds": 55.89,
+    "id": "c99a8a1e-f188-454d-955e-5a50b2a6ec49",
+    "oldArm": "C"
+  }
+]

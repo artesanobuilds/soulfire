@@ -1,0 +1,11 @@
+{
+  "pairs": 6,
+  "realFilesPlayed": 12,
+  "endingSeek": true,
+  "noAutoplay": true,
+  "stop": true,
+  "mobileOverflow": false,
+  "errors": [],
+  "physicalOutputMuted": true,
+  "humanAudition": false
+}

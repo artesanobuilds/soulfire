@@ -1,5 +1,6 @@
 import { z } from "zod";
 import seeds from "./current-seeds.json";
+import { currentGenerationRecipe } from "./current-generation";
 export const currentSeedCatalogue = seeds;
 export function currentSeed(id: string) {
   return currentSeedCatalogue.find((s) => s.id === id);
@@ -38,23 +39,7 @@ export function currentMusicPrompt(options: CurrentMusicOptions) {
   const seed = o.conceptId ? currentSeed(o.conceptId) : undefined;
   if (o.conceptId && (!seed?.eligible || seed.style !== o.taste))
     throw Error("This starter is not eligible for adult Current generation.");
-  const goal = {
-    focus:
-      "Unobtrusive background for a quiet task, stable phrasing and restrained detail",
-    calm: "An unhurried quiet interlude with spacious pauses",
-    overwhelm:
-      "Very sparse predictable phrases with little change and generous space",
-    unwind: "Soft low-energy music with a gentle ending, no build",
-    lift: "Light warm music with modest movement, without a dramatic climax",
-    company:
-      "Warm familiar-feeling instrumental phrasing, intimate and understated",
-  }[o.intent];
-  const palette = {
-    piano: "soft felt-like piano",
-    ambient: "beatless sustained warm pads and strings",
-    acoustic: "restrained nylon-string acoustic guitar",
-  }[o.taste];
-  return `Instrumental ${palette}. ${goal}. ${seed?.character || ""} ${o.movement === "opening" ? "Begin with a sparse clear motif." : o.movement === "developing" ? "Develop a little textural variety without a dramatic build." : o.movement === "closing" ? "Return to restrained detail and a gentle ending." : ""} Simple consonant harmony, soft even dynamics. ${o.feel === "gently-shift" ? "A subtle move toward a slightly warmer texture; no abrupt changes." : "Keep the musical feel steady."} ${o.avoid.includes("bright") ? "No sharp attacks, harsh highs or bright metallic sounds." : "Natural rounded tone."} ${o.avoid.includes("percussion") ? "No drums or percussion." : "Only a very understated pulse if any."} ${o.avoid.includes("nature") ? "No environmental or nature recordings." : "No environmental effects are required."} No vocals, speech, sudden peaks, startling sounds or dramatic ending. A musical preference request, not a treatment protocol.`;
+  return currentGenerationRecipe(o, 60).caption;
 }
 export function currentTechnicalIssues(s: MusicSample): string[] {
   const m = s.metrics,
@@ -64,7 +49,11 @@ export function currentTechnicalIssues(s: MusicSample): string[] {
   if (
     m.duration < 10 ||
     m.duration > 100 ||
-    Math.abs(m.duration - s.request.seconds) > 3
+    (s.preparation
+      ? Math.abs(s.preparation.playableDuration - m.duration) > 0.05 ||
+        Math.abs(s.preparation.rawDuration - s.request.seconds) > 3 ||
+        m.duration < s.request.seconds * 0.75
+      : Math.abs(m.duration - s.request.seconds) > 3)
   )
     issues.push("Duration needs review.");
   if (Math.abs(m.matchedLufs + 21) > 0.3 || m.matchedTruePeakDb > -2.5)

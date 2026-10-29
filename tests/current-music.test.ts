@@ -38,9 +38,9 @@ it("taste, exclusions and feel are actual prompt inputs", () => {
     feel: "gently-shift",
   });
   expect(p).toContain("nylon-string");
-  expect(p).toContain("No sharp attacks");
-  expect(p).toContain("No environmental");
-  expect(p).toContain("slightly warmer");
+  expect(p).toContain("soft rounded attacks");
+  expect(p).toContain("music only");
+  expect(p).toContain("gradually warmer");
 });
 it("rejects unknown clinical fields and arbitrary model settings", () => {
   expect(() =>

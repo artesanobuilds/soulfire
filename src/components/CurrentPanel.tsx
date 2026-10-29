@@ -78,6 +78,8 @@ function MusicCurrent({
       ...defaultCurrentMusic,
     }),
     [samples, setSamples] = useState<MusicSample[]>([]),
+    [archivedSamples, setArchivedSamples] = useState<MusicSample[]>([]),
+    [catalogueDescription, setCatalogueDescription] = useState(""),
     [availability, setAvailability] = useState<MusicAvailability | null>(null),
     [loading, setLoading] = useState(true),
     [error, setError] = useState("");
@@ -124,6 +126,12 @@ function MusicCurrent({
       setSamples(
         (data.samples as unknown[]).map((s) => musicSampleSchema.parse(s)),
       );
+      setArchivedSamples(
+        ((data.archivedSamples || []) as unknown[]).map((s) =>
+          musicSampleSchema.parse(s),
+        ),
+      );
+      setCatalogueDescription(data.catalogue?.description || "");
       setAvailability(data.availability);
       setError("");
     } catch (e) {
@@ -472,11 +480,12 @@ function MusicCurrent({
       setNotice("Could not save. Your existing sessions were left unchanged.");
     }
   }
+  const knownSamples = [...samples, ...archivedSamples];
   const suggested = suggestedCurrentSamples(samples, options);
   const sessionPieces = sessionIds
     .map(
       (id) =>
-        samples.find((s) => s.id === id) ||
+        knownSamples.find((s) => s.id === id) ||
         (selected?.id === id ? selected : undefined),
     )
     .filter((s): s is MusicSample => !!s);
@@ -488,7 +497,7 @@ function MusicCurrent({
       ? "quiet-gap"
       : "crossfade";
   const latestPieces = latestIds
-    .map((id) => samples.find((s) => s.id === id))
+    .map((id) => knownSamples.find((s) => s.id === id))
     .filter((s): s is MusicSample => !!s);
   const generatedConcepts = new Set(
     samples.map((s) => s.request.current?.conceptId).filter(Boolean),
@@ -844,6 +853,9 @@ function MusicCurrent({
               </p>
             </div>
           )}
+          {catalogueDescription && (
+            <p className="small">{catalogueDescription}</p>
+          )}
           <div className="cm-starters">
             {suggested.slice(0, expandedShelf ? 80 : 6).map((s) => (
               <button
@@ -920,6 +932,12 @@ function MusicCurrent({
             <h2>{selected ? name : "Make it yours."}</h2>
             {selected ? (
               <>
+                {archivedSamples.some((s) => s.id === selected?.id) && (
+                  <p role="status" className="notice">
+                    Earlier catalogue version, retained for this saved session.
+                    New starters are available above; nothing was substituted.
+                  </p>
+                )}
                 <label className="current-field">
                   Current name
                   <input
@@ -1146,7 +1164,7 @@ function MusicCurrent({
                         { sampleId: item.sampleId, pcmSha256: item.pcmSha256 },
                       ];
                       const pieces = refs.map((ref) =>
-                        samples.find(
+                        knownSamples.find(
                           (s) =>
                             s.id === ref.sampleId &&
                             s.metrics.pcmSha256 === ref.pcmSha256,

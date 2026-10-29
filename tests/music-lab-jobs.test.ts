@@ -114,3 +114,31 @@ it("a cancellation arriving during setup prevents delayed startup", async () => 
   await expect(pending).rejects.toThrow("already cancelled");
   expect(fixtures.command).not.toHaveBeenCalled();
 });
+
+it("a failed boundary-finishing step never publishes an unreviewed raw Current", async () => {
+  fixtures.command
+    .mockResolvedValueOnce({
+      text: JSON.stringify({
+        latencySeconds: 1,
+        loadSeconds: 0,
+        inferenceSeconds: 1,
+      }),
+      rss: null,
+    })
+    .mockRejectedValueOnce(Error("Synthetic ending check failed"));
+  const job = await startMusicJob(
+    {
+      ...request,
+      current: {
+        intent: "calm",
+        taste: "piano",
+        avoid: ["vocals"],
+        feel: "steady",
+      },
+    },
+    id(7),
+  );
+  await vi.waitFor(() => expect(getMusicJob(job.id)?.phase).toBe("error"));
+  expect(getMusicJob(job.id)?.sampleId).toBeUndefined();
+  expect(fixtures.command).toHaveBeenCalledTimes(2);
+});

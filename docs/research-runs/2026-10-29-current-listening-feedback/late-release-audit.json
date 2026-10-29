@@ -1,0 +1,439 @@
+{
+  "method": "Terminal 100ms RMS drops >18dB with preceding level >-45dBFS and no later meaningful return; 80Hz activity tail",
+  "rows": [
+    {
+      "id": "6bf6962a-97f9-4789-bdbe-a61d7c922bd8",
+      "name": "Small Morning",
+      "tailSeconds": 1.1700000000000017,
+      "flags": []
+    },
+    {
+      "id": "3cd1067e-1016-494a-ae8a-6f1dc8ae88ed",
+      "name": "Small Morning",
+      "tailSeconds": 0.4999999999999929,
+      "flags": []
+    },
+    {
+      "id": "9effbe03-3b00-4c65-aeac-b512603e6d96",
+      "name": "Window Light",
+      "tailSeconds": 0.9899999999999949,
+      "flags": []
+    },
+    {
+      "id": "35810ca0-1a13-4892-9990-0b7d4fcac3e3",
+      "name": "Window Light",
+      "tailSeconds": 0.8399999999999963,
+      "flags": []
+    },
+    {
+      "id": "89694788-a79b-4a4b-b81d-5a5a5bb89624",
+      "name": "Room to Settle",
+      "tailSeconds": 1.009999999999998,
+      "flags": []
+    },
+    {
+      "id": "e992df8f-f15f-4248-be74-4598837438b2",
+      "name": "Room to Settle",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "7bdd9446-1f0a-49dd-a232-ca44a0661341",
+      "name": "Open Horizon",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "0354798b-fc9a-46ed-a3f2-880653f05703",
+      "name": "Open Horizon",
+      "tailSeconds": 0.9699999999999989,
+      "flags": []
+    },
+    {
+      "id": "a7e54c9c-ca5a-4c63-ab94-81bc7ba49fb7",
+      "name": "One Moment",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "35ef30c4-a423-4fea-aa08-89a5d92210a9",
+      "name": "One Moment",
+      "tailSeconds": 0.759999999999998,
+      "flags": []
+    },
+    {
+      "id": "7a9fa191-8163-4cf8-8468-1124576dec54",
+      "name": "Steady Ground",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "0a0bb0e2-a4b3-4f11-9c58-5c8f165dd51f",
+      "name": "Steady Ground",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "33d1d1f5-e3f1-4944-a821-e74b2943c38d",
+      "name": "Room for Both",
+      "tailSeconds": 1.0700000000000003,
+      "flags": []
+    },
+    {
+      "id": "e6ac78bc-cfb3-4fd7-8695-7260609a462c",
+      "name": "Room for Both",
+      "tailSeconds": 0.8899999999999935,
+      "flags": []
+    },
+    {
+      "id": "f13e3ffb-42e4-4129-a0f8-e6df5aebf45c",
+      "name": "Gentle Next Step",
+      "tailSeconds": 0.5200000000000031,
+      "flags": []
+    },
+    {
+      "id": "fa447ee7-338d-475f-ae5e-130201aae4d0",
+      "name": "Gentle Next Step",
+      "tailSeconds": 1.1099999999999994,
+      "flags": []
+    },
+    {
+      "id": "0603f923-8c9c-450d-a8b6-0dba2d85edab",
+      "name": "Here and Now",
+      "tailSeconds": 1.009999999999998,
+      "flags": []
+    },
+    {
+      "id": "9307be19-4c42-4bde-aa81-a27eb6c068ef",
+      "name": "Here and Now",
+      "tailSeconds": 1.2299999999999969,
+      "flags": []
+    },
+    {
+      "id": "0f93883d-aa68-4c59-a150-227d90628f0f",
+      "name": "Wide Awake Garden",
+      "tailSeconds": 0.46000000000000085,
+      "flags": []
+    },
+    {
+      "id": "a6b53a85-eb7a-4521-a6c5-c1fc2e4fc53e",
+      "name": "Wide Awake Garden",
+      "tailSeconds": 0.75,
+      "flags": []
+    },
+    {
+      "id": "3c880d8a-160d-413f-87c2-044d57872af6",
+      "name": "Unmeasured Time",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "90ecfeac-89dd-4974-8836-89db8743b190",
+      "name": "Unmeasured Time",
+      "tailSeconds": 0.9099999999999966,
+      "flags": []
+    },
+    {
+      "id": "3afd1232-42f5-479d-bf24-3a36c401915b",
+      "name": "Soft Clearing",
+      "tailSeconds": 0.8299999999999983,
+      "flags": []
+    },
+    {
+      "id": "723e9dec-9a89-4de1-9dff-b7cece5765e7",
+      "name": "Soft Clearing",
+      "tailSeconds": 0.5999999999999943,
+      "flags": []
+    },
+    {
+      "id": "c5a3255a-736a-47b7-a4e8-cdda1e5d9302",
+      "name": "Room for Uncertainty",
+      "tailSeconds": 0.5200000000000031,
+      "flags": []
+    },
+    {
+      "id": "7f337158-e146-4dc8-a2f2-04b81b54efb8",
+      "name": "Room for Uncertainty",
+      "tailSeconds": 0.28000000000000114,
+      "flags": []
+    },
+    {
+      "id": "63bca2a7-57f1-4031-9a77-b2e729f4b964",
+      "name": "An Ordinary Afternoon",
+      "tailSeconds": 1.0,
+      "flags": []
+    },
+    {
+      "id": "5eb85fad-471f-4ba1-82f7-a0d77be7d29d",
+      "name": "An Ordinary Afternoon",
+      "tailSeconds": 0.769999999999996,
+      "flags": []
+    },
+    {
+      "id": "5a903cbb-1f00-443f-87fa-ce5899759170",
+      "name": "A Little Distance",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "88e6790b-6d82-4604-b93a-24e0577a2abb",
+      "name": "A Little Distance",
+      "tailSeconds": 1.1300000000000026,
+      "flags": []
+    },
+    {
+      "id": "997f9ee2-4793-4d7a-acf8-6d730858e59b",
+      "name": "Steady Shore",
+      "tailSeconds": 1.0900000000000034,
+      "flags": []
+    },
+    {
+      "id": "834c6417-496d-443d-9946-027232a36e5b",
+      "name": "Steady Shore",
+      "tailSeconds": 1.1899999999999977,
+      "flags": []
+    },
+    {
+      "id": "04ed66d7-f1e6-4560-b17e-8ac7b1d3c16c",
+      "name": "A Moment for Me",
+      "tailSeconds": 0.7899999999999991,
+      "flags": []
+    },
+    {
+      "id": "d0e6b022-742c-42d1-833d-ecdcd2958271",
+      "name": "A Moment for Me",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "e22d97e1-963c-4ccd-a20e-959d6bfcfaef",
+      "name": "Daylight Corner",
+      "tailSeconds": 0.8100000000000023,
+      "flags": []
+    },
+    {
+      "id": "bb50f9e6-5455-41e8-a080-93b208db6684",
+      "name": "Daylight Corner",
+      "tailSeconds": 0.35999999999999943,
+      "flags": []
+    },
+    {
+      "id": "5c47764c-448e-458f-8b8c-ea69df13b0e8",
+      "name": "Nearer",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "68a0d814-7e0b-470f-8204-0a7410956c54",
+      "name": "Nearer",
+      "tailSeconds": 1.1300000000000026,
+      "flags": []
+    },
+    {
+      "id": "efe5e6ca-4bbe-43c0-b5eb-27558d819334",
+      "name": "Shared Daylight",
+      "tailSeconds": 1.1299999999999955,
+      "flags": []
+    },
+    {
+      "id": "5c222f09-0c5a-49c6-be4b-138e53e0b261",
+      "name": "Shared Daylight",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "11a70dfa-e010-44b1-a889-e26e2e173905",
+      "name": "Off the Clock",
+      "tailSeconds": 0.9499999999999957,
+      "flags": []
+    },
+    {
+      "id": "b4bc9f67-1e4f-48c5-9926-8f99324a76c8",
+      "name": "Off the Clock",
+      "tailSeconds": 1.0700000000000003,
+      "flags": []
+    },
+    {
+      "id": "916de23f-02ea-4d81-9cf3-0add9193acb9",
+      "name": "Unhurried Clearing",
+      "tailSeconds": 1.0700000000000003,
+      "flags": []
+    },
+    {
+      "id": "c1d363e4-acc7-4d5b-b66a-8a350fb21203",
+      "name": "Unhurried Clearing",
+      "tailSeconds": 0.8900000000000006,
+      "flags": []
+    },
+    {
+      "id": "3ab6e740-72d5-4a24-bc42-5bb7aec8374b",
+      "name": "A Breathing Space",
+      "tailSeconds": 0.8699999999999974,
+      "flags": []
+    },
+    {
+      "id": "ef9559c6-9c10-4989-ad74-9578a2b04412",
+      "name": "A Breathing Space",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "239ce47f-ef29-4d75-8894-0ebf52d89e24",
+      "name": "Room to Plan",
+      "tailSeconds": 0.4799999999999969,
+      "flags": []
+    },
+    {
+      "id": "b9390364-f8df-443f-a5bf-30111592d085",
+      "name": "Room to Plan",
+      "tailSeconds": 0.8900000000000006,
+      "flags": []
+    },
+    {
+      "id": "5faa37cb-6b54-4322-b4bf-f8c2f6a44e0e",
+      "name": "Your Own Light",
+      "tailSeconds": 0.46000000000000085,
+      "flags": []
+    },
+    {
+      "id": "da1af710-b810-48fe-8319-ca5d5d63d044",
+      "name": "Your Own Light",
+      "tailSeconds": 1.029999999999994,
+      "flags": []
+    },
+    {
+      "id": "877968b4-0010-4db3-8d0b-e424a8b71d0e",
+      "name": "Belonging on Your Terms",
+      "tailSeconds": 1.029999999999994,
+      "flags": []
+    },
+    {
+      "id": "feefe3be-b04a-40b5-ba38-624c742fc825",
+      "name": "Belonging on Your Terms",
+      "tailSeconds": 0.5999999999999943,
+      "flags": []
+    },
+    {
+      "id": "842acb4d-82e1-4c8e-8304-5b0d457d5494",
+      "name": "Close at Hand",
+      "tailSeconds": 1.1699999999999946,
+      "flags": []
+    },
+    {
+      "id": "49afdf79-9867-4fbf-bbed-8c5fb55720c3",
+      "name": "Close at Hand",
+      "tailSeconds": 1.1700000000000017,
+      "flags": []
+    },
+    {
+      "id": "df52dfaf-4e0c-459a-9351-93493fcdc3e1",
+      "name": "A Quiet Place",
+      "tailSeconds": 0.9499999999999957,
+      "flags": []
+    },
+    {
+      "id": "8be2b2ea-a071-46aa-a020-89a5d520e3fd",
+      "name": "A Quiet Place",
+      "tailSeconds": 0.6700000000000017,
+      "flags": []
+    },
+    {
+      "id": "5ee0d579-49be-493b-bbe2-3252d57252f4",
+      "name": "Begin Again",
+      "tailSeconds": 0.5599999999999952,
+      "flags": []
+    },
+    {
+      "id": "000f286b-fba5-42ab-a2e9-acf7ddfda3df",
+      "name": "Begin Again",
+      "tailSeconds": 1.0699999999999932,
+      "flags": []
+    },
+    {
+      "id": "ef8f25aa-3771-4cc4-8024-ee33e9b0f618",
+      "name": "No Catching Up",
+      "tailSeconds": 0.7700000000000031,
+      "flags": []
+    },
+    {
+      "id": "ac45a643-8b3b-4ccd-a38f-14faf5ab31f3",
+      "name": "No Catching Up",
+      "tailSeconds": 0.6799999999999926,
+      "flags": []
+    },
+    {
+      "id": "4b0b4b21-7dfc-4fd5-89bd-b5bd5a44938a",
+      "name": "In the Meantime",
+      "tailSeconds": 0.9899999999999949,
+      "flags": []
+    },
+    {
+      "id": "c99a8a1e-f188-454d-955e-5a50b2a6ec49",
+      "name": "In the Meantime",
+      "tailSeconds": 0.9500000000000028,
+      "flags": []
+    },
+    {
+      "id": "847411b0-7e8f-4330-ba02-393fb61a994e",
+      "name": "A Small Anchor",
+      "tailSeconds": 0.5399999999999991,
+      "flags": []
+    },
+    {
+      "id": "80d4ed43-82fe-41a4-8acd-ac9402a7425d",
+      "name": "A Small Anchor",
+      "tailSeconds": 0.7399999999999949,
+      "flags": []
+    },
+    {
+      "id": "94bedc0a-2e6e-4c60-91b1-a1bcaa72bef8",
+      "name": "In My Own Words",
+      "tailSeconds": 1.1099999999999994,
+      "flags": []
+    },
+    {
+      "id": "fbbd41cb-580b-41bb-ac21-f5ce6c8843ee",
+      "name": "In My Own Words",
+      "tailSeconds": 0.5399999999999991,
+      "flags": []
+    },
+    {
+      "id": "92da126b-f393-446d-8078-6666a5c6b230",
+      "name": "First Light",
+      "tailSeconds": 1.1099999999999994,
+      "flags": []
+    },
+    {
+      "id": "3eecc36a-5bba-4176-8ad2-00c0e04ddab8",
+      "name": "First Light",
+      "tailSeconds": 0.259999999999998,
+      "flags": []
+    },
+    {
+      "id": "c844d873-dc49-4cf3-a3e1-5ff6aa961f3f",
+      "name": "Familiar Afternoon",
+      "tailSeconds": 1.1899999999999977,
+      "flags": []
+    },
+    {
+      "id": "f5d72bd0-4b10-45bd-a14b-6c96263f6dc3",
+      "name": "Familiar Afternoon",
+      "tailSeconds": 0.5,
+      "flags": []
+    },
+    {
+      "id": "bfe760af-254d-432f-9aac-9c93436159a0",
+      "name": "Gentle Company",
+      "tailSeconds": 0.9000000000000057,
+      "flags": []
+    },
+    {
+      "id": "ac292e43-8e37-425a-a813-eb2ed9ba826e",
+      "name": "Gentle Company",
+      "tailSeconds": 0.9099999999999966,
+      "flags": []
+    }
+  ],
+  "flaggedCandidates": 0,
+  "longTailCandidates": 0
+}

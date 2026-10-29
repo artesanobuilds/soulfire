@@ -6,11 +6,11 @@ import librosa
 import basic_pitch
 from basic_pitch.inference import Model, predict
 ROOT=pathlib.Path(__file__).resolve().parents[1]
-OUT=ROOT/'docs/research-runs/2026-10-29-current-musicality'
-parser=argparse.ArgumentParser();parser.add_argument('--study',action='store_true');args=parser.parse_args()
-INVENTORY=json.loads((OUT/('study-inventory.json' if args.study else 'inventory.json')).read_text())
-DEST=OUT/('study-transcriptions' if args.study else 'transcriptions');DEST.mkdir(exist_ok=True)
-MANIFEST=OUT/('study-transcription-manifest.json' if args.study else 'transcription-manifest.json')
+parser=argparse.ArgumentParser();group=parser.add_mutually_exclusive_group();group.add_argument('--study',action='store_true');group.add_argument('--catalogue',action='store_true');args=parser.parse_args()
+OUT=ROOT/('docs/research-runs/2026-10-29-current-listening-feedback' if args.catalogue else 'docs/research-runs/2026-10-29-current-musicality')
+INVENTORY=json.loads((OUT/('catalogue-inventory.json' if args.catalogue else 'study-inventory.json' if args.study else 'inventory.json')).read_text())
+DEST=OUT/('catalogue-transcriptions' if args.catalogue else 'study-transcriptions' if args.study else 'transcriptions');DEST.mkdir(exist_ok=True)
+MANIFEST=OUT/('catalogue-transcription-manifest.json' if args.catalogue else 'study-transcription-manifest.json' if args.study else 'transcription-manifest.json')
 MODEL=next(pathlib.Path(basic_pitch.__file__).parent.rglob('nmp.onnx'))
 model=Model(MODEL)
 assert model.model_type==Model.MODEL_TYPES.ONNX

@@ -7,7 +7,13 @@ import sys,json,time,os,contextlib,subprocess,resource
 job=json.loads(sys.stdin.buffer.read(20000));runtime=job['runtime'];request=job['request']
 assert request['model'] in ('ace','stable') and 30<=request['seconds']<=90 and 0<=request['seed']<=2147483647
 assert runtime['executionApproved'] is True
-requested_key='C major' if request.get('current') and not request['current'].get('conceptId') else ''
+composition=job.get('composition')
+if composition:
+ assert request['model']=='ace' and request.get('current') and composition['shift'] in (1,3) and len(composition['caption'])<1600
+requested_key=composition['requestedKey'] if composition else ('C major' if request.get('current') and not request['current'].get('conceptId') else '')
+requested_bpm=composition['requestedBpm'] if composition else (None if request['style']=='ambient' else 64)
+requested_signature=composition['requestedTimeSignature'] if composition else ''
+requested_shift=float(composition['shift']) if composition else 1.0
 root=Path(runtime['root']).resolve();out=Path(job['output']).resolve();out.parent.mkdir(parents=True,exist_ok=True)
 os.chdir(root)
 assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()==runtime['codeRevision'],'Runtime source revision changed'
@@ -30,7 +36,7 @@ with contextlib.redirect_stdout(sys.stderr):
   assert ok,status
   assert handler.use_mlx_dit,'MLX was requested but not active'
   load=time.perf_counter()-started
-  params=GenerationParams(caption=job['prompt'],lyrics='[Instrumental]',instrumental=True,bpm=None if request['style']=='ambient' else 64,duration=request['seconds'],seed=request['seed'],keyscale=requested_key,shift=1.0,inference_steps=8,guidance_scale=1.0,enable_normalization=False,thinking=False,use_cot_metas=False,use_cot_caption=False,use_cot_language=False)
+  params=GenerationParams(caption=job['prompt'],lyrics='[Instrumental]',instrumental=True,bpm=requested_bpm,duration=request['seconds'],seed=request['seed'],keyscale=requested_key,timesignature=requested_signature,shift=requested_shift,inference_steps=8,guidance_scale=1.0,enable_normalization=False,thinking=False,use_cot_metas=False,use_cot_caption=False,use_cot_language=False)
   config=GenerationConfig(batch_size=1,use_random_seed=False,seeds=[request['seed']],audio_format='wav')
   stamp=time.perf_counter();result=generate_music(handler,LLMHandler(),params,config,save_dir=str(out.parent/'model-output'));mx.synchronize();inference=time.perf_counter()-stamp
   assert result.success,result.error
@@ -50,5 +56,6 @@ with contextlib.redirect_stdout(sys.stderr):
  except Exception:accelerator=None
 assert out.exists() and out.stat().st_size>44
 summary={'latencySeconds':time.perf_counter()-started,'loadSeconds':load,'inferenceSeconds':inference,'peakRssBytes':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss if request['model']=='ace' else None,'peakAcceleratorBytes':accelerator}
-if request['model']=='ace':summary['generationSettings']={'steps':8,'shift':1,'guidanceScale':1,'thinking':False,'requestedKey':requested_key, 'requestedBpm':None if request['style']=='ambient' else 64}
+if request['model']=='ace':summary['generationSettings']={'steps':8,'shift':requested_shift,'guidanceScale':1,'thinking':False,'requestedKey':requested_key, 'requestedBpm':requested_bpm}
+if composition:summary['generationSettings'].update(composition)
 print(json.dumps(summary))

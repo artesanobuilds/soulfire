@@ -1,0 +1,131 @@
+{
+  "job": {
+    "id": "242d4296-00b3-41d5-80a8-85829c4c5eeb",
+    "request": {
+      "model": "ace",
+      "style": "piano",
+      "seed": 98765553,
+      "seconds": 60,
+      "current": {
+        "intent": "calm",
+        "taste": "piano",
+        "avoid": [
+          "vocals",
+          "percussion",
+          "bright",
+          "nature"
+        ],
+        "feel": "steady"
+      }
+    },
+    "phase": "done",
+    "message": "Generated and measured locally. Ready for deliberate listening.",
+    "sampleId": "242d4296-00b3-41d5-80a8-85829c4c5eeb"
+  },
+  "sample": {
+    "id": "242d4296-00b3-41d5-80a8-85829c4c5eeb",
+    "currentOnly": true,
+    "request": {
+      "model": "ace",
+      "style": "piano",
+      "seed": 98765553,
+      "seconds": 60,
+      "current": {
+        "intent": "calm",
+        "taste": "piano",
+        "avoid": [
+          "vocals",
+          "percussion",
+          "bright",
+          "nature"
+        ],
+        "feel": "steady"
+      }
+    },
+    "modelVersion": "acestep-v15-turbo / MLX / 8 steps / CFG 1 / no LM rewrite",
+    "codeRevision": "ca1e85fe9430179831e6bc6be790c332190a3866",
+    "weightsRevision": "19671f406d603126926c1b7e2adc169acbcade22",
+    "createdAt": "2026-10-29T22:28:52.624Z",
+    "generationSettings": {
+      "steps": 8,
+      "shift": 1,
+      "guidanceScale": 1,
+      "thinking": false,
+      "requestedKey": "C major",
+      "requestedBpm": 64,
+      "requestedTimeSignature": "4",
+      "policyVersion": "current-listening-20261029-v1",
+      "profile": "piano-soft",
+      "caption": "solo felt piano, lyrical four-bar question and answer, recurring gentle motif, widely spaced bass and upper voices, unhurried phrases with natural breathing space, a small descending melodic answer, smooth diatonic voice-leading, coherent gently moving harmony, 16-bar instrumental miniature, balanced four-bar phrases, final two bars resolve gently to the tonic with natural resonance, soft rounded attacks and dark warm tone, restrained even dynamics, consistent musical character, instrumental, no drums, music only, intimate studio recording"
+    },
+    "preparation": {
+      "version": 1,
+      "policyVersion": "current-boundary-master-v2",
+      "catalogueVersion": "current-listening-20261029-v1",
+      "rawDuration": 60,
+      "playableDuration": 52.46,
+      "requestedDuration": 60,
+      "startSeconds": 0,
+      "endSeconds": 52.46,
+      "fadeInSeconds": 0.08,
+      "fadeOutSeconds": 1.65,
+      "tailRemovedSeconds": 7.539999999999999,
+      "reason": "low-activity terminal padding only",
+      "terminalDropSeconds": null,
+      "interiorMaxSampleDifference": 0,
+      "rawSha256": "fd8cb92e6b19e16329d5c2a92f3448034461fdde8af32e973afe3931fd42a19b",
+      "masterSha256": "ad88c8754a2eb36ffd943eeb349d41a1b12d72b047beb3bc2ef2c3e4275e9b60",
+      "last100msRmsDbfs": -74.89282989501953,
+      "stems": false
+    },
+    "latencySeconds": 13.060433292004745,
+    "loadSeconds": 8.586866833997192,
+    "inferenceSeconds": 4.456013332994189,
+    "peakRssBytes": 14914453504,
+    "peakAcceleratorBytes": 24338766612,
+    "metrics": {
+      "duration": 52.46,
+      "sampleRate": 48000,
+      "channels": 2,
+      "integratedLufs": -15.6,
+      "truePeakDb": 0,
+      "loudnessRange": 7,
+      "peak": 0.999969482421875,
+      "clippedFraction": 5.956919557758292e-07,
+      "seamJump": 0,
+      "seamRmsDifferenceDb": -62.520266744998416,
+      "matchedLufs": -21,
+      "matchedTruePeakDb": -5.3,
+      "loopLufs": null,
+      "loopTruePeakDb": null,
+      "narrationLufs": null,
+      "narrationTruePeakDb": null,
+      "loopSeamJump": null,
+      "estimatedKey": null,
+      "keyConfidence": 0.012587220836678625,
+      "estimatedBpm": null,
+      "tempoConfidence": 0.11162559688091278,
+      "chroma": [
+        0.3231696476356878,
+        0.16803753549444111,
+        0.24110284778454685,
+        0.15492329389186318,
+        0.2976305815343208,
+        0.5253222101178399,
+        0.3297691059819091,
+        0.38973316886479886,
+        0.10206702931457487,
+        0.37165591059647335,
+        0.04722777034058209,
+        0.09607135361068583
+      ],
+      "spectralCentroidHz": 398.2248527012633,
+      "onsetRate": 0.7243614182234083,
+      "pcmSha256": "35a35caa3a55af3ad8e0592debbe060808f9f05213956fe7f43ed0ce053561f0",
+      "sha256": "ad88c8754a2eb36ffd943eeb349d41a1b12d72b047beb3bc2ef2c3e4275e9b60"
+    }
+  },
+  "activeCount": 37,
+  "physicalOutputMuted": true,
+  "humanAudition": false
+}
