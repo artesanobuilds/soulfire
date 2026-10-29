@@ -1,0 +1,19 @@
+{
+  "run": "2026-10-29-current-music-evolution",
+  "archiveCreated": "2026-10-29",
+  "policy": "Raw payloads copied without content edits. Synthesis and decisions live separately. Missing originals are identified, never reconstructed from summaries.",
+  "entries": [
+    {
+      "file": "raw/isotune-library-text-copy.md",
+      "bytes": 50551,
+      "sha256": "7e1054a76dd41eaa20912869e12f6cdd493131553cc7dc183c375fbc12c47785",
+      "kind": "verbatim Library full-read text copy",
+      "libraryFileId": "libfile_eb88ca3cbc6481919fbed31b35ca59ad",
+      "sourceFilename": "IsoTune Music Engine_ Evidence-Based Composition Parameters for an Infinitely Looping Generative Music Feature.md",
+      "libraryVersion": 0,
+      "reportedBytes": 50551,
+      "verification": "Complete 396-line Library read, 50,551 bytes. Download helper failed twice. Byte-original verification awaits an independently materialized source hash."
+    }
+  ],
+  "unavailable": []
+}

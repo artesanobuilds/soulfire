@@ -1,0 +1,23 @@
+{
+  "run": "2026-10-27-ember-meditation",
+  "archiveCreated": "2026-10-29",
+  "policy": "Raw payloads copied without content edits. Synthesis and decisions live separately. Missing originals are identified, never reconstructed from summaries.",
+  "entries": [
+    {
+      "file": "raw/custom-meditation-research-library-copy.md",
+      "bytes": 47350,
+      "sha256": "55f0dc333a8c0894cba7beec187c485cb3e256787ee0151dcaa9b17e0293267b",
+      "kind": "verbatim Library full-read text copy",
+      "libraryFileId": "libfile_f5c7975be320819181e2a65df9c7baff",
+      "sourceFilename": "Custom Meditation Generator_ Research Foundation and Engineering Spec (October 2026).md",
+      "verification": "47,350 bytes match reported size; original download failed in prior workflow, so original byte identity was not independently proven."
+    }
+  ],
+  "unavailable": [
+    {
+      "libraryFileId": "libfile_b2638ca91d7c81919659fc1a3637e2c7",
+      "kind": "Meditation three-concept image",
+      "status": "Original pixels unavailable locally; reference retained."
+    }
+  ]
+}

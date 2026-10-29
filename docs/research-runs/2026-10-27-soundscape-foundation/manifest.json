@@ -1,0 +1,27 @@
+{
+  "run": "2026-10-27-soundscape-foundation",
+  "archiveCreated": "2026-10-29",
+  "policy": "Raw payloads copied without content edits. Synthesis and decisions live separately. Missing originals are identified, never reconstructed from summaries.",
+  "entries": [
+    {
+      "file": "raw/audioscape-research-and-naming.md",
+      "bytes": 39797,
+      "sha256": "4173cfe722211da51776234bfc6c26322cfbd31d595ac0584c95699983a2f4ca",
+      "kind": "uploaded research",
+      "libraryFileId": "libfile_f5f7e10d9d9c8191b01d55cd0b7a39b6",
+      "verification": "Matches prior source SHA256 supplied and verified in the original workflow; preserved archive, not a fresh download."
+    }
+  ],
+  "unavailable": [
+    {
+      "libraryFileId": "libfile_8699801f8b188191b065e923b75f1758",
+      "kind": "Current light concept image",
+      "status": "Reference retained; original image bytes were not available locally. Not redrawn as an original."
+    },
+    {
+      "libraryFileId": "libfile_2eb201edaad48191b2378f79b2e8d647",
+      "kind": "Earlier three-direction soundscape board",
+      "status": "Original local bytes unavailable."
+    }
+  ]
+}

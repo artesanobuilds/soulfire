@@ -1,0 +1,96 @@
+{
+  "run": "2026-10-28-local-model-comparison",
+  "archiveCreated": "2026-10-29",
+  "policy": "Raw payloads copied without content edits. Synthesis and decisions live separately. Missing originals are identified, never reconstructed from summaries.",
+  "entries": [
+    {
+      "file": "raw/ace-step-source/LICENSE",
+      "bytes": 1064,
+      "sha256": "05a6bce42a62636d2cfb24139cc008b6b899754e244175814bb5dd2f4a485357",
+      "kind": "official upstream source snapshot",
+      "sourceRevision": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "repository": "https://github.com/ace-step/ACE-Step-1.5",
+      "verification": "Copied unchanged from the pinned local upstream checkout; license retained."
+    },
+    {
+      "file": "raw/ace-step-source/README.md",
+      "bytes": 20439,
+      "sha256": "650c6ef98b70289886669895c4fd68aab3cc45bba74b3525d728a45a85cbcd66",
+      "kind": "official upstream source snapshot",
+      "sourceRevision": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "repository": "https://github.com/ace-step/ACE-Step-1.5",
+      "verification": "Copied unchanged from the pinned local upstream checkout; license retained."
+    },
+    {
+      "file": "raw/ace-step-source/docs/en/INFERENCE.md",
+      "bytes": 40049,
+      "sha256": "fc76c3deb3346d57b09c9ecdb71217aee0de7ba0f22f71db89a9fb0905f955ba",
+      "kind": "official upstream source snapshot",
+      "sourceRevision": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "repository": "https://github.com/ace-step/ACE-Step-1.5",
+      "verification": "Copied unchanged from the pinned local upstream checkout; license retained."
+    },
+    {
+      "file": "raw/ace-step-source/docs/en/Tutorial.md",
+      "bytes": 48790,
+      "sha256": "79ff45ae2040fe9205affdb23700214e6c1228b278ce9034b23485af3b992485",
+      "kind": "official upstream source snapshot",
+      "sourceRevision": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "repository": "https://github.com/ace-step/ACE-Step-1.5",
+      "verification": "Copied unchanged from the pinned local upstream checkout; license retained."
+    },
+    {
+      "file": "raw/stable-audio-source/LICENSE",
+      "bytes": 1069,
+      "sha256": "16bd922f0deee6f11a76f5582258fdc3abdf67c6b8719dbcafbc34dee31979a6",
+      "kind": "official upstream source snapshot",
+      "sourceRevision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+      "repository": "https://github.com/Stability-AI/stable-audio-3",
+      "verification": "Copied unchanged from the pinned local upstream checkout; license retained."
+    },
+    {
+      "file": "raw/stable-audio-source/README.md",
+      "bytes": 14820,
+      "sha256": "cacf79a450a15d69761ca9e05ee9a7ebe13319a62941a26d73e5c03d994c9d50",
+      "kind": "official upstream source snapshot",
+      "sourceRevision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+      "repository": "https://github.com/Stability-AI/stable-audio-3",
+      "verification": "Copied unchanged from the pinned local upstream checkout; license retained."
+    },
+    {
+      "file": "raw/stable-audio-source/optimized/mlx/README.md",
+      "bytes": 20260,
+      "sha256": "5fce0300becfed583577b0e0afacf6f68696196cd6597f136a455b17269e5c31",
+      "kind": "official upstream source snapshot",
+      "sourceRevision": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+      "repository": "https://github.com/Stability-AI/stable-audio-3",
+      "verification": "Copied unchanged from the pinned local upstream checkout; license retained."
+    },
+    {
+      "file": "raw/local-observations/ace-study.json",
+      "bytes": 11973,
+      "sha256": "dc3f4e9d95feeb7c6c294d5d84cc02f68693749b74fc66b6ea8b9e6158c90719",
+      "kind": "first-party raw measurement record",
+      "sourceCommit": "8060fc8e42549b4d07ac8522d5dd3a2d3e94161c",
+      "verification": "Unchanged committed JSON. Technical observations, not clinical or subjective outcomes."
+    },
+    {
+      "file": "raw/local-observations/runtime-checks.json",
+      "bytes": 975,
+      "sha256": "9f380487ea37188729c20b5e9258d1a2c716c4f273fc58c6c53ac1ae6c0a8e91",
+      "kind": "first-party runtime verification record",
+      "sourceCommit": "8060fc8e42549b4d07ac8522d5dd3a2d3e94161c",
+      "verification": "Unchanged committed JSON; distinguish actual generated playback from synthetic UI fixtures."
+    }
+  ],
+  "unavailable": [
+    {
+      "kind": "Stable generated comparison audio",
+      "status": "Never generated; explicit terms/profile-sharing approval pending."
+    },
+    {
+      "kind": "ACE model weights and generated audio",
+      "status": "Deliberately local and outside Git. Revisions and PCM/container hashes preserved in measurement records."
+    }
+  ]
+}

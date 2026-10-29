@@ -1,0 +1,505 @@
+{
+  "title": "Current: music evolution",
+  "date": "2026-10-29",
+  "status": "Proposed - documentation only",
+  "baseline": "8060fc8e42549b4d07ac8522d5dd3a2d3e94161c",
+  "pages": [
+    {
+      "kicker": "01 / EXECUTIVE DESIGN",
+      "title": "Current, made musical",
+      "lead": "A music experience shaped by the listener, constrained by engineering, and tested against evidence.",
+      "sections": [
+        [
+          "The proposal",
+          "Keep Soulfire's light ivory, sage and gold shell and master logo. Current remains a standalone feature alongside Simulations and Ember. Replace neither the journey nor the existing procedural engine until this design is approved."
+        ],
+        [
+          "Two honest modalities",
+          "Shape now adjusts approved audio immediately. Create for me queues ACE-Step 1.5 Turbo candidates, screens them, and assembles a replayable session. Both use one player with reliable Stop, captions for status, a quiet start and explicit playback."
+        ],
+        [
+          "What this document proves",
+          "A traceable and testable design under the chosen model constraint. It does not prove a best generator, an optimal musical prescription, or a mental-health benefit. Evidence-informed design is not validated efficacy."
+        ]
+      ],
+      "diagram": "hybrid"
+    },
+    {
+      "kicker": "02 / DECISION & READINESS",
+      "title": "Why Turbo, and what remains open",
+      "lead": "Miguel selected ACE-Step 1.5 Turbo for readiness. The alternatives and incomplete comparison remain preserved.",
+      "sections": [
+        [
+          "The intentional tradeoff",
+          "The uploaded IsoTune report favors constrained symbolic/rule-based composition rendered through samples. We choose richer generated music and an existing local pipeline, accepting weaker note-level control. Acoustic screening, candidate selection and deterministic playback compensate partially; they cannot restore exact composition control."
+        ],
+        [
+          "Measured local foundation",
+          "At code baseline 8060fc8, six 30-second ACE study clips cover three styles and two seeds. Wall time was 12.77-16.80 seconds (median 13.39); the first setup sample took 47.46 seconds. Peak process RSS was about 13.9 GiB and MLX about 14.6 GiB on M4 Max / 128 GB unified memory. These overlapping measures must not be summed or called CUDA VRAM. Six samples cannot establish p95 latency."
+        ],
+        [
+          "Calibration gap",
+          "The existing adapter benchmark used 8 steps, shift=1, guidance=1, thinking=false and no LM rewrite. Official Turbo guidance recommends shift=3 and 8 steps; CFG is unsupported. Rerun a controlled shift comparison before changing the adapter. Do not relabel earlier results as shift=3 evidence. [M2]"
+        ],
+        [
+          "Alternatives archived",
+          "Keep Music Lab and the procedural Current fallback. Stable Audio has no generated comparison clips because license/profile-sharing approval remains pending. No completed head-to-head winner or subjective listening winner exists. Symbolic generation remains preferable if exact notes or synchronized parts become mandatory. ADR-004 records the decision."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "03 / OUTCOME EVIDENCE",
+      "title": "Supportive evidence, important nulls",
+      "lead": "Transfer from a study to this generator is an explicit uncertainty, not a footnote.",
+      "sections": [
+        [
+          "Stress: heterogeneous support",
+          "A review of 104 RCTs / 9,617 participants found pooled physiological d=.380 and psychological d=.545 effects across diverse music interventions. Its 60-80 BPM moderator was a nonsignificant trend (p=.064), not an optimal dose. Use a slow option as a preference hypothesis. [S1]"
+        ],
+        [
+          "Everyday recovery: closer counterevidence",
+          "Fourteen experiments / 706 healthy participants after laboratory stress found no significant overall recovery benefit: g=.15, 95% CI -.21 to .52, p=.374. Include silence and preferred music as baselines; do not promise faster recovery. [S2]"
+        ],
+        [
+          "Wind down: strongest relevant signal",
+          "Cochrane included 13 trials / 1,007 people. Subjective sleep quality improved in 10 studies / 708 people with moderate certainty; objective sleep and insomnia-severity evidence were uncertain. These were prerecorded interventions, not Current. Offer a timer and fade, without claiming insomnia treatment. [S3]"
+        ],
+        [
+          "Focus and mood: different endpoints",
+          "Lyrics impaired memory/reading by roughly d=-.3; instrumental lo-fi did not credibly improve or impair performance. Feeling focused is not task accuracy. Depression evidence concerns music therapy added to usual care (9 studies / 421 people), not unattended generated music. No diagnosis or replacement-of-care claim follows. [S4, S10]"
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "04 / MECHANISM \u2260 PRESCRIPTION",
+      "title": "Separate evidence from heuristics",
+      "lead": "Replicated outcomes, plausible musical design and engineering heuristics must carry different labels.",
+      "sections": [
+        [
+          "Tempo and natural rests",
+          "A 24-person study linked faster excerpts to arousal measures and a two-minute pause to reductions. It does not validate heart-rate matching, 4-16 second rests or a two-BPM-per-minute ramp. Offer gentle pacing and optional rests as usability experiments. [S5]"
+        ],
+        [
+          "Timbre and harmony",
+          "Ratings of 137 isolated tones relate brightness/envelope to perceived emotion, not a clinical 4-kHz cutoff or therapeutic felt piano. Harmonic surprise and expectation relate to pleasure; one surprising chord every 8-16 chords is an extrapolation, not a tested dose. Use tasteful palettes and listening review. [S6, S7]"
+        ],
+        [
+          "A journey is optional",
+          "The 107-person 2021 trial did not establish sad-to-happy superiority over happy-to-happy. A 193-person preregistered 2026 study found no significant iso-versus-direct compensatory difference. Offer steady or gently shift; never force a sad start or infer a condition from musical taste. [S8, S9]"
+        ],
+        [
+          "No biological control loop in v1",
+          "A 40-student single-group pre/post biofeedback study cannot isolate its adaptive algorithm or pitches. Defer HR/HRV adaptation, health-history intake and mood diagnosis. Reject healing frequencies, key-specific treatments and the supplied 65% anxiety-reduction framing. [S11]"
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "05 / EXPERIENCE CONCEPT",
+      "title": "Two ways into the same Current",
+      "lead": "Conceptual interaction design for review; this is not an implemented screen.",
+      "sections": [
+        [
+          "Shape now",
+          "Start deliberately with an approved session. Level, brightness, space and optional separate ambience respond immediately within bounded ranges. Stop is always reachable. A new instrument or musical feel shows Preparing variation while the existing approved piece continues."
+        ],
+        [
+          "Create for me",
+          "Choose Focus, Settle, Wind Down or Lift; duration; taste; dislikes; and desired feel. Optional free text is editable and local by default. Show queued, generating, reviewing and ready states honestly. Let the user cancel or return later; no autoplay when a job completes."
+        ],
+        [
+          "Choice without clinical inference",
+          "Use explicit preferences, not diagnosis, demographics or private transcript replay. Offer This feels worse -> Stop / quieter alternative. Guidance explains what controls actually change. Reduced motion, keyboard access and text status accompany all animation."
+        ]
+      ],
+      "diagram": "modes"
+    },
+    {
+      "kicker": "06 / CONTROL CONTRACT",
+      "title": "What each lever really controls",
+      "lead": "A musical request and a deterministic audio control are different contracts.",
+      "sections": [
+        [
+          "Deterministic now",
+          "Volume, fades and timer: gain and scheduling. Brightness: bounded filter/EQ with loudness compensation. Space: bounded wet reverb. Ambience: an independently authorized track. None guarantees an emotional outcome or ear-level sound pressure."
+        ],
+        [
+          "Requested, then checked",
+          "BPM, key, time signature, instrumental content and duration are conditioning requests. Estimate adherence with confidence and audition. Mood, palette and density use prompts plus candidate ranking. Do not expose exact layer counts, harmonic surprise budgets or melody ranges as guaranteed controls."
+        ],
+        [
+          "What Turbo does not provide",
+          "The repository license is MIT, not Apache. Official model tables mark extract, lego and complete unsupported for Turbo. Do not depend on isolated stems, independent instrument replacement or guaranteed continuation. Reference, cover and repaint support do not imply those missing abilities. Authorized reference audio only; review resemblance. [M1]"
+        ],
+        [
+          "Versioned generation",
+          "Documented target duration is 10-600 seconds. Pin model, backend, code, config and actual metadata. Save resulting audio and decoded PCM hashes: seeds alone are not portable replay guarantees across LM sampling and backends. Two local same-seed checks matched decoded PCM, not every possible configuration. [M2, M3]"
+        ]
+      ],
+      "diagram": "controls"
+    },
+    {
+      "kicker": "07 / ASYNCHRONOUS PIPELINE",
+      "title": "Generate candidates, release sessions",
+      "lead": "The compiler creates a measurable recipe; it does not diagnose the listener.",
+      "sections": [
+        [
+          "Policy and bounded work",
+          "Compile explicit goal/taste/exclusions into a versioned request and release policy. Begin with 30-90 second candidates and a bounded candidate/retry budget, to be calibrated locally. A duration request for a longer session schedules segments; it is not an infinite model stream."
+        ],
+        [
+          "Three gates",
+          "Hard checks: decodable format, duration tolerance, non-silence, clipping/peak limits, file integrity. Confidence-aware checks: tempo stability, vocal leakage, transients, loudness continuity and boundary discontinuity. Listening review: startling or voice-like artifacts, musical fit, resemblance and transitions. Unknown estimates are review-required, not passes."
+        ],
+        [
+          "Repair and rejection",
+          "Only documented deterministic repairs, such as gain/fades, may change an output. Store before/after metrics and hashes. Reject or request regeneration for musical violations; do not silently process away evidence. When the budget expires, offer the approved fallback or a clear failure."
+        ],
+        [
+          "Safety independent of inference",
+          "A job ID and request version guard every callback. Cancellation terminates only its owned worker, invalidates pending results and cannot revive playback. Queue and model failure never block player Stop. New requests supersede old ones safely."
+        ]
+      ],
+      "diagram": "pipeline"
+    },
+    {
+      "kicker": "08 / LIVE AUDIO SYSTEM",
+      "title": "Immediate controls, stable playback",
+      "lead": "Indefinite listening is buffering and scheduling, with a graceful failure policy.",
+      "sections": [
+        [
+          "Prepared assets into a bounded graph",
+          "Approved decoded audio -> gain-compensated EQ -> bounded reverb -> mix with separate ambience -> master gain -> limiter -> output. Preserve headroom after mixing, ramp changes, and provide bypass/reset. Validate both dry and maximum permitted settings."
+        ],
+        [
+          "Handoffs are authored transitions",
+          "Prepare compatible segment boundaries before playback; crossfade only tested transitions. A one-second equal-power crossfade is a candidate engineering setting, not proof of an inaudible loop. Tempo, texture and tail discontinuities still require listening."
+        ],
+        [
+          "Late and unavailable audio",
+          "Begin with a complete approved session or cache fallback. Maintain a prepared next segment. If it is late, repeat a tested segment or fade to quiet. Never insert unvalidated audio to fill a gap. Expose buffering and remaining time without endless spinners."
+        ],
+        [
+          "One audio owner",
+          "Reuse the app audio coordinator: starting Current pauses/stops competing voice, dictation, intro, Ember and Music Lab according to explicit user choice. Handle permission/unlock failure, background suspension, device change, navigation and unmount. Cancel ramps/timers, close graphs and revoke object URLs."
+        ]
+      ],
+      "diagram": "audio"
+    },
+    {
+      "kicker": "09 / PERSISTENCE & PRIVACY",
+      "title": "Replay the result, not a promise",
+      "lead": "A session manifest is the reproducibility boundary.",
+      "sections": [
+        [
+          "Proposed manifest v2",
+          "Store recipe and policy versions; intent and explicit taste/exclusions; model/checkpoint/code/backend versions; seed, prompt and actual settings; requested/actual duration; candidate/job IDs; source and processed PCM hashes; metrics with estimator confidence; review status; transition schedule; permitted DSP ranges; and license/reference provenance."
+        ],
+        [
+          "Separate data lifetimes",
+          "Ephemeral job state is not a saved session. Save only on explicit action, explain location and deletion, and keep raw optional words out of saved preferences by default. No new external transmission of sensitive text. Weights, caches, generated large audio and private sessions remain outside Git; small schemas and nonprivate measurement evidence belong in version control."
+        ],
+        [
+          "State machine and recovery",
+          "Draft -> queued -> generating -> validating -> review -> ready; rejected, cancelled and failed are terminal per request version. Player idle -> unlocking -> playing <-> paused -> ended; error and Stop release ownership. Persist complete manifests atomically; incomplete assets never appear ready."
+        ],
+        [
+          "Local operational limits",
+          "Bound queue concurrency, disk retention and per-job timeout. Check space before writing, stage temporary artifacts, then atomically promote. Mobile backgrounding can suspend audio; show the real state on return rather than promising uninterrupted playback."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "10 / INITIAL INTENTS",
+      "title": "Useful choices, modest claims",
+      "lead": "Presets are taste-sensitive starting hypotheses, never treatment protocols.",
+      "sections": [
+        [
+          "Focus",
+          "Instrumental, stable and unobtrusive by default; exclude vocals when requested, with explicit leakage review. Offer silence. Evaluate task accuracy and speed separately from perceived focus. No ADHD screening or promised cognition enhancement."
+        ],
+        [
+          "Settle",
+          "Offer gentle pacing, familiar or preferred palettes and low-start intensity. Stability is a default, not a fixed BPM prescription. Optional natural rests and This feels worse control support agency."
+        ],
+        [
+          "Wind Down",
+          "User-selected duration, gentle fade and optional quiet ending. No all-night auto-generation by default, sleep detection or insomnia-treatment claim. A sleep diary is a future evaluation instrument, not hidden tracking."
+        ],
+        [
+          "Lift",
+          "Ask desired feel and musical taste directly. Steady and gently shift are optional. Do not equate minor keys with depression, mandate major keys, or insist that a listener must become happier."
+        ],
+        [
+          "Listening exposure",
+          "Normalize digital loudness and true peaks, start quietly, retain device volume control and offer timers. Browser gain, LUFS and dBFS cannot certify 60 dB SPL at the ear or an accurate 75 dB warning. Exposure depends on level and duration. [S12]"
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "11 / MIGRATION & ROLLBACK",
+      "title": "Evolve Current without erasing it",
+      "lead": "Implementation begins only after document review.",
+      "sections": [
+        [
+          "Phase 0 - approve the contract",
+          "Review modalities, honest controls, evidence labels, privacy, fallback and release gates. Confirm no Step 11/journey integration yet. Preserve ADR-004 and the raw research archive; later choices receive a new ADR."
+        ],
+        [
+          "Phase 1 - offline candidate bank",
+          "Reuse the pinned Music Lab adapter and artifact store. Compare shift=1 versus recommended shift=3 with fixed briefs/seeds. Add confidence-aware analysis, review records and versioned manifests. Do not silently upgrade to XL Turbo. No app replacement in this phase."
+        ],
+        [
+          "Phase 2 - gated dual experience",
+          "Add music behind a feature flag. Keep procedural v1 recipes readable and labeled Classic / procedural. Never reinterpret old saved mixes as music v2. Use a separate manifest namespace and one audio coordinator. Preserve Music Lab as the comparison and measurement archive."
+        ],
+        [
+          "Phase 3 - asynchronous personalization",
+          "Add cancellable bounded jobs, saved sessions and prepared variations after technical/listening gates pass. Release to a small consenting pilot with explicit feedback. Expand only if failure, rejection, latency and negative-reaction rates support it."
+        ],
+        [
+          "Rollback",
+          "Disable the music feature flag and return to procedural Current without changing v1 data. Keep v2 manifests/assets available for export/delete. Test rollback, interrupted migration and corrupt-manifest recovery before rollout."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "12 / TECHNICAL & MUSICAL EVALUATION",
+      "title": "Measure the product contract first",
+      "lead": "The existing software tests are a foundation, not validation of this proposed system.",
+      "sections": [
+        [
+          "Technical release contract",
+          "Measure duration, format, true peak, clipping, loudness continuity, leakage, onset/transient events, approximate BPM stability, boundary seams and dropout behavior. Record estimator confidence and review uncertain outputs. Test mono, speakers/headphones, backgrounding, interruptions and Stop during hung inference."
+        ],
+        [
+          "Fixed multi-seed bank",
+          "For each preset compare raw ACE, constrained/processed ACE and procedural Current. Randomize presentation, loudness-match and blind labels where practical. Ask pleasantness, goal fit, distraction, fatigue and desire to continue; only users can provide subjective ratings."
+        ],
+        [
+          "Lever validity and resource budget",
+          "Test whether each control changes the perceived attribute it names. Measure actual Mac p50/p95 latency, memory, failure/retry/rejection and disk growth across cold and warm runs. Do not extrapolate p95 from the six-clip study or vendor GPU speed claims."
+        ],
+        [
+          "Existing evidence, bounded",
+          "The baseline reports 170 unit and 196 browser checks plus real ACE API generation/cancellation and desktop/mobile decoded playback smoke checks. Study beds, narration mixes and loops were matched near -21 LUFS (+/-0.2), with a -3 dBTP ceiling. These are comparison engineering settings, not clinical doses; no human audition or efficacy claim follows."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "13 / WELLNESS EVALUATION",
+      "title": "A falsifiable path to stronger claims",
+      "lead": "A traceable argument is the best current proof; an experiment must test the proposed benefit.",
+      "sections": [
+        [
+          "Within-person feasibility",
+          "Randomize repeated sessions of Current, silence and curated/preferred human music. Counterbalance order and record expectation, familiarity, context and caffeine. Predefine the primary outcome, power analysis and exclusion rules; report confidence intervals and nulls."
+        ],
+        [
+          "Use the right endpoint",
+          "Collect simple pre/post calm or goal-specific states and negative reactions. For focus, use prespecified accuracy/speed tasks. For sleep, use multi-night diaries rather than inferring sleep from playback. Engagement and enjoyment are usability outcomes, not health improvement."
+        ],
+        [
+          "Ablations isolate mechanisms",
+          "Compare policy/QA on versus off with the same model; live controls versus fixed playback with identical audio; direct target versus gradual shift; and personal taste versus generic presets. Hold duration and loudness consistent. Otherwise the whole bundle confounds the explanation."
+        ],
+        [
+          "Stop and reconsider",
+          "Investigate adverse reactions, poor goal fit, repeated control failures or high candidate rejection. Seek human-subjects and clinical oversight before efficacy claims. No biometric or health-history inference is necessary for a useful first prototype."
+        ],
+        [
+          "Review decisions",
+          "Approve the hybrid approach and modality boundary? Keep initial music palettes small and reviewed? Accept Classic fallback and explicit save semantics? Which latency/candidate budgets are tolerable? Numerical release thresholds and sample size remain calibration decisions, not scientific constants."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "14 / PROOF & LIMITATIONS",
+      "title": "What we know, and what we still owe",
+      "lead": "Evidence checked 29 October 2026. Design baseline: 8060fc8.",
+      "sections": [
+        [
+          "Known",
+          "ACE generation and local playback already work. Turbo offers structured musical conditioning with approximate adherence. Deterministic DSP can implement immediate shaping. Research supports investigating some music-listening uses while containing substantial transfer limits and null results."
+        ],
+        [
+          "Not established",
+          "No completed ACE-versus-Stable listening comparison; no best-model conclusion; no Current health outcome trial; no guaranteed vocal-free or seamless output; no universal seed reproducibility; no validated precise therapeutic musical recipe; no p95 generation promise."
+        ],
+        [
+          "Primary risks and responses",
+          "Model nonadherence -> screening plus listener review. Latency -> prepared cache and safe fallback. Audible seams -> transition QA. Startling/voice-like artifacts -> audition and easy Stop. Data sensitivity -> explicit minimal preferences. Unsupported controls -> capability labels. Model drift -> pinned configuration and versioned results."
+        ],
+        [
+          "Research archive integrity",
+          "Dated research-runs separate raw artifacts from synthesis/ADRs. Earlier soundscape source bytes match their recorded hash. Ember and this IsoTune report are full Library text copies; direct original-download identity remains unverified where noted. Missing visual bytes and unperformed Stable experiments are indexed as unavailable, not recreated. Source snapshots and local measurement JSON retain provenance."
+        ],
+        [
+          "Change boundary",
+          "This delivery changes documentation only. It preserves Current, Ember, Music Lab, runtime configuration, models and running app. No new download, service call, Stable agreement, implementation, publication or deployment is part of this document."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "APPENDIX / REFERENCES",
+      "title": "Primary sources",
+      "lead": "Direct source links support the numbered evidence statements; supplied research is archived separately.",
+      "sections": [
+        [
+          "S1 / Stress interventions: de Witte et al.",
+          "https://pure.uva.nl/ws/files/58927620/Effects_of_music_interventions_on_stress_related_outcomes_a_systematic_review_and_two_meta_analyses.pdf"
+        ],
+        [
+          "S2 / Everyday stress recovery: Adiasto et al. 2022",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC9205498/"
+        ],
+        [
+          "S3 / Music for insomnia: Cochrane",
+          "https://www.cochrane.org/evidence/CD010459_music-insomnia-adults"
+        ],
+        [
+          "S4 / Lyrics, memory and reading: Souza & Barbosa",
+          "https://journalofcognition.org/articles/10.5334/joc.273"
+        ],
+        [
+          "S5 / Tempo and pauses: Bernardi et al.",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC1860846/"
+        ],
+        [
+          "S6 / Timbre and perceived emotion: McAdams et al.",
+          "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2017.00153/full"
+        ],
+        [
+          "S7 / Harmonic expectation: Cheung et al.",
+          "https://www.sciencedirect.com/science/article/pii/S0960982219312588"
+        ],
+        [
+          "S8 / Iso principle: 2021 trial",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC8656869/"
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "APPENDIX / REFERENCES",
+      "title": "Model and remaining sources",
+      "lead": "Direct source links support the numbered evidence statements; supplied research is archived separately.",
+      "sections": [
+        [
+          "S9 / Iso principle: 2026 preregistered trial",
+          "https://journals.sagepub.com/doi/10.1177/10298649261421187"
+        ],
+        [
+          "S10 / Music therapy and depression: Cochrane",
+          "https://www.cochrane.org/CD004517/DEPRESSN_music-therapy-depression"
+        ],
+        [
+          "S11 / Biofeedback feasibility study",
+          "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1669029/full"
+        ],
+        [
+          "S12 / WHO safe listening",
+          "https://www.who.int/news-room/questions-and-answers/item/deafness-and-hearing-loss-safe-listening"
+        ],
+        [
+          "M1 / ACE-Step official repository / model table",
+          "https://github.com/ace-step/ACE-Step-1.5"
+        ],
+        [
+          "M2 / ACE-Step official inference API",
+          "https://ace-step.github.io/ACE-Step-1.5/en/INFERENCE"
+        ],
+        [
+          "M3 / ACE-Step official tutorial",
+          "https://ace-step.github.io/ACE-Step-1.5/en/Tutorial"
+        ]
+      ],
+      "diagram": null
+    }
+  ],
+  "references": [
+    [
+      "S1",
+      "Stress interventions: de Witte et al.",
+      "https://pure.uva.nl/ws/files/58927620/Effects_of_music_interventions_on_stress_related_outcomes_a_systematic_review_and_two_meta_analyses.pdf"
+    ],
+    [
+      "S2",
+      "Everyday stress recovery: Adiasto et al. 2022",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC9205498/"
+    ],
+    [
+      "S3",
+      "Music for insomnia: Cochrane",
+      "https://www.cochrane.org/evidence/CD010459_music-insomnia-adults"
+    ],
+    [
+      "S4",
+      "Lyrics, memory and reading: Souza & Barbosa",
+      "https://journalofcognition.org/articles/10.5334/joc.273"
+    ],
+    [
+      "S5",
+      "Tempo and pauses: Bernardi et al.",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC1860846/"
+    ],
+    [
+      "S6",
+      "Timbre and perceived emotion: McAdams et al.",
+      "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2017.00153/full"
+    ],
+    [
+      "S7",
+      "Harmonic expectation: Cheung et al.",
+      "https://www.sciencedirect.com/science/article/pii/S0960982219312588"
+    ],
+    [
+      "S8",
+      "Iso principle: 2021 trial",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC8656869/"
+    ],
+    [
+      "S9",
+      "Iso principle: 2026 preregistered trial",
+      "https://journals.sagepub.com/doi/10.1177/10298649261421187"
+    ],
+    [
+      "S10",
+      "Music therapy and depression: Cochrane",
+      "https://www.cochrane.org/CD004517/DEPRESSN_music-therapy-depression"
+    ],
+    [
+      "S11",
+      "Biofeedback feasibility study",
+      "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1669029/full"
+    ],
+    [
+      "S12",
+      "WHO safe listening",
+      "https://www.who.int/news-room/questions-and-answers/item/deafness-and-hearing-loss-safe-listening"
+    ],
+    [
+      "M1",
+      "ACE-Step official repository / model table",
+      "https://github.com/ace-step/ACE-Step-1.5"
+    ],
+    [
+      "M2",
+      "ACE-Step official inference API",
+      "https://ace-step.github.io/ACE-Step-1.5/en/INFERENCE"
+    ],
+    [
+      "M3",
+      "ACE-Step official tutorial",
+      "https://ace-step.github.io/ACE-Step-1.5/en/Tutorial"
+    ]
+  ]
+}
