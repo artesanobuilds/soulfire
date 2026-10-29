@@ -1,0 +1,13 @@
+{
+  "url": "http://127.0.0.1:3100",
+  "http": 200,
+  "voiceConfigured": true,
+  "realDisplayedPieces": 7,
+  "experimentalNavEntries": 0,
+  "realPlaybackStartStop": true,
+  "pageErrors": [],
+  "buildId": "R-kVkO2SVj1rC41DaEiho",
+  "sourceCommit": "914d62021a0fee33487d9fa63ccefb8a14f90fde",
+  "microphone": false,
+  "paidCalls": 0
+}
