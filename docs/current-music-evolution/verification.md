@@ -14,3 +14,12 @@
 The default Python 3.14 runtime has no existing default CA file/directory and fails certificate validation with `unable to get local issuer certificate`. The already-installed Python 3.12 document runtime uses `/private/etc/ssl/cert.pem` and successfully validates TLS 1.3 for both OpenAI hosts. No certificate, trust setting or validation flag was changed.
 
 A retry of the same prepared batch flow using that existing trusted runtime was rejected by automatic approval review **before execution**. Stated reason: private design/research artifact disclosure to Library lacks explicit trusted authorization for that payload and destination. No artifacts were uploaded or partially prepared by these attempts. Upload is now **denied**, pending explicit approval; no alternate route attempted. Full self-contained HTML is available through the local task output for the parent review fallback.
+
+## Final Library delivery
+
+After the user explicitly approved the exact PDF/HTML payload and private Library destination, the prepared helper reported `prepare_uploads` unavailable before transfer. The current Library skill's supported ordered create-only fallback then succeeded for both files, with no warnings or external connectors accessed. Local identity/version metadata was persisted successfully with the current transfer helper.
+
+- PDF: `libfile_ac2b77d705c48191a5668104e1e37a5e`, backing `file_00000000dd6481f5a5309fa1d88c1021`, version 0, 156,652 bytes.
+- Editable HTML: `libfile_439b84df0fe48191b115d75edadeab6f`, backing `file_00000000306c81f5abb0c1a9ef9ac57f`, version 0, 38,673 bytes.
+
+This supersedes the delivery blocker above; retained attempts document provenance. No public sharing was requested or performed.
