@@ -1,0 +1,277 @@
+{
+  "sourceScreenshot": "libfile_a7098e42c0588191af13774732e0fb58",
+  "verifiedAt": "2026-10-29T19:26:51.879Z",
+  "results": [
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "rows": [
+        {
+          "label": "Keep preparing when I leave Current",
+          "checkbox": {
+            "x": 148,
+            "y": -685.109375,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 178,
+            "y": -687.109375,
+            "width": 447.828125
+          },
+          "row": {
+            "x": 148,
+            "width": 477.828125,
+            "height": 45.5
+          }
+        },
+        {
+          "label": "Always leave a quiet moment between movements",
+          "checkbox": {
+            "x": 711.828125,
+            "y": 235.96875,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 741.828125,
+            "y": 233.96875,
+            "width": 522.171875
+          },
+          "row": {
+            "x": 711.828125,
+            "width": 552.171875,
+            "height": 44
+          }
+        },
+        {
+          "label": "Save this music session in this browser",
+          "checkbox": {
+            "x": 711.828125,
+            "y": 802.9375,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 741.828125,
+            "y": 800.9375,
+            "width": 522.171875
+          },
+          "row": {
+            "x": 711.828125,
+            "width": 552.171875,
+            "height": 44
+          }
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": "screenshot",
+      "width": 2048,
+      "height": 1700,
+      "rows": [
+        {
+          "label": "Keep preparing when I leave Current",
+          "checkbox": {
+            "x": 452,
+            "y": 14.375,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 482,
+            "y": 12.375,
+            "width": 447.828125
+          },
+          "row": {
+            "x": 452,
+            "width": 477.828125,
+            "height": 45.5
+          }
+        },
+        {
+          "label": "Always leave a quiet moment between movements",
+          "checkbox": {
+            "x": 1015.828125,
+            "y": 935.453125,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 1045.828125,
+            "y": 933.453125,
+            "width": 522.171875
+          },
+          "row": {
+            "x": 1015.828125,
+            "width": 552.171875,
+            "height": 44
+          }
+        },
+        {
+          "label": "Save this music session in this browser",
+          "checkbox": {
+            "x": 1015.828125,
+            "y": 1502.421875,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 1045.828125,
+            "y": 1500.421875,
+            "width": 522.171875
+          },
+          "row": {
+            "x": 1015.828125,
+            "width": 552.171875,
+            "height": 44
+          }
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": "tablet",
+      "width": 1024,
+      "height": 850,
+      "rows": [
+        {
+          "label": "Keep preparing when I leave Current",
+          "checkbox": {
+            "x": 36,
+            "y": -884.390625,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 66,
+            "y": -886.390625,
+            "width": 363.359375
+          },
+          "row": {
+            "x": 36,
+            "width": 393.359375,
+            "height": 45.5
+          }
+        },
+        {
+          "label": "Always leave a quiet moment between movements",
+          "checkbox": {
+            "x": 515.359375,
+            "y": 192.671875,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 545.359375,
+            "y": 190.671875,
+            "width": 414.640625
+          },
+          "row": {
+            "x": 515.359375,
+            "width": 444.640625,
+            "height": 44
+          }
+        },
+        {
+          "label": "Save this music session in this browser",
+          "checkbox": {
+            "x": 515.359375,
+            "y": 782.03125,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 545.359375,
+            "y": 780.03125,
+            "width": 414.640625
+          },
+          "row": {
+            "x": 515.359375,
+            "width": 444.640625,
+            "height": 44
+          }
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "rows": [
+        {
+          "label": "Keep preparing when I leave Current",
+          "checkbox": {
+            "x": 20,
+            "y": -986.03125,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 50,
+            "y": -988.03125,
+            "width": 320
+          },
+          "row": {
+            "x": 20,
+            "width": 350,
+            "height": 45.5
+          }
+        },
+        {
+          "label": "Always leave a quiet moment between movements",
+          "checkbox": {
+            "x": 42,
+            "y": 2320.125,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 72,
+            "y": 2318.125,
+            "width": 276
+          },
+          "row": {
+            "x": 42,
+            "width": 306,
+            "height": 62
+          }
+        },
+        {
+          "label": "Save this music session in this browser",
+          "checkbox": {
+            "x": 42,
+            "y": 3002.875,
+            "width": 20,
+            "height": 20
+          },
+          "text": {
+            "x": 72,
+            "y": 3000.875,
+            "width": 276
+          },
+          "row": {
+            "x": 42,
+            "width": 306,
+            "height": 44
+          }
+        }
+      ],
+      "overflow": false
+    }
+  ],
+  "cause": "Checkbox rows had no shared horizontal layout, and a broad Shape input rule applied text-field padding/min-height to checkbox inputs.",
+  "checks": {
+    "browserPassed": 40,
+    "browserFailed": 0,
+    "lint": "passed",
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "labelToggle": true,
+    "keyboardToggle": true,
+    "minimumRowTargetPixels": 44
+  }
+}

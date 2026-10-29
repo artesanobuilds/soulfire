@@ -703,7 +703,7 @@ function MusicCurrent({
               onChange={(e) => setContinueInBackground(e.target.checked)}
               disabled={running}
             />
-            Keep preparing when I leave Current
+            <span>Keep preparing when I leave Current</span>
           </label>
           <p className="small">
             Optional, on this Mac only. Return to Current in this browser tab to
@@ -1011,7 +1011,7 @@ function MusicCurrent({
                           setQuietTransitions(e.target.checked);
                         }}
                       />
-                      Always leave a quiet moment between movements
+                      <span>Always leave a quiet moment between movements</span>
                     </label>
                   </div>
                 )}
@@ -1118,7 +1118,7 @@ function MusicCurrent({
                     checked={saveConsent}
                     onChange={(e) => setSaveConsent(e.target.checked)}
                   />
-                  Save this music session in this browser
+                  <span>Save this music session in this browser</span>
                 </label>
                 <button
                   disabled={!saveConsent || storageBad || !name.trim()}

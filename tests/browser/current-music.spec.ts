@@ -739,3 +739,34 @@ test("customization bounds two/three compositions and 30/60/90 second pieces", a
   expect(sent?.mode).toBe("session");
   expect((sent?.request as { seconds: number }).seconds).toBe(90);
 });
+
+test("checkbox rows align, wrap and toggle through labels and keyboard", async ({
+  page,
+}) => {
+  await open(page);
+  await page.locator(".cm-starter").first().click();
+  const rows = page.locator(".current-music .check-row");
+  await expect(rows).toHaveCount(3);
+  for (const row of await rows.all()) {
+    const checkbox = row.getByRole("checkbox"),
+      caption = row.locator("span");
+    const box = await checkbox.boundingBox(),
+      text = await caption.boundingBox(),
+      target = await row.boundingBox();
+    expect(box && text && target).toBeTruthy();
+    expect(box!.width).toBeLessThanOrEqual(22);
+    expect(box!.height).toBeLessThanOrEqual(22);
+    expect(target!.height).toBeGreaterThanOrEqual(44);
+    expect(text!.x).toBeGreaterThanOrEqual(box!.x + box!.width + 8);
+    expect(Math.abs(text!.y - box!.y)).toBeLessThanOrEqual(4);
+    expect(text!.x + text!.width).toBeLessThanOrEqual(
+      target!.x + target!.width + 1,
+    );
+    const initial = await checkbox.isChecked();
+    await caption.click();
+    await expect(checkbox).toBeChecked({ checked: !initial });
+    await checkbox.focus();
+    await page.keyboard.press("Space");
+    await expect(checkbox).toBeChecked({ checked: initial });
+  }
+});

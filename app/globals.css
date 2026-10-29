@@ -3889,7 +3889,7 @@ aside > p {
 }
 .cm-intention .current-field input,
 .cm-intention select,
-.cm-shape input:not([type="range"]),
+.cm-shape input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
 .cm-shape select {
   background: #fffdf8;
   max-width: 100%;
@@ -3922,12 +3922,34 @@ aside > p {
   margin: 8px 0;
   font-size: 15px;
 }
-.cm-preferences input[type="checkbox"],
-.cm-shape input[type="checkbox"] {
+.current-music .check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 0;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.current-music .check-row > span {
+  flex: 1;
+  min-width: 0;
+}
+.cm-preferences fieldset label {
+  min-height: 44px;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.current-music input[type="checkbox"] {
+  display: block;
   accent-color: #4c6456;
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  flex: 0 0 20px;
+  padding: 0;
+  margin: 2px 0 0;
+  border-radius: 3px;
 }
 .cm-intention > .primary {
   width: 100%;
