@@ -339,7 +339,7 @@
         ],
         [
           "Research archive integrity",
-          "Dated research-runs separate raw artifacts from synthesis/ADRs. Earlier soundscape source bytes match their recorded hash. Ember and this IsoTune report are full Library text copies; direct original-download identity remains unverified where noted. Missing visual bytes and unperformed Stable experiments are indexed as unavailable, not recreated. Source snapshots and local measurement JSON retain provenance."
+          "Dated research-runs separate raw artifacts from synthesis/ADRs. Earlier soundscape source bytes match their recorded hash. The IsoTune full text copy matches the independently materialized original SHA256 and all 50,551 bytes. Ember remains a full Library text copy with original-download identity unverified. Missing visual bytes and unperformed Stable experiments are indexed as unavailable, not recreated. Source snapshots and local measurement JSON retain provenance."
         ],
         [
           "Change boundary",
