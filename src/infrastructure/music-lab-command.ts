@@ -45,6 +45,9 @@ export async function musicLabCommand(
       const cleanup = () => {
         clearTimeout(timer);
         signal.removeEventListener("abort", abort);
+        process.removeListener("exit", kill);
+        process.removeListener("SIGTERM", abort);
+        process.removeListener("SIGINT", abort);
       };
       const fail = (e: Error) => {
         if (ended) return;
@@ -59,6 +62,9 @@ export async function musicLabCommand(
         timeout,
       );
       signal.addEventListener("abort", abort, { once: true });
+      process.once("exit", kill);
+      process.once("SIGTERM", abort);
+      process.once("SIGINT", abort);
       child.on("error", () =>
         fail(new Error("Local runtime could not start.")),
       );

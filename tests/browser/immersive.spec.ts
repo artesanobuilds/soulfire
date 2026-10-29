@@ -96,8 +96,14 @@ async function observeAudio(
   await page.addInitScript(() => {
     const list: HTMLAudioElement[] = [];
     Object.defineProperty(window, "__ambientAudio", { value: list });
+    Object.defineProperty(window, "__ambientAttempts", { value: { count: 0 } });
     const NativeAudio = window.Audio;
     window.Audio = class extends NativeAudio {
+      play() {
+        (window as unknown as { __ambientAttempts: { count: number } })
+          .__ambientAttempts.count++;
+        return super.play();
+      }
       constructor(src?: string) {
         super(src);
         this.muted = true;
@@ -193,7 +199,7 @@ test("blocked sound can be retried without blocking the practice", async ({
   await expect.poll(async () => (await audioState(page)).playing).toBe(1);
 });
 
-test("fresh arrival attempts permitted autoplay and explicit mute persists on return", async ({
+test("fresh arrival attempts autoplay, respects refusal and persists explicit mute", async ({
   page,
 }) => {
   // This case models an initially visible page. Hidden-tab deferral has its own test;
@@ -227,6 +233,22 @@ test("fresh arrival attempts permitted autoplay and explicit mute persists on re
   await page.getByRole("button", { name: "Enable ambient sound" }).click();
   await expect.poll(async () => (await audioState(page)).playing).toBe(1);
   await page.reload();
+  // Autoplay permission after reload belongs to the real browser. Verify the
+  // attempt, then use the truthful gesture fallback if permission is refused.
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as unknown as { __ambientAttempts: { count: number } })
+            .__ambientAttempts.count,
+      ),
+    )
+    .toBeGreaterThan(0);
+  if (!(await audioState(page)).playing) {
+    await page
+      .getByRole("button", { name: "Enable ambient sound", exact: true })
+      .click();
+  }
   await expect.poll(async () => (await audioState(page)).playing).toBe(1);
   expect((await audioState(page)).count).toBe(1);
 });

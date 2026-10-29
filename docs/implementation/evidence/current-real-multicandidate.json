@@ -1,0 +1,283 @@
+{
+  "verifiedAt": "2026-10-29T18:15:26.168Z",
+  "job": {
+    "id": "021a33b6-6672-4eab-be17-6483f85174b4",
+    "request": {
+      "model": "ace",
+      "style": "piano",
+      "seed": 404027,
+      "seconds": 90,
+      "current": {
+        "intent": "unwind",
+        "taste": "piano",
+        "avoid": [
+          "vocals",
+          "percussion",
+          "bright",
+          "nature"
+        ],
+        "feel": "gently-shift"
+      }
+    },
+    "phase": "done",
+    "message": "3 of 3 pieces passed technical checks. Compare or assemble them deliberately; musical quality still needs your preview.",
+    "candidateIds": [
+      "5cac1f71-5812-46d6-ad9f-a581b3fca885",
+      "41f29261-cec0-4791-8879-068a9d2a91ec",
+      "2893556a-728f-49db-8eaa-6c3b4dc221b2"
+    ],
+    "requestedCandidates": 3,
+    "completedCandidates": 3,
+    "candidateErrors": [],
+    "mode": "session",
+    "sampleId": "5cac1f71-5812-46d6-ad9f-a581b3fca885"
+  },
+  "uniquePcmHashes": 3,
+  "totalUniqueSeconds": 270,
+  "pieces": [
+    {
+      "id": "5cac1f71-5812-46d6-ad9f-a581b3fca885",
+      "currentOnly": true,
+      "request": {
+        "model": "ace",
+        "style": "piano",
+        "seed": 404027,
+        "seconds": 90,
+        "current": {
+          "intent": "unwind",
+          "taste": "piano",
+          "avoid": [
+            "vocals",
+            "percussion",
+            "bright",
+            "nature"
+          ],
+          "feel": "gently-shift",
+          "movement": "opening"
+        }
+      },
+      "modelVersion": "acestep-v15-turbo / MLX / 8 steps / CFG 1 / no LM rewrite",
+      "codeRevision": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weightsRevision": "19671f406d603126926c1b7e2adc169acbcade22",
+      "createdAt": "2026-10-29T18:11:46.402Z",
+      "generationSettings": {
+        "steps": 8,
+        "shift": 1,
+        "guidanceScale": 1,
+        "thinking": false,
+        "requestedKey": "C major",
+        "requestedBpm": 64
+      },
+      "latencySeconds": 15.754610125004547,
+      "loadSeconds": 9.6360456670227,
+      "inferenceSeconds": 6.094105124997441,
+      "peakRssBytes": 14919974912,
+      "peakAcceleratorBytes": 29932313364,
+      "metrics": {
+        "duration": 90,
+        "sampleRate": 48000,
+        "channels": 2,
+        "integratedLufs": -17.5,
+        "truePeakDb": 0,
+        "loudnessRange": 12.2,
+        "peak": 1,
+        "clippedFraction": 1.1574074074074074e-7,
+        "seamJump": 0.001495361328125,
+        "seamRmsDifferenceDb": -38.66312748114912,
+        "matchedLufs": -21,
+        "matchedTruePeakDb": -4.2,
+        "loopLufs": null,
+        "loopTruePeakDb": null,
+        "narrationLufs": null,
+        "narrationTruePeakDb": null,
+        "loopSeamJump": null,
+        "estimatedKey": 0,
+        "keyConfidence": 0.25106059543619885,
+        "estimatedBpm": null,
+        "tempoConfidence": 0.3420810401439667,
+        "chroma": [
+          0.376794470324738,
+          0.15852179696815488,
+          0.3953227949236844,
+          0.14660907336979137,
+          0.3668259593351312,
+          0.4297712494768684,
+          0.17690755747759154,
+          0.4831622257416122,
+          0.10022941721633166,
+          0.20936735810597434,
+          0.04777817612444096,
+          0.12228009655122496
+        ],
+        "spectralCentroidHz": 412.2506571060853,
+        "onsetRate": 0.7222222222222222,
+        "pcmSha256": "621d7db7aeecc67fde45184e7d0674e17644232bdca5f7166a8790d4a97eb674",
+        "sha256": "1957d0db76f74a4089aa6103bc2e83e2750964b00f1a0dd7d549af29b1ce640e"
+      }
+    },
+    {
+      "id": "41f29261-cec0-4791-8879-068a9d2a91ec",
+      "currentOnly": true,
+      "request": {
+        "model": "ace",
+        "style": "piano",
+        "seed": 508756,
+        "seconds": 90,
+        "current": {
+          "intent": "unwind",
+          "taste": "piano",
+          "avoid": [
+            "vocals",
+            "percussion",
+            "bright",
+            "nature"
+          ],
+          "feel": "gently-shift",
+          "movement": "developing"
+        }
+      },
+      "modelVersion": "acestep-v15-turbo / MLX / 8 steps / CFG 1 / no LM rewrite",
+      "codeRevision": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weightsRevision": "19671f406d603126926c1b7e2adc169acbcade22",
+      "createdAt": "2026-10-29T18:12:09.631Z",
+      "generationSettings": {
+        "steps": 8,
+        "shift": 1,
+        "guidanceScale": 1,
+        "thinking": false,
+        "requestedKey": "C major",
+        "requestedBpm": 64
+      },
+      "latencySeconds": 16.12355525000021,
+      "loadSeconds": 10.160308624996105,
+      "inferenceSeconds": 5.936016207997454,
+      "peakRssBytes": 14916419584,
+      "peakAcceleratorBytes": 29932313364,
+      "metrics": {
+        "duration": 90,
+        "sampleRate": 48000,
+        "channels": 2,
+        "integratedLufs": -17.5,
+        "truePeakDb": 0,
+        "loudnessRange": 11.5,
+        "peak": 0.999969482421875,
+        "clippedFraction": 2.3148148148148148e-7,
+        "seamJump": 0.00140380859375,
+        "seamRmsDifferenceDb": 0.0033657401509071066,
+        "matchedLufs": -21,
+        "matchedTruePeakDb": -4.1,
+        "loopLufs": null,
+        "loopTruePeakDb": null,
+        "narrationLufs": null,
+        "narrationTruePeakDb": null,
+        "loopSeamJump": null,
+        "estimatedKey": 0,
+        "keyConfidence": 0.4794526042970171,
+        "estimatedBpm": null,
+        "tempoConfidence": 0.21127986907958984,
+        "chroma": [
+          0.6108595656908026,
+          0.15622105105900547,
+          0.29208735922615103,
+          0.13625932959648346,
+          0.2984364151418001,
+          0.2921539053698572,
+          0.12784576272052123,
+          0.48003089224415685,
+          0.08923879717357037,
+          0.19976588615524482,
+          0.054226256537099594,
+          0.16297573419810793
+        ],
+        "spectralCentroidHz": 593.4073888248313,
+        "onsetRate": 0.8555555555555555,
+        "pcmSha256": "caa62097cb39fc399bb855b0a94feab094a5ec25f75a66e201a2b1c721960a32",
+        "sha256": "47b5f8606141a1f3b6b68cff732f09e66df321caae467c7a1c245650294373b8"
+      }
+    },
+    {
+      "id": "2893556a-728f-49db-8eaa-6c3b4dc221b2",
+      "currentOnly": true,
+      "request": {
+        "model": "ace",
+        "style": "piano",
+        "seed": 613485,
+        "seconds": 90,
+        "current": {
+          "intent": "unwind",
+          "taste": "piano",
+          "avoid": [
+            "vocals",
+            "percussion",
+            "bright",
+            "nature"
+          ],
+          "feel": "gently-shift",
+          "movement": "closing"
+        }
+      },
+      "modelVersion": "acestep-v15-turbo / MLX / 8 steps / CFG 1 / no LM rewrite",
+      "codeRevision": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weightsRevision": "19671f406d603126926c1b7e2adc169acbcade22",
+      "createdAt": "2026-10-29T18:12:30.712Z",
+      "generationSettings": {
+        "steps": 8,
+        "shift": 1,
+        "guidanceScale": 1,
+        "thinking": false,
+        "requestedKey": "C major",
+        "requestedBpm": 64
+      },
+      "latencySeconds": 16.01273791701533,
+      "loadSeconds": 10.083137875015382,
+      "inferenceSeconds": 5.905384834011784,
+      "peakRssBytes": 14917189632,
+      "peakAcceleratorBytes": 29932313364,
+      "metrics": {
+        "duration": 90,
+        "sampleRate": 48000,
+        "channels": 2,
+        "integratedLufs": -17,
+        "truePeakDb": 0,
+        "loudnessRange": 10.5,
+        "peak": 0.999969482421875,
+        "clippedFraction": 1.1574074074074074e-7,
+        "seamJump": 0.00164794921875,
+        "seamRmsDifferenceDb": -28.10547195388146,
+        "matchedLufs": -21,
+        "matchedTruePeakDb": -4,
+        "loopLufs": null,
+        "loopTruePeakDb": null,
+        "narrationLufs": null,
+        "narrationTruePeakDb": null,
+        "loopSeamJump": null,
+        "estimatedKey": 0,
+        "keyConfidence": 0.16566852043517155,
+        "estimatedBpm": null,
+        "tempoConfidence": 0.183362677693367,
+        "chroma": [
+          0.4152758821847087,
+          0.12672414888002279,
+          0.42181869897951846,
+          0.13644260403115918,
+          0.408998472691121,
+          0.3418323307199674,
+          0.16178781201827477,
+          0.4389009297922771,
+          0.1046186795245526,
+          0.23718121644963985,
+          0.0561371038155366,
+          0.20408220284005
+        ],
+        "spectralCentroidHz": 504.46169528047153,
+        "onsetRate": 0.8,
+        "pcmSha256": "d24ccfbfac43af91d7fd3eb80438b335ef10efb391500172056fc12d2b28dc3e",
+        "sha256": "9a31a86256c632f8ab54b6ffe0ed7e1755d380dbe8f49030a12e9c849e66b1f5"
+      }
+    }
+  ],
+  "subjectiveListening": false,
+  "paidCalls": 0,
+  "microphone": false,
+  "modelDownloads": false
+}

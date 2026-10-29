@@ -501,3 +501,241 @@ test("repeated starter choices and Stop during loading cannot revive audio", asy
     .toBe(true);
   expect((await snap(page)).starts).toBe(0);
 });
+
+const alternative = {
+  ...sample,
+  id: "22222222-2222-4222-8222-222222222222",
+  request: { ...sample.request, seed: 202 },
+  metrics: { ...sample.metrics, pcmSha256: "e".repeat(64) },
+};
+async function completeBatch(
+  page: Page,
+  mode: "compare" | "session" = "compare",
+) {
+  let id = "",
+    posts = 0;
+  await page.route("**/api/current/music**", (r) => {
+    if (r.request().method() === "POST") {
+      const body = r.request().postDataJSON();
+      id = body.id;
+      posts++;
+      expect(body.candidateCount).toBe(2);
+      expect(body.request.seconds).toBe(60);
+      return r.fulfill({
+        status: 202,
+        json: {
+          job: {
+            id,
+            request: body.request,
+            mode,
+            phase: "running",
+            message: "TEST bounded candidates",
+          },
+        },
+      });
+    }
+    if (new URL(r.request().url()).searchParams.has("job"))
+      return r.fulfill({
+        json: {
+          job: {
+            id,
+            request: sample.request,
+            mode,
+            phase: "done",
+            message: "TEST two measured pieces",
+            candidateIds: [sample.id, alternative.id],
+            completedCandidates: 2,
+            requestedCandidates: 2,
+          },
+        },
+      });
+    return r.fulfill({
+      json: {
+        samples: [sample, alternative],
+        availability: { model: "ace", ready: true },
+      },
+    });
+  });
+  await page
+    .getByRole("button", { name: "Create a new Current", exact: true })
+    .click();
+  await expect(
+    page.getByRole("region", { name: "Prepared candidates", exact: true }),
+  ).toBeVisible();
+  expect(posts).toBe(1);
+}
+test("two real-buffer alternatives support deliberate preview and selection without autoplay", async ({
+  page,
+}) => {
+  await open(page);
+  await completeBatch(page);
+  expect((await snap(page)).starts).toBe(0);
+  await page
+    .getByRole("button", { name: "Preview choice A", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Pause Current", exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Stop Current audio", exact: true })
+    .click();
+  await page.getByRole("button", { name: "Use choice B", exact: true }).click();
+  await expect(
+    page.getByRole("textbox", { name: "Current name", exact: true }),
+  ).toHaveValue("Small Morning");
+});
+test("a multi-movement session decodes both files, uses quiet fallback and saves exact identities", async ({
+  page,
+}) => {
+  await open(page);
+  await completeBatch(page, "session");
+  await page
+    .getByRole("button", { name: "Make a session from these", exact: true })
+    .click();
+  await expect(page.locator(".cm-sequence")).toContainText(
+    "2 movements · 60 seconds of distinct music",
+  );
+  await expect(page.locator(".cm-sequence")).toContainText(
+    "compatibility is uncertain",
+  );
+  const audioIds: string[] = [];
+  page.on("request", (r) => {
+    if (r.url().includes("/api/music-lab/audio"))
+      audioIds.push(new URL(r.url()).searchParams.get("id")!);
+  });
+  await page.getByRole("button", { name: "Play Current", exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "Pause Current", exact: true }),
+  ).toBeVisible();
+  expect(audioIds.sort()).toEqual([sample.id, alternative.id].sort());
+  await page
+    .getByRole("button", { name: "Stop Current audio", exact: true })
+    .click();
+  await page
+    .getByRole("checkbox", { name: "Save this music session in this browser" })
+    .check();
+  await page.getByRole("button", { name: "Save Current", exact: true }).click();
+  const rows = await page.evaluate(
+    (k) => JSON.parse(localStorage.getItem(k)!),
+    currentMusicStorageKey,
+  );
+  expect(rows[0].segments).toHaveLength(2);
+  expect(rows[0].transition).toBe("quiet-gap");
+  await page.reload();
+  await page.getByRole("button", { name: "Current", exact: true }).click();
+  await page.locator(".cm-saved").getByRole("button").first().click();
+  await expect(page.locator(".cm-sequence")).toContainText("2 movements");
+  expect((await snap(page)).starts).toBe(0);
+});
+test("opt-in background preparation survives navigation and restores without resubmission", async ({
+  page,
+}) => {
+  await open(page);
+  let id = "",
+    request: unknown,
+    posts = 0,
+    deletes = 0;
+  await page.route("**/api/current/music**", (r) => {
+    if (r.request().method() === "POST") {
+      const b = r.request().postDataJSON();
+      id = b.id;
+      request = b.request;
+      posts++;
+      return r.fulfill({
+        status: 202,
+        json: {
+          job: {
+            id,
+            request,
+            phase: "running",
+            message: "TEST background",
+            mode: "compare",
+            requestedCandidates: 2,
+          },
+        },
+      });
+    }
+    if (r.request().method() === "DELETE") {
+      deletes++;
+      return r.fulfill({ json: { cancelled: true } });
+    }
+    if (new URL(r.request().url()).searchParams.has("job"))
+      return r.fulfill({
+        json: {
+          job: {
+            id,
+            request,
+            phase: "running",
+            message: "TEST restored background",
+            mode: "compare",
+            requestedCandidates: 2,
+          },
+        },
+      });
+    return r.fulfill({
+      json: { samples: [sample], availability: { model: "ace", ready: true } },
+    });
+  });
+  await page
+    .getByRole("checkbox", { name: "Keep preparing when I leave Current" })
+    .check();
+  await page
+    .getByRole("button", { name: "Create a new Current", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Cancel generation", exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Ember", exact: true }).click();
+  expect(deletes).toBe(0);
+  await page.getByRole("button", { name: "Current", exact: true }).click();
+  await expect(
+    page.getByText("TEST restored background", { exact: true }),
+  ).toBeVisible();
+  expect(posts).toBe(1);
+  await page
+    .getByRole("button", { name: "Cancel generation", exact: true })
+    .click();
+  await expect.poll(() => deletes).toBe(1);
+  expect(
+    await page.evaluate(() =>
+      sessionStorage.getItem("soulfire.current.pending.v1"),
+    ),
+  ).toBeNull();
+});
+test("customization bounds two/three compositions and 30/60/90 second pieces", async ({
+  page,
+}) => {
+  await open(page);
+  await page
+    .getByText("Preferences & advanced options", { exact: true })
+    .click();
+  await page
+    .getByRole("combobox", { name: "What should we prepare?" })
+    .selectOption("session");
+  await page
+    .getByRole("combobox", { name: "Number of pieces" })
+    .selectOption("3");
+  await page
+    .getByRole("combobox", { name: "Length of each new composition" })
+    .selectOption("90");
+  let sent: Record<string, unknown> | undefined;
+  await page.route("**/api/current/music**", (r) => {
+    if (r.request().method() === "POST") {
+      sent = r.request().postDataJSON();
+      return r.fulfill({
+        status: 503,
+        json: { error: "TEST completed payload capture; no model executed" },
+      });
+    }
+    return r.fulfill({ json: { cancelled: true } });
+  });
+  await page
+    .getByRole("button", { name: "Create a new Current", exact: true })
+    .click();
+  await expect(
+    page.getByText("TEST completed payload capture; no model executed"),
+  ).toBeVisible();
+  expect(sent?.candidateCount).toBe(3);
+  expect(sent?.mode).toBe("session");
+  expect((sent?.request as { seconds: number }).seconds).toBe(90);
+});

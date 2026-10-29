@@ -1,0 +1,297 @@
+{
+  "decoded": 36,
+  "rows": [
+    {
+      "conceptId": "current-seed-20-2",
+      "sampleId": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.0668711313200826,
+      "sampledPeak": 0.57830810546875
+    },
+    {
+      "conceptId": "current-seed-20-1",
+      "sampleId": "6e69ff71-4425-43af-8648-cda30c1ff766",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06151923496948528,
+      "sampledPeak": 0.5731070637702942
+    },
+    {
+      "conceptId": "current-seed-19-2",
+      "sampleId": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06146668074349728,
+      "sampledPeak": 0.567230224609375
+    },
+    {
+      "conceptId": "current-seed-19-1",
+      "sampleId": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.059469162664016806,
+      "sampledPeak": 0.5753960013389587
+    },
+    {
+      "conceptId": "current-seed-18-2",
+      "sampleId": "e2574763-7b37-4fe4-9653-07c76114baa8",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06735813362583487,
+      "sampledPeak": 0.575439453125
+    },
+    {
+      "conceptId": "current-seed-18-1",
+      "sampleId": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.056933841108175474,
+      "sampledPeak": 0.5690175890922546
+    },
+    {
+      "conceptId": "current-seed-17-2",
+      "sampleId": "e156c012-7182-4382-b505-a2c6f33bd09c",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.061660455812920054,
+      "sampledPeak": 0.585235595703125
+    },
+    {
+      "conceptId": "current-seed-17-1",
+      "sampleId": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06017848810268126,
+      "sampledPeak": 0.5780510902404785
+    },
+    {
+      "conceptId": "current-seed-16-2",
+      "sampleId": "da32f422-34ac-4bcd-92fd-6e17985dea05",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.048686395052140605,
+      "sampledPeak": 0.457122802734375
+    },
+    {
+      "conceptId": "current-seed-16-1",
+      "sampleId": "c7321203-f72c-4f82-ba0f-51e2a1417790",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06715555639732468,
+      "sampledPeak": 0.5053254961967468
+    },
+    {
+      "conceptId": "current-seed-15-2",
+      "sampleId": "60e0941c-f69e-4e79-ae87-23e158dc0988",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06402725949000981,
+      "sampledPeak": 0.3166905641555786
+    },
+    {
+      "conceptId": "current-seed-15-1",
+      "sampleId": "c787d0cb-f40b-4627-a419-0b06f237bf75",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06084947898473734,
+      "sampledPeak": 0.594207763671875
+    },
+    {
+      "conceptId": "current-seed-14-2",
+      "sampleId": "7edf658b-14c9-4ed5-8f2d-31ece3572d61",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06734706113595425,
+      "sampledPeak": 0.4697714149951935
+    },
+    {
+      "conceptId": "current-seed-14-1",
+      "sampleId": "8aa6f20c-421f-47c2-9ded-7beb9aeeb81a",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.060513556173163334,
+      "sampledPeak": 0.5077974796295166
+    },
+    {
+      "conceptId": "current-seed-13-2",
+      "sampleId": "1bf883e6-6378-4cd5-812d-1a9a88d9173b",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06833894894409034,
+      "sampledPeak": 0.6154972910881042
+    },
+    {
+      "conceptId": "current-seed-13-1",
+      "sampleId": "44d3e8d6-37fa-47c6-b03d-538840a07e9b",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.060232123229759814,
+      "sampledPeak": 0.569366455078125
+    },
+    {
+      "conceptId": "current-seed-12-2",
+      "sampleId": "80566d81-2d58-4b06-8e78-14963168f243",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06549116541529024,
+      "sampledPeak": 0.41802978515625
+    },
+    {
+      "conceptId": "current-seed-12-1",
+      "sampleId": "c9960ad3-20bd-4bb5-aec9-fdd1eeb0e85f",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06107254939991475,
+      "sampledPeak": 0.5913571715354919
+    },
+    {
+      "conceptId": "current-seed-11-2",
+      "sampleId": "337732a6-3b43-4b93-9d7b-1b90943873a3",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06446912078262082,
+      "sampledPeak": 0.4825891852378845
+    },
+    {
+      "conceptId": "current-seed-11-1",
+      "sampleId": "aef329c8-9bf8-4b5d-8232-c7c971ec3e1d",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.05369599337627853,
+      "sampledPeak": 0.4373302459716797
+    },
+    {
+      "conceptId": "current-seed-10-2",
+      "sampleId": "16d40bf3-9871-4f78-85a4-ed9aba203e51",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.0656641633433383,
+      "sampledPeak": 0.493072509765625
+    },
+    {
+      "conceptId": "current-seed-10-1",
+      "sampleId": "f5e037c7-3c79-4fbc-b3bc-b99485cd2fa3",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06403658649712825,
+      "sampledPeak": 0.36802271008491516
+    },
+    {
+      "conceptId": "current-seed-09-2",
+      "sampleId": "cb406bcd-52ab-45c3-b7bf-e9aadfc2b08e",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06450372709839264,
+      "sampledPeak": 0.48039186000823975
+    },
+    {
+      "conceptId": "current-seed-09-1",
+      "sampleId": "4e38f2ae-fa1c-4170-9402-12e87d6aaf50",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06011830116073524,
+      "sampledPeak": 0.5536057353019714
+    },
+    {
+      "conceptId": "current-seed-08-2",
+      "sampleId": "e674c197-b168-4c61-a622-8d06c5af02b9",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06586898795172595,
+      "sampledPeak": 0.33624267578125
+    },
+    {
+      "conceptId": "current-seed-08-1",
+      "sampleId": "fb56d4ec-e3be-49dd-ab4a-f7a031bc5518",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.05220962535164499,
+      "sampledPeak": 0.4276558756828308
+    },
+    {
+      "conceptId": "current-seed-07-2",
+      "sampleId": "97c1abf3-80f0-4c52-a294-b841b61fd335",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06628196450544348,
+      "sampledPeak": 0.6072998046875
+    },
+    {
+      "conceptId": "current-seed-07-1",
+      "sampleId": "34d2139d-a004-4417-b2dd-b7a6a470d2cf",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.05560052029462551,
+      "sampledPeak": 0.5798822045326233
+    },
+    {
+      "conceptId": "current-seed-06-2",
+      "sampleId": "77845de4-eb2f-4ff0-9235-10aadda5cb60",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.061098569825843725,
+      "sampledPeak": 0.396942138671875
+    },
+    {
+      "conceptId": "current-seed-06-1",
+      "sampleId": "2ac91f87-c1b7-46d2-b9cc-fde7123d3d86",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06080136786907356,
+      "sampledPeak": 0.6216925382614136
+    },
+    {
+      "conceptId": "current-seed-05-2",
+      "sampleId": "ef7d642f-d7ae-4266-8253-c7e17544ffaa",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.062036694157376206,
+      "sampledPeak": 0.4464111328125
+    },
+    {
+      "conceptId": "current-seed-05-1",
+      "sampleId": "af7b7c30-c8a6-4884-9ab6-557350489b13",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.05887572294463307,
+      "sampledPeak": 0.618152379989624
+    },
+    {
+      "conceptId": "current-seed-02-2",
+      "sampleId": "26bf6439-9120-4e94-af54-e9b3e09e8564",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.0631186736541742,
+      "sampledPeak": 0.36822509765625
+    },
+    {
+      "conceptId": "current-seed-02-1",
+      "sampleId": "7da4933f-3571-4795-b8e6-932fa3a258d4",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.05388464068272304,
+      "sampledPeak": 0.46565142273902893
+    },
+    {
+      "conceptId": "current-seed-01-2",
+      "sampleId": "b6c92e2d-d23f-43a2-b48f-ef46b81acb0c",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.0634599543805193,
+      "sampledPeak": 0.444122314453125
+    },
+    {
+      "conceptId": "current-seed-01-1",
+      "sampleId": "667ded88-d5c9-481f-ba5d-431bfc5e8833",
+      "duration": 30,
+      "channels": 2,
+      "sampledRms": 0.06928509390986323,
+      "sampledPeak": 0.47853022813796997
+    }
+  ],
+  "noPlayback": true,
+  "noMicrophone": true,
+  "mutedBrowser": true,
+  "subjectiveAudition": false
+}

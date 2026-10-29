@@ -1,0 +1,39 @@
+{
+  "verifiedAt": "2026-10-29T18:30:36Z",
+  "id": "9f4d6d4d-675b-464d-8df1-f85a205dfeea",
+  "started": "running",
+  "cancel": {
+    "cancelled": true
+  },
+  "after": {
+    "job": {
+      "id": "9f4d6d4d-675b-464d-8df1-f85a205dfeea",
+      "request": {
+        "model": "ace",
+        "style": "piano",
+        "seed": 582719,
+        "seconds": 30,
+        "current": {
+          "intent": "unwind",
+          "taste": "piano",
+          "avoid": [
+            "vocals",
+            "percussion",
+            "bright",
+            "nature"
+          ],
+          "feel": "gently-shift"
+        }
+      },
+      "phase": "cancelled",
+      "message": "Preparation cancelled. Any completed, technically checked pieces remain on your local shelf; nothing starts playing.",
+      "candidateIds": [],
+      "requestedCandidates": 3,
+      "completedCandidates": 0,
+      "candidateErrors": [],
+      "mode": "session"
+    }
+  },
+  "noMicrophone": true,
+  "noPaidCalls": true
+}

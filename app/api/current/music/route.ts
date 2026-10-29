@@ -1,7 +1,14 @@
 import { z } from "zod";
+import { currentMusicPrompt } from "@/src/domain/current-music";
 import { historyGuard } from "@/src/infrastructure/history-http";
 import { failure, jsonBody, HttpError } from "@/src/lib/server";
-import { musicRequestSchema } from "@/src/domain/music-lab";
+import { currentBatchSchema } from "@/src/domain/current-session";
+import {
+  getCurrentBatch,
+  restoredCurrentBatch,
+  startCurrentBatch,
+  cancelCurrentBatch,
+} from "@/src/infrastructure/current-batches";
 import { currentTechnicalIssues } from "@/src/domain/current-music";
 import {
   musicCatalog,
@@ -20,7 +27,7 @@ export async function GET(req: Request) {
     const id = new URL(req.url).searchParams.get("job");
     if (id) {
       z.string().uuid().parse(id);
-      const job = getMusicJob(id);
+      const job = (await restoredCurrentBatch(id)) || getMusicJob(id);
       if (!job || !job.request.current)
         throw new HttpError(
           404,
@@ -52,18 +59,21 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     historyGuard(req, true);
-    const input = z
-      .object({ id: z.string().uuid(), request: musicRequestSchema })
-      .strict()
-      .parse(await jsonBody(req, 2000));
+    const input = currentBatchSchema.parse(await jsonBody(req, 2000));
     if (
       input.request.model !== "ace" ||
       !input.request.current ||
       input.request.style !== input.request.current.taste
     )
       throw new HttpError(400, "Choose an available Current music preference.");
+    currentMusicPrompt(input.request.current);
     return Response.json(
-      { job: await startMusicJob(input.request, input.id) },
+      {
+        job:
+          input.candidateCount > 1
+            ? await startCurrentBatch(input)
+            : await startMusicJob(input.request, input.id),
+      },
       { status: 202, headers: { "Cache-Control": "no-store" } },
     );
   } catch (e) {
@@ -77,10 +87,11 @@ export async function DELETE(req: Request) {
       .string()
       .uuid()
       .parse(new URL(req.url).searchParams.get("job"));
-    const job = getMusicJob(id);
+    const job = (await restoredCurrentBatch(id)) || getMusicJob(id);
     if (job && !job.request.current)
       throw new HttpError(404, "Not a Current job.");
-    cancelMusicJob(id);
+    cancelCurrentBatch(id);
+    if (!getCurrentBatch(id)) cancelMusicJob(id);
     return Response.json({ cancelled: true });
   } catch (e) {
     return failure(e);

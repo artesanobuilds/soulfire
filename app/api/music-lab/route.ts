@@ -35,7 +35,7 @@ export async function GET(req: Request) {
       musicCatalog(),
     ]);
     return Response.json(
-      { models, samples },
+      { models, samples: samples.filter((s) => !s.currentOnly) },
       { headers: { "Cache-Control": "no-store" } },
     );
   } catch (e) {

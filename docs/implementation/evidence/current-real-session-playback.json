@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-10-29T18:29:36.403Z",
+  "jobId": "021a33b6-6672-4eab-be17-6483f85174b4",
+  "sequence": "3 movements · 270 seconds of distinct music\n\nEach movement fades to quiet before the next. Tonal or pulse compatibility is uncertain. Longer listening cycles this sequence, rather than claiming unlimited new music.\n\nEvening Shore / Horizon\nRemove\nEvening Shore / Garden\nRemove\nEvening Shore / Daylight\nRemove\nAlways leave a quiet moment between movements",
+  "playing": {
+    "contexts": [
+      "running"
+    ],
+    "rms": 0.01808596597928292,
+    "peak": 0.04610510915517807,
+    "starts": 1
+  },
+  "stopped": {
+    "contexts": [
+      "closed",
+      "closed"
+    ],
+    "rms": 0,
+    "peak": 0,
+    "starts": 2
+  },
+  "overflow": false,
+  "pageErrors": [],
+  "muted": true,
+  "humanAudition": false,
+  "microphone": false
+}

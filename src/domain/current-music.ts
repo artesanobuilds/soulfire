@@ -1,4 +1,9 @@
 import { z } from "zod";
+import seeds from "./current-seeds.json";
+export const currentSeedCatalogue = seeds;
+export function currentSeed(id: string) {
+  return currentSeedCatalogue.find((s) => s.id === id);
+}
 import type { MusicSample, MusicStyle } from "./music-lab";
 export const currentIntentLabels = {
   focus: "Find my focus",
@@ -14,6 +19,11 @@ export const currentMusicOptionsSchema = z
     taste: z.enum(["piano", "ambient", "acoustic"]),
     avoid: z.array(z.enum(["percussion", "bright", "nature", "vocals"])).max(4),
     feel: z.enum(["steady", "gently-shift"]),
+    conceptId: z
+      .string()
+      .regex(/^current-seed-[0-9]{2}-[12]$/)
+      .optional(),
+    movement: z.enum(["opening", "developing", "closing"]).optional(),
   })
   .strict();
 export type CurrentMusicOptions = z.infer<typeof currentMusicOptionsSchema>;
@@ -25,6 +35,9 @@ export const defaultCurrentMusic: CurrentMusicOptions = {
 };
 export function currentMusicPrompt(options: CurrentMusicOptions) {
   const o = currentMusicOptionsSchema.parse(options);
+  const seed = o.conceptId ? currentSeed(o.conceptId) : undefined;
+  if (o.conceptId && (!seed?.eligible || seed.style !== o.taste))
+    throw Error("This starter is not eligible for adult Current generation.");
   const goal = {
     focus:
       "Unobtrusive background for a quiet task, stable phrasing and restrained detail",
@@ -41,7 +54,7 @@ export function currentMusicPrompt(options: CurrentMusicOptions) {
     ambient: "beatless sustained warm pads and strings",
     acoustic: "restrained nylon-string acoustic guitar",
   }[o.taste];
-  return `Instrumental ${palette}. ${goal}. Simple consonant harmony, soft even dynamics. ${o.feel === "gently-shift" ? "A subtle move toward a slightly warmer texture; no abrupt changes." : "Keep the musical feel steady."} ${o.avoid.includes("bright") ? "No sharp attacks, harsh highs or bright metallic sounds." : "Natural rounded tone."} ${o.avoid.includes("percussion") ? "No drums or percussion." : "Only a very understated pulse if any."} ${o.avoid.includes("nature") ? "No environmental or nature recordings." : "No environmental effects are required."} No vocals, speech, sudden peaks, startling sounds or dramatic ending. A musical preference request, not a treatment protocol.`;
+  return `Instrumental ${palette}. ${goal}. ${seed?.character || ""} ${o.movement === "opening" ? "Begin with a sparse clear motif." : o.movement === "developing" ? "Develop a little textural variety without a dramatic build." : o.movement === "closing" ? "Return to restrained detail and a gentle ending." : ""} Simple consonant harmony, soft even dynamics. ${o.feel === "gently-shift" ? "A subtle move toward a slightly warmer texture; no abrupt changes." : "Keep the musical feel steady."} ${o.avoid.includes("bright") ? "No sharp attacks, harsh highs or bright metallic sounds." : "Natural rounded tone."} ${o.avoid.includes("percussion") ? "No drums or percussion." : "Only a very understated pulse if any."} ${o.avoid.includes("nature") ? "No environmental or nature recordings." : "No environmental effects are required."} No vocals, speech, sudden peaks, startling sounds or dramatic ending. A musical preference request, not a treatment protocol.`;
 }
 export function currentTechnicalIssues(s: MusicSample): string[] {
   const m = s.metrics,
@@ -58,6 +71,15 @@ export function currentTechnicalIssues(s: MusicSample): string[] {
     issues.push("Playback loudness or peak needs review.");
   if (m.clippedFraction > 0.001)
     issues.push("The source has excessive clipping.");
+  if (
+    s.request.current?.avoid.includes("bright") &&
+    (m.spectralCentroidHz ?? 0) > 4500
+  )
+    issues.push("The requested soft tone needs review.");
+  if ((m.onsetRate ?? 0) > 8)
+    issues.push(
+      "The transient rate exceeds the restrained-music release threshold.",
+    );
   return issues;
 }
 export function currentStarterName(
@@ -65,6 +87,10 @@ export function currentStarterName(
   seed: number,
   options?: CurrentMusicOptions,
 ) {
+  if (options?.conceptId) {
+    const seed = currentSeed(options.conceptId);
+    if (seed?.eligible) return seed.name;
+  }
   if (options) {
     const titles = {
       focus: "Clearwater",
@@ -123,7 +149,7 @@ export function suggestedCurrentSamples(
             x.request.seed === s.request.seed,
         ) === i,
     )
-    .slice(0, 12);
+    .slice(0, 80);
 }
 export const savedCurrentMusicSchema = z
   .object({
@@ -131,6 +157,19 @@ export const savedCurrentMusicSchema = z
     id: z.string().uuid(),
     name: z.string().trim().min(1).max(60),
     sampleId: z.string().uuid(),
+    segments: z
+      .array(
+        z
+          .object({
+            sampleId: z.string().uuid(),
+            pcmSha256: z.string().regex(/^[a-f0-9]{64}$/),
+          })
+          .strict(),
+      )
+      .min(1)
+      .max(3)
+      .optional(),
+    transition: z.enum(["crossfade", "quiet-gap"]).optional(),
     pcmSha256: z.string().regex(/^[a-f0-9]{64}$/),
     options: currentMusicOptionsSchema,
     minutes: z.number().int().min(1).max(30),

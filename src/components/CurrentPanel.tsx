@@ -10,10 +10,13 @@ import {
   RefreshCw,
   ArrowRight,
 } from "lucide-react";
+import { planCurrentSession, technicalFit } from "../domain/current-session";
+import { currentSeedCatalogue } from "../domain/current-music";
 import { ClassicCurrentPanel } from "./ClassicCurrentPanel";
 import { CurrentLandscape } from "./CurrentLandscape";
 import {
   currentIntentLabels,
+  currentMusicOptionsSchema,
   defaultCurrentMusic,
   suggestedCurrentSamples,
   currentStarterName,
@@ -91,6 +94,18 @@ function MusicCurrent({
     [storageBad, setStorageBad] = useState(false),
     [notice, setNotice] = useState(""),
     [feeling, setFeeling] = useState("");
+  const [candidateCount, setCandidateCount] = useState(2),
+    [pieceSeconds, setPieceSeconds] = useState(60),
+    [creationMode, setCreationMode] = useState<"compare" | "session">(
+      "compare",
+    ),
+    [latestIds, setLatestIds] = useState<string[]>([]),
+    [sessionIds, setSessionIds] = useState<string[]>([]),
+    [quietTransitions, setQuietTransitions] = useState(false),
+    [expandedShelf, setExpandedShelf] = useState(false);
+  const [continueInBackground, setContinueInBackground] = useState(false);
+  const backgroundRef = useRef(false);
+  backgroundRef.current = continueInBackground;
   const engine = useRef<CurrentMusicAudio | null>(null),
     mounted = useRef(false),
     pending = useRef<string | null>(null),
@@ -123,6 +138,9 @@ function MusicCurrent({
     }
   }
   function cancel() {
+    try {
+      sessionStorage.removeItem("soulfire.current.pending.v1");
+    } catch {}
     const id = pending.current;
     ++version.current;
     pending.current = null;
@@ -156,6 +174,57 @@ function MusicCurrent({
     const audio = new CurrentMusicAudio(setPlayer);
     engine.current = audio;
     void refresh(abort.signal);
+    const recoverVersion = version.current;
+    void (async () => {
+      try {
+        const raw = sessionStorage.getItem("soulfire.current.pending.v1");
+        if (!raw) return;
+        const saved = JSON.parse(raw);
+        if (
+          !/^[a-f0-9-]{36}$/.test(saved.id) ||
+          Date.now() - saved.at > 3600000
+        ) {
+          sessionStorage.removeItem("soulfire.current.pending.v1");
+          return;
+        }
+        const data = await json(
+          await fetch(`/api/current/music?job=${saved.id}`, {
+            signal: signal(abort.signal),
+            cache: "no-store",
+          }),
+        );
+        if (!mounted.current || version.current !== recoverVersion) return;
+        setContinueInBackground(true);
+        backgroundRef.current = true;
+        setJob(data.job);
+        if (data.job.request?.current)
+          setOptions(currentMusicOptionsSchema.parse(data.job.request.current));
+        if (data.job.requestedCandidates)
+          setCandidateCount(data.job.requestedCandidates);
+        if (data.job.mode) setCreationMode(data.job.mode);
+        if (data.job.request?.seconds)
+          setPieceSeconds(data.job.request.seconds);
+        if (data.job.phase === "running") {
+          pending.current = saved.id;
+          accepted.current = true;
+        } else {
+          setLatestIds(
+            data.job.candidateIds ||
+              (data.job.sampleId ? [data.job.sampleId] : []),
+          );
+          sessionStorage.removeItem("soulfire.current.pending.v1");
+        }
+      } catch {
+        if (!abort.signal.aborted && mounted.current) {
+          setNotice(
+            "The earlier preparation could not be restored. No new job was started; refresh the shelf or try again.",
+          );
+          try {
+            sessionStorage.removeItem("soulfire.current.pending.v1");
+          } catch {}
+        }
+      }
+    })();
     try {
       setSaved(
         readSavedCurrentMusic(localStorage.getItem(currentMusicStorageKey)),
@@ -173,7 +242,7 @@ function MusicCurrent({
     const leave = () => {
       audio.stop();
       const id = pending.current;
-      if (id)
+      if (id && !backgroundRef.current)
         void fetch(`/api/current/music?job=${id}`, {
           method: "DELETE",
           keepalive: true,
@@ -189,7 +258,7 @@ function MusicCurrent({
       abort.abort();
       const id = pending.current;
       pending.current = null;
-      if (id)
+      if (id && !backgroundRef.current)
         void fetch(`/api/current/music?job=${id}`, {
           method: "DELETE",
           keepalive: true,
@@ -227,16 +296,32 @@ function MusicCurrent({
         );
         if (!mounted.current || pending.current !== id || version.current !== v)
           return;
-        setJob(data.job);
-        if (data.job.phase !== "running") {
+        if (data.job.phase === "running") {
+          setJob(data.job);
+        } else {
+          // Finish loading the actual candidate records before the terminal
+          // phase tears down this poller's AbortController.
+          if (data.job.phase === "done") await refresh(abort.signal);
+          if (
+            !mounted.current ||
+            pending.current !== id ||
+            version.current !== v
+          )
+            return;
           pending.current = null;
+          try {
+            sessionStorage.removeItem("soulfire.current.pending.v1");
+          } catch {}
           if (data.job.phase === "done") {
-            await refresh(abort.signal);
-            if (mounted.current && version.current === v)
-              setNotice(
-                "Your new piece passed technical checks. Preview it and decide if it suits you; listening quality is not clinically validated.",
-              );
+            setLatestIds(
+              data.job.candidateIds ||
+                (data.job.sampleId ? [data.job.sampleId] : []),
+            );
+            setNotice(
+              "Your new music passed technical checks. Preview and choose; listening quality is not clinically validated.",
+            );
           }
+          setJob(data.job);
         }
       } catch (e) {
         if (!abort.signal.aborted && mounted.current && version.current === v) {
@@ -263,6 +348,8 @@ function MusicCurrent({
   function choose(s: MusicSample) {
     engine.current?.stop();
     setSelected(s);
+    setSessionIds([s.id]);
+    setQuietTransitions(false);
     setName(
       currentStarterName(s.request.style, s.request.seed, s.request.current),
     );
@@ -286,12 +373,31 @@ function MusicCurrent({
     pending.current = id;
     accepted.current = false;
     setError("");
+    if (continueInBackground) {
+      try {
+        sessionStorage.setItem(
+          "soulfire.current.pending.v1",
+          JSON.stringify({ id, at: Date.now() }),
+        );
+      } catch {
+        pending.current = null;
+        setError(
+          "This browser cannot retain a preparation reference. Keep this section open or disable background preparation.",
+        );
+        return;
+      }
+    }
     const request = {
       model: "ace" as const,
       style: options.taste,
       seed: crypto.getRandomValues(new Uint32Array(1))[0] % 2147483647,
-      seconds: 30,
-      current: { ...options, avoid: [...options.avoid] },
+      seconds: pieceSeconds,
+      current: {
+        intent: options.intent,
+        taste: options.taste,
+        avoid: [...options.avoid],
+        feel: options.feel,
+      },
     };
     setJob({
       id,
@@ -304,7 +410,12 @@ function MusicCurrent({
         await fetch("/api/current/music", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id, request }),
+          body: JSON.stringify({
+            id,
+            request,
+            candidateCount,
+            mode: creationMode,
+          }),
           signal: signal(controller.current?.signal),
         }),
       );
@@ -338,6 +449,11 @@ function MusicCurrent({
         id: crypto.randomUUID(),
         name,
         sampleId: selected.id,
+        segments: sessionPieces.map((s) => ({
+          sampleId: s.id,
+          pcmSha256: s.metrics.pcmSha256,
+        })),
+        transition: effectiveTransition,
         pcmSha256: selected.metrics.pcmSha256,
         options,
         minutes,
@@ -356,8 +472,54 @@ function MusicCurrent({
       setNotice("Could not save. Your existing sessions were left unchanged.");
     }
   }
-  const suggested = suggestedCurrentSamples(samples, options),
-    running = !!pending.current || job?.phase === "running",
+  const suggested = suggestedCurrentSamples(samples, options);
+  const sessionPieces = sessionIds
+    .map(
+      (id) =>
+        samples.find((s) => s.id === id) ||
+        (selected?.id === id ? selected : undefined),
+    )
+    .filter((s): s is MusicSample => !!s);
+  const sessionPlan = sessionPieces.length
+    ? planCurrentSession(sessionPieces)
+    : null;
+  const effectiveTransition =
+    quietTransitions || sessionPlan?.transition === "quiet-gap"
+      ? "quiet-gap"
+      : "crossfade";
+  const latestPieces = latestIds
+    .map((id) => samples.find((s) => s.id === id))
+    .filter((s): s is MusicSample => !!s);
+  const generatedConcepts = new Set(
+    samples.map((s) => s.request.current?.conceptId).filter(Boolean),
+  ).size;
+  function assemble(pieces: MusicSample[]) {
+    const plan = planCurrentSession(pieces);
+    choose(plan.samples[0]);
+    setSessionIds(plan.samples.map((s) => s.id));
+    setName(
+      {
+        focus: "My clear space",
+        calm: "My quiet Current",
+        overwhelm: "Room to breathe",
+        unwind: "My evening Current",
+        lift: "A brighter Current",
+        company: "A little company",
+      }[options.intent],
+    );
+    setNotice(
+      `${plan.samples.length} movements selected. ${plan.transition === "quiet-gap" ? "Pieces fade to quiet between movements because compatibility is uncertain." : "Estimated-compatible movements use gentle crossfades."} Preview and decide; nothing autoplays.`,
+    );
+  }
+  function preview(s: MusicSample) {
+    choose(s);
+    void engine.current?.play(s.id, Math.min(20, s.metrics.duration) / 60, {
+      volume,
+      brightness,
+      space,
+    });
+  }
+  const running = !!pending.current || job?.phase === "running",
     active = ["playing", "loading", "paused"].includes(player.phase);
   return (
     <section className="current-music" aria-label="Current music">
@@ -496,11 +658,58 @@ function MusicCurrent({
                 <option value="gently-shift">Gently shift the feel</option>
               </select>
             </label>
+            <label className="current-field">
+              What should we prepare?
+              <select
+                value={creationMode}
+                onChange={(e) =>
+                  setCreationMode(e.target.value as "compare" | "session")
+                }
+              >
+                <option value="compare">Alternatives to compare</option>
+                <option value="session">Movements for a longer session</option>
+              </select>
+            </label>
+            <label className="current-field">
+              Number of pieces
+              <select
+                value={candidateCount}
+                onChange={(e) => setCandidateCount(Number(e.target.value))}
+              >
+                <option value={2}>Two</option>
+                <option value={3}>Three</option>
+              </select>
+            </label>
+            <label className="current-field">
+              Length of each new composition
+              <select
+                value={pieceSeconds}
+                onChange={(e) => setPieceSeconds(Number(e.target.value))}
+              >
+                <option value={30}>30 seconds</option>
+                <option value={60}>60 seconds</option>
+                <option value={90}>90 seconds</option>
+              </select>
+            </label>
             <p className="small">
               Gentle shifts are a preference, not proven better for mood. No
               health or diagnosis information is inferred.
             </p>
           </details>
+          <label className="check-row cm-background">
+            <input
+              type="checkbox"
+              checked={continueInBackground}
+              onChange={(e) => setContinueInBackground(e.target.checked)}
+              disabled={running}
+            />
+            Keep preparing when I leave Current
+          </label>
+          <p className="small">
+            Optional, on this Mac only. Return to Current in this browser tab to
+            review or cancel. Preparation is bounded to eight minutes and never
+            starts playback.
+          </p>
           <button
             className="primary"
             disabled={running || blocked || loading || !availability?.ready}
@@ -510,10 +719,11 @@ function MusicCurrent({
             Create a new Current
           </button>
           <p className="small">
-            Made on this Mac with ACE-Step Turbo. Generation and audio checks
-            may take a few minutes. A 30-second musical candidate is measured,
-            then offered for preview. Longer listening gently repeats it. No
-            paid service or new audio download.
+            Made on this Mac with ACE-Step Turbo. Two or three real candidates
+            are generated and checked before preview; this can take a few
+            minutes. Advanced options choose piece length. Longer listening
+            cycles your selected movements. No paid service or cloud generation.
+            New pieces stay in local app storage; Save adds a browser bookmark.
           </p>
           {availability && !availability.ready && (
             <p role="status">
@@ -527,14 +737,79 @@ function MusicCurrent({
                 {job.phase === "running"
                   ? "Preparing your Current…"
                   : job.phase === "done"
-                    ? "A new piece is on your shelf"
+                    ? job.candidateIds && job.candidateIds.length > 1
+                      ? "Your new pieces are ready"
+                      : "A new piece is on your shelf"
                     : job.phase === "cancelled"
                       ? "Generation cancelled"
                       : "This piece couldn’t be prepared"}
               </strong>
               <p>{job.message}</p>
+              {!!job.candidateErrors?.length && (
+                <details>
+                  <summary>
+                    {job.candidateErrors.length} candidate notes
+                  </summary>
+                  <ul>
+                    {job.candidateErrors.map((message, i) => (
+                      <li key={i}>{message}</li>
+                    ))}
+                  </ul>
+                </details>
+              )}
               {running && <button onClick={cancel}>Cancel generation</button>}
             </div>
+          )}
+          {latestPieces.length > 0 && (
+            <section className="cm-candidates" aria-label="Prepared candidates">
+              <h3>
+                {job?.mode === "session"
+                  ? "Your new movements"
+                  : "Compare your alternatives"}
+              </h3>
+              <p className="small">
+                {job?.mode === "session"
+                  ? "The pieces follow their requested opening, development and closing order. Actual musical adherence is approximate."
+                  : "Ordered by loudness, clipping and peak checks, not musical taste."}{" "}
+                Listen and choose. Nothing plays automatically.
+              </p>
+              {latestPieces.map((s, i) => (
+                <article key={s.id}>
+                  <strong>Choice {String.fromCharCode(65 + i)}</strong>
+                  <p>
+                    {Math.round(s.metrics.duration)} seconds · audio checks
+                    passed
+                  </p>
+                  <details>
+                    <summary>What the checks mean</summary>
+                    <p>
+                      Technical fit {technicalFit(s)}/100 (loudness, clipping
+                      and headroom only). Normalized {s.metrics.matchedLufs}{" "}
+                      LUFS, peak {s.metrics.matchedTruePeakDb} dBTP, clipped
+                      samples {(s.metrics.clippedFraction * 100).toFixed(4)}%.
+                      This score does not measure pleasantness, health benefit
+                      or absence of voice-like artifacts.
+                    </p>
+                  </details>
+                  <div>
+                    <button disabled={blocked} onClick={() => preview(s)}>
+                      Preview choice {String.fromCharCode(65 + i)}
+                    </button>
+                    <button onClick={() => choose(s)}>
+                      Use choice {String.fromCharCode(65 + i)}
+                    </button>
+                  </div>
+                </article>
+              ))}
+              {latestPieces.length > 1 && (
+                <button
+                  className="primary"
+                  onClick={() => assemble(latestPieces)}
+                >
+                  Make a session from these
+                </button>
+              )}
+            </section>
           )}
         </div>
         <div className="cm-shelf">
@@ -570,10 +845,11 @@ function MusicCurrent({
             </div>
           )}
           <div className="cm-starters">
-            {suggested.map((s) => (
+            {suggested.slice(0, expandedShelf ? 80 : 6).map((s) => (
               <button
                 key={s.id}
                 className="cm-starter"
+                data-sample-id={s.id}
                 aria-pressed={selected?.id === s.id}
                 onClick={() => choose(s)}
               >
@@ -616,6 +892,23 @@ function MusicCurrent({
               </button>
             ))}
           </div>
+          {suggested.length > 6 && (
+            <button
+              className="cm-browse"
+              onClick={() => setExpandedShelf((v) => !v)}
+            >
+              {expandedShelf
+                ? "Show fewer starting places"
+                : `Browse all ${suggested.length} pieces`}
+            </button>
+          )}
+          <p className="small">
+            {generatedConcepts} of{" "}
+            {currentSeedCatalogue.filter((s) => s.eligible).length} adult
+            catalogue recipes have real measured audio. Other measured study
+            pieces remain available. Every piece still needs your listening
+            choice.
+          </p>
           <div
             className="cm-shape"
             role="region"
@@ -641,6 +934,88 @@ function MusicCurrent({
                   wellness effect.
                 </p>
                 <p role="status">{player.message}</p>
+                {sessionPlan && (
+                  <div className="cm-sequence">
+                    <strong>
+                      {sessionPieces.length}{" "}
+                      {sessionPieces.length === 1 ? "movement" : "movements"} ·{" "}
+                      {Math.round(sessionPlan.secondsOfUniqueMusic)} seconds of
+                      distinct music
+                    </strong>
+                    <p className="small">
+                      {effectiveTransition === "quiet-gap"
+                        ? "Each movement fades to quiet before the next. Tonal or pulse compatibility is uncertain."
+                        : "Measured compatibility permits gentle crossfades; musical fit still needs your preview."}{" "}
+                      Longer listening cycles this sequence, rather than
+                      claiming unlimited new music.
+                    </p>
+                    {sessionPieces.map((s) => (
+                      <div key={s.id}>
+                        <span>
+                          {currentStarterName(
+                            s.request.style,
+                            s.request.seed,
+                            s.request.current,
+                          )}
+                        </span>
+                        {sessionPieces.length > 1 && (
+                          <button
+                            aria-label={`Remove movement ${currentStarterName(s.request.style, s.request.seed, s.request.current)}`}
+                            onClick={() => {
+                              engine.current?.stop();
+                              const next = sessionPieces.filter(
+                                (x) => x.id !== s.id,
+                              );
+                              setSessionIds(next.map((x) => x.id));
+                              setSelected(next[0]);
+                            }}
+                          >
+                            Remove
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                    {sessionPieces.length < 3 && (
+                      <label className="current-field">
+                        Add another measured movement
+                        <select
+                          value=""
+                          onChange={(e) => {
+                            const item = samples.find(
+                              (s) => s.id === e.target.value,
+                            );
+                            if (item) assemble([...sessionPieces, item]);
+                          }}
+                        >
+                          <option value="">Choose a different piece…</option>
+                          {suggested
+                            .filter((s) => !sessionIds.includes(s.id))
+                            .map((s) => (
+                              <option key={s.id} value={s.id}>
+                                {currentStarterName(
+                                  s.request.style,
+                                  s.request.seed,
+                                  s.request.current,
+                                )}
+                              </option>
+                            ))}
+                        </select>
+                      </label>
+                    )}
+                    <label className="check-row">
+                      <input
+                        type="checkbox"
+                        checked={quietTransitions}
+                        onChange={(e) => {
+                          engine.current?.stop();
+                          setQuietTransitions(e.target.checked);
+                        }}
+                      />
+                      Always leave a quiet moment between movements
+                    </label>
+                  </div>
+                )}
+
                 <div className="cm-transport">
                   <button
                     className="primary"
@@ -649,10 +1024,11 @@ function MusicCurrent({
                       player.phase === "playing"
                         ? engine.current?.pause()
                         : void engine.current?.play(
-                            selected.id,
+                            sessionPieces.map((s) => s.id),
                             minutes,
                             { volume, brightness, space },
                             player.phase === "paused",
+                            effectiveTransition,
                           )
                     }
                   >
@@ -683,7 +1059,8 @@ function MusicCurrent({
                   </button>
                 </div>
                 <p className="cm-time">
-                  {clock(player.elapsed)} / {clock(minutes * 60)}{" "}
+                  {clock(player.elapsed)} /{" "}
+                  {clock(player.total || minutes * 60)}{" "}
                   <span>
                     {player.phase === "playing"
                       ? "Music is playing"
@@ -765,18 +1142,31 @@ function MusicCurrent({
                 <div key={item.id}>
                   <button
                     onClick={() => {
-                      const s = samples.find(
-                        (s) =>
-                          s.id === item.sampleId &&
-                          s.metrics.pcmSha256 === item.pcmSha256,
+                      const refs = item.segments || [
+                        { sampleId: item.sampleId, pcmSha256: item.pcmSha256 },
+                      ];
+                      const pieces = refs.map((ref) =>
+                        samples.find(
+                          (s) =>
+                            s.id === ref.sampleId &&
+                            s.metrics.pcmSha256 === ref.pcmSha256,
+                        ),
                       );
-                      if (!s || currentTechnicalIssues(s).length) {
+                      const s = pieces[0];
+                      if (
+                        !s ||
+                        pieces.some(
+                          (p) => !p || currentTechnicalIssues(p).length,
+                        )
+                      ) {
                         setNotice(
                           "The saved audio is unavailable or changed. Nothing was substituted.",
                         );
                         return;
                       }
                       choose(s);
+                      setSessionIds(pieces.map((s) => s!.id));
+                      setQuietTransitions(item.transition === "quiet-gap");
                       setName(item.name);
                       setOptions(item.options);
                       setMinutes(item.minutes);
@@ -831,7 +1221,7 @@ function MusicCurrent({
                   : "Current playing"}
             </strong>
             <small>
-              {clock(player.elapsed)} / {clock(minutes * 60)}
+              {clock(player.elapsed)} / {clock(player.total || minutes * 60)}
             </small>
           </span>
           <button

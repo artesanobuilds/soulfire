@@ -44,11 +44,18 @@ export const musicMetricsSchema = z
     seamRmsDifferenceDb: z.number().finite(),
     matchedLufs: z.number().finite(),
     matchedTruePeakDb: z.number().finite(),
-    loopLufs: z.number().finite(),
-    loopTruePeakDb: z.number().finite(),
-    narrationLufs: z.number().finite(),
-    narrationTruePeakDb: z.number().finite(),
-    loopSeamJump: z.number().min(0),
+    loopLufs: z.number().finite().nullable(),
+    loopTruePeakDb: z.number().finite().nullable(),
+    narrationLufs: z.number().finite().nullable(),
+    narrationTruePeakDb: z.number().finite().nullable(),
+    loopSeamJump: z.number().min(0).nullable(),
+    estimatedKey: z.number().int().min(0).max(23).nullable().optional(),
+    keyConfidence: z.number().min(0).max(1).optional(),
+    estimatedBpm: z.number().min(35).max(200).nullable().optional(),
+    tempoConfidence: z.number().min(0).max(1).optional(),
+    chroma: z.array(z.number().nonnegative()).length(12).optional(),
+    spectralCentroidHz: z.number().nonnegative().optional(),
+    onsetRate: z.number().nonnegative().optional(),
     pcmSha256: z.string().regex(/^[a-f0-9]{64}$/),
     sha256: z.string().regex(/^[a-f0-9]{64}$/),
   })
@@ -56,11 +63,23 @@ export const musicMetricsSchema = z
 export const musicSampleSchema = z
   .object({
     id: z.string().uuid(),
+    currentOnly: z.literal(true).optional(),
     request: musicRequestSchema,
     modelVersion: z.string().max(80),
     codeRevision: z.string().max(64),
     weightsRevision: z.string().max(64),
     createdAt: z.string().datetime(),
+    generationSettings: z
+      .object({
+        steps: z.number().int(),
+        shift: z.number(),
+        guidanceScale: z.number(),
+        thinking: z.boolean(),
+        requestedKey: z.string().max(40),
+        requestedBpm: z.number().nullable(),
+      })
+      .strict()
+      .optional(),
     latencySeconds: z.number().nonnegative(),
     loadSeconds: z.number().nonnegative(),
     inferenceSeconds: z.number().nonnegative(),
@@ -68,7 +87,22 @@ export const musicSampleSchema = z
     peakAcceleratorBytes: z.number().nonnegative().nullable(),
     metrics: musicMetricsSchema,
   })
-  .strict();
+  .strict()
+  .refine(
+    (s) =>
+      s.currentOnly === true ||
+      [
+        s.metrics.loopLufs,
+        s.metrics.loopTruePeakDb,
+        s.metrics.narrationLufs,
+        s.metrics.narrationTruePeakDb,
+        s.metrics.loopSeamJump,
+      ].every((v) => v !== null),
+    {
+      message:
+        "Comparison samples require actual comparison-render measurements.",
+    },
+  );
 export type MusicSample = z.infer<typeof musicSampleSchema>;
 export type MusicAvailability = {
   model: MusicModel;
@@ -84,6 +118,11 @@ export type MusicJob = {
   phase: "running" | "done" | "cancelled" | "error";
   message: string;
   sampleId?: string;
+  candidateIds?: string[];
+  completedCandidates?: number;
+  requestedCandidates?: number;
+  candidateErrors?: string[];
+  mode?: "compare" | "session";
 };
 export const musicRatingNames = {
   pleasantness: "Pleasantness",

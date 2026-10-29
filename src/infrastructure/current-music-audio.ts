@@ -17,7 +17,9 @@ export class CurrentMusicAudio {
   private filter?: BiquadFilterNode;
   private wet?: GainNode;
   private dry?: GainNode;
-  private buffer?: AudioBuffer;
+  private buffers: AudioBuffer[] = [];
+  private nextIndex = 0;
+  private transition: "crossfade" | "quiet-gap" = "crossfade";
   private sources = new Set<AudioBufferSourceNode>();
   private tick?: ReturnType<typeof setInterval>;
   private abort?: AbortController;
@@ -59,7 +61,8 @@ export class CurrentMusicAudio {
     ++this.token;
     this.release();
     this.offset = 0;
-    this.buffer = undefined;
+    this.buffers = [];
+    this.nextIndex = 0;
     this.sample = "";
     this.emit({ ...idleCurrentMusic, message });
   }
@@ -107,7 +110,7 @@ export class CurrentMusicAudio {
   }
   private segment(time: number, offset = 0) {
     const c = this.context,
-      b = this.buffer;
+      b = this.buffers[this.nextIndex];
     if (!c || !b) return;
     const source = c.createBufferSource(),
       envelope = c.createGain();
@@ -127,21 +130,31 @@ export class CurrentMusicAudio {
       envelope.disconnect();
     };
     source.start(time, offset);
-    this.next = time + duration - fade;
+    this.next =
+      time + duration + (this.transition === "crossfade" ? -fade : 0.25);
+    this.nextIndex = (this.nextIndex + 1) % this.buffers.length;
   }
   async play(
-    sampleId: string,
+    sampleId: string | string[],
     minutes: number,
     settings: typeof this.settings,
     resume = false,
+    transition: "crossfade" | "quiet-gap" = "crossfade",
   ) {
+    const ids = [...new Set(Array.isArray(sampleId) ? sampleId : [sampleId])];
+    if (!ids.length || ids.length > 3) {
+      this.stop("Choose one to three movements.");
+      return;
+    }
+    const identity = ids.join(",") + ":" + transition;
     const was =
-      resume && this.sample === sampleId && this.state.phase === "paused";
-    const buffered = was ? this.buffer : undefined,
+      resume && this.sample === identity && this.state.phase === "paused";
+    const buffered = was ? this.buffers : undefined,
       offset = was ? this.offset : 0;
     this.stop();
     const token = this.token;
-    this.sample = sampleId;
+    this.sample = identity;
+    this.transition = transition;
     this.offset = offset;
     this.settings = settings;
     this.emit({
@@ -169,29 +182,39 @@ export class CurrentMusicAudio {
         throw Error("Your browser has paused audio. Press Play to try again.");
       const abort = new AbortController();
       this.abort = abort;
-      let b = buffered;
-      if (!b) {
-        const response = await fetch(
-          `/api/music-lab/audio?id=${sampleId}&mode=bed`,
-          { signal: AbortSignal.any([abort.signal, timeout]) },
-        );
-        if (!response.ok)
-          throw Error(
-            "This local piece is unavailable. Choose another starter or try again.",
+      const buffers: AudioBuffer[] = buffered || [];
+      if (!buffered)
+        for (const id of ids) {
+          const response = await fetch(
+            `/api/music-lab/audio?id=${id}&mode=bed`,
+            { signal: AbortSignal.any([abort.signal, timeout]) },
           );
-        const bytes = await response.arrayBuffer();
-        if (bytes.byteLength > 40000000)
-          throw Error("This audio exceeds the playback limit.");
-        b = await c.decodeAudioData(bytes);
-      }
+          if (!response.ok)
+            throw Error(
+              "This local piece is unavailable. Choose another starter or try again.",
+            );
+          const bytes = await response.arrayBuffer();
+          if (bytes.byteLength > 40000000)
+            throw Error("This audio exceeds the playback limit.");
+          const decoded = await c.decodeAudioData(bytes);
+          if (token !== this.token) return;
+          if (decoded.duration < 10 || decoded.duration > 100)
+            throw Error("This piece needs an audio review before playback.");
+          buffers.push(decoded);
+        }
       if (token !== this.token) {
         void c.close().catch(() => {});
         return;
       }
       timeout.throwIfAborted();
-      if (!b || b.duration < 10 || b.duration > 100)
-        throw Error("This piece needs an audio review before playback.");
-      this.buffer = b;
+      if (
+        buffers.reduce(
+          (bytes, b) => bytes + b.length * b.numberOfChannels * 4,
+          0,
+        ) > 120000000
+      )
+        throw Error("This session exceeds the decoded audio memory limit.");
+      this.buffers = buffers;
       const filter = c.createBiquadFilter();
       filter.type = "lowpass";
       this.filter = filter;
@@ -235,8 +258,21 @@ export class CurrentMusicAudio {
       gain.gain.value = 0;
       this.shape(settings);
       this.started = c.currentTime;
-      const period = b.duration - 1;
-      this.segment(c.currentTime + 0.03, offset % period);
+      const spans = buffers.map(
+        (b) => b.duration + (transition === "crossfade" ? -1 : 0.25),
+      );
+      const cycle = spans.reduce((a, b) => a + b, 0);
+      let within = offset % cycle,
+        index = 0;
+      while (index < spans.length - 1 && within >= spans[index]) {
+        within -= spans[index];
+        index++;
+      }
+      this.nextIndex = index;
+      if (within >= buffers[index].duration) {
+        this.nextIndex = (index + 1) % buffers.length;
+        this.segment(c.currentTime + 0.03 + spans[index] - within);
+      } else this.segment(c.currentTime + 0.03, within);
       this.emit({
         phase: "playing",
         message: "Playing your music. Adjust freely, or choose quiet.",
@@ -260,7 +296,8 @@ export class CurrentMusicAudio {
           });
           return;
         }
-        if (this.next < c.currentTime + 2) this.segment(this.next);
+        if (this.next < c.currentTime + 2)
+          this.segment(Math.max(this.next, c.currentTime + 0.02));
         if (remaining < 5)
           this.gain?.gain.setTargetAtTime(
             this.settings.volume * Math.max(0, remaining / 5),

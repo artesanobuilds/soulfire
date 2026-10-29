@@ -17,8 +17,14 @@ export async function GET(req: Request) {
     const mode = z
       .enum(["bed", "narration", "loop"])
       .parse(u.searchParams.get("mode"));
-    if (!(await musicCatalog()).some((s) => s.id === id))
+    const sample = (await musicCatalog()).find((s) => s.id === id);
+    if (!sample)
       throw new HttpError(404, "This measured sample is not available.");
+    if (sample.currentOnly && mode !== "bed")
+      throw new HttpError(
+        404,
+        "This comparison render was not prepared for this Current piece.",
+      );
     const file = join(musicLabDirectory(), "samples", id, mode + ".wav");
     const size = (await stat(file)).size;
     if (size > 100000000)

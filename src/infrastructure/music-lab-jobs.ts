@@ -147,6 +147,7 @@ async function run(active: Active) {
       [join(process.cwd(), "scripts/measure-music.py")],
       {
         folder,
+        currentOnly: !!job.request.current,
         app: process.cwd(),
         ffmpeg: process.env.SOULFIRE_FFMPEG || "/usr/local/bin/ffmpeg",
       },
@@ -156,6 +157,7 @@ async function run(active: Active) {
     abort.signal.throwIfAborted();
     const sample = musicSampleSchema.parse({
       id: job.id,
+      ...(job.request.current ? { currentOnly: true } : {}),
       request: job.request,
       modelVersion:
         job.request.model === "ace"
@@ -169,6 +171,7 @@ async function run(active: Active) {
       metrics: JSON.parse(measured.text),
     });
     if (job.request.current) {
+      await rm(join(folder, "model-output"), { recursive: true, force: true });
       const issues = currentTechnicalIssues(sample);
       if (issues.length)
         throw Error(

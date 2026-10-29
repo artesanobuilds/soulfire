@@ -1,0 +1,32 @@
+{
+  "verifiedAt": "2026-10-29T18:35:03.132417+00:00",
+  "browserAggregate": {
+    "passed": 248,
+    "failed": 0,
+    "skipped": 0,
+    "durationReported": "4.9m",
+    "source": "completed Playwright aggregate log"
+  },
+  "unitTests": 199,
+  "unitFiles": 18,
+  "lint": "pass, zero warnings",
+  "typecheck": "pass",
+  "productionBuild": "pass",
+  "realAudioEvidence": [
+    "current-catalogue-integrity.json",
+    "current-catalogue-browser-decode.json",
+    "current-real-multicandidate.json",
+    "current-real-session-playback.json",
+    "current-real-batch-cancellation.json"
+  ],
+  "browserEnvironment": "Isolated provider-free store, muted real Chromium/Web Audio, synthetic microphone fixtures only",
+  "clinicalOrSubjectiveValidation": false,
+  "publication": "local only",
+  "aggregateBuildNote": "All 248 aggregate checks passed against the completion-race-fixed build; final additional loop-closure guard covered by unit regression and subsequent focused Current production-build browser run.",
+  "finalBuildFocusedBrowser": {
+    "passed": 38,
+    "failed": 0,
+    "skipped": 0,
+    "durationReported": "30.5s"
+  }
+}

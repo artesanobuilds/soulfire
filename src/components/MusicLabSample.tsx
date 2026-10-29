@@ -87,14 +87,14 @@ export function MusicLabSample({
           : mode === "narration"
             ? sample.metrics.narrationLufs
             : sample.metrics.matchedLufs
-        ).toFixed(1)}{" "}
+        )?.toFixed(1) ?? "not prepared"}{" "}
         LUFS ·{" "}
         {(mode === "loop"
           ? sample.metrics.loopTruePeakDb
           : mode === "narration"
             ? sample.metrics.narrationTruePeakDb
             : sample.metrics.matchedTruePeakDb
-        ).toFixed(1)}{" "}
+        )?.toFixed(1) ?? "not prepared"}{" "}
         dBTP
       </p>
       <fieldset>
@@ -162,7 +162,7 @@ export function MusicLabSample({
             <dt>Head/tail RMS difference</dt>
             <dd>{sample.metrics.seamRmsDifferenceDb.toFixed(2)} dB</dd>
             <dt>Rendered seam-adjacent jump</dt>
-            <dd>{sample.metrics.loopSeamJump.toFixed(6)}</dd>
+            <dd>{sample.metrics.loopSeamJump?.toFixed(6) ?? "not prepared"}</dd>
             <dt>Source</dt>
             <dd>
               {sample.metrics.sampleRate} Hz · {sample.metrics.channels}{" "}
