@@ -10,3 +10,5 @@ Raw source material is separate from synthesis, decisions and implementation. Ru
 | [2026-10-29 Current music](2026-10-29-current-music-evolution/manifest.json) | Complete new IsoTune source | Verbatim full-read text; source checksum verification pending |
 
 Synthesis and design: [Current music evolution](../current-music-evolution/README.md). Historical files under `docs/soundscapes`, `docs/ember` and `docs/music-lab` remain unchanged. Primary papers are linked and assessed; their full texts are not claimed archived unless present in a run manifest. No unavailable original is recreated from a summary.
+
+- [2026-10-29 goal-first catalogue source](2026-10-29-goal-first-catalogue/README.md): unchanged 20-topic original, independently matching prior recorded SHA256.

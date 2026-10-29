@@ -1,0 +1,14 @@
+{
+  "run": "2026-10-29-goal-first-catalogue",
+  "sourcePath": "/Users/miguelalvarado/Downloads/Where Mental Health Care Falls Short_ The 20 Biggest Struggles Worldwide and Why Therapy Often Isn't Enough.md",
+  "priorUse": "docs/implementation/support-scenario-catalog.md, read 2026-10-25",
+  "entries": [
+    {
+      "file": "raw/mental-health-care-shortfalls-original.md",
+      "bytes": 37933,
+      "sha256": "712968fc5ff08fc9aef8515ca0af9479e5109e687df1ac7b35fd97376f324c93",
+      "kind": "unchanged original local Markdown"
+    }
+  ],
+  "interpretation": "Only numbered topic map adopted; ranking, prevalence, therapy-shortfall claims not validated or adopted as product claims."
+}

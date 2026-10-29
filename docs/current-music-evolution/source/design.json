@@ -107,7 +107,7 @@
         ],
         [
           "Create for me",
-          "Choose Focus, Settle, Wind Down or Lift; duration; taste; dislikes; and desired feel. Optional free text is editable and local by default. Show queued, generating, reviewing and ready states honestly. Let the user cancel or return later; no autoplay when a job completes."
+          "Begin with How are you feeling? What is difficult right now? What would you like to change? Offer focus, calm, feeling less overwhelmed, wind down or gentle lift without requiring a diagnosis. Suggest a starter with a plain-language reason, then Preview and Shape now, Try another, or Create something new. Taste/exclusions are optional; musical parameters stay in Advanced. Show real job states and never autoplay."
         ],
         [
           "Choice without clinical inference",
@@ -323,7 +323,7 @@
     {
       "kicker": "14 / PROOF & LIMITATIONS",
       "title": "What we know, and what we still owe",
-      "lead": "Evidence checked 29 October 2026. Design baseline: 8060fc8.",
+      "lead": "Revision 2 / 29 October 2026. Design baseline: 8060fc8.",
       "sections": [
         [
           "Known",
@@ -344,6 +344,154 @@
         [
           "Change boundary",
           "This delivery changes documentation only. It preserves Current, Ember, Music Lab, runtime configuration, models and running app. No new download, service call, Stable agreement, implementation, publication or deployment is part of this document."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "REVISION 2 / SEED CATALOGUE 1/5",
+      "title": "Starter Currents: 1-4",
+      "lead": "Design concepts only. None of these 40 seeds has generated or validated audio yet.",
+      "sections": [
+        [
+          "1. Depression that doesn't remit: chronic, recurrent and treatment-resistant",
+          "Small Morning (soft-keys) / Window Light (open-strings): a manageable start or gentle company. No promise of remission; continue chosen care. Music-therapy adjunct evidence does not transfer to this seed. No remission evidence. [S10]"
+        ],
+        [
+          "2. Anxiety disorders: GAD, panic and social anxiety",
+          "Room to Settle (gentle-acoustic) / Open Horizon (air-and-tone): less stimulation or a steadier moment. No exposure protocol, reassurance guarantee or forced breathing. General stress evidence is mixed; no condition-specific matching evidence. [S1,S2]"
+        ],
+        [
+          "3. Adolescent depression, anxiety and hopelessness",
+          "After School Sky (soft-keys) / A Little Space (open-strings): future youth-appropriate choice research only. Not offered in adult prototype; youth review and safe-adult pathway required. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "4. Suicidal thoughts and behaviour",
+          "Beside You (gentle-acoustic) / Quiet Company (air-and-tone): optional quiet accompaniment while reaching human support. Never a crisis recommendation, sole response or delay to urgent help. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "REVISION 2 / SEED CATALOGUE 2/5",
+      "title": "Starter Currents: 5-8",
+      "lead": "Design concepts only. None of these 40 seeds has generated or validated audio yet.",
+      "sections": [
+        [
+          "5. Addiction and substance use disorders, especially alcohol",
+          "One Moment (soft-keys) / Steady Ground (open-strings): an optional pause during an ordinary urge. Not detox/withdrawal management; acute symptoms require medical help. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "6. Co-occurring mental illness and addiction",
+          "Room for Both (gentle-acoustic) / Gentle Next Step (air-and-tone): a moment of ease while arranging combined support. Not integrated treatment or a substitute for care. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "7. PTSD and complex trauma, especially in veterans",
+          "Here and Now (soft-keys) / Wide Awake Garden (open-strings): predictable sound with full control. No trauma processing, surprise sounds, forced eyes closing or breathwork. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "8. Eating disorders, especially anorexia nervosa",
+          "Unmeasured Time (gentle-acoustic) / Soft Clearing (air-and-tone): neutral company without body or food messaging. No eating/weight targets or medical stabilization claim. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "REVISION 2 / SEED CATALOGUE 3/5",
+      "title": "Starter Currents: 9-12",
+      "lead": "Design concepts only. None of these 40 seeds has generated or validated audio yet.",
+      "sections": [
+        [
+          "9. Obsessive-compulsive disorder",
+          "Room for Uncertainty (soft-keys) / An Ordinary Afternoon (open-strings): background sound without certainty demands. No reassurance ritual, exact-repeat requirement or promised compulsion relief. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "10. Borderline personality disorder and severe emotion dysregulation",
+          "A Little Distance (gentle-acoustic) / Steady Shore (air-and-tone): a short pause before choosing a response. No personality label in UI, blame or instruction to reconcile. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "11. Perinatal and postpartum depression",
+          "A Moment for Me (soft-keys) / Daylight Corner (open-strings): a short self-chosen rest during caregiving. Not treatment, infant sleep aid, feeding advice or guilt-based prompt. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "12. Loneliness and social disconnection",
+          "Nearer (gentle-acoustic) / Shared Daylight (air-and-tone): company while considering a real connection. No simulated relationship or claim music replaces people. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "REVISION 2 / SEED CATALOGUE 4/5",
+      "title": "Starter Currents: 13-16",
+      "lead": "Design concepts only. None of these 40 seeds has generated or validated audio yet.",
+      "sections": [
+        [
+          "13. Chronic stress and burnout",
+          "Off the Clock (soft-keys) / Unhurried Clearing (open-strings): a break from load or quieter task transition. Acknowledge workload; sound cannot fix harmful conditions. General stress evidence is mixed; no condition-specific matching evidence. [S1,S2]"
+        ],
+        [
+          "14. Deprivation and poverty",
+          "A Breathing Space (gentle-acoustic) / Room to Plan (air-and-tone): quiet while organizing a practical next step. No claim mood solves housing/debt; low-data choice, no financial advice. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "15. LGBTQ+ young people",
+          "Your Own Light (soft-keys) / Belonging on Your Terms (open-strings): self-chosen sound for an affirming moment. Identity is not pathology; adult-only, no assumed taste or disclosure. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "16. People in low- and middle-income countries",
+          "Close at Hand (gentle-acoustic) / A Quiet Place (air-and-tone): accessible background listening on limited connection. No culture/country inference; cached small files and optional offline silence. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "REVISION 2 / SEED CATALOGUE 5/5",
+      "title": "Starter Currents: 17-20",
+      "lead": "Design concepts only. None of these 40 seeds has generated or validated audio yet.",
+      "sections": [
+        [
+          "17. Dropout and disengagement: the \"silent failure\"",
+          "Begin Again (soft-keys) / No Catching Up (open-strings): a low-pressure return after a gap. No streaks, shame, compliance score or therapy retention claim. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "18. Hidden waits and between-session gaps",
+          "In the Meantime (gentle-acoustic) / A Small Anchor (air-and-tone): optional company while waiting for support. No monitoring or care substitute; urgent changes go to human help. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "19. Unrecognized need, low mental-health literacy and stigma",
+          "In My Own Words (soft-keys) / First Light (open-strings): a simple moment without labels. No diagnosis or forced disclosure; asking for help remains optional. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ],
+        [
+          "20. Older adults: under-reached rather than under-responsive",
+          "Familiar Afternoon (gentle-acoustic) / Gentle Company (air-and-tone): self-chosen familiarity or company during grief. No age-based style assumptions; hearing-accessible controls and offline support. Musical preference/usability hypothesis only; no validated topic-specific effect."
+        ]
+      ],
+      "diagram": null
+    },
+    {
+      "kicker": "REVISION 2 / MATCHING CONTRACT",
+      "title": "A helpful fit, not a clinical match",
+      "lead": "40 concepts map all 20 supplied source topics; the ranking is not validated or used to prioritize people.",
+      "sections": [
+        [
+          "Goal-first interaction",
+          "Ask how the person feels, what is hard, and what they want to change. Offer a starter to preview and shape, another taste, or asynchronous creation. Musical parameters are hidden unless Advanced is opened. Explain the suggestion using only explicit goals and preferences."
+        ],
+        [
+          "Diverse taste and agency",
+          "Each topic has two contrasting musical profiles. The same goal can fit soft keys, acoustic pulse, sustained strings or ambient tones; none belongs to a diagnosis or demographic. Skip, silence and Stop remain available. No clinical best score or hidden health inference."
+        ],
+        [
+          "Bounded recipe and release policy",
+          "Catalogue JSON records profile, intended use, suggestion reason, evidence, eligibility, duration choices and QA policy for every seed. Requested palette and pacing need adherence checks. All candidates require technical screening, confidence-aware analysis and listening review before ready status. No bulk generation is part of this revision."
+        ],
+        [
+          "Eligibility matters",
+          "Youth concepts are future design only in an adult prototype. Crisis concepts are optional accompaniment after human-support-first handling, never crisis treatment. Acute medical/withdrawal needs override audio suggestions. Poverty, identity and access topics are contexts, not pathologies."
+        ],
+        [
+          "Source provenance",
+          "Read the complete original Where Mental Health Care Falls Short Markdown (37,933 bytes). SHA256 matches the prior synthetic-user record: 712968fc5ff08fc9aef8515ca0af9479e5109e687df1ac7b35fd97376f324c93. Archived unchanged under the dated goal-first research run. Only its topic map is adopted; care-shortfall statistics and ranking are not validated product claims."
         ]
       ],
       "diagram": null

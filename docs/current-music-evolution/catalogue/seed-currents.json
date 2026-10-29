@@ -1,0 +1,1248 @@
+{
+  "status": "design_only",
+  "sourceArchive": "../../research-runs/2026-10-29-goal-first-catalogue/raw/mental-health-care-shortfalls-original.md",
+  "topicCount": 20,
+  "seedCount": 40,
+  "audioReadyCount": 0,
+  "matching": "Explicit goals + taste + exclusions + access preferences; never diagnosis/demographic matching or a clinical best score.",
+  "profiles": {
+    "soft-keys": {
+      "palette": "sparse soft piano / felt-like keys",
+      "pulse": "unhurried or freely paced, requested not guaranteed",
+      "brightness": "warm, bounded high-frequency content",
+      "density": "sparse request, no stems guaranteed"
+    },
+    "open-strings": {
+      "palette": "beatless sustained strings or warm acoustic resonance",
+      "pulse": "no prominent beat requested",
+      "brightness": "neutral-soft, not muffled",
+      "density": "low-change request, human audition"
+    },
+    "gentle-acoustic": {
+      "palette": "restrained plucked acoustic instrumental",
+      "pulse": "light steady pulse if listener likes rhythm",
+      "brightness": "natural, limited sharp attacks",
+      "density": "simple phrases, no vocal request"
+    },
+    "air-and-tone": {
+      "palette": "instrumental ambient tones without nature associations",
+      "pulse": "beatless request",
+      "brightness": "soft but audible",
+      "density": "stable texture, no hidden therapeutic frequencies"
+    }
+  },
+  "qa": {
+    "candidate-qa-v2-proposed": [
+      "bounded async candidate/retry budget",
+      "10-600 second model request bounds; proposed 30-90 second candidate calibration",
+      "instrumental request plus leakage review",
+      "decode/duration/non-silence/peak and loudness checks",
+      "tempo and transient confidence review",
+      "listening audition for startling sounds, resemblance and seams",
+      "test transitions and maximum bounded DSP before approval",
+      "no autoplay; quiet start; always reachable Stop"
+    ]
+  },
+  "seeds": [
+    {
+      "id": "current-seed-01-1",
+      "sourceTopicNumber": 1,
+      "sourceTopicExact": "Depression that doesn't remit: chronic, recurrent and treatment-resistant",
+      "name": "Small Morning",
+      "intendedUse": "a manageable start or gentle company",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "soft-keys",
+      "evidence": "Music-therapy adjunct evidence does not transfer to this seed. No remission evidence. [S10]",
+      "boundary": "No promise of remission; continue chosen care.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-01-2",
+      "sourceTopicNumber": 1,
+      "sourceTopicExact": "Depression that doesn't remit: chronic, recurrent and treatment-resistant",
+      "name": "Window Light",
+      "intendedUse": "a manageable start or gentle company",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "open-strings",
+      "evidence": "Music-therapy adjunct evidence does not transfer to this seed. No remission evidence. [S10]",
+      "boundary": "No promise of remission; continue chosen care.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-02-1",
+      "sourceTopicNumber": 2,
+      "sourceTopicExact": "Anxiety disorders: GAD, panic and social anxiety",
+      "name": "Room to Settle",
+      "intendedUse": "less stimulation or a steadier moment",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "gentle-acoustic",
+      "evidence": "General stress evidence is mixed; no condition-specific matching evidence. [S1,S2]",
+      "boundary": "No exposure protocol, reassurance guarantee or forced breathing.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-02-2",
+      "sourceTopicNumber": 2,
+      "sourceTopicExact": "Anxiety disorders: GAD, panic and social anxiety",
+      "name": "Open Horizon",
+      "intendedUse": "less stimulation or a steadier moment",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "air-and-tone",
+      "evidence": "General stress evidence is mixed; no condition-specific matching evidence. [S1,S2]",
+      "boundary": "No exposure protocol, reassurance guarantee or forced breathing.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-03-1",
+      "sourceTopicNumber": 3,
+      "sourceTopicExact": "Adolescent depression, anxiety and hopelessness",
+      "name": "After School Sky",
+      "intendedUse": "future youth-appropriate choice research only",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "soft-keys",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Not offered in adult prototype; youth review and safe-adult pathway required.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "future_youth_design_not_available",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-03-2",
+      "sourceTopicNumber": 3,
+      "sourceTopicExact": "Adolescent depression, anxiety and hopelessness",
+      "name": "A Little Space",
+      "intendedUse": "future youth-appropriate choice research only",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "open-strings",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Not offered in adult prototype; youth review and safe-adult pathway required.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "future_youth_design_not_available",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-04-1",
+      "sourceTopicNumber": 4,
+      "sourceTopicExact": "Suicidal thoughts and behaviour",
+      "name": "Beside You",
+      "intendedUse": "optional quiet accompaniment while reaching human support",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "gentle-acoustic",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Never a crisis recommendation, sole response or delay to urgent help.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "human_support_first_optional_accompaniment_only",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-04-2",
+      "sourceTopicNumber": 4,
+      "sourceTopicExact": "Suicidal thoughts and behaviour",
+      "name": "Quiet Company",
+      "intendedUse": "optional quiet accompaniment while reaching human support",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "air-and-tone",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Never a crisis recommendation, sole response or delay to urgent help.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "human_support_first_optional_accompaniment_only",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-05-1",
+      "sourceTopicNumber": 5,
+      "sourceTopicExact": "Addiction and substance use disorders, especially alcohol",
+      "name": "One Moment",
+      "intendedUse": "an optional pause during an ordinary urge",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "soft-keys",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Not detox/withdrawal management; acute symptoms require medical help.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-05-2",
+      "sourceTopicNumber": 5,
+      "sourceTopicExact": "Addiction and substance use disorders, especially alcohol",
+      "name": "Steady Ground",
+      "intendedUse": "an optional pause during an ordinary urge",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "open-strings",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Not detox/withdrawal management; acute symptoms require medical help.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-06-1",
+      "sourceTopicNumber": 6,
+      "sourceTopicExact": "Co-occurring mental illness and addiction",
+      "name": "Room for Both",
+      "intendedUse": "a moment of ease while arranging combined support",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "gentle-acoustic",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Not integrated treatment or a substitute for care.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-06-2",
+      "sourceTopicNumber": 6,
+      "sourceTopicExact": "Co-occurring mental illness and addiction",
+      "name": "Gentle Next Step",
+      "intendedUse": "a moment of ease while arranging combined support",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "air-and-tone",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Not integrated treatment or a substitute for care.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-07-1",
+      "sourceTopicNumber": 7,
+      "sourceTopicExact": "PTSD and complex trauma, especially in veterans",
+      "name": "Here and Now",
+      "intendedUse": "predictable sound with full control",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "soft-keys",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No trauma processing, surprise sounds, forced eyes closing or breathwork.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-07-2",
+      "sourceTopicNumber": 7,
+      "sourceTopicExact": "PTSD and complex trauma, especially in veterans",
+      "name": "Wide Awake Garden",
+      "intendedUse": "predictable sound with full control",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "open-strings",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No trauma processing, surprise sounds, forced eyes closing or breathwork.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-08-1",
+      "sourceTopicNumber": 8,
+      "sourceTopicExact": "Eating disorders, especially anorexia nervosa",
+      "name": "Unmeasured Time",
+      "intendedUse": "neutral company without body or food messaging",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "gentle-acoustic",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No eating/weight targets or medical stabilization claim.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-08-2",
+      "sourceTopicNumber": 8,
+      "sourceTopicExact": "Eating disorders, especially anorexia nervosa",
+      "name": "Soft Clearing",
+      "intendedUse": "neutral company without body or food messaging",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "air-and-tone",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No eating/weight targets or medical stabilization claim.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-09-1",
+      "sourceTopicNumber": 9,
+      "sourceTopicExact": "Obsessive-compulsive disorder",
+      "name": "Room for Uncertainty",
+      "intendedUse": "background sound without certainty demands",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "soft-keys",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No reassurance ritual, exact-repeat requirement or promised compulsion relief.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-09-2",
+      "sourceTopicNumber": 9,
+      "sourceTopicExact": "Obsessive-compulsive disorder",
+      "name": "An Ordinary Afternoon",
+      "intendedUse": "background sound without certainty demands",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "open-strings",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No reassurance ritual, exact-repeat requirement or promised compulsion relief.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-10-1",
+      "sourceTopicNumber": 10,
+      "sourceTopicExact": "Borderline personality disorder and severe emotion dysregulation",
+      "name": "A Little Distance",
+      "intendedUse": "a short pause before choosing a response",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "gentle-acoustic",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No personality label in UI, blame or instruction to reconcile.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-10-2",
+      "sourceTopicNumber": 10,
+      "sourceTopicExact": "Borderline personality disorder and severe emotion dysregulation",
+      "name": "Steady Shore",
+      "intendedUse": "a short pause before choosing a response",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "air-and-tone",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No personality label in UI, blame or instruction to reconcile.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-11-1",
+      "sourceTopicNumber": 11,
+      "sourceTopicExact": "Perinatal and postpartum depression",
+      "name": "A Moment for Me",
+      "intendedUse": "a short self-chosen rest during caregiving",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "soft-keys",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Not treatment, infant sleep aid, feeding advice or guilt-based prompt.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-11-2",
+      "sourceTopicNumber": 11,
+      "sourceTopicExact": "Perinatal and postpartum depression",
+      "name": "Daylight Corner",
+      "intendedUse": "a short self-chosen rest during caregiving",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "open-strings",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Not treatment, infant sleep aid, feeding advice or guilt-based prompt.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-12-1",
+      "sourceTopicNumber": 12,
+      "sourceTopicExact": "Loneliness and social disconnection",
+      "name": "Nearer",
+      "intendedUse": "company while considering a real connection",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "gentle-acoustic",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No simulated relationship or claim music replaces people.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-12-2",
+      "sourceTopicNumber": 12,
+      "sourceTopicExact": "Loneliness and social disconnection",
+      "name": "Shared Daylight",
+      "intendedUse": "company while considering a real connection",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "air-and-tone",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No simulated relationship or claim music replaces people.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-13-1",
+      "sourceTopicNumber": 13,
+      "sourceTopicExact": "Chronic stress and burnout",
+      "name": "Off the Clock",
+      "intendedUse": "a break from load or quieter task transition",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "soft-keys",
+      "evidence": "General stress evidence is mixed; no condition-specific matching evidence. [S1,S2]",
+      "boundary": "Acknowledge workload; sound cannot fix harmful conditions.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-13-2",
+      "sourceTopicNumber": 13,
+      "sourceTopicExact": "Chronic stress and burnout",
+      "name": "Unhurried Clearing",
+      "intendedUse": "a break from load or quieter task transition",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "open-strings",
+      "evidence": "General stress evidence is mixed; no condition-specific matching evidence. [S1,S2]",
+      "boundary": "Acknowledge workload; sound cannot fix harmful conditions.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-14-1",
+      "sourceTopicNumber": 14,
+      "sourceTopicExact": "Deprivation and poverty",
+      "name": "A Breathing Space",
+      "intendedUse": "quiet while organizing a practical next step",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "gentle-acoustic",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No claim mood solves housing/debt; low-data choice, no financial advice.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-14-2",
+      "sourceTopicNumber": 14,
+      "sourceTopicExact": "Deprivation and poverty",
+      "name": "Room to Plan",
+      "intendedUse": "quiet while organizing a practical next step",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "air-and-tone",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No claim mood solves housing/debt; low-data choice, no financial advice.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-15-1",
+      "sourceTopicNumber": 15,
+      "sourceTopicExact": "LGBTQ+ young people",
+      "name": "Your Own Light",
+      "intendedUse": "self-chosen sound for an affirming moment",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "soft-keys",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Identity is not pathology; adult-only, no assumed taste or disclosure.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-15-2",
+      "sourceTopicNumber": 15,
+      "sourceTopicExact": "LGBTQ+ young people",
+      "name": "Belonging on Your Terms",
+      "intendedUse": "self-chosen sound for an affirming moment",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "open-strings",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "Identity is not pathology; adult-only, no assumed taste or disclosure.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-16-1",
+      "sourceTopicNumber": 16,
+      "sourceTopicExact": "People in low- and middle-income countries",
+      "name": "Close at Hand",
+      "intendedUse": "accessible background listening on limited connection",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "gentle-acoustic",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No culture/country inference; cached small files and optional offline silence.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-16-2",
+      "sourceTopicNumber": 16,
+      "sourceTopicExact": "People in low- and middle-income countries",
+      "name": "A Quiet Place",
+      "intendedUse": "accessible background listening on limited connection",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "air-and-tone",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No culture/country inference; cached small files and optional offline silence.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-17-1",
+      "sourceTopicNumber": 17,
+      "sourceTopicExact": "Dropout and disengagement: the \"silent failure\"",
+      "name": "Begin Again",
+      "intendedUse": "a low-pressure return after a gap",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "soft-keys",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No streaks, shame, compliance score or therapy retention claim.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-17-2",
+      "sourceTopicNumber": 17,
+      "sourceTopicExact": "Dropout and disengagement: the \"silent failure\"",
+      "name": "No Catching Up",
+      "intendedUse": "a low-pressure return after a gap",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "open-strings",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No streaks, shame, compliance score or therapy retention claim.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-18-1",
+      "sourceTopicNumber": 18,
+      "sourceTopicExact": "Hidden waits and between-session gaps",
+      "name": "In the Meantime",
+      "intendedUse": "optional company while waiting for support",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "gentle-acoustic",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No monitoring or care substitute; urgent changes go to human help.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-18-2",
+      "sourceTopicNumber": 18,
+      "sourceTopicExact": "Hidden waits and between-session gaps",
+      "name": "A Small Anchor",
+      "intendedUse": "optional company while waiting for support",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "air-and-tone",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No monitoring or care substitute; urgent changes go to human help.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-19-1",
+      "sourceTopicNumber": 19,
+      "sourceTopicExact": "Unrecognized need, low mental-health literacy and stigma",
+      "name": "In My Own Words",
+      "intendedUse": "a simple moment without labels",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "soft-keys",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No diagnosis or forced disclosure; asking for help remains optional.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-19-2",
+      "sourceTopicNumber": 19,
+      "sourceTopicExact": "Unrecognized need, low mental-health literacy and stigma",
+      "name": "First Light",
+      "intendedUse": "a simple moment without labels",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "open-strings",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No diagnosis or forced disclosure; asking for help remains optional.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-20-1",
+      "sourceTopicNumber": 20,
+      "sourceTopicExact": "Older adults: under-reached rather than under-responsive",
+      "name": "Familiar Afternoon",
+      "intendedUse": "self-chosen familiarity or company during grief",
+      "suggestionReason": "An optional sparse melodic alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "gentle-acoustic",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No age-based style assumptions; hearing-accessible controls and offline support.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    },
+    {
+      "id": "current-seed-20-2",
+      "sourceTopicNumber": 20,
+      "sourceTopicExact": "Older adults: under-reached rather than under-responsive",
+      "name": "Gentle Company",
+      "intendedUse": "self-chosen familiarity or company during grief",
+      "suggestionReason": "An optional low-change sustained alternative for the goal you chose; preview and decide for yourself.",
+      "profile": "air-and-tone",
+      "evidence": "Musical preference/usability hypothesis only; no validated topic-specific effect.",
+      "boundary": "No age-based style assumptions; hearing-accessible controls and offline support.",
+      "availability": "concept_only_no_generated_or_validated_audio",
+      "eligibility": "adult_optional_wellness_listening",
+      "durationChoiceMinutes": [
+        3,
+        5,
+        10,
+        15
+      ],
+      "userChoice": [
+        "preview",
+        "shape",
+        "another style",
+        "custom",
+        "skip",
+        "silence",
+        "stop"
+      ],
+      "qaPolicy": "candidate-qa-v2-proposed",
+      "advancedControls": "Hidden by default; expose only actual bounded controls and requested musical changes."
+    }
+  ]
+}

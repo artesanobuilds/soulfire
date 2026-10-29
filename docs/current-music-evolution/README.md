@@ -9,3 +9,7 @@ Documentation only. The running app and Current/Music Lab/Ember code are unchang
 - Evidence and engineering traceability: source tables and appendix in the review artifact.
 
 The final document incorporates the independent source-checked assessment supplied on 29 October 2026. Implementation and replacement await review; no app behavior, model version, legal agreement, deployment or remote branch is changed by this proposal.
+
+## Revision 2 - goal-first creation
+
+The 22-page review now starts Create for me from feeling, difficulty and desired change, then offers a starter to shape or a new custom Current. Musical settings are optional Advanced controls. [Catalogue specification](catalogue/README.md) and [structured catalogue](catalogue/seed-currents.json) define 40 proposed seeds, two per exact source topic. **No new seed audio has been generated or validated.** See ADR-005 and the dated goal-first research archive for source integrity and eligibility limits.

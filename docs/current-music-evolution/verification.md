@@ -23,3 +23,11 @@ After the user explicitly approved the exact PDF/HTML payload and private Librar
 - Editable HTML: `libfile_439b84df0fe48191b115d75edadeab6f`, backing `file_00000000306c81f5abb0c1a9ef9ac57f`, version 0, 38,673 bytes.
 
 This supersedes the delivery blocker above; retained attempts document provenance. No public sharing was requested or performed.
+
+## Revision 2 - goal-first design / source-mapped catalogue
+
+- Exact original 20-topic source located via existing repo provenance, read completely, and archived unchanged: 37,933 bytes; SHA256 `712968fc5ff08fc9aef8515ca0af9479e5109e687df1ac7b35fd97376f324c93`, matching the synthetic-user record.
+- Structured catalogue validated: 40 unique stable IDs; exactly two concepts for each of the 20 exact source headings; all 40 marked concept-only and zero audio-ready. Eligibility and urgent-care boundaries are explicit.
+- Rebuilt 22-page PDF and self-contained HTML; every changed/new page visually reviewed. All 22 pages extract readable text; no renderer overflow. Updated SVG/PNG diagrams keep goal-first entry and optional music controls. All research manifest byte counts/hashes pass.
+- Replaced the same private Library identities with version 1 using the supported owned-file replacement route and expected version 0; both succeeded. Local version metadata persisted. PDF backing `file_00000000cd5881f58aa9d579b95f42e3` (168,024 bytes); HTML backing `file_00000000bb0c81f58459860dc6448393` (48,613 bytes). No duplicate Library items or public sharing.
+- No app code or runtime changes, no generated audio, no model calls, no new code-test claims, no push.
