@@ -1,0 +1,14 @@
+{
+  "url": "http://localhost:3100",
+  "activeSeeds": 36,
+  "archived": 49,
+  "actualAudioPlayed": true,
+  "desktopCreatePreservesPlayback": true,
+  "mobileDockAndSheet": true,
+  "liveCustomGenerationAvailable": true,
+  "newModelJobsExecuted": 0,
+  "physicalOutputMuted": true,
+  "microphone": false,
+  "allContextsClosed": true,
+  "pageErrors": []
+}

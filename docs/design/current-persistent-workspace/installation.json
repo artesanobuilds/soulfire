@@ -1,0 +1,10 @@
+{
+  "url": "http://localhost:3100",
+  "httpStatus": 200,
+  "voiceConfigured": true,
+  "sourceCommit": "25d59bb0f62f7783a8b26a846794a7d8265d1bb9",
+  "verifiedServedAssets": 9,
+  "catalogueVersion": "current-listening-20261029-v1",
+  "modelOrMusicChanges": false,
+  "originalRuntimeConfigurationPreserved": true
+}

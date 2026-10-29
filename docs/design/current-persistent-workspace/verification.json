@@ -1,0 +1,26 @@
+{
+  "lint": "passed",
+  "typecheck": "passed",
+  "unitTests": 212,
+  "browserPassed": 257,
+  "browserSkipped": 1,
+  "browserSkipReason": "Mobile-only shaping-sheet test intentionally skipped on desktop",
+  "browserFailed": 0,
+  "productionBuild": "passed",
+  "isolation": "Credential-free local server and synthetic SQLite/voice fixtures; no real microphone or paid provider calls",
+  "audioPreserved": 36,
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      360,
+      640
+    ]
+  ]
+}
