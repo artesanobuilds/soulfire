@@ -1,0 +1,16 @@
+{
+  "midiReview": {
+    "libraryFileId": "libfile_d0e9e9b08d648191b9e87fc0b96d6dff",
+    "fileId": "file_00000000b7ec81f5bb42cf0b168759d3",
+    "version": 1,
+    "bytes": 516638,
+    "sha256": "8b66cd54d4b1406c917109b5915ac207317c9f5d1aa9567a7d3ae5284cf420e0"
+  },
+  "recordLinkedMidi": 61,
+  "separateCalibrationMidi": 2,
+  "localAudition": "http://localhost:3197",
+  "app": "http://localhost:3100",
+  "remotePublication": false,
+  "combinedResultBytes": 1664912436,
+  "combinedResultGiB": 1.551
+}
