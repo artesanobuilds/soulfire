@@ -3,7 +3,7 @@ import scenarios from "../../simulations/scenarios.json";
 const evaluations = scenarios.filter((s) => s.suite !== "general");
 test.beforeEach(async ({ page, request }) => {
   test.skip(
-    !process.env.SOULFIRE_TEST_URL?.includes(":3101"),
+    process.env.SOULFIRE_TEST_ISOLATED !== "1",
     "Isolated keyless server required",
   );
   expect((await (await request.get("/api/status")).json()).configured).toBe(
@@ -31,7 +31,7 @@ test.beforeEach(async ({ page, request }) => {
   await page.getByRole("button", { name: "Simulations", exact: true }).click();
 });
 test.afterEach(async ({ page, baseURL }) => {
-  if (!process.env.SOULFIRE_TEST_URL?.includes(":3101")) return;
+  if (process.env.SOULFIRE_TEST_ISOLATED !== "1") return;
   const data = await (await page.request.get("/api/history")).json();
   for (const s of data.sessions || []) {
     expect(s.synthetic).toBe(true);

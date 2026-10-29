@@ -11,8 +11,12 @@ import { SimulationJobs } from "../src/application/simulation-jobs";
 import { simulationConfigSchema } from "../src/domain/simulation";
 if (!process.argv.includes("--synthetic-only"))
   throw Error("Use --synthetic-only. This command never enables a real model.");
-const output = "/tmp/soulfire-dynamic-voice-validation-20261024";
-const data = "/tmp/soulfire-architecture-testdata-20261024";
+const output =
+  process.env.SOULFIRE_SYNTHETIC_FIXTURE_DIR ||
+  "/tmp/soulfire-dynamic-voice-validation-20261024";
+const data =
+  process.env.SOULFIRE_DATA_DIR ||
+  "/tmp/soulfire-architecture-testdata-20261024";
 mkdirSync(output, { recursive: true, mode: 0o700 });
 mkdirSync(data, { recursive: true, mode: 0o700 });
 if (!localSpeechAvailable())

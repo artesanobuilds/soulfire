@@ -1,0 +1,11 @@
+{
+  "id": "99a4691b-5ef0-4b88-8ce9-a0e2b5149a7e",
+  "postStatus": 202,
+  "startedPhase": "running",
+  "cancelStatus": 200,
+  "cancelled": {
+    "cancelled": true
+  },
+  "finalPhase": "cancelled",
+  "publishedSample": false
+}

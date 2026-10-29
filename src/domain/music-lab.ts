@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { currentMusicOptionsSchema } from "./current-music";
 export const musicModels = ["ace", "stable"] as const;
 export type MusicModel = (typeof musicModels)[number];
 export const musicModelLabels = {
@@ -25,6 +26,7 @@ export const musicRequestSchema = z
     style: z.enum(["piano", "ambient", "acoustic"]),
     seed: z.number().int().min(0).max(2147483647),
     seconds: z.number().int().min(30).max(90),
+    current: currentMusicOptionsSchema.optional(),
   })
   .strict();
 export type MusicRequest = z.infer<typeof musicRequestSchema>;

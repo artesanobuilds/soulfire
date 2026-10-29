@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { simulateVoice } from "./helpers/simulated-voice";
 test.beforeEach(async ({ page, request }) => {
   test.skip(
-    !process.env.SOULFIRE_TEST_URL?.includes(":3101"),
+    process.env.SOULFIRE_TEST_ISOLATED !== "1",
     "History mutation checks require the isolated credential-free server.",
   );
   expect((await (await request.get("/api/status")).json()).configured).toBe(
@@ -17,7 +17,7 @@ test.beforeEach(async ({ page, request }) => {
   );
 });
 test.afterEach(async ({ page, baseURL }) => {
-  if (!process.env.SOULFIRE_TEST_URL?.includes(":3101")) return;
+  if (process.env.SOULFIRE_TEST_ISOLATED !== "1") return;
   const r = await page.request.get("/api/history");
   if (!r.ok()) return;
   const data = await r.json();

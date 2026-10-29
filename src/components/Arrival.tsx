@@ -234,7 +234,14 @@ export function Arrival({
             </button>
           </>
         ) : (
-          <button className="arrival-begin" onClick={begin}>
+          <button
+            className="arrival-begin"
+            onClick={(event) => {
+              // Narration can reflow the cover. A double-tap aimed at Play must
+              // not activate the adjacent Begin button on its second click.
+              if (event.detail < 2) begin();
+            }}
+          >
             Begin journey <ArrowRight size={19} />
           </button>
         )}

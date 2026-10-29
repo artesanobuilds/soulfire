@@ -7,7 +7,7 @@ test.beforeEach(async ({ request, baseURL, page }) => {
     r.fulfill({ json: { configured: true } }),
   );
   test.skip(
-    !process.env.SOULFIRE_TEST_URL?.includes(":3101"),
+    process.env.SOULFIRE_TEST_ISOLATED !== "1",
     "Requires the isolated architecture validation server; never mutate real local memory.",
   );
   expect((await (await request.get("/api/status")).json()).configured).toBe(

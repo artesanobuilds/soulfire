@@ -128,6 +128,9 @@ async function open(page: Page) {
   );
   await page.goto("/");
   await page.getByRole("button", { name: "Current", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Explore Classic soundscapes" })
+    .click();
   await expect(
     page.getByRole("heading", { name: "Current", exact: true }),
   ).toBeVisible();
@@ -330,6 +333,9 @@ test("save is explicit, retains the recipe through reload, loads silently and re
   await page.reload();
   await page.getByRole("button", { name: "Current", exact: true }).click();
   await page
+    .getByRole("button", { name: "Explore Classic soundscapes" })
+    .click();
+  await page
     .getByRole("button", { name: "Load My test river", exact: true })
     .click();
   expect((await snapshot(page)).started).toBe(0);
@@ -458,6 +464,9 @@ test("opening Current stops voice and music, and other activities pause Current"
     page.getByText("Live voice · microphone on", { exact: true }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Current", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Explore Classic soundscapes" })
+    .click();
   expect(
     await page.evaluate(
       () =>

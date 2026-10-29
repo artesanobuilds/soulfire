@@ -1,4 +1,8 @@
 import { musicLabCommand as command } from "./music-lab-command";
+import {
+  currentMusicPrompt,
+  currentTechnicalIssues,
+} from "../domain/current-music";
 import { randomUUID } from "node:crypto";
 import { writeFile, mkdir, rename, rm, stat, statfs } from "node:fs/promises";
 import { join } from "node:path";
@@ -120,7 +124,9 @@ async function run(active: Active) {
       {
         runtime,
         request: job.request,
-        prompt: musicBriefs[job.request.style],
+        prompt: job.request.current
+          ? currentMusicPrompt(job.request.current)
+          : musicBriefs[job.request.style],
         output: join(folder, "source.wav"),
       },
       abort.signal,
@@ -134,6 +140,8 @@ async function run(active: Active) {
     const analysisPython =
       process.env.SOULFIRE_MUSIC_LAB_ANALYSIS_PYTHON ||
       join(homedir(), "Coding", "AI-native", "tts", "venv", "bin", "python");
+    job.message =
+      "Music generated. Checking loudness, peaks and preparing listening audio; this can take a few minutes…";
     const measured = await command(
       analysisPython,
       [join(process.cwd(), "scripts/measure-music.py")],
@@ -160,6 +168,14 @@ async function run(active: Active) {
       peakRssBytes: result.rss ?? timing.peakRssBytes,
       metrics: JSON.parse(measured.text),
     });
+    if (job.request.current) {
+      const issues = currentTechnicalIssues(sample);
+      if (issues.length)
+        throw Error(
+          "The candidate did not pass Current audio checks: " +
+            issues.join(" "),
+        );
+    }
     await writeFile(
       join(folder, "sample.tmp.json"),
       JSON.stringify(sample, null, 2),

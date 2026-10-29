@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-29",
+  "scope": "goal-first Current music implementation, local only",
+  "typecheck": "passed",
+  "lint": "passed without warnings",
+  "productionBuild": "passed",
+  "unit": { "passed": 183, "failed": 0 },
+  "fullIsolatedBrowserRun": { "passed": 237, "failed": 1, "skipped": 0, "total": 238, "remainingFailure": "Mobile rapid introduction double-click reflow could activate adjacent Begin. Fixed in Arrival by ignoring a second-click activation of Begin." },
+  "finalAffectedBrowserRerun": { "passed": 60, "failed": 0, "skipped": 0, "suites": ["arrival", "current-music"], "includes": "Both original race regression and new deterministic adjacent-second-click test, desktop/mobile." },
+  "actualOfflineAceGeneration": "passed; current-real-generation.json",
+  "actualOwnedChildCancellation": "passed; current-real-cancellation.json",
+  "actualGeneratedPcmBrowserPlayback": "passed desktop/mobile; current-real-playback.json",
+  "realStarterCoverage": { "distinctExistingStyleSeedBriefs": 6, "newGoalFirstFocusCandidate": 1, "totalDisplayedMeasuredPieces": 7, "researchCatalogueConcepts": 40, "claimAllFortyPlayable": false },
+  "microphoneUsed": false,
+  "paidProviderRequests": 0,
+  "subjectiveListening": false,
+  "clinicalOutcomesTested": false,
+  "externalModelDownloads": false,
+  "publicDeployment": false,
+  "remotePush": false
+}

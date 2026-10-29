@@ -1,0 +1,85 @@
+{
+  "actualGeneratedFilePlayback": [
+    {
+      "viewport": "desktop",
+      "realStarterCount": 7,
+      "playing": {
+        "contexts": [
+          "running"
+        ],
+        "starts": 1,
+        "rms": 0.014689329118549706,
+        "peak": 0.040268052369356155
+      },
+      "quiet": {
+        "contexts": [
+          "running"
+        ],
+        "starts": 1,
+        "rms": 0.00001104979458701197,
+        "peak": 0.000024216826204792596
+      },
+      "scheduled": {
+        "contexts": [
+          "running"
+        ],
+        "starts": 2,
+        "rms": 0.018783030278849488,
+        "peak": 0.04977156221866608
+      },
+      "stopped": {
+        "contexts": [
+          "closed"
+        ],
+        "starts": 2,
+        "rms": 0,
+        "peak": 0
+      },
+      "noOverflow": true,
+      "pageErrors": [],
+      "subjectiveListening": false
+    },
+    {
+      "viewport": "mobile",
+      "realStarterCount": 7,
+      "playing": {
+        "contexts": [
+          "running"
+        ],
+        "starts": 1,
+        "rms": 0.011217314407944181,
+        "peak": 0.028707660734653473
+      },
+      "quiet": {
+        "contexts": [
+          "running"
+        ],
+        "starts": 1,
+        "rms": 0.000009058402545011158,
+        "peak": 0.000020981282432330772
+      },
+      "scheduled": {
+        "contexts": [
+          "running"
+        ],
+        "starts": 1,
+        "rms": 0.000009058402545011158,
+        "peak": 0.000020981282432330772
+      },
+      "stopped": {
+        "contexts": [
+          "closed"
+        ],
+        "starts": 1,
+        "rms": 0,
+        "peak": 0
+      },
+      "noOverflow": true,
+      "pageErrors": [],
+      "subjectiveListening": false
+    }
+  ],
+  "mutedBrowser": true,
+  "noMicrophone": true,
+  "noPaidRequests": true
+}

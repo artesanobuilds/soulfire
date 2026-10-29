@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 // synthesis, SQLite audio caching, authenticated serving and browser decoding are real local paths.
 test.beforeEach(async ({ page, request }) => {
   test.skip(
-    !process.env.SOULFIRE_TEST_URL?.includes(":3101"),
+    process.env.SOULFIRE_TEST_ISOLATED !== "1",
     "Synthetic-only isolated server required",
   );
   expect((await (await request.get("/api/status")).json()).configured).toBe(
@@ -35,7 +35,9 @@ test("dynamic voice plays both cached Kokoro voices, stops and replays without g
 }, info) => {
   const fixture = JSON.parse(
     await readFile(
-      "/tmp/soulfire-dynamic-voice-validation-20261024/browser-fixture.json",
+      (process.env.SOULFIRE_SYNTHETIC_FIXTURE_DIR ||
+        "/tmp/soulfire-dynamic-voice-validation-20261024") +
+        "/browser-fixture.json",
       "utf8",
     ),
   );

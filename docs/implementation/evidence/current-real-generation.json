@@ -1,0 +1,59 @@
+{
+  "verifiedAt": "2026-10-29T17:28:14.936Z",
+  "kind": "actual offline ACE generation with nonpersonal structured focus brief",
+  "sample": {
+    "id": "2ab9afa9-14cd-41b7-9cb7-33bb9313700d",
+    "request": {
+      "model": "ace",
+      "style": "piano",
+      "seed": 73019,
+      "seconds": 30,
+      "current": {
+        "intent": "focus",
+        "taste": "piano",
+        "avoid": [
+          "vocals",
+          "percussion",
+          "bright",
+          "nature"
+        ],
+        "feel": "steady"
+      }
+    },
+    "modelVersion": "acestep-v15-turbo / MLX / 8 steps / CFG 1 / no LM rewrite",
+    "codeRevision": "ca1e85fe9430179831e6bc6be790c332190a3866",
+    "weightsRevision": "19671f406d603126926c1b7e2adc169acbcade22",
+    "createdAt": "2026-10-29T17:25:01.155Z",
+    "latencySeconds": 21.54713558300864,
+    "loadSeconds": 16.01136437500827,
+    "inferenceSeconds": 5.526943957986077,
+    "peakRssBytes": 14918828032,
+    "peakAcceleratorBytes": 15673842452,
+    "metrics": {
+      "duration": 30,
+      "sampleRate": 48000,
+      "channels": 2,
+      "integratedLufs": -22.4,
+      "truePeakDb": -2.1,
+      "loudnessRange": 5.4,
+      "peak": 0.7835693359375,
+      "clippedFraction": 0,
+      "seamJump": 0.0020751953125,
+      "seamRmsDifferenceDb": -45.64592721420793,
+      "matchedLufs": -21,
+      "matchedTruePeakDb": -4,
+      "loopLufs": -21,
+      "loopTruePeakDb": -4,
+      "narrationLufs": -21,
+      "narrationTruePeakDb": -4.8,
+      "loopSeamJump": 0,
+      "pcmSha256": "1a65c3747e6216c8e278211584a53e805dd4e26150e7543a22ca4fd0858c3e0a",
+      "sha256": "ee3530b17c8e692de358423863d8726bce9782b3647537833b59bc01cebeb8aa"
+    }
+  },
+  "limits": [
+    "No subjective listening or clinical efficacy evaluation",
+    "Loudness/peak/duration checks do not certify absence of voice-like artifacts",
+    "Weights and audio remain outside Git"
+  ]
+}

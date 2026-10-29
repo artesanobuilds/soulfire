@@ -196,6 +196,14 @@ test("blocked sound can be retried without blocking the practice", async ({
 test("fresh arrival attempts permitted autoplay and explicit mute persists on return", async ({
   page,
 }) => {
+  // This case models an initially visible page. Hidden-tab deferral has its own test;
+  // a transient headless visibility change during reload must not mix the two contracts.
+  await page.addInitScript(() =>
+    Object.defineProperty(document, "hidden", {
+      configurable: true,
+      get: () => false,
+    }),
+  );
   await observeAudio(page, null);
   await page.goto("/");
   await expect.poll(async () => (await audioState(page)).playing).toBe(1);

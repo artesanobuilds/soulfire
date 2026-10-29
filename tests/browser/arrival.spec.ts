@@ -632,3 +632,20 @@ test("welcome text, timed captions and served narration use the same approved sc
     await expect(page.locator(".intro-caption")).toHaveText(segment.text);
   }
 });
+
+test("a second click landing on adjacent Begin cannot enter the journey", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const begin = page.getByRole("button", {
+    name: "Begin journey",
+    exact: true,
+  });
+  await begin.dispatchEvent("click", { detail: 2 });
+  await expect(begin).toBeVisible();
+  await expect(page.locator("audio[data-intro]")).toHaveCount(1);
+  await begin.click();
+  await expect(
+    page.getByRole("heading", { name: "What’s here today?", exact: true }),
+  ).toBeVisible();
+});

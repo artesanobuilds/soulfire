@@ -136,7 +136,7 @@ test("grounding and navigation stop narration and never auto-resume", async ({
   await start(page);
   await page.getByRole("button", { name: "Current", exact: true }).click();
   await expect(
-    page.getByRole("heading", { name: "Current", exact: true }),
+    page.getByRole("heading", { name: "Find your Current.", exact: true }),
   ).toBeVisible();
   expect((await audio(page)).every((a) => a.paused)).toBe(true);
   await page.getByRole("button", { name: "Ember", exact: true }).click();
@@ -151,7 +151,9 @@ test("narration failure and blocked playback preserve transcript and recover exp
   await page.route("**/audio/ember/*.m4a", (r) => r.abort());
   await open(page);
   await create(page);
-  await start(page);
+  await page
+    .getByRole("button", { name: "Begin practice", exact: true })
+    .click();
   await expect(
     page.getByRole("alert").filter({ hasText: /Narration|Audio/ }),
   ).toBeVisible();
