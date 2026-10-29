@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "purpose": "Human blind musicality comparison; no clinical outcome or automatic winner",
+  "normalization": "Identical -21 LUFS matching, true-peak headroom; not ear SPL",
+  "groups": [
+    {
+      "id": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+      "name": "In My Own Words",
+      "palette": "piano",
+      "clips": [
+        {
+          "arm": "C \u00b7 musical caption / shift 3",
+          "baselineId": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+          "metadata": {
+            "steps": 8,
+            "shift": 3,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": 64
+          },
+          "url": "audio/91f4b72a8e128bba.wav",
+          "label": "A",
+          "bedSha256": "03714c4bfe8021784a38c2e46290c9e7ed349f217e9154349bc6290f0c0ab7ae"
+        },
+        {
+          "arm": "B \u00b7 musical caption / shift 1",
+          "baselineId": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+          "metadata": {
+            "steps": 8,
+            "shift": 1,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": 64
+          },
+          "url": "audio/6da1b4daa70e890a.wav",
+          "label": "B",
+          "bedSha256": "bdb99f0769c5324d7010fcdcdfead04bf5e9520a97aa098bf1b1a9094feb0856"
+        },
+        {
+          "arm": "A \u00b7 preserved original caption / shift 1",
+          "baselineId": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+          "metadata": "original request/conditioning unchanged",
+          "url": "audio/73f423f59453191b.wav",
+          "label": "C",
+          "bedSha256": "e98537ddea69ea0d3bc889b676ee15be464df23d3584e63cf80b134c5e631e87"
+        }
+      ]
+    },
+    {
+      "id": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+      "name": "Begin Again",
+      "palette": "piano",
+      "clips": [
+        {
+          "arm": "A \u00b7 preserved original caption / shift 1",
+          "baselineId": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+          "metadata": "original request/conditioning unchanged",
+          "url": "audio/2854a49ec0c6c85c.wav",
+          "label": "A",
+          "bedSha256": "8384ceff2bd0f3caab922798619f2d74724480a3e0b37059cd986ee00926ba51"
+        },
+        {
+          "arm": "B \u00b7 musical caption / shift 1",
+          "baselineId": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+          "metadata": {
+            "steps": 8,
+            "shift": 1,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": 64
+          },
+          "url": "audio/e7d0642930010c61.wav",
+          "label": "B",
+          "bedSha256": "81205dc0fd8dfa248e22ec2fe57f00d2aad9f6c95f14451e0c706d2ede2fac0e"
+        },
+        {
+          "arm": "C \u00b7 musical caption / shift 3",
+          "baselineId": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+          "metadata": {
+            "steps": 8,
+            "shift": 3,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": 64
+          },
+          "url": "audio/610a855b3322823d.wav",
+          "label": "C",
+          "bedSha256": "1c0d4a3cd7d0df6193299307aa40de79a3aed1d22b07b991b74c461c088a81dd"
+        }
+      ]
+    },
+    {
+      "id": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+      "name": "Gentle Company",
+      "palette": "ambient",
+      "clips": [
+        {
+          "arm": "C \u00b7 musical caption / shift 3",
+          "baselineId": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+          "metadata": {
+            "steps": 8,
+            "shift": 3,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": null
+          },
+          "url": "audio/f18d1369095bba29.wav",
+          "label": "A",
+          "bedSha256": "fb5b88dc04bdefd3f9d44b933796983f728e9883b7bea5fe1cf4ea4cbd136921"
+        },
+        {
+          "arm": "A \u00b7 preserved original caption / shift 1",
+          "baselineId": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+          "metadata": "original request/conditioning unchanged",
+          "url": "audio/9c841dd1b3a13286.wav",
+          "label": "B",
+          "bedSha256": "443c115187fc30e48ea716b41046cc921fd310e6892be553c1e8e732affebb1c"
+        },
+        {
+          "arm": "B \u00b7 musical caption / shift 1",
+          "baselineId": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+          "metadata": {
+            "steps": 8,
+            "shift": 1,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": null
+          },
+          "url": "audio/cb3a2079770314e2.wav",
+          "label": "C",
+          "bedSha256": "4974ed2a739f197f066d4361d70e4640f27f6c35bca2970e1b27df12e6c00562"
+        }
+      ]
+    },
+    {
+      "id": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+      "name": "First Light",
+      "palette": "ambient",
+      "clips": [
+        {
+          "arm": "C \u00b7 musical caption / shift 3",
+          "baselineId": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+          "metadata": {
+            "steps": 8,
+            "shift": 3,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": null
+          },
+          "url": "audio/2560aa9fdcd5f673.wav",
+          "label": "A",
+          "bedSha256": "6bf7fb43201795283ab5dcc2c2d9dada688fbd8de6679e9d61415d47f4bc728f"
+        },
+        {
+          "arm": "B \u00b7 musical caption / shift 1",
+          "baselineId": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+          "metadata": {
+            "steps": 8,
+            "shift": 1,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": null
+          },
+          "url": "audio/803fa8d001a19f0d.wav",
+          "label": "B",
+          "bedSha256": "1c1d2a2b546ddfd1de110264f028ada2d37c4634bc2aa5e5c3a2e21827b1dd29"
+        },
+        {
+          "arm": "A \u00b7 preserved original caption / shift 1",
+          "baselineId": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+          "metadata": "original request/conditioning unchanged",
+          "url": "audio/3e95da2596b8b5e1.wav",
+          "label": "C",
+          "bedSha256": "36a03bf0bb5f428b2302fc23686a628414ca25c44e73da9778654da43a396d36"
+        }
+      ]
+    },
+    {
+      "id": "6e69ff71-4425-43af-8648-cda30c1ff766",
+      "name": "Familiar Afternoon",
+      "palette": "acoustic",
+      "clips": [
+        {
+          "arm": "A \u00b7 preserved original caption / shift 1",
+          "baselineId": "6e69ff71-4425-43af-8648-cda30c1ff766",
+          "metadata": "original request/conditioning unchanged",
+          "url": "audio/927f7e2dc5b1ced9.wav",
+          "label": "A",
+          "bedSha256": "41ead967128c50aaf90ef235ac8644e0801cb3263cc04e96d3fed5bb927704ac"
+        },
+        {
+          "arm": "C \u00b7 musical caption / shift 3",
+          "baselineId": "6e69ff71-4425-43af-8648-cda30c1ff766",
+          "metadata": {
+            "steps": 8,
+            "shift": 3,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": 64
+          },
+          "url": "audio/af0d80c99db1f6bd.wav",
+          "label": "B",
+          "bedSha256": "36c825fbb95ec8f1bc26ce3a8578333b02db79d47de0318f2e281ecec6424cfd"
+        },
+        {
+          "arm": "B \u00b7 musical caption / shift 1",
+          "baselineId": "6e69ff71-4425-43af-8648-cda30c1ff766",
+          "metadata": {
+            "steps": 8,
+            "shift": 1,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": 64
+          },
+          "url": "audio/da2bddfb8775c845.wav",
+          "label": "C",
+          "bedSha256": "1f589f5ef2a977fc383bd1f3676a482a7575af7d9c2f2987b5681aed13fbea39"
+        }
+      ]
+    },
+    {
+      "id": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+      "name": "In the Meantime",
+      "palette": "acoustic",
+      "clips": [
+        {
+          "arm": "A \u00b7 preserved original caption / shift 1",
+          "baselineId": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+          "metadata": "original request/conditioning unchanged",
+          "url": "audio/67d4c3381a63a61e.wav",
+          "label": "A",
+          "bedSha256": "a8afd3b18fd0c54bb6574721e296754f305e3c75f5636ef1f53dad06f13988be"
+        },
+        {
+          "arm": "B \u00b7 musical caption / shift 1",
+          "baselineId": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+          "metadata": {
+            "steps": 8,
+            "shift": 1,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": 64
+          },
+          "url": "audio/743a4404ab24cdbf.wav",
+          "label": "B",
+          "bedSha256": "d230a5884b33c3d5376043b4cb9929b2c2727966d2b3e6fbf3076d42c19a64a5"
+        },
+        {
+          "arm": "C \u00b7 musical caption / shift 3",
+          "baselineId": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+          "metadata": {
+            "steps": 8,
+            "shift": 3,
+            "guidanceScale": 1,
+            "thinking": false,
+            "requestedKey": "",
+            "requestedBpm": 64
+          },
+          "url": "audio/cbc9d35a9916d312.wav",
+          "label": "C",
+          "bedSha256": "f6d216391e7d199db9f6ac7c0c3be6f5a8f735b8de1e485b741ade4e56d8869f"
+        }
+      ]
+    }
+  ]
+}

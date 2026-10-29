@@ -1,0 +1,348 @@
+{
+  "rows": [
+    {
+      "id": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.16706113630504865,
+      "finalHalfSecond24to36HzEnergyShare": 0.13667941921737253
+    },
+    {
+      "id": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.016678222165888133,
+      "finalHalfSecond24to36HzEnergyShare": 0.01867056094559003
+    },
+    {
+      "id": "16d40bf3-9871-4f78-85a4-ed9aba203e51",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.013547773475672589,
+      "finalHalfSecond24to36HzEnergyShare": 0.012099882178088243
+    },
+    {
+      "id": "1bf883e6-6378-4cd5-812d-1a9a88d9173b",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.01226941452411461,
+      "finalHalfSecond24to36HzEnergyShare": 0.01747285209788278
+    },
+    {
+      "id": "1f684d51-4853-488d-98fd-fd6a19e0ec03",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.012095118802124945,
+      "finalHalfSecond24to36HzEnergyShare": 0.01373366243740897
+    },
+    {
+      "id": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.01812368789250195,
+      "finalHalfSecond24to36HzEnergyShare": 0.01109530088947994
+    },
+    {
+      "id": "26bf6439-9120-4e94-af54-e9b3e09e8564",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.011693724274282025,
+      "finalHalfSecond24to36HzEnergyShare": 0.03295142409478785
+    },
+    {
+      "id": "2893556a-728f-49db-8eaa-6c3b4dc221b2",
+      "seconds": 90.0,
+      "terminalMidi22Detected": false,
+      "previousHalfSecond24to36HzEnergyShare": 0.041890508769076136,
+      "finalHalfSecond24to36HzEnergyShare": 0.03535312765708491
+    },
+    {
+      "id": "2ab9afa9-14cd-41b7-9cb7-33bb9313700d",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.013201171504325456,
+      "finalHalfSecond24to36HzEnergyShare": 0.015880049612943613
+    },
+    {
+      "id": "2ac91f87-c1b7-46d2-b9cc-fde7123d3d86",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.01929240239182366,
+      "finalHalfSecond24to36HzEnergyShare": 0.020385336789461892
+    },
+    {
+      "id": "337732a6-3b43-4b93-9d7b-1b90943873a3",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.012566159382670649,
+      "finalHalfSecond24to36HzEnergyShare": 0.012961494101849191
+    },
+    {
+      "id": "34d2139d-a004-4417-b2dd-b7a6a470d2cf",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.015666091345938903,
+      "finalHalfSecond24to36HzEnergyShare": 0.0132444365927078
+    },
+    {
+      "id": "41f29261-cec0-4791-8879-068a9d2a91ec",
+      "seconds": 90.0,
+      "terminalMidi22Detected": false,
+      "previousHalfSecond24to36HzEnergyShare": 0.01360283270339926,
+      "finalHalfSecond24to36HzEnergyShare": 0.014272754829538003
+    },
+    {
+      "id": "44d3e8d6-37fa-47c6-b03d-538840a07e9b",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.05807393901434942,
+      "finalHalfSecond24to36HzEnergyShare": 0.0624903955612886
+    },
+    {
+      "id": "4b9859aa-0646-4773-84aa-0fd0af1dbc10",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.01586584207468401,
+      "finalHalfSecond24to36HzEnergyShare": 0.019504143667696552
+    },
+    {
+      "id": "4e38f2ae-fa1c-4170-9402-12e87d6aaf50",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.012337225751837698,
+      "finalHalfSecond24to36HzEnergyShare": 0.016088511339254617
+    },
+    {
+      "id": "54842778-592d-475a-baa8-37b535d886df",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.012002796985488751,
+      "finalHalfSecond24to36HzEnergyShare": 0.01570763099953471
+    },
+    {
+      "id": "5cac1f71-5812-46d6-ad9f-a581b3fca885",
+      "seconds": 90.0,
+      "terminalMidi22Detected": false,
+      "previousHalfSecond24to36HzEnergyShare": 0.048042234530865105,
+      "finalHalfSecond24to36HzEnergyShare": 0.03547068618296371
+    },
+    {
+      "id": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.4277111986771738,
+      "finalHalfSecond24to36HzEnergyShare": 0.01887212493347567
+    },
+    {
+      "id": "60e0941c-f69e-4e79-ae87-23e158dc0988",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.012855371492098974,
+      "finalHalfSecond24to36HzEnergyShare": 0.013474426140084973
+    },
+    {
+      "id": "667ded88-d5c9-481f-ba5d-431bfc5e8833",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.42771119868155305,
+      "finalHalfSecond24to36HzEnergyShare": 0.044084090802727204
+    },
+    {
+      "id": "6e69ff71-4425-43af-8648-cda30c1ff766",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.09467766162909386,
+      "finalHalfSecond24to36HzEnergyShare": 0.0948977261765029
+    },
+    {
+      "id": "77845de4-eb2f-4ff0-9235-10aadda5cb60",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.012367486833630254,
+      "finalHalfSecond24to36HzEnergyShare": 0.015533431179631409
+    },
+    {
+      "id": "7da4933f-3571-4795-b8e6-932fa3a258d4",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.01571249268917952,
+      "finalHalfSecond24to36HzEnergyShare": 0.019339280439046876
+    },
+    {
+      "id": "7edf658b-14c9-4ed5-8f2d-31ece3572d61",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.42771119868155305,
+      "finalHalfSecond24to36HzEnergyShare": 0.021257853331665116
+    },
+    {
+      "id": "80566d81-2d58-4b06-8e78-14963168f243",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.01798746421861537,
+      "finalHalfSecond24to36HzEnergyShare": 0.012985204785151616
+    },
+    {
+      "id": "852bc9e4-1c78-4494-9e7c-ad08264e7949",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.012095118802124945,
+      "finalHalfSecond24to36HzEnergyShare": 0.01373366243740897
+    },
+    {
+      "id": "8aa6f20c-421f-47c2-9ded-7beb9aeeb81a",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.04715876978302109,
+      "finalHalfSecond24to36HzEnergyShare": 0.04504146999978699
+    },
+    {
+      "id": "90798298-c980-4d46-b330-57d5c282ef5e",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.015393387691704207,
+      "finalHalfSecond24to36HzEnergyShare": 0.01760222278032559
+    },
+    {
+      "id": "97c1abf3-80f0-4c52-a294-b841b61fd335",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.014975736836664309,
+      "finalHalfSecond24to36HzEnergyShare": 0.016882835415669397
+    },
+    {
+      "id": "9be5ebc5-e26b-422a-9ed4-bd3a94a58751",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.012002796985488751,
+      "finalHalfSecond24to36HzEnergyShare": 0.01570763099953471
+    },
+    {
+      "id": "aef329c8-9bf8-4b5d-8232-c7c971ec3e1d",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.157271400191849,
+      "finalHalfSecond24to36HzEnergyShare": 0.10962306062657991
+    },
+    {
+      "id": "af7b7c30-c8a6-4884-9ab6-557350489b13",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.019929158259044635,
+      "finalHalfSecond24to36HzEnergyShare": 0.022180837810242097
+    },
+    {
+      "id": "b6c92e2d-d23f-43a2-b48f-ef46b81acb0c",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.013618463922872751,
+      "finalHalfSecond24to36HzEnergyShare": 0.015890782203473335
+    },
+    {
+      "id": "b905d189-eb0a-4e4d-9b39-72ca307919c1",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.12035865362318161,
+      "finalHalfSecond24to36HzEnergyShare": 0.14524761124410202
+    },
+    {
+      "id": "c7321203-f72c-4f82-ba0f-51e2a1417790",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.04956852835316603,
+      "finalHalfSecond24to36HzEnergyShare": 0.04005037655902178
+    },
+    {
+      "id": "c787d0cb-f40b-4627-a419-0b06f237bf75",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.015274468021500884,
+      "finalHalfSecond24to36HzEnergyShare": 0.014749591450447082
+    },
+    {
+      "id": "c9960ad3-20bd-4bb5-aec9-fdd1eeb0e85f",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.016816668823091813,
+      "finalHalfSecond24to36HzEnergyShare": 0.015146369353137639
+    },
+    {
+      "id": "ca508cd8-9594-4ef2-b965-5c1ddbc44245",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.011973438057500441,
+      "finalHalfSecond24to36HzEnergyShare": 0.01714335950967268
+    },
+    {
+      "id": "cb406bcd-52ab-45c3-b7bf-e9aadfc2b08e",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.015392298204559864,
+      "finalHalfSecond24to36HzEnergyShare": 0.016455582802289044
+    },
+    {
+      "id": "da32f422-34ac-4bcd-92fd-6e17985dea05",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.42771119869233215,
+      "finalHalfSecond24to36HzEnergyShare": 0.005341794021654339
+    },
+    {
+      "id": "e156c012-7182-4382-b505-a2c6f33bd09c",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.019491515634903752,
+      "finalHalfSecond24to36HzEnergyShare": 0.01594445069563705
+    },
+    {
+      "id": "e2574763-7b37-4fe4-9653-07c76114baa8",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.01590391655184921,
+      "finalHalfSecond24to36HzEnergyShare": 0.019034014865794452
+    },
+    {
+      "id": "e674c197-b168-4c61-a622-8d06c5af02b9",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.017184727185014653,
+      "finalHalfSecond24to36HzEnergyShare": 0.01719114163266618
+    },
+    {
+      "id": "e78b5a07-e992-4bd0-8aa8-852e10e80419",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.012095118802124945,
+      "finalHalfSecond24to36HzEnergyShare": 0.01373366243740897
+    },
+    {
+      "id": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.013136426213000728,
+      "finalHalfSecond24to36HzEnergyShare": 0.016036297371870827
+    },
+    {
+      "id": "ef7d642f-d7ae-4266-8253-c7e17544ffaa",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.013566792430066008,
+      "finalHalfSecond24to36HzEnergyShare": 0.012993428344761703
+    },
+    {
+      "id": "f5e037c7-3c79-4fbc-b3bc-b99485cd2fa3",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.0016103997490417383,
+      "finalHalfSecond24to36HzEnergyShare": 0.005394280260606156
+    },
+    {
+      "id": "fb56d4ec-e3be-49dd-ab4a-f7a031bc5518",
+      "seconds": 30.0,
+      "terminalMidi22Detected": true,
+      "previousHalfSecond24to36HzEnergyShare": 0.09324191307299086,
+      "finalHalfSecond24to36HzEnergyShare": 0.13354388288144892
+    }
+  ],
+  "interpretation": "Source spectrum check only; low band can be rumble or padding/AMT artifacts, not proof of a played bass note. No hearing claim."
+}

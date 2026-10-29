@@ -1,0 +1,1365 @@
+{
+  "records": [
+    {
+      "id": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-17-1",
+      "style": "piano",
+      "seed": 83848,
+      "seconds": 30,
+      "pcmSha256": "664c41336785855fbd0e1dba16470dab1fc694f4546dc747707e028a07fc5cc1",
+      "sourceSha256": "8958eec255d98a5bfa5a0c7797c0d0d4cada06b8401f032c86050cd6224416d3",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/021e4b61-30d5-4922-a9d5-25aa730cf6d0/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/021e4b61-30d5-4922-a9d5-25aa730cf6d0/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2082
+        }
+      ]
+    },
+    {
+      "id": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-20-2",
+      "style": "ambient",
+      "seed": 84282,
+      "seconds": 30,
+      "pcmSha256": "1f41ea20803ac06a150ded9562a71ef1f535babb415a6d6a6de83278a7500a4d",
+      "sourceSha256": "f6e0408de5578c96610452e245ea5888f535692d533676d33e8e0adee2f6dcbc",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/0bdfd53b-8296-4ca2-a665-c01a269474c3/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/0bdfd53b-8296-4ca2-a665-c01a269474c3/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2066
+        }
+      ]
+    },
+    {
+      "id": "16d40bf3-9871-4f78-85a4-ed9aba203e51",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-10-2",
+      "style": "ambient",
+      "seed": 83272,
+      "seconds": 30,
+      "pcmSha256": "042e1e72f7291c4bce005ef2606b3e730cb5ce0f2e2526ed4f8aa688c46ef9ba",
+      "sourceSha256": "400b1b4cbbc5be1fb37d0befa3604ea85ddd05b969b85e7466f1840904efa858",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/16d40bf3-9871-4f78-85a4-ed9aba203e51/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/16d40bf3-9871-4f78-85a4-ed9aba203e51/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2056
+        }
+      ]
+    },
+    {
+      "id": "1bf883e6-6378-4cd5-812d-1a9a88d9173b",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-13-2",
+      "style": "ambient",
+      "seed": 83575,
+      "seconds": 30,
+      "pcmSha256": "aaee5a08f7e3b832c869af9b25c93dc051501105fdb1322751d35b894ad51d15",
+      "sourceSha256": "258dd1ce229393aee1c0d475c2c57fb593a50d03dd8ff4c3c8fadf1803dc745f",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/1bf883e6-6378-4cd5-812d-1a9a88d9173b/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/1bf883e6-6378-4cd5-812d-1a9a88d9173b/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2056
+        }
+      ]
+    },
+    {
+      "id": "1f684d51-4853-488d-98fd-fd6a19e0ec03",
+      "category": "music-lab-comparison",
+      "conceptId": null,
+      "style": "piano",
+      "seed": 101,
+      "seconds": 30,
+      "pcmSha256": "f3aa43fc836ab86fd0d7ee93acfeb62f9a182dec3dded75852e0a135ea2f9988",
+      "sourceSha256": "32a7ac00a27e3ce121b26709784f73b4ee6f17bd5dab433eb04bcedee104a4af",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/1f684d51-4853-488d-98fd-fd6a19e0ec03/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/1f684d51-4853-488d-98fd-fd6a19e0ec03/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "loop.wav",
+          "bytes": 34560078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 1248
+        },
+        {
+          "name": "narration.wav",
+          "bytes": 5760078
+        }
+      ]
+    },
+    {
+      "id": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-18-1",
+      "style": "acoustic",
+      "seed": 83949,
+      "seconds": 30,
+      "pcmSha256": "e4027a955fc319e309907e16a4b80682a2393d59484c9090f9a97345190b8ecc",
+      "sourceSha256": "7a0c569d599a797d1686202a8a69b0ba1bea1b1dfdc0a49b56eacef3e5341886",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/251db1b8-5b9a-4364-90c9-9e4422c2fc21/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/251db1b8-5b9a-4364-90c9-9e4422c2fc21/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2084
+        }
+      ]
+    },
+    {
+      "id": "26bf6439-9120-4e94-af54-e9b3e09e8564",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-02-2",
+      "style": "ambient",
+      "seed": 82464,
+      "seconds": 30,
+      "pcmSha256": "f5d133567cbf358aded69c7fd1d70cce895646cd385b39317f59e5befef69dee",
+      "sourceSha256": "800e0d7fc963281663a17cbfc2bf6a2850cebb8da0b3ac5fdc0dd48e61cf6e70",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/26bf6439-9120-4e94-af54-e9b3e09e8564/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/26bf6439-9120-4e94-af54-e9b3e09e8564/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2050
+        }
+      ]
+    },
+    {
+      "id": "2893556a-728f-49db-8eaa-6c3b4dc221b2",
+      "category": "custom-current-study-or-user-reference",
+      "conceptId": null,
+      "style": "piano",
+      "seed": 613485,
+      "seconds": 90,
+      "pcmSha256": "d24ccfbfac43af91d7fd3eb80438b335ef10efb391500172056fc12d2b28dc3e",
+      "sourceSha256": "9a31a86256c632f8ab54b6ffe0ed7e1755d380dbe8f49030a12e9c849e66b1f5",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/2893556a-728f-49db-8eaa-6c3b4dc221b2/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/2893556a-728f-49db-8eaa-6c3b4dc221b2/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 17280078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 34560088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2215
+        }
+      ]
+    },
+    {
+      "id": "2ab9afa9-14cd-41b7-9cb7-33bb9313700d",
+      "category": "custom-current-study-or-user-reference",
+      "conceptId": null,
+      "style": "piano",
+      "seed": 73019,
+      "seconds": 30,
+      "pcmSha256": "1a65c3747e6216c8e278211584a53e805dd4e26150e7543a22ca4fd0858c3e0a",
+      "sourceSha256": "ee3530b17c8e692de358423863d8726bce9782b3647537833b59bc01cebeb8aa",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/2ab9afa9-14cd-41b7-9cb7-33bb9313700d/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/2ab9afa9-14cd-41b7-9cb7-33bb9313700d/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "loop.wav",
+          "bytes": 34560078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 1427
+        },
+        {
+          "name": "narration.wav",
+          "bytes": 5760078
+        }
+      ]
+    },
+    {
+      "id": "2ac91f87-c1b7-46d2-b9cc-fde7123d3d86",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-06-1",
+      "style": "acoustic",
+      "seed": 82737,
+      "seconds": 30,
+      "pcmSha256": "c6316b0a44fb5fcb30ed8259c93372b25255899b17f7e272bf33d8e0d880595d",
+      "sourceSha256": "67cd6a3b864d5d20fabeb8a573c2ad57beb55c3a356f325225dd9df010dc5529",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/2ac91f87-c1b7-46d2-b9cc-fde7123d3d86/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/2ac91f87-c1b7-46d2-b9cc-fde7123d3d86/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2082
+        }
+      ]
+    },
+    {
+      "id": "337732a6-3b43-4b93-9d7b-1b90943873a3",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-11-2",
+      "style": "ambient",
+      "seed": 83373,
+      "seconds": 30,
+      "pcmSha256": "517082eeb4cf4382de00356a44e13e9177d6177013d820e88d66566499ec12d5",
+      "sourceSha256": "c6fb1efb88e6f953096c40f9af9da44710fc18a7347d0176616c053ae661a74e",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/337732a6-3b43-4b93-9d7b-1b90943873a3/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/337732a6-3b43-4b93-9d7b-1b90943873a3/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2064
+        }
+      ]
+    },
+    {
+      "id": "34d2139d-a004-4417-b2dd-b7a6a470d2cf",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-07-1",
+      "style": "piano",
+      "seed": 82838,
+      "seconds": 30,
+      "pcmSha256": "88000fff0823fd8157ff669497ff011554ddec331f78784e40f8fe790f709b20",
+      "sourceSha256": "b7561f5d832dfc86d68ffa5e91832180146d837cbf9eccba423a3fa22be33ee9",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/34d2139d-a004-4417-b2dd-b7a6a470d2cf/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/34d2139d-a004-4417-b2dd-b7a6a470d2cf/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2058
+        }
+      ]
+    },
+    {
+      "id": "41f29261-cec0-4791-8879-068a9d2a91ec",
+      "category": "custom-current-study-or-user-reference",
+      "conceptId": null,
+      "style": "piano",
+      "seed": 508756,
+      "seconds": 90,
+      "pcmSha256": "caa62097cb39fc399bb855b0a94feab094a5ec25f75a66e201a2b1c721960a32",
+      "sourceSha256": "47b5f8606141a1f3b6b68cff732f09e66df321caae467c7a1c245650294373b8",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/41f29261-cec0-4791-8879-068a9d2a91ec/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/41f29261-cec0-4791-8879-068a9d2a91ec/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 17280078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 34560088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2248
+        }
+      ]
+    },
+    {
+      "id": "44d3e8d6-37fa-47c6-b03d-538840a07e9b",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-13-1",
+      "style": "piano",
+      "seed": 83444,
+      "seconds": 30,
+      "pcmSha256": "184602030779f9f9e67cb2ec45289466e0f4e61441282c1eefefe1307682baec",
+      "sourceSha256": "ecce3d996265f2ea737f4ae030bc060f9f057c1e9a690e1388dceb39091007c4",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/44d3e8d6-37fa-47c6-b03d-538840a07e9b/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/44d3e8d6-37fa-47c6-b03d-538840a07e9b/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2071
+        }
+      ]
+    },
+    {
+      "id": "4b9859aa-0646-4773-84aa-0fd0af1dbc10",
+      "category": "music-lab-comparison",
+      "conceptId": null,
+      "style": "piano",
+      "seed": 202,
+      "seconds": 30.0,
+      "pcmSha256": "bf1ae81857eb1f7ec1b31dd0680ab8e1f95cd48b03cbeb4cf8701731dbf4d45b",
+      "sourceSha256": "d5d0c01826c1aca8b7d095d2ed5d614ec58da7cb2db44a225ff12e663f65ff55",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/4b9859aa-0646-4773-84aa-0fd0af1dbc10/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/4b9859aa-0646-4773-84aa-0fd0af1dbc10/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "loop.wav",
+          "bytes": 34560078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 1248
+        },
+        {
+          "name": "narration.wav",
+          "bytes": 5760078
+        }
+      ]
+    },
+    {
+      "id": "4e38f2ae-fa1c-4170-9402-12e87d6aaf50",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-09-1",
+      "style": "piano",
+      "seed": 83040,
+      "seconds": 30,
+      "pcmSha256": "27ff52c1a62d82de3e46d2dde46c976de17823d99d197a7ea3491c82fba99338",
+      "sourceSha256": "47d8d87422688c0ae94e911128041b3a0ad827f5b2c0f8e6afc827a2ae859a59",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/4e38f2ae-fa1c-4170-9402-12e87d6aaf50/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/4e38f2ae-fa1c-4170-9402-12e87d6aaf50/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2059
+        }
+      ]
+    },
+    {
+      "id": "54842778-592d-475a-baa8-37b535d886df",
+      "category": "music-lab-comparison",
+      "conceptId": null,
+      "style": "ambient",
+      "seed": 101,
+      "seconds": 30.0,
+      "pcmSha256": "e37b5c240cda0d125df51ff168908b801c2da30d7c84b71cb76802a4dee52fd1",
+      "sourceSha256": "398e2fe5a6013df047e67d0bd47adb11ae3248998722882ee2e86b57d9578b47",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/54842778-592d-475a-baa8-37b535d886df/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/54842778-592d-475a-baa8-37b535d886df/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "loop.wav",
+          "bytes": 34560078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 1248
+        },
+        {
+          "name": "narration.wav",
+          "bytes": 5760078
+        }
+      ]
+    },
+    {
+      "id": "5cac1f71-5812-46d6-ad9f-a581b3fca885",
+      "category": "custom-current-study-or-user-reference",
+      "conceptId": null,
+      "style": "piano",
+      "seed": 404027,
+      "seconds": 90,
+      "pcmSha256": "621d7db7aeecc67fde45184e7d0674e17644232bdca5f7166a8790d4a97eb674",
+      "sourceSha256": "1957d0db76f74a4089aa6103bc2e83e2750964b00f1a0dd7d549af29b1ce640e",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/5cac1f71-5812-46d6-ad9f-a581b3fca885/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/5cac1f71-5812-46d6-ad9f-a581b3fca885/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 17280078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 34560088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2221
+        }
+      ]
+    },
+    {
+      "id": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-19-1",
+      "style": "piano",
+      "seed": 84050,
+      "seconds": 30,
+      "pcmSha256": "9d5ea0873838f3d0529917eee4d1f02cdd50030eea0ce6d709058518a29a95cb",
+      "sourceSha256": "0465f226b8ed73dd55f1b1f559ecbc77f613f20d9c160ee7022e7022e3d05475",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/5cdbe548-a3f7-400c-a9eb-2a5b5aa18886/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/5cdbe548-a3f7-400c-a9eb-2a5b5aa18886/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2074
+        }
+      ]
+    },
+    {
+      "id": "60e0941c-f69e-4e79-ae87-23e158dc0988",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-15-2",
+      "style": "ambient",
+      "seed": 83777,
+      "seconds": 30,
+      "pcmSha256": "c182d464267e41e8e6915da21e73ad90d1cea7ac7497140331888e854b91c15a",
+      "sourceSha256": "31500fbf5f98ed8fe8623d591f38bb21192d46734410c4fc9f94fbe8798a8618",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/60e0941c-f69e-4e79-ae87-23e158dc0988/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/60e0941c-f69e-4e79-ae87-23e158dc0988/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2050
+        }
+      ]
+    },
+    {
+      "id": "667ded88-d5c9-481f-ba5d-431bfc5e8833",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-01-1",
+      "style": "piano",
+      "seed": 82232,
+      "seconds": 30,
+      "pcmSha256": "69c1f3a8d4401af4d72b5a02fdd3675835e7d8cbe0205502f0cffd92db5c237c",
+      "sourceSha256": "9b6c2c00b78f5a6676770feafb517b9fa07fda327fa9316a6a94a510fcb6cb5c",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/667ded88-d5c9-481f-ba5d-431bfc5e8833/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/667ded88-d5c9-481f-ba5d-431bfc5e8833/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2082
+        }
+      ]
+    },
+    {
+      "id": "6e69ff71-4425-43af-8648-cda30c1ff766",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-20-1",
+      "style": "acoustic",
+      "seed": 84151,
+      "seconds": 30,
+      "pcmSha256": "208bc877345176ad67764f3daa327437711d8aa18c3f3ecf7466161f3e0b00c5",
+      "sourceSha256": "3f769f49397f5310dfdad0dec82e67b41aea22d1a087eb69c9875fca0d3a4556",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/6e69ff71-4425-43af-8648-cda30c1ff766/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/6e69ff71-4425-43af-8648-cda30c1ff766/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2100
+        }
+      ]
+    },
+    {
+      "id": "77845de4-eb2f-4ff0-9235-10aadda5cb60",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-06-2",
+      "style": "ambient",
+      "seed": 82868,
+      "seconds": 30,
+      "pcmSha256": "e110c2f70ca3113d39518ac2acfeb69499f9dc4273571074afe008063abd2f5b",
+      "sourceSha256": "96cd87914df8394ec8415174eb818378e5315793d853b9f7bd3f715133a28f8d",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/77845de4-eb2f-4ff0-9235-10aadda5cb60/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/77845de4-eb2f-4ff0-9235-10aadda5cb60/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2049
+        }
+      ]
+    },
+    {
+      "id": "7da4933f-3571-4795-b8e6-932fa3a258d4",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-02-1",
+      "style": "acoustic",
+      "seed": 82333,
+      "seconds": 30,
+      "pcmSha256": "6dd07b36fad52ec9eda6af793dd03629641ffb67be29181525614ed3b61633cb",
+      "sourceSha256": "85ad4867ed8723627045f417ae31651933c7850adaa98c37d77078dcc00eaf37",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/7da4933f-3571-4795-b8e6-932fa3a258d4/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/7da4933f-3571-4795-b8e6-932fa3a258d4/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2069
+        }
+      ]
+    },
+    {
+      "id": "7edf658b-14c9-4ed5-8f2d-31ece3572d61",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-14-2",
+      "style": "ambient",
+      "seed": 83676,
+      "seconds": 30,
+      "pcmSha256": "74a9681c4e5fa76740a070d2e1b4d278683cf9e626e688e9fcbaf43e98a8ca01",
+      "sourceSha256": "894df5ee4ec461608396ee8b21452fe75b468c04e20b7149d9298185dcf11839",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/7edf658b-14c9-4ed5-8f2d-31ece3572d61/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/7edf658b-14c9-4ed5-8f2d-31ece3572d61/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2093
+        }
+      ]
+    },
+    {
+      "id": "80566d81-2d58-4b06-8e78-14963168f243",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-12-2",
+      "style": "ambient",
+      "seed": 83474,
+      "seconds": 30,
+      "pcmSha256": "78a3937692fb7868b0309433568f3dbf9b3145777c5d381b6c1328b287fea719",
+      "sourceSha256": "4edc834b3c73721aa29f622cc53869c577292acba10dea84c1b08fa7dc2450aa",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/80566d81-2d58-4b06-8e78-14963168f243/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/80566d81-2d58-4b06-8e78-14963168f243/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2053
+        }
+      ]
+    },
+    {
+      "id": "852bc9e4-1c78-4494-9e7c-ad08264e7949",
+      "category": "music-lab-comparison",
+      "conceptId": null,
+      "style": "piano",
+      "seed": 101,
+      "seconds": 30.0,
+      "pcmSha256": "f3aa43fc836ab86fd0d7ee93acfeb62f9a182dec3dded75852e0a135ea2f9988",
+      "sourceSha256": "e92ba43fc899c71adc60f4a0bc68a7461ece3ff1daa978edff442933221b9355",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/852bc9e4-1c78-4494-9e7c-ad08264e7949/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/852bc9e4-1c78-4494-9e7c-ad08264e7949/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "loop.wav",
+          "bytes": 34560078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 1262
+        },
+        {
+          "name": "narration.wav",
+          "bytes": 5760078
+        }
+      ]
+    },
+    {
+      "id": "8aa6f20c-421f-47c2-9ded-7beb9aeeb81a",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-14-1",
+      "style": "acoustic",
+      "seed": 83545,
+      "seconds": 30,
+      "pcmSha256": "74933cefc8baa2ba4a65c98d14086b53fea907cb2887323876d45ba6731568e4",
+      "sourceSha256": "9a36f5942f7ecdeedc292ec1bd6c8107fb13e851f5e8e1fefd2e066cc6d6435a",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/8aa6f20c-421f-47c2-9ded-7beb9aeeb81a/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/8aa6f20c-421f-47c2-9ded-7beb9aeeb81a/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2100
+        }
+      ]
+    },
+    {
+      "id": "90798298-c980-4d46-b330-57d5c282ef5e",
+      "category": "music-lab-comparison",
+      "conceptId": null,
+      "style": "acoustic",
+      "seed": 202,
+      "seconds": 30.0,
+      "pcmSha256": "5e6d82631b23f5a451a8fd03549bf8aa89a08eb6be56d117e8cca72dcf47ffab",
+      "sourceSha256": "b83460ba5b062b9d217b8cbc93395d69e603530f81f4f0ac205c94a0082a7699",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/90798298-c980-4d46-b330-57d5c282ef5e/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/90798298-c980-4d46-b330-57d5c282ef5e/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "loop.wav",
+          "bytes": 34560078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 1271
+        },
+        {
+          "name": "narration.wav",
+          "bytes": 5760078
+        }
+      ]
+    },
+    {
+      "id": "97c1abf3-80f0-4c52-a294-b841b61fd335",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-07-2",
+      "style": "ambient",
+      "seed": 82969,
+      "seconds": 30,
+      "pcmSha256": "b5de3928e70b7b93e202c1dc2d9e3352929689931eab64d46d2f9b092d76fc02",
+      "sourceSha256": "b5d72b2dcdc812eba4c5d300ceed01f32e5ca9dbcb626722e1f272e91cf96388",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/97c1abf3-80f0-4c52-a294-b841b61fd335/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/97c1abf3-80f0-4c52-a294-b841b61fd335/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2066
+        }
+      ]
+    },
+    {
+      "id": "9be5ebc5-e26b-422a-9ed4-bd3a94a58751",
+      "category": "music-lab-comparison",
+      "conceptId": null,
+      "style": "ambient",
+      "seed": 101,
+      "seconds": 30,
+      "pcmSha256": "e37b5c240cda0d125df51ff168908b801c2da30d7c84b71cb76802a4dee52fd1",
+      "sourceSha256": "d01813755898a87748ffa2cc05b26eb9d0105f715d318aebbc027ed1d731f2a9",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/9be5ebc5-e26b-422a-9ed4-bd3a94a58751/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/9be5ebc5-e26b-422a-9ed4-bd3a94a58751/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "loop.wav",
+          "bytes": 34560078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 1231
+        },
+        {
+          "name": "narration.wav",
+          "bytes": 5760078
+        }
+      ]
+    },
+    {
+      "id": "aef329c8-9bf8-4b5d-8232-c7c971ec3e1d",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-11-1",
+      "style": "piano",
+      "seed": 83242,
+      "seconds": 30,
+      "pcmSha256": "b671692ec817e651954039a4a7e4b3fd169f60980ee0fe8130ac3e24da6db81a",
+      "sourceSha256": "d7c1926bc9bdf7b91401977f26ddc53a44d901958320de47e16549dea4e841bd",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/aef329c8-9bf8-4b5d-8232-c7c971ec3e1d/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/aef329c8-9bf8-4b5d-8232-c7c971ec3e1d/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2095
+        }
+      ]
+    },
+    {
+      "id": "af7b7c30-c8a6-4884-9ab6-557350489b13",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-05-1",
+      "style": "piano",
+      "seed": 82636,
+      "seconds": 30,
+      "pcmSha256": "24311c13b538181f9843c1620b5dcb0a020c37bf2bd91efc79429b4c1256f140",
+      "sourceSha256": "e1614514111ae9690a38506261c66fc8003780a59ac11f6c65de1edcce3b1f7b",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/af7b7c30-c8a6-4884-9ab6-557350489b13/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/af7b7c30-c8a6-4884-9ab6-557350489b13/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2098
+        }
+      ]
+    },
+    {
+      "id": "b6c92e2d-d23f-43a2-b48f-ef46b81acb0c",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-01-2",
+      "style": "ambient",
+      "seed": 82363,
+      "seconds": 30,
+      "pcmSha256": "67c5465b0045be6deac14e53f0b20dd5b6c66832459e6276ab4285bfdefdc2d7",
+      "sourceSha256": "06f85893062f122df32cd5192f3bd39be72bacb4dfe19c6eaccdc86a90556744",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/b6c92e2d-d23f-43a2-b48f-ef46b81acb0c/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/b6c92e2d-d23f-43a2-b48f-ef46b81acb0c/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2064
+        }
+      ]
+    },
+    {
+      "id": "b905d189-eb0a-4e4d-9b39-72ca307919c1",
+      "category": "music-lab-comparison",
+      "conceptId": null,
+      "style": "acoustic",
+      "seed": 101,
+      "seconds": 30.0,
+      "pcmSha256": "89b2382f8cd01f38fa1486fc3e53a5a002aea02db8ee258a0dd254937f505b59",
+      "sourceSha256": "fb5ad395a6e9d5a585f464638e8dd14c4b1567fca022e9241fb0ad7675ea52d4",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/b905d189-eb0a-4e4d-9b39-72ca307919c1/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/b905d189-eb0a-4e4d-9b39-72ca307919c1/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "loop.wav",
+          "bytes": 34560078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 1271
+        },
+        {
+          "name": "narration.wav",
+          "bytes": 5760078
+        }
+      ]
+    },
+    {
+      "id": "c7321203-f72c-4f82-ba0f-51e2a1417790",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-16-1",
+      "style": "acoustic",
+      "seed": 83747,
+      "seconds": 30,
+      "pcmSha256": "fd209adff6a38bbf89cb01ad91ae02dcc03fc93d1c323ff348f2c1179fa0a51b",
+      "sourceSha256": "32017cd2219c76df5eea96fb731ecc1be6b989f0befd3ec701f055157db366c7",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/c7321203-f72c-4f82-ba0f-51e2a1417790/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/c7321203-f72c-4f82-ba0f-51e2a1417790/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2065
+        }
+      ]
+    },
+    {
+      "id": "c787d0cb-f40b-4627-a419-0b06f237bf75",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-15-1",
+      "style": "piano",
+      "seed": 83646,
+      "seconds": 30,
+      "pcmSha256": "cb461eaa1e1680e02f798f0ad50f7342abdfc240c7ecfadf04dac3c8c0f34e5c",
+      "sourceSha256": "4bb6be3a300b705600cb5cfce45bc051631f2e80b73b805b3e5e1c0a59650bdb",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/c787d0cb-f40b-4627-a419-0b06f237bf75/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/c787d0cb-f40b-4627-a419-0b06f237bf75/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2063
+        }
+      ]
+    },
+    {
+      "id": "c9960ad3-20bd-4bb5-aec9-fdd1eeb0e85f",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-12-1",
+      "style": "acoustic",
+      "seed": 83343,
+      "seconds": 30,
+      "pcmSha256": "8c75786e3715b7895065654fe09d6cdb3bca732fc142ed5ec8f83f7005670e66",
+      "sourceSha256": "3447609eb8754f10d75208075a412f511e2114921f36b619fb1898ce02ae2ecb",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/c9960ad3-20bd-4bb5-aec9-fdd1eeb0e85f/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/c9960ad3-20bd-4bb5-aec9-fdd1eeb0e85f/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2085
+        }
+      ]
+    },
+    {
+      "id": "ca508cd8-9594-4ef2-b965-5c1ddbc44245",
+      "category": "music-lab-comparison",
+      "conceptId": null,
+      "style": "ambient",
+      "seed": 202,
+      "seconds": 30.0,
+      "pcmSha256": "ccf5fa7e67570fecbb6a54868cf83af858b6a4bd8fefc89813d33e3d89909797",
+      "sourceSha256": "5edc1723f0a0880533f8af14a3dc4123f7e0c8828e2f13ecd146a599b7950d75",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/ca508cd8-9594-4ef2-b965-5c1ddbc44245/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/ca508cd8-9594-4ef2-b965-5c1ddbc44245/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "loop.wav",
+          "bytes": 34560078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 1251
+        },
+        {
+          "name": "narration.wav",
+          "bytes": 5760078
+        }
+      ]
+    },
+    {
+      "id": "cb406bcd-52ab-45c3-b7bf-e9aadfc2b08e",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-09-2",
+      "style": "ambient",
+      "seed": 83171,
+      "seconds": 30,
+      "pcmSha256": "a134cdd2ab22d7f587ace13792b1c314a6f6df3cca443603012e44cb14fc14de",
+      "sourceSha256": "b473231981a6a2c5f813bcd2b9bb6508bd4abdf7e6775592cae2d2302e916493",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/cb406bcd-52ab-45c3-b7bf-e9aadfc2b08e/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/cb406bcd-52ab-45c3-b7bf-e9aadfc2b08e/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2070
+        }
+      ]
+    },
+    {
+      "id": "da32f422-34ac-4bcd-92fd-6e17985dea05",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-16-2",
+      "style": "ambient",
+      "seed": 83878,
+      "seconds": 30,
+      "pcmSha256": "04fcb47c4e5fcec39f30ff9da67ee673af1d9dc3026705510d4631a03f84dbea",
+      "sourceSha256": "d8829d978d3771e2fc0cbfa5395526459ac1aee181058d094e9751bd9a5de263",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/da32f422-34ac-4bcd-92fd-6e17985dea05/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/da32f422-34ac-4bcd-92fd-6e17985dea05/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2066
+        }
+      ]
+    },
+    {
+      "id": "e156c012-7182-4382-b505-a2c6f33bd09c",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-17-2",
+      "style": "ambient",
+      "seed": 83979,
+      "seconds": 30,
+      "pcmSha256": "1045c8c60c9939c8894f86572ffad572eb81d5ae61a97d472a8861dbd11a48ca",
+      "sourceSha256": "ceb3f4a267d39018c608af9eef31b0db6755d5abff7a3e449ae6132f7b91ab4c",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/e156c012-7182-4382-b505-a2c6f33bd09c/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/e156c012-7182-4382-b505-a2c6f33bd09c/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2049
+        }
+      ]
+    },
+    {
+      "id": "e2574763-7b37-4fe4-9653-07c76114baa8",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-18-2",
+      "style": "ambient",
+      "seed": 84080,
+      "seconds": 30,
+      "pcmSha256": "c8f7d0d794f8b3bd0a72f6ec69b0e3f16171e0b83ea48722658a22acd02f73cd",
+      "sourceSha256": "706550702c73db6b789eda1930fd1a5badf9dc515b241da8dd3c90e1a4a69b09",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/e2574763-7b37-4fe4-9653-07c76114baa8/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/e2574763-7b37-4fe4-9653-07c76114baa8/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2053
+        }
+      ]
+    },
+    {
+      "id": "e674c197-b168-4c61-a622-8d06c5af02b9",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-08-2",
+      "style": "ambient",
+      "seed": 83070,
+      "seconds": 30,
+      "pcmSha256": "11940288d4ff2e380be3b49dbc02d8314b0d18f7d952c9c0a30b70bd15cb8de9",
+      "sourceSha256": "6d761ab7654ae6904fe8fdec8ea542eeb50f40249395e60be45082dcb06166ff",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/e674c197-b168-4c61-a622-8d06c5af02b9/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/e674c197-b168-4c61-a622-8d06c5af02b9/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2055
+        }
+      ]
+    },
+    {
+      "id": "e78b5a07-e992-4bd0-8aa8-852e10e80419",
+      "category": "music-lab-comparison",
+      "conceptId": null,
+      "style": "piano",
+      "seed": 101,
+      "seconds": 30,
+      "pcmSha256": "f3aa43fc836ab86fd0d7ee93acfeb62f9a182dec3dded75852e0a135ea2f9988",
+      "sourceSha256": "a3bd24da73da94b2b05f24e3fe30b5df302bafb12e23cbee327de2c028159b65",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/e78b5a07-e992-4bd0-8aa8-852e10e80419/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/e78b5a07-e992-4bd0-8aa8-852e10e80419/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "loop.wav",
+          "bytes": 34560078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 1249
+        },
+        {
+          "name": "narration.wav",
+          "bytes": 5760078
+        }
+      ]
+    },
+    {
+      "id": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-19-2",
+      "style": "ambient",
+      "seed": 84181,
+      "seconds": 30,
+      "pcmSha256": "07f4a5fcff0b0922b0b3d13b1d172e7cfea2d31008b1e1b0334cd4f7b76b3528",
+      "sourceSha256": "da79421165010242ce2984aab6c4a594264bde095fbc854dd79f387b515d4926",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/ef35e69b-3a30-426d-8cfa-80d1da9734a3/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/ef35e69b-3a30-426d-8cfa-80d1da9734a3/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2050
+        }
+      ]
+    },
+    {
+      "id": "ef7d642f-d7ae-4266-8253-c7e17544ffaa",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-05-2",
+      "style": "ambient",
+      "seed": 82767,
+      "seconds": 30,
+      "pcmSha256": "15a1268b528c3a24bb1f4304e6a6730de7283c1f67c2c9ff551db388e1e36713",
+      "sourceSha256": "4d578e61e020d2fffcac0dd3742f3e29aa8108196ea232dc5fe6f0747ad1cf52",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/ef7d642f-d7ae-4266-8253-c7e17544ffaa/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/ef7d642f-d7ae-4266-8253-c7e17544ffaa/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2073
+        }
+      ]
+    },
+    {
+      "id": "f5e037c7-3c79-4fbc-b3bc-b99485cd2fa3",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-10-1",
+      "style": "acoustic",
+      "seed": 83141,
+      "seconds": 30,
+      "pcmSha256": "f3b2da8ff8989df52b75dfa3823a733d4dfdf29b4d1041cfeef2a52bc088f7b1",
+      "sourceSha256": "3f4e2d0452d41d3758b48594099ad7eeda037cdb3007b7b199f670a8c94c3d67",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/f5e037c7-3c79-4fbc-b3bc-b99485cd2fa3/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/f5e037c7-3c79-4fbc-b3bc-b99485cd2fa3/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2081
+        }
+      ]
+    },
+    {
+      "id": "fb56d4ec-e3be-49dd-ab4a-f7a031bc5518",
+      "category": "eligible-starter",
+      "conceptId": "current-seed-08-1",
+      "style": "acoustic",
+      "seed": 82939,
+      "seconds": 30,
+      "pcmSha256": "9aa283097701c29b646feb971fb9965f2f767a62f818d991a7ef992ae881933b",
+      "sourceSha256": "1d5536316d0a2f071ecaf29e1ea54c16f20a358b2d8568bbc92e5da4fd809c9b",
+      "source": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/fb56d4ec-e3be-49dd-ab4a-f7a031bc5518/source.wav",
+      "record": "/Users/miguelalvarado/Library/Application Support/soulfire/music-lab/samples/fb56d4ec-e3be-49dd-ab4a-f7a031bc5518/sample.json",
+      "files": [
+        {
+          "name": "bed.wav",
+          "bytes": 5760078
+        },
+        {
+          "name": "source.wav",
+          "bytes": 11520088
+        },
+        {
+          "name": "sample.json",
+          "bytes": 2069
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "eligible-starter": 36,
+    "music-lab-comparison": 9,
+    "custom-current-study-or-user-reference": 4
+  },
+  "distinctPcm": 46,
+  "preservation": "Original source, bed, UUIDs and saved references remain unchanged. Browser-local bookmarks are not enumerated or read. Custom pieces cannot be reliably distinguished as user-saved versus development from records alone, so all are preserved."
+}

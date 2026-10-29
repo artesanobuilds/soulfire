@@ -1,0 +1,34 @@
+{
+  "results": [
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "decodedRealFiles": 18,
+      "threePalettesPlayed": true,
+      "stopClearsSource": true,
+      "singleAudioElement": true,
+      "syntheticRatingExportPassed": true,
+      "overflow": false,
+      "pageErrors": [],
+      "externalRequests": 0
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "decodedRealFiles": 18,
+      "threePalettesPlayed": true,
+      "stopClearsSource": true,
+      "singleAudioElement": true,
+      "syntheticRatingExportPassed": true,
+      "overflow": false,
+      "pageErrors": [],
+      "externalRequests": 0
+    }
+  ],
+  "physicalAudioMuted": true,
+  "microphone": false,
+  "humanRatings": false,
+  "clinicalOrPleasantnessValidation": false
+}

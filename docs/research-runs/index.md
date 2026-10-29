@@ -12,3 +12,5 @@ Raw source material is separate from synthesis, decisions and implementation. Ru
 Synthesis and design: [Current music evolution](../current-music-evolution/README.md). Historical files under `docs/soundscapes`, `docs/ember` and `docs/music-lab` remain unchanged. Primary papers are linked and assessed; their full texts are not claimed archived unless present in a run manifest. No unavailable original is recreated from a summary.
 
 - [2026-10-29 goal-first catalogue source](2026-10-29-goal-first-catalogue/README.md): unchanged 20-topic original, independently matching prior recorded SHA256.
+
+- [2026-10-29 Current musicality](2026-10-29-current-musicality/README.md): complete source-linked inventory, inferred MIDI for 49 original records and 12 actual study candidates, full independent Fable 5/Opus 5.5 critiques, measured comparison and blind-listening aid. Originals preserved; no subjective winner.

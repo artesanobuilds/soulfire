@@ -1,0 +1,114 @@
+{
+  "records": [
+    {
+      "id": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886-B",
+      "category": "musicality-study-B",
+      "conceptId": "current-seed-19-1",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/5cdbe548-a3f7-400c-a9eb-2a5b5aa18886-B/source.wav",
+      "sourceSha256": "f45095b2a2ed16c46810c45ae8517de6ced68403919bcfcc2d79af0ad6e44429",
+      "pcmSha256": "1ca5e517f7f193924e18f07af595abe46dd071e0d6a84e1697ff26e3d4b33207",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/5cdbe548-a3f7-400c-a9eb-2a5b5aa18886-B/review.json"
+    },
+    {
+      "id": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886-C",
+      "category": "musicality-study-C",
+      "conceptId": "current-seed-19-1",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/5cdbe548-a3f7-400c-a9eb-2a5b5aa18886-C/source.wav",
+      "sourceSha256": "317c0d8cb206d017a75307235feb48f8509a03dc9c04b71b9bda312b089515c1",
+      "pcmSha256": "6806a01e9277d317ef49af0eed9e81febdca988063962826517256f75677333a",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/5cdbe548-a3f7-400c-a9eb-2a5b5aa18886-C/review.json"
+    },
+    {
+      "id": "021e4b61-30d5-4922-a9d5-25aa730cf6d0-B",
+      "category": "musicality-study-B",
+      "conceptId": "current-seed-17-1",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/021e4b61-30d5-4922-a9d5-25aa730cf6d0-B/source.wav",
+      "sourceSha256": "930ab0997e6c6abc8f198d874eb318a186385041661def4023217b1537468fdf",
+      "pcmSha256": "24e24cb77b6526a15c06b2191399f4744b4a2b401cf22e02652801028f01ba2a",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/021e4b61-30d5-4922-a9d5-25aa730cf6d0-B/review.json"
+    },
+    {
+      "id": "021e4b61-30d5-4922-a9d5-25aa730cf6d0-C",
+      "category": "musicality-study-C",
+      "conceptId": "current-seed-17-1",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/021e4b61-30d5-4922-a9d5-25aa730cf6d0-C/source.wav",
+      "sourceSha256": "153695d29b33b6563173b9dcf04c1376925ec3e98500d52ecf5cdf9836bfa224",
+      "pcmSha256": "4dc46e38eae7293f88964436a6484797e94d81c25725398aa90e975a152ae76b",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/021e4b61-30d5-4922-a9d5-25aa730cf6d0-C/review.json"
+    },
+    {
+      "id": "0bdfd53b-8296-4ca2-a665-c01a269474c3-B",
+      "category": "musicality-study-B",
+      "conceptId": "current-seed-20-2",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/0bdfd53b-8296-4ca2-a665-c01a269474c3-B/source.wav",
+      "sourceSha256": "6f6795f784f8983bf85b1b5456efccbaad8c716b365c23bd0ee96f147400f848",
+      "pcmSha256": "dcfcdfa6c3a3f81f7fdd03ef5ca1ac7ba439f889288a2d92f41022993114aac5",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/0bdfd53b-8296-4ca2-a665-c01a269474c3-B/review.json"
+    },
+    {
+      "id": "0bdfd53b-8296-4ca2-a665-c01a269474c3-C",
+      "category": "musicality-study-C",
+      "conceptId": "current-seed-20-2",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/0bdfd53b-8296-4ca2-a665-c01a269474c3-C/source.wav",
+      "sourceSha256": "fac4d0e419311e8b757f018f58363fcce29cca31976d69882d69faab137a6899",
+      "pcmSha256": "55ac3c4ecf05b4a4f47c015a7849e26d5a928ce2415dab18a32d5824558790ed",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/0bdfd53b-8296-4ca2-a665-c01a269474c3-C/review.json"
+    },
+    {
+      "id": "ef35e69b-3a30-426d-8cfa-80d1da9734a3-B",
+      "category": "musicality-study-B",
+      "conceptId": "current-seed-19-2",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/ef35e69b-3a30-426d-8cfa-80d1da9734a3-B/source.wav",
+      "sourceSha256": "b00f372821fb7c210583bde6a065ddb88f5a81ce05e84d50f07a465464397e10",
+      "pcmSha256": "e9c9eb8844f6a3999d521339c775e5fd428c261b685cfb4f2b8c94ebe82be8d3",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/ef35e69b-3a30-426d-8cfa-80d1da9734a3-B/review.json"
+    },
+    {
+      "id": "ef35e69b-3a30-426d-8cfa-80d1da9734a3-C",
+      "category": "musicality-study-C",
+      "conceptId": "current-seed-19-2",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/ef35e69b-3a30-426d-8cfa-80d1da9734a3-C/source.wav",
+      "sourceSha256": "524a08df6b50de81083f01751f5f3ddfae294eeaa9a2b3f4097311bd0a4e74de",
+      "pcmSha256": "b710aa99ce22290773a4f32538e981a487078d253635648701c5b9f4c0b9c4b9",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/ef35e69b-3a30-426d-8cfa-80d1da9734a3-C/review.json"
+    },
+    {
+      "id": "6e69ff71-4425-43af-8648-cda30c1ff766-B",
+      "category": "musicality-study-B",
+      "conceptId": "current-seed-20-1",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/6e69ff71-4425-43af-8648-cda30c1ff766-B/source.wav",
+      "sourceSha256": "7401c5630997471b76ed1ec32a4a881badc04df6128853a9a8cf400f8e703bf7",
+      "pcmSha256": "ff13c9d77918d341c61296c7914b828c7b4ad79f9f82c76cd521f9860b965924",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/6e69ff71-4425-43af-8648-cda30c1ff766-B/review.json"
+    },
+    {
+      "id": "6e69ff71-4425-43af-8648-cda30c1ff766-C",
+      "category": "musicality-study-C",
+      "conceptId": "current-seed-20-1",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/6e69ff71-4425-43af-8648-cda30c1ff766-C/source.wav",
+      "sourceSha256": "d140c2fe6b1eeae8e3d98d75fd1b7aadc67e4d7c84b707e6ec12f29389382ef5",
+      "pcmSha256": "0f1bc851d8bfce4c64dbd660e6f4dd4826028a3b12aebc38984f05c7182ccc82",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/6e69ff71-4425-43af-8648-cda30c1ff766-C/review.json"
+    },
+    {
+      "id": "251db1b8-5b9a-4364-90c9-9e4422c2fc21-B",
+      "category": "musicality-study-B",
+      "conceptId": "current-seed-18-1",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/251db1b8-5b9a-4364-90c9-9e4422c2fc21-B/source.wav",
+      "sourceSha256": "4f04a03feec0e733fc8a3e6d3057412ffd63e8bc76e81aa78825612c7a867979",
+      "pcmSha256": "1b14a7d344d4b67caaeed2767171eff35cac0a98f4fdc42ad469b9ae7bb163ec",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/251db1b8-5b9a-4364-90c9-9e4422c2fc21-B/review.json"
+    },
+    {
+      "id": "251db1b8-5b9a-4364-90c9-9e4422c2fc21-C",
+      "category": "musicality-study-C",
+      "conceptId": "current-seed-18-1",
+      "source": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/251db1b8-5b9a-4364-90c9-9e4422c2fc21-C/source.wav",
+      "sourceSha256": "f2568e1dd1b3ae516262565a2e3bcfda3374b38c642c99e8bb0912b88c837fc8",
+      "pcmSha256": "a208df6b088ab42bc21eb21e04b93ac9db0e1dde47227a4ec675f48ce585b127",
+      "record": "/Users/miguelalvarado/Documents/Codex/2026-10-26/task-2/current-musicality-audio-study/251db1b8-5b9a-4364-90c9-9e4422c2fc21-C/review.json"
+    }
+  ],
+  "count": 12,
+  "preservation": "Separate review candidates; original app catalogue unchanged"
+}

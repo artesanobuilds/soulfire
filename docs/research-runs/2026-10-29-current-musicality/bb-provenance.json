@@ -1,0 +1,33 @@
+{
+  "projectId": "proj_kf7hfprckp",
+  "projectName": "Soulfire",
+  "canonicalSource": "/Users/miguelalvarado/Coding/soulfire",
+  "remote": "https://github.com/artesanobuilds/soulfire.git",
+  "threads": [
+    {
+      "name": "Fable 5",
+      "threadId": "thr_dpbiz7sugq",
+      "model": "claude-fable-5",
+      "provider": "claude-code",
+      "projectId": "proj_kf7hfprckp"
+    },
+    {
+      "name": "Opus 5.5",
+      "threadId": "thr_q34egsutvd",
+      "model": "claude-opus-5-5",
+      "provider": "claude-code",
+      "projectId": "proj_kf7hfprckp"
+    },
+    {
+      "name": "Layout design \u00b7 Opus 5.5",
+      "threadId": "thr_xjixx5a48u",
+      "model": "claude-opus-5-5",
+      "provider": "claude-code",
+      "projectId": "proj_kf7hfprckp"
+    }
+  ],
+  "failedPreExecutionThread": {
+    "id": "thr_qew7hengre",
+    "reason": "BB concurrent environment provisioning UNIQUE constraint; model did not run; recreated against verified environment ID."
+  }
+}

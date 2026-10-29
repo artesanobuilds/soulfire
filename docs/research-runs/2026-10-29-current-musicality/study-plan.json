@@ -1,0 +1,156 @@
+{
+  "arms": [
+    "A: preserved original source, caption and shift1",
+    "B: musical caption only, original metadata and shift1",
+    "C: same musical caption/metadata as B, documented shift3"
+  ],
+  "durationSeconds": 30,
+  "matchedSeeds": true,
+  "clinicalOrSubjectiveWinner": false,
+  "rows": [
+    {
+      "baselineId": "5cdbe548-a3f7-400c-a9eb-2a5b5aa18886",
+      "request": {
+        "model": "ace",
+        "style": "piano",
+        "seed": 84050,
+        "seconds": 30,
+        "current": {
+          "intent": "focus",
+          "taste": "piano",
+          "avoid": [
+            "vocals",
+            "percussion",
+            "bright",
+            "nature"
+          ],
+          "feel": "steady",
+          "conceptId": "current-seed-19-1"
+        }
+      },
+      "originalCaption": "Instrumental soft felt-like piano. Unobtrusive background for a quiet task, stable phrasing and restrained detail. clear simple instrumental phrasing without clinical framing. Sparse melodic detail.  Simple consonant harmony, soft even dynamics. Keep the musical feel steady. No sharp attacks, harsh highs or bright metallic sounds. No drums or percussion. No environmental or nature recordings. No vocals, speech, sudden peaks, startling sounds or dramatic ending. A musical preference request, not a treatment protocol.",
+      "musicalCaption": "solo felt piano, intimate chamber miniature, open mid-register voicings, sparse bass roots, C major, 4/4, 64 BPM, C-Am-F-G diatonic harmony, one chord per bar, smooth stepwise inner voices, steady recurring accompaniment, restrained two-note motif, clear four-bar phrases, repeat a short motif with small variations and a settled ending, consistent texture and pulse, rounded attacks, dark warm tone, restrained even dynamics, instrumental, no drums, music only, dry studio recording",
+      "concept": "In My Own Words"
+    },
+    {
+      "baselineId": "021e4b61-30d5-4922-a9d5-25aa730cf6d0",
+      "request": {
+        "model": "ace",
+        "style": "piano",
+        "seed": 83848,
+        "seconds": 30,
+        "current": {
+          "intent": "lift",
+          "taste": "piano",
+          "avoid": [
+            "vocals",
+            "percussion",
+            "bright",
+            "nature"
+          ],
+          "feel": "steady",
+          "conceptId": "current-seed-17-1"
+        }
+      },
+      "originalCaption": "Instrumental soft felt-like piano. Light warm music with modest movement, without a dramatic climax. a fresh modest opening without achievement cues. Sparse melodic detail.  Simple consonant harmony, soft even dynamics. Keep the musical feel steady. No sharp attacks, harsh highs or bright metallic sounds. No drums or percussion. No environmental or nature recordings. No vocals, speech, sudden peaks, startling sounds or dramatic ending. A musical preference request, not a treatment protocol.",
+      "musicalCaption": "solo felt piano, intimate chamber miniature, open mid-register voicings, sparse bass roots, C major, 4/4, 64 BPM, C-G-Am-F diatonic harmony, one chord per bar, smooth stepwise inner voices, light ascending motif answered by a gentle descending phrase, repeat a short motif with small variations and a settled ending, consistent texture and pulse, rounded attacks, dark warm tone, restrained even dynamics, instrumental, no drums, music only, dry studio recording",
+      "concept": "Begin Again"
+    },
+    {
+      "baselineId": "0bdfd53b-8296-4ca2-a665-c01a269474c3",
+      "request": {
+        "model": "ace",
+        "style": "ambient",
+        "seed": 84282,
+        "seconds": 30,
+        "current": {
+          "intent": "company",
+          "taste": "ambient",
+          "avoid": [
+            "vocals",
+            "percussion",
+            "bright",
+            "nature"
+          ],
+          "feel": "steady",
+          "conceptId": "current-seed-20-2"
+        }
+      },
+      "originalCaption": "Instrumental beatless sustained warm pads and strings. Warm familiar-feeling instrumental phrasing, intimate and understated. familiar warm timbre without assuming age-specific taste. Sustained low-change texture.  Simple consonant harmony, soft even dynamics. Keep the musical feel steady. No sharp attacks, harsh highs or bright metallic sounds. No drums or percussion. No environmental or nature recordings. No vocals, speech, sudden peaks, startling sounds or dramatic ending. A musical preference request, not a treatment protocol.",
+      "musicalCaption": "warm sustained string ensemble and soft synth pad, slow tonal ambient, widely spaced triads, gradual chord changes, C major, 4/4, free sustained pacing, simple diatonic tonic-subdominant harmony, smooth stepwise inner voices, warm folk-like melody, familiar balanced question and answer phrases, repeat a short motif with small variations and a settled ending, consistent texture and pulse, rounded attacks, dark warm tone, restrained even dynamics, instrumental, no drums, music only, dry studio recording",
+      "concept": "Gentle Company"
+    },
+    {
+      "baselineId": "ef35e69b-3a30-426d-8cfa-80d1da9734a3",
+      "request": {
+        "model": "ace",
+        "style": "ambient",
+        "seed": 84181,
+        "seconds": 30,
+        "current": {
+          "intent": "focus",
+          "taste": "ambient",
+          "avoid": [
+            "vocals",
+            "percussion",
+            "bright",
+            "nature"
+          ],
+          "feel": "steady",
+          "conceptId": "current-seed-19-2"
+        }
+      },
+      "originalCaption": "Instrumental beatless sustained warm pads and strings. Unobtrusive background for a quiet task, stable phrasing and restrained detail. clear simple instrumental phrasing without clinical framing. Sustained low-change texture.  Simple consonant harmony, soft even dynamics. Keep the musical feel steady. No sharp attacks, harsh highs or bright metallic sounds. No drums or percussion. No environmental or nature recordings. No vocals, speech, sudden peaks, startling sounds or dramatic ending. A musical preference request, not a treatment protocol.",
+      "musicalCaption": "warm sustained string ensemble and soft synth pad, slow tonal ambient, widely spaced triads, gradual chord changes, C major, 4/4, free sustained pacing, simple diatonic tonic-subdominant harmony, smooth stepwise inner voices, steady recurring accompaniment, restrained two-note motif, clear four-bar phrases, repeat a short motif with small variations and a settled ending, consistent texture and pulse, rounded attacks, dark warm tone, restrained even dynamics, instrumental, no drums, music only, dry studio recording",
+      "concept": "First Light"
+    },
+    {
+      "baselineId": "6e69ff71-4425-43af-8648-cda30c1ff766",
+      "request": {
+        "model": "ace",
+        "style": "acoustic",
+        "seed": 84151,
+        "seconds": 30,
+        "current": {
+          "intent": "company",
+          "taste": "acoustic",
+          "avoid": [
+            "vocals",
+            "percussion",
+            "bright",
+            "nature"
+          ],
+          "feel": "steady",
+          "conceptId": "current-seed-20-1"
+        }
+      },
+      "originalCaption": "Instrumental restrained nylon-string acoustic guitar. Warm familiar-feeling instrumental phrasing, intimate and understated. familiar warm timbre without assuming age-specific taste. Sparse melodic detail.  Simple consonant harmony, soft even dynamics. Keep the musical feel steady. No sharp attacks, harsh highs or bright metallic sounds. No drums or percussion. No environmental or nature recordings. No vocals, speech, sudden peaks, startling sounds or dramatic ending. A musical preference request, not a treatment protocol.",
+      "musicalCaption": "solo nylon-string acoustic guitar, gentle fingerstyle, clear bass notes and upper triad inversions, C major, 4/4, 64 BPM, C-F-G-C diatonic harmony, one chord per bar, smooth stepwise inner voices, warm folk-like melody, familiar balanced question and answer phrases, repeat a short motif with small variations and a settled ending, consistent texture and pulse, rounded attacks, dark warm tone, restrained even dynamics, instrumental, no drums, music only, dry studio recording",
+      "concept": "Familiar Afternoon"
+    },
+    {
+      "baselineId": "251db1b8-5b9a-4364-90c9-9e4422c2fc21",
+      "request": {
+        "model": "ace",
+        "style": "acoustic",
+        "seed": 83949,
+        "seconds": 30,
+        "current": {
+          "intent": "calm",
+          "taste": "acoustic",
+          "avoid": [
+            "vocals",
+            "percussion",
+            "bright",
+            "nature"
+          ],
+          "feel": "steady",
+          "conceptId": "current-seed-18-1"
+        }
+      },
+      "originalCaption": "Instrumental restrained nylon-string acoustic guitar. An unhurried quiet interlude with spacious pauses. steady unobtrusive accompaniment without promises or urgency. Sparse melodic detail.  Simple consonant harmony, soft even dynamics. Keep the musical feel steady. No sharp attacks, harsh highs or bright metallic sounds. No drums or percussion. No environmental or nature recordings. No vocals, speech, sudden peaks, startling sounds or dramatic ending. A musical preference request, not a treatment protocol.",
+      "musicalCaption": "solo nylon-string acoustic guitar, gentle fingerstyle, clear bass notes and upper triad inversions, C major, 4/4, 64 BPM, Am-F-C-G diatonic harmony, one chord per bar, smooth stepwise inner voices, unhurried four-bar question and answer, natural spaces between phrases, repeat a short motif with small variations and a settled ending, consistent texture and pulse, rounded attacks, dark warm tone, restrained even dynamics, instrumental, no drums, music only, dry studio recording",
+      "concept": "In the Meantime"
+    }
+  ]
+}

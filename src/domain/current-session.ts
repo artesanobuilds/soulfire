@@ -34,11 +34,12 @@ export function planCurrentSession(samples: MusicSample[]) {
   for (let i = 0; i < (unique.length > 1 ? unique.length : 0); i++) {
     const a = unique[i].metrics,
       b = unique[(i + 1) % unique.length].metrics;
+    // A conservative engineering margin, not a calibrated probability of musical fit.
     if (
       a.estimatedKey == null ||
       b.estimatedKey == null ||
-      (a.keyConfidence ?? 0) < 0.1 ||
-      (b.keyConfidence ?? 0) < 0.1
+      (a.keyConfidence ?? 0) < 0.3 ||
+      (b.keyConfidence ?? 0) < 0.3
     )
       reasons.push("Tonal compatibility is uncertain.");
     else if (a.estimatedKey !== b.estimatedKey)

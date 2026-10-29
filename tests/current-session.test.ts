@@ -129,3 +129,18 @@ it("loop closure also checks the final movement against the first", () => {
   }));
   expect(planCurrentSession(pieces).transition).toBe("quiet-gap");
 });
+
+it("weak same-key estimates do not justify overlapping different pieces", () => {
+  const a = musicFixture();
+  const metrics = {
+    ...a.metrics,
+    estimatedKey: 0,
+    keyConfidence: 0.15,
+    estimatedBpm: 64,
+    tempoConfidence: 0.8,
+  };
+  const b = { ...a, metrics: { ...metrics, pcmSha256: "e".repeat(64) } };
+  expect(planCurrentSession([{ ...a, metrics }, b]).transition).toBe(
+    "quiet-gap",
+  );
+});
