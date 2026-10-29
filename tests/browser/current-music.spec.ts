@@ -128,8 +128,36 @@ const snap = (page: Page) =>
       }
     ).__cm.snapshot(),
   );
+async function closeShape(page: Page) {
+  const close = page.getByRole("button", { name: "Close shaping controls" });
+  if (await close.isVisible()) await close.click();
+}
+async function shape(page: Page) {
+  const trigger = page.getByRole("button", { name: /Shape sound/ });
+  if (await trigger.isVisible()) await trigger.click();
+}
+async function creation(page: Page) {
+  await closeShape(page);
+  await page
+    .getByRole("button", { name: "Create for me", exact: true })
+    .click();
+}
 async function select(page: Page) {
+  await closeShape(page);
+  await page
+    .getByRole("button", { name: "Explore Currents", exact: true })
+    .click();
   await page.getByRole("button", { name: /Window Light.*Soft piano/ }).click();
+  await shape(page);
+}
+async function stopPlayback(page: Page) {
+  const sheet = page.getByRole("dialog", { name: "Shape now", exact: true });
+  if (await sheet.isVisible())
+    await sheet.getByRole("button", { name: "Stop", exact: true }).click();
+  else
+    await page
+      .getByRole("button", { name: "Stop Current audio", exact: true })
+      .click();
 }
 async function play(page: Page) {
   await select(page);
@@ -199,6 +227,7 @@ test("real Web Audio decoding, live controls, pause/resume, repeated Stop and na
   ).toBeVisible();
   await page.getByRole("button", { name: "Stop", exact: true }).click();
   await page.getByRole("button", { name: "Play Current", exact: true }).click();
+  await closeShape(page);
   await page.getByRole("button", { name: "Ember", exact: true }).click();
   await expect
     .poll(async () => (await snap(page)).contexts.every((s) => s === "closed"))
@@ -229,12 +258,17 @@ test("opt-in save/reload preserves sample identity and omits feeling text", asyn
 }) => {
   await open(page);
   await select(page);
+  await creation(page);
+  await page
+    .getByText("Preferences & advanced options", { exact: true })
+    .click();
   await page
     .getByRole("textbox", { name: /How are you feeling/ })
     .fill("PRIVATE TEST NOTE");
   expect(
     await page.evaluate((k) => localStorage.getItem(k), currentMusicStorageKey),
   ).toBeNull();
+  await shape(page);
   await page
     .getByRole("checkbox", { name: "Save this music session in this browser" })
     .check();
@@ -246,6 +280,9 @@ test("opt-in save/reload preserves sample identity and omits feeling text", asyn
   expect(raw).not.toContain("PRIVATE TEST NOTE");
   await page.reload();
   await page.getByRole("button", { name: "Current", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Explore Currents", exact: true })
+    .click();
   await expect(
     page.getByRole("heading", { name: "Your saved Currents" }),
   ).toBeVisible();
@@ -253,6 +290,7 @@ test("opt-in save/reload preserves sample identity and omits feeling text", asyn
     .locator(".cm-saved")
     .getByRole("button", { name: "Window Light", exact: true })
     .click();
+  await shape(page);
   await expect(page.getByRole("textbox", { name: "Current name" })).toHaveValue(
     "Window Light",
   );
@@ -294,6 +332,7 @@ test("structured custom generation and cancellation retain player control", asyn
   await page
     .getByRole("button", { name: "Find my focus", exact: true })
     .click();
+  await creation(page);
   await page
     .getByRole("button", { name: "Create a new Current", exact: true })
     .click();
@@ -329,9 +368,11 @@ test("leaving cancels pending generation and closes playback", async ({
     });
   });
   await play(page);
+  await creation(page);
   await page
     .getByRole("button", { name: "Create a new Current", exact: true })
     .click();
+  await closeShape(page);
   await page.getByRole("button", { name: "Ember", exact: true }).click();
   await expect.poll(() => deletes).toBe(1);
   await expect
@@ -378,6 +419,7 @@ test("generation failure keeps the existing piece usable", async ({ page }) => {
       ? r.fulfill({ status: 503, json: { error: "TEST model unavailable" } })
       : r.fulfill({ json: { cancelled: true } }),
   );
+  await creation(page);
   await page
     .getByRole("button", { name: "Create a new Current", exact: true })
     .click();
@@ -386,6 +428,7 @@ test("generation failure keeps the existing piece usable", async ({ page }) => {
       .getByRole("region", { name: "Current music", exact: true })
       .getByRole("alert"),
   ).toContainText("TEST model unavailable");
+  await shape(page);
   await expect(
     page.getByRole("button", { name: "Pause Current", exact: true }),
   ).toBeVisible();
@@ -421,6 +464,7 @@ test("completed generation refreshes the shelf without autoplay", async ({
       json: { samples: [sample], availability: { ready: true, model: "ace" } },
     });
   });
+  await creation(page);
   await page
     .getByRole("button", { name: "Create a new Current", exact: true })
     .click();
@@ -451,6 +495,7 @@ test("cancel before POST acknowledgement ignores the late running reply", async 
     }
     return r.fulfill({ json: {} });
   });
+  await creation(page);
   await page
     .getByRole("button", { name: "Create a new Current", exact: true })
     .click();
@@ -472,11 +517,13 @@ test("dialog interruptions pause music without an automatic restart", async ({
 }) => {
   await open(page);
   await play(page);
+  await closeShape(page);
   await page.getByRole("button", { name: "Simulations", exact: true }).click();
   await expect
     .poll(async () => (await snap(page)).contexts.every((s) => s === "closed"))
     .toBe(true);
   await page.keyboard.press("Escape");
+  await shape(page);
   await expect(
     page.getByRole("button", { name: "Resume Current", exact: true }),
   ).toBeVisible();
@@ -559,6 +606,7 @@ async function completeBatch(
       },
     });
   });
+  await creation(page);
   await page
     .getByRole("button", { name: "Create a new Current", exact: true })
     .click();
@@ -576,13 +624,14 @@ test("two real-buffer alternatives support deliberate preview and selection with
   await page
     .getByRole("button", { name: "Preview choice A", exact: true })
     .click();
+  await shape(page);
   await expect(
     page.getByRole("button", { name: "Pause Current", exact: true }),
   ).toBeVisible();
-  await page
-    .getByRole("button", { name: "Stop Current audio", exact: true })
-    .click();
+  await stopPlayback(page);
+  await closeShape(page);
   await page.getByRole("button", { name: "Use choice B", exact: true }).click();
+  await shape(page);
   await expect(
     page.getByRole("textbox", { name: "Current name", exact: true }),
   ).toHaveValue("Small Morning");
@@ -595,6 +644,7 @@ test("a multi-movement session decodes both files, uses quiet fallback and saves
   await page
     .getByRole("button", { name: "Make a session from these", exact: true })
     .click();
+  await shape(page);
   await expect(page.locator(".cm-sequence")).toContainText(
     "2 movements · 60 seconds of distinct music",
   );
@@ -611,9 +661,7 @@ test("a multi-movement session decodes both files, uses quiet fallback and saves
     page.getByRole("button", { name: "Pause Current", exact: true }),
   ).toBeVisible();
   expect(audioIds.sort()).toEqual([sample.id, alternative.id].sort());
-  await page
-    .getByRole("button", { name: "Stop Current audio", exact: true })
-    .click();
+  await stopPlayback(page);
   await page
     .getByRole("checkbox", { name: "Save this music session in this browser" })
     .check();
@@ -626,7 +674,11 @@ test("a multi-movement session decodes both files, uses quiet fallback and saves
   expect(rows[0].transition).toBe("quiet-gap");
   await page.reload();
   await page.getByRole("button", { name: "Current", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Explore Currents", exact: true })
+    .click();
   await page.locator(".cm-saved").getByRole("button").first().click();
+  await shape(page);
   await expect(page.locator(".cm-sequence")).toContainText("2 movements");
   expect((await snap(page)).starts).toBe(0);
 });
@@ -679,15 +731,21 @@ test("opt-in background preparation survives navigation and restores without res
       json: { samples: [sample], availability: { model: "ace", ready: true } },
     });
   });
+  await creation(page);
+  await page
+    .getByText("Preferences & advanced options", { exact: true })
+    .click();
   await page
     .getByRole("checkbox", { name: "Keep preparing when I leave Current" })
     .check();
+  await creation(page);
   await page
     .getByRole("button", { name: "Create a new Current", exact: true })
     .click();
   await expect(
     page.getByRole("button", { name: "Cancel generation", exact: true }),
   ).toBeVisible();
+  await closeShape(page);
   await page.getByRole("button", { name: "Ember", exact: true }).click();
   expect(deletes).toBe(0);
   await page.getByRole("button", { name: "Current", exact: true }).click();
@@ -709,6 +767,7 @@ test("customization bounds two/three compositions and 30/60/90 second pieces", a
   page,
 }) => {
   await open(page);
+  await creation(page);
   await page
     .getByText("Preferences & advanced options", { exact: true })
     .click();
@@ -732,6 +791,7 @@ test("customization bounds two/three compositions and 30/60/90 second pieces", a
     }
     return r.fulfill({ json: { cancelled: true } });
   });
+  await creation(page);
   await page
     .getByRole("button", { name: "Create a new Current", exact: true })
     .click();
@@ -747,9 +807,17 @@ test("checkbox rows align, wrap and toggle through labels and keyboard", async (
   page,
 }) => {
   await open(page);
-  await page.locator(".cm-starter").first().click();
-  const rows = page.locator(".current-music .check-row");
-  await expect(rows).toHaveCount(3);
+  await creation(page);
+  await page
+    .getByText("Preferences & advanced options", { exact: true })
+    .click();
+  const background = page.locator(".cm-background");
+  await expect(background).toBeVisible();
+  await background.locator("span").click();
+  await expect(background.getByRole("checkbox")).toBeChecked();
+  await select(page);
+  const rows = page.locator(".cm-shape .check-row");
+  await expect(rows).toHaveCount(2);
   for (const row of await rows.all()) {
     const checkbox = row.getByRole("checkbox"),
       caption = row.locator("span");
@@ -826,6 +894,7 @@ test("catalogue replacement hides old starters but restores an exact saved earli
     .locator(".cm-saved")
     .getByRole("button", { name: "Earlier favorite", exact: true })
     .click();
+  await shape(page);
   await expect(
     page.getByText(/Earlier catalogue version, retained/),
   ).toBeVisible();
@@ -842,7 +911,159 @@ test("catalogue replacement hides old starters but restores an exact saved earli
     page.getByRole("button", { name: "Pause Current", exact: true }),
   ).toBeVisible();
   expect(audioId).toBe(sample.id);
+  await stopPlayback(page);
+});
+
+test("Option A keeps creation discoverable and selected audio intact across workspaces", async ({
+  page,
+}) => {
+  await open(page);
+  await expect(
+    page.getByRole("button", { name: "Create for me", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: /Create something new/ }),
+  ).toBeVisible();
+  await play(page);
+  await closeShape(page);
+  const before = await snap(page);
+  await creation(page);
+  await expect(
+    page.getByRole("heading", { name: "Create your Current", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("combobox", { name: "What do you enjoy hearing?" }),
+  ).toBeVisible();
+  expect((await snap(page)).starts).toBe(before.starts);
+  expect((await snap(page)).stops).toBe(before.stops);
+  if ((page.viewportSize()?.width || 0) < 851) {
+    const dock = page.locator(".cm-player-dock"),
+      box = await dock.boundingBox();
+    expect(box!.y + box!.height).toBeLessThanOrEqual(
+      page.viewportSize()!.height,
+    );
+    await page
+      .getByRole("button", { name: "Stop Current audio", exact: true })
+      .click();
+  } else {
+    for (const label of [
+      "Current volume",
+      "Current brightness",
+      "Current space",
+    ]) {
+      const box = await page.getByRole("slider", { name: label }).boundingBox();
+      expect(box!.y + box!.height).toBeLessThanOrEqual(
+        page.viewportSize()!.height,
+      );
+    }
+    await page.getByRole("button", { name: "Stop", exact: true }).click();
+  }
   await page
-    .getByRole("button", { name: "Stop Current audio", exact: true })
+    .getByRole("button", { name: "Explore Currents", exact: true })
     .click();
+  await expect(page.locator(".cm-starter")).toHaveCount(1);
+  expect((await snap(page)).contexts.every((c) => c === "closed")).toBe(true);
+});
+
+test("Option A mobile shaping supports Escape, focus return and browser history", async ({
+  page,
+}) => {
+  test.skip((page.viewportSize()?.width || 0) > 850, "Mobile sheet only");
+  await open(page);
+  await page.locator(".cm-starter").first().click();
+  const trigger = page.getByRole("button", { name: /Shape sound/ });
+  await trigger.click();
+  const dialog = page.getByRole("dialog", { name: "Shape now", exact: true });
+  await expect(dialog).toBeVisible();
+  await page.keyboard.press("Shift+Tab");
+  expect(await dialog.evaluate((e) => e.contains(document.activeElement))).toBe(
+    true,
+  );
+  await page.keyboard.press("Escape");
+  await expect(dialog).not.toBeVisible();
+  await expect(trigger).toBeFocused();
+  await creation(page);
+  await trigger.click();
+  await page.goBack();
+  await expect(dialog).not.toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Create your Current", exact: true }),
+  ).toBeVisible();
+  await page.goForward();
+  await expect(dialog).toBeVisible();
+  await page.getByRole("button", { name: "Close shaping controls" }).click();
+  await expect(trigger).toBeFocused();
+});
+
+test("creation status and cancellation stay reachable while exploring without stopping music", async ({
+  page,
+}) => {
+  await open(page);
+  await play(page);
+  await closeShape(page);
+  let posted: Record<string, unknown> | undefined,
+    deleted = 0;
+  await page.route("**/api/current/music**", (route) => {
+    if (route.request().method() === "POST") {
+      posted = route.request().postDataJSON();
+      return route.fulfill({
+        status: 202,
+        json: {
+          job: {
+            ...posted,
+            phase: "running",
+            message: "TEST preparing while listening",
+          },
+        },
+      });
+    }
+    if (route.request().method() === "DELETE") {
+      deleted++;
+      return route.fulfill({ json: { cancelled: true } });
+    }
+    if (new URL(route.request().url()).searchParams.has("job"))
+      return route.fulfill({
+        json: {
+          job: {
+            ...posted,
+            phase: "running",
+            message: "TEST preparing while listening",
+          },
+        },
+      });
+    return route.fulfill({
+      json: { samples: [sample], availability: { model: "ace", ready: true } },
+    });
+  });
+  const before = await snap(page);
+  await creation(page);
+  await page
+    .getByRole("button", { name: "Create a new Current", exact: true })
+    .click();
+  await expect(
+    page.getByText("Preparing your Current…", { exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Explore Currents", exact: true })
+    .click();
+  await expect(
+    page.getByText("Your new Current is preparing", { exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "View progress", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Create your Current", exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Explore Currents", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Cancel generation", exact: true })
+    .click();
+  await expect.poll(() => deleted).toBe(1);
+  expect((await snap(page)).starts).toBe(before.starts);
+  expect((await snap(page)).stops).toBe(before.stops);
+  await stopPlayback(page);
+  expect((await snap(page)).contexts.every((c) => c === "closed")).toBe(true);
 });

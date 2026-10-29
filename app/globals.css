@@ -4279,3 +4279,433 @@ aside > p {
 .cm-shape{scroll-margin-top:24px}.cm-floating{position:fixed;z-index:30;bottom:18px;right:24px;display:flex;align-items:center;gap:26px;padding:12px 14px 12px 22px;border:1px solid #9eaf98;border-radius:20px;background:#fffdf5f5;box-shadow:0 10px 35px #244c3924;backdrop-filter:blur(14px)}.cm-floating strong{font-size:14px;font-weight:500;display:block}.cm-floating small{font-size:12px;color:#667169;display:block}.cm-floating button{background:#4c6456;color:white;border-color:#4c6456;font-size:14px}@media(max-width:600px){.cm-floating{left:12px;right:12px;bottom:12px;justify-content:space-between}.current-music:has(.cm-floating){padding-bottom:110px}}
 /* Alternatives remain music choices, not clinical or model-comparison scores. */
 .cm-candidates{margin-top:24px;border-top:1px solid var(--line);padding-top:22px}.cm-candidates h3{font-size:27px}.cm-candidates article{padding:17px;margin:12px 0;border:1px solid #d3ddce;border-radius:16px;background:#fffdf7}.cm-candidates article>strong{font:22px Georgia;color:var(--deep)}.cm-candidates article p{font-size:13px;margin:8px 0}.cm-candidates article>div{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.cm-candidates article button{font-size:13px;padding:9px 13px}.cm-candidates details{font-size:13px}.cm-sequence{padding:17px 0;margin:17px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.cm-sequence>strong{font-size:14px;font-weight:500;color:var(--deep)}.cm-sequence>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0;font-size:14px}.cm-sequence>div>button{min-height:34px;font-size:12px;padding:6px 12px}.cm-sequence .current-field{font-size:14px}.cm-browse{font-size:14px;margin-bottom:10px}
+
+
+/* Current / Option A: persistent music and a goal-first creation workspace. */
+.current-music {
+  max-width: 1440px;
+  padding-bottom: 80px;
+}
+.cm-heading {
+  padding-top: 24px;
+  margin-bottom: 26px;
+}
+.cm-heading h1 {
+  font-size: 46px;
+}
+.cm-heading > p {
+  font-size: 17px;
+  margin-top: 10px;
+}
+.cm-main-hero {
+  display: none;
+}
+.cm-workspace {
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 430px);
+  gap: 32px;
+  padding-top: 0;
+  align-items: start;
+}
+.cm-catalogue-workspace {
+  min-width: 0;
+}
+.cm-mode-tabs {
+  display: flex;
+  width: fit-content;
+  border-radius: 16px;
+  background: #e9eddf;
+  padding: 5px;
+  gap: 5px;
+  margin-bottom: 22px;
+}
+.cm-mode-tabs button {
+  border: 0;
+  background: transparent;
+  min-height: 46px;
+  padding: 10px 19px;
+  font-weight: 700;
+  border-radius: 12px;
+}
+.cm-mode-tabs button[aria-current="page"] {
+  background: #fffdf8;
+  box-shadow: 0 2px 7px #2e483d14;
+}
+.cm-workspace-heading {
+  font: 28px/1.2 Georgia;
+  margin: 0 0 20px;
+}
+.cm-intention[hidden],
+.cm-shelf[hidden] {
+  display: none;
+}
+.cm-intention h2 {
+  font-size: 30px;
+}
+.cm-intention > p,
+.cm-shelf > p {
+  font-size: 14px;
+}
+.cm-starters {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.cm-starter {
+  padding: 13px;
+  gap: 10px;
+}
+.cm-starter strong {
+  font-size: 18px;
+}
+.cm-starter small {
+  font-size: 11px;
+}
+.cm-starter small + small {
+  display: none;
+}
+.cm-mini {
+  width: 52px;
+  height: 55px;
+  flex-shrink: 0;
+}
+.cm-create-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  border: 1px dashed #a2986a;
+  border-radius: 18px;
+  padding: 14px;
+  background: #f5f0df;
+  color: var(--deep);
+  min-height: 95px;
+}
+.cm-create-card > span:first-child {
+  font: 36px Georgia;
+}
+.cm-create-card > span:nth-child(2) {
+  flex: 1;
+}
+.cm-create-card strong {
+  display: block;
+  font: 20px/1.2 Georgia;
+}
+.cm-create-card small {
+  display: block;
+  font-size: 12px;
+  margin-top: 6px;
+  color: #5a6c5f;
+}
+.cm-shape {
+  position: sticky;
+  top: 18px;
+  margin: 0;
+  padding: 22px;
+  max-height: calc(100dvh - 36px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.cm-player-art {
+  height: 116px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: #e9eddf;
+}
+.cm-player-art .current-music-art {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+.cm-player-art > span {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  color: var(--deep);
+  background: #fffdf8dd;
+  padding: 4px 8px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  border-radius: 6px;
+}
+.cm-shape h2 {
+  font-size: 28px;
+  margin: 10px 0 16px;
+}
+.cm-shape .cm-transport {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cm-shape .cm-transport button {
+  font-size: 12px;
+  padding: 10px 12px;
+  min-height: 42px;
+}
+.cm-shape .cm-slider {
+  margin: 12px 0;
+  grid-template-columns: 80px minmax(0, 1fr);
+  font-size: 13px;
+}
+.cm-shape .current-field {
+  font-size: 13px;
+  margin: 14px 0;
+}
+.cm-shape .small {
+  font-size: 11px;
+}
+.cm-sheet-close,
+.cm-player-dock {
+  display: none;
+}
+.cm-job-return {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: #edf0e4;
+  border: 1px solid #d5ddc9;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.cm-job-return > span {
+  flex: 1;
+  min-width: 160px;
+}
+.cm-job-return button {
+  min-height: 42px;
+  font-size: 12px;
+}
+.cm-shelf-title h2 {
+  font-size: 28px;
+}
+.cm-saved {
+  margin-top: 24px;
+}
+.cm-floating {
+  right: 22px;
+  bottom: 16px;
+}
+.cm-intention .cm-goals button {
+  font-size: 13px;
+}
+.cm-intention > .primary {
+  margin-top: 14px;
+}
+.cm-footer {
+  margin-top: 35px;
+}
+.cm-sheet-scrim {
+  display: none;
+}
+@media (max-width: 1100px) and (min-width: 851px) {
+  .cm-workspace {
+    grid-template-columns: minmax(0, 1fr) 355px;
+    gap: 20px;
+  }
+  .cm-starters {
+    grid-template-columns: 1fr;
+  }
+  .cm-shape {
+    padding: 18px;
+  }
+}
+@media (max-width: 850px) {
+  .current-music {
+    padding: 16px 18px 185px;
+  }
+  .cm-heading {
+    padding-top: 36px;
+    margin-bottom: 20px;
+  }
+  .cm-heading h1 {
+    font-size: 35px;
+  }
+  .cm-heading > .eyebrow {
+    font-size: 9px;
+  }
+  .cm-heading > p {
+    font-size: 14px;
+  }
+  .cm-heading > p br {
+    display: none;
+  }
+  .cm-workspace {
+    display: block;
+    padding: 0;
+  }
+  .cm-mode-tabs {
+    width: 100%;
+    margin-bottom: 18px;
+  }
+  .cm-mode-tabs button {
+    flex: 1;
+    font-size: 12px;
+    padding: 10px;
+    min-height: 46px;
+    white-space: nowrap;
+  }
+  .cm-workspace-heading {
+    font-size: 25px;
+  }
+  .cm-starters {
+    grid-template-columns: 1fr;
+  }
+  .cm-starter {
+    min-height: 86px;
+  }
+  .cm-shelf-title h2 {
+    font-size: 25px;
+  }
+  .cm-intention h2 {
+    font-size: 28px;
+  }
+  .cm-shape {
+    display: none;
+  }
+  .cm-shape.cm-sheet-open {
+    display: block;
+    position: fixed;
+    inset: auto 8px 8px;
+    z-index: 2001;
+    max-height: calc(100dvh - 28px);
+    border-radius: 25px;
+    padding: 20px;
+    overscroll-behavior: contain;
+    box-shadow: 0 -15px 60px #20382a40;
+  }
+  .cm-sheet-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: #26362b66;
+    z-index: 2000;
+  }
+  .cm-sheet-close {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    float: right;
+    min-height: 42px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .cm-player-art {
+    height: 100px;
+    clear: both;
+  }
+  .cm-sheet-open .cm-shape h2 {
+    font-size: 25px;
+  }
+  .cm-sheet-open .current-music-art {
+    width: 100%;
+    margin-left: 0;
+  }
+  .cm-player-dock {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px 44px;
+    align-items: center;
+    gap: 8px;
+    position: fixed;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    z-index: 50;
+    padding: 12px;
+    border-radius: 22px;
+    background: var(--deep);
+    color: #fff;
+    box-shadow: 0 12px 30px #20382a44;
+  }
+  .cm-player-dock > div {
+    min-width: 0;
+  }
+  .cm-player-dock strong {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font: 20px/1.2 Georgia;
+  }
+  .cm-player-dock small {
+    font-size: 10px;
+    color: #f3e7c8;
+    display: block;
+    margin-top: 5px;
+  }
+  .cm-player-dock button {
+    min-height: 44px;
+    padding: 10px;
+    background: #fffdf8;
+    color: var(--deep);
+    border-radius: 50%;
+    border: 0;
+  }
+  .cm-player-dock .cm-open-shape {
+    grid-column: 1/-1;
+    border-radius: 13px;
+    background: #ffffff18;
+    border: 1px solid #ffffff50;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    justify-content: flex-start;
+  }
+  .cm-open-shape > span {
+    font-size: 10px;
+    font-weight: 400;
+    margin-left: auto;
+  }
+  .cm-floating {
+    display: none;
+  }
+  .current-music:has(.cm-sheet-open) .cm-player-dock {
+    visibility: hidden;
+  }
+  .cm-job-return {
+    font-size: 12px;
+  }
+  .cm-job-return > span {
+    min-width: 100%;
+  }
+  .cm-intention > .primary {
+    min-height: 48px;
+  }
+}
+.cm-intention > .cm-goals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.cm-intention > .cm-goals button {
+  min-height: 44px;
+  justify-content: flex-start;
+  margin: 0;
+}
+.cm-intention > h2 {
+  margin-top: 0;
+}
+.cm-intention > .eyebrow {
+  display: none;
+}
+.cm-intention > .current-field {
+  margin: 16px 0;
+}
+.cm-intention > .primary {
+  min-height: 48px;
+  margin-bottom: 16px;
+}
+.cm-intention > .cm-preferences {
+  margin-top: 0;
+}
+.cm-job-return {
+  scroll-margin-top: 20px;
+}
+/* Keep the catalogue and selected controls in the first viewport. */
+.cm-heading{text-align:left;padding:0 0 12px;margin-bottom:20px}.cm-heading .text-button{position:static;margin-bottom:14px}.cm-heading>.eyebrow{display:none}.cm-heading h1{font-size:38px}.cm-heading>p{font-size:15px;margin:8px 0 0}.cm-heading>p br{display:none}.cm-shelf>.cm-goals{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}.cm-shelf>.cm-goals button{min-height:42px;font-size:12px;padding:8px 12px;border-radius:22px}.cm-shelf-title .eyebrow{display:none}.cm-shelf-title h2{margin:0;font-size:26px}.cm-starters{margin:18px 0}.cm-workspace-heading{margin-bottom:16px}
+@media(max-width:850px){.cm-heading{padding:0 0 4px;margin-bottom:18px}.cm-heading .text-button{margin-bottom:10px}.cm-heading h1{font-size:32px}.cm-heading>p{font-size:13px;line-height:1.5}.cm-shelf>.cm-goals{margin:14px 0}.cm-shelf>.cm-goals button{font-size:11px;min-height:40px;padding:8px 10px}.cm-workspace-heading{font-size:23px}.cm-intention>h2{font-size:26px}.cm-intention>.current-field{margin:12px 0}}

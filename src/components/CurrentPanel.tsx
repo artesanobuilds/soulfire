@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, type Ref } from "react";
+import { useCallback, useEffect, useRef, useState, type Ref } from "react";
 import {
   ArrowLeft,
   Play,
@@ -9,6 +9,9 @@ import {
   Trash2,
   RefreshCw,
   ArrowRight,
+  SlidersHorizontal,
+  X,
+  Plus,
 } from "lucide-react";
 import { planCurrentSession, technicalFit } from "../domain/current-session";
 import { currentSeedCatalogue } from "../domain/current-music";
@@ -105,6 +108,109 @@ function MusicCurrent({
     [sessionIds, setSessionIds] = useState<string[]>([]),
     [quietTransitions, setQuietTransitions] = useState(false),
     [expandedShelf, setExpandedShelf] = useState(false);
+  const [workspace, setWorkspace] = useState<"explore" | "create">("explore");
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [mobile, setMobile] = useState(false);
+  const selectedRef = useRef(selected);
+  selectedRef.current = selected;
+  const workspaceHeading = useRef<HTMLHeadingElement>(null);
+  const sheetTrigger = useRef<HTMLButtonElement>(null);
+  const navigateWorkspace = useCallback(
+    (next: "explore" | "create", shape = false, focusWorkspace = true) => {
+      const hash =
+        (next === "create" ? "#current-create" : "#current-explore") +
+        (shape ? "-shape" : "");
+      if (location.hash !== hash) history.pushState(null, "", hash);
+      setWorkspace(next);
+      setSheetOpen(shape);
+      if (!shape && focusWorkspace)
+        requestAnimationFrame(() => {
+          workspaceHeading.current?.focus({ preventScroll: true });
+          const box = workspaceHeading.current?.getBoundingClientRect();
+          if (box && (box.top < 0 || box.top > innerHeight * 0.7))
+            workspaceHeading.current?.previousElementSibling?.scrollIntoView({
+              block: "start",
+              behavior: "instant",
+            });
+        });
+    },
+    [],
+  );
+  useEffect(() => {
+    const media = matchMedia("(max-width:850px)");
+    const resize = () => {
+      setMobile(media.matches);
+      if (!media.matches) setSheetOpen(false);
+    };
+    const restore = () => {
+      setWorkspace(
+        location.hash.startsWith("#current-create") ? "create" : "explore",
+      );
+      setSheetOpen(
+        location.hash.endsWith("-shape") &&
+          media.matches &&
+          !!selectedRef.current,
+      );
+    };
+    resize();
+    restore();
+    media.addEventListener("change", resize);
+    window.addEventListener("popstate", restore);
+    window.addEventListener("hashchange", restore);
+    return () => {
+      media.removeEventListener("change", resize);
+      window.removeEventListener("popstate", restore);
+      window.removeEventListener("hashchange", restore);
+    };
+  }, []);
+  useEffect(() => {
+    if (!sheetOpen || !mobile) return;
+    const prior = document.activeElement as HTMLElement | null;
+    const trigger = sheetTrigger.current;
+    const root = playerRegion.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    root?.focus({ preventScroll: true });
+    const trap = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        navigateWorkspace(workspace, false, false);
+        return;
+      }
+      if (event.key !== "Tab" || !root) return;
+      const buttons = [
+        ...root.querySelectorAll<HTMLElement>(
+          'button:not(:disabled), input:not(:disabled), select:not(:disabled), summary, [tabindex="0"]',
+        ),
+      ].filter((e) => e.getClientRects().length);
+      const first = buttons[0],
+        last = buttons.at(-1);
+      if (!first) {
+        event.preventDefault();
+        return;
+      }
+      if (
+        event.shiftKey &&
+        (document.activeElement === first || document.activeElement === root)
+      ) {
+        event.preventDefault();
+        last?.focus();
+      } else if (
+        !event.shiftKey &&
+        (document.activeElement === last || document.activeElement === root)
+      ) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", trap);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", trap);
+      if (prior?.isConnected) prior.focus({ preventScroll: true });
+      else trigger?.focus({ preventScroll: true });
+    };
+  }, [sheetOpen, mobile, workspace, navigateWorkspace]);
   const [continueInBackground, setContinueInBackground] = useState(false);
   const backgroundRef = useRef(false);
   backgroundRef.current = continueInBackground;
@@ -362,14 +468,10 @@ function MusicCurrent({
       currentStarterName(s.request.style, s.request.seed, s.request.current),
     );
     setSaveConsent(false);
-    requestAnimationFrame(() => {
-      playerRegion.current?.focus({ preventScroll: true });
-      if (window.matchMedia("(max-width:850px)").matches)
-        playerRegion.current?.scrollIntoView({
-          block: "start",
-          behavior: motionEnabled ? "smooth" : "instant",
-        });
-    });
+    if (!window.matchMedia("(max-width:850px)").matches)
+      requestAnimationFrame(() =>
+        playerRegion.current?.focus({ preventScroll: true }),
+      );
     setNotice(
       "Selected. Nothing plays automatically. Preview and choose what feels right.",
     );
@@ -546,678 +648,768 @@ function MusicCurrent({
           <br />A little focus. A softer landing. A fresh beginning.
         </p>
       </div>
-      <div className="cm-hero">
-        <CurrentLandscape moving={motionEnabled} />
-        <div className="cm-hero-caption">
-          <span className="eyebrow">AT YOUR OWN PACE</span>
-          <span>
-            There’s no right way to feel.
-            <br />
-            Start where you are.
-          </span>
-        </div>
-      </div>
       <div className="cm-workspace">
-        <div className="cm-intention">
-          <span className="eyebrow">CREATE FOR ME</span>
-          <h2>
-            What would you like
-            <br />a little support with?
-          </h2>
-          <p>
-            Choose a direction. We’ll offer a starting place you can make your
-            own.
-          </p>
-          <div
-            className="cm-goals"
-            role="group"
-            aria-label="What would you like support with?"
-          >
-            {Object.entries(currentIntentLabels).map(([id, label]) => (
-              <button
-                key={id}
-                aria-pressed={options.intent === id}
-                onClick={() =>
-                  setOptions((o) => ({
-                    ...o,
-                    intent: id as CurrentMusicOptions["intent"],
-                  }))
-                }
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-          <label className="current-field">
-            How are you feeling?{" "}
-            <span className="small">
-              Optional · stays on this screen, never sent or saved
-            </span>
-            <input
-              value={feeling}
-              maxLength={160}
-              onChange={(e) => setFeeling(e.target.value)}
-              placeholder="A busy mind, a long day, a new start…"
-            />
-          </label>
-          <label className="current-field">
-            What do you enjoy hearing?
-            <select
-              value={options.taste}
-              onChange={(e) =>
-                setOptions((o) => ({
-                  ...o,
-                  taste: e.target.value as CurrentMusicOptions["taste"],
-                }))
-              }
+        <div className="cm-catalogue-workspace" inert={sheetOpen && mobile}>
+          <nav className="cm-mode-tabs" aria-label="Current workspace">
+            <button
+              aria-current={workspace === "explore" ? "page" : undefined}
+              onClick={() => navigateWorkspace("explore")}
             >
-              <option value="piano">Soft piano</option>
-              <option value="ambient">Open, sustained textures</option>
-              <option value="acoustic">Gentle acoustic guitar</option>
-            </select>
-          </label>
-          <details className="cm-preferences">
-            <summary>Preferences & advanced options</summary>
-            <p>
-              Musical requests guide a candidate; they aren’t guarantees.
-              Voice-like artifacts and musical fit still need your listening
-              review.
-            </p>
-            <fieldset>
-              <legend>Leave out</legend>
-              {(["vocals", "percussion", "bright", "nature"] as const).map(
-                (id) => (
-                  <label key={id}>
-                    <input
-                      type="checkbox"
-                      checked={options.avoid.includes(id)}
-                      onChange={() =>
-                        setOptions((o) => ({
-                          ...o,
-                          avoid: o.avoid.includes(id)
-                            ? o.avoid.filter((x) => x !== id)
-                            : [...o.avoid, id],
-                        }))
-                      }
-                    />
-                    {
-                      {
-                        vocals: "Vocals",
-                        percussion: "Drums and percussion",
-                        bright: "Sharp, bright sounds",
-                        nature: "Nature sounds",
-                      }[id]
-                    }
-                  </label>
-                ),
-              )}
-            </fieldset>
-            <label className="current-field">
-              Musical journey
-              <select
-                value={options.feel}
-                onChange={(e) =>
-                  setOptions((o) => ({
-                    ...o,
-                    feel: e.target.value as CurrentMusicOptions["feel"],
-                  }))
-                }
-              >
-                <option value="steady">Keep it steady</option>
-                <option value="gently-shift">Gently shift the feel</option>
-              </select>
-            </label>
-            <label className="current-field">
-              What should we prepare?
-              <select
-                value={creationMode}
-                onChange={(e) =>
-                  setCreationMode(e.target.value as "compare" | "session")
-                }
-              >
-                <option value="compare">Alternatives to compare</option>
-                <option value="session">Movements for a longer session</option>
-              </select>
-            </label>
-            <label className="current-field">
-              Number of pieces
-              <select
-                value={candidateCount}
-                onChange={(e) => setCandidateCount(Number(e.target.value))}
-              >
-                <option value={2}>Two</option>
-                <option value={3}>Three</option>
-              </select>
-            </label>
-            <label className="current-field">
-              Length of each new composition
-              <select
-                value={pieceSeconds}
-                onChange={(e) => setPieceSeconds(Number(e.target.value))}
-              >
-                <option value={30}>30 seconds</option>
-                <option value={60}>60 seconds</option>
-                <option value={90}>90 seconds</option>
-              </select>
-            </label>
-            <p className="small">
-              Gentle shifts are a preference, not proven better for mood. No
-              health or diagnosis information is inferred.
-            </p>
-          </details>
-          <label className="check-row cm-background">
-            <input
-              type="checkbox"
-              checked={continueInBackground}
-              onChange={(e) => setContinueInBackground(e.target.checked)}
-              disabled={running}
-            />
-            <span>Keep preparing when I leave Current</span>
-          </label>
-          <p className="small">
-            Optional, on this Mac only. Return to Current in this browser tab to
-            review or cancel. Preparation is bounded to eight minutes and never
-            starts playback.
-          </p>
-          <button
-            className="primary"
-            disabled={running || blocked || loading || !availability?.ready}
-            onClick={() => void create()}
+              Explore Currents
+            </button>
+            <button
+              aria-current={workspace === "create" ? "page" : undefined}
+              onClick={() => navigateWorkspace("create")}
+            >
+              <Plus size={16} />
+              Create for me
+            </button>
+          </nav>
+          <h2
+            className="cm-workspace-heading"
+            ref={workspaceHeading}
+            tabIndex={-1}
           >
-            <RefreshCw size={17} />
-            Create a new Current
-          </button>
-          <p className="small">
-            Made on this Mac with ACE-Step Turbo. Two or three real candidates
-            are generated and checked before preview; this can take a few
-            minutes. Advanced options choose piece length. Longer listening
-            cycles your selected movements. No paid service or cloud generation.
-            New pieces stay in local app storage; Save adds a browser bookmark.
-          </p>
-          {availability && !availability.ready && (
-            <p role="status">
-              Custom generation unavailable: {availability.message} You can
-              still use available starters or Classic soundscapes.
-            </p>
-          )}
+            {workspace === "create"
+              ? "Create your Current"
+              : "Explore Currents"}
+          </h2>
           {job && (
-            <div className="cm-job" role="status">
-              <strong>
-                {job.phase === "running"
-                  ? "Preparing your Current…"
+            <div className="cm-job-return" role="status">
+              <span>
+                {running
+                  ? "Your new Current is preparing"
                   : job.phase === "done"
-                    ? job.candidateIds && job.candidateIds.length > 1
-                      ? "Your new pieces are ready"
-                      : "A new piece is on your shelf"
+                    ? "Your new Current is ready to preview"
                     : job.phase === "cancelled"
-                      ? "Generation cancelled"
-                      : "This piece couldn’t be prepared"}
-              </strong>
-              <p>{job.message}</p>
-              {!!job.candidateErrors?.length && (
-                <details>
-                  <summary>
-                    {job.candidateErrors.length} candidate notes
-                  </summary>
-                  <ul>
-                    {job.candidateErrors.map((message, i) => (
-                      <li key={i}>{message}</li>
-                    ))}
-                  </ul>
-                </details>
-              )}
+                      ? "Creation cancelled"
+                      : "Review your creation"}
+              </span>
+              <button onClick={() => navigateWorkspace("create")}>
+                {running ? "View progress" : "Review creation"}
+              </button>
               {running && <button onClick={cancel}>Cancel generation</button>}
             </div>
           )}
-          {latestPieces.length > 0 && (
-            <section className="cm-candidates" aria-label="Prepared candidates">
-              <h3>
-                {job?.mode === "session"
-                  ? "Your new movements"
-                  : "Compare your alternatives"}
-              </h3>
-              <p className="small">
-                {job?.mode === "session"
-                  ? "The pieces follow their requested opening, development and closing order. Actual musical adherence is approximate."
-                  : "Ordered by loudness, clipping and peak checks, not musical taste."}{" "}
-                Listen and choose. Nothing plays automatically.
-              </p>
-              {latestPieces.map((s, i) => (
-                <article key={s.id}>
-                  <strong>Choice {String.fromCharCode(65 + i)}</strong>
-                  <p>
-                    {Math.round(s.metrics.duration)} seconds · audio checks
-                    passed
-                  </p>
-                  <details>
-                    <summary>What the checks mean</summary>
-                    <p>
-                      Technical fit {technicalFit(s)}/100 (loudness, clipping
-                      and headroom only). Normalized {s.metrics.matchedLufs}{" "}
-                      LUFS, peak {s.metrics.matchedTruePeakDb} dBTP, clipped
-                      samples {(s.metrics.clippedFraction * 100).toFixed(4)}%.
-                      This score does not measure pleasantness, health benefit
-                      or absence of voice-like artifacts.
-                    </p>
-                  </details>
-                  <div>
-                    <button disabled={blocked} onClick={() => preview(s)}>
-                      Preview choice {String.fromCharCode(65 + i)}
-                    </button>
-                    <button onClick={() => choose(s)}>
-                      Use choice {String.fromCharCode(65 + i)}
-                    </button>
-                  </div>
-                </article>
-              ))}
-              {latestPieces.length > 1 && (
+          <div className="cm-intention" hidden={workspace !== "create"}>
+            <span className="eyebrow">CREATE FOR ME</span>
+            <h2>What would help right now?</h2>
+            <p>
+              Choose a direction. We’ll offer a starting place you can make your
+              own.
+            </p>
+            <div
+              className="cm-goals"
+              role="group"
+              aria-label="What would you like support with?"
+            >
+              {Object.entries(currentIntentLabels).map(([id, label]) => (
                 <button
-                  className="primary"
-                  onClick={() => assemble(latestPieces)}
+                  key={id}
+                  aria-pressed={options.intent === id}
+                  onClick={() =>
+                    setOptions((o) => ({
+                      ...o,
+                      intent: id as CurrentMusicOptions["intent"],
+                    }))
+                  }
                 >
-                  Make a session from these
+                  {label}
                 </button>
-              )}
-            </section>
-          )}
-        </div>
-        <div className="cm-shelf">
-          <div className="cm-shelf-title">
-            <div>
-              <span className="eyebrow">A STARTING PLACE</span>
-              <h2>A Current to try.</h2>
+              ))}
             </div>
+            <label className="current-field">
+              What do you enjoy hearing?
+              <select
+                value={options.taste}
+                onChange={(e) =>
+                  setOptions((o) => ({
+                    ...o,
+                    taste: e.target.value as CurrentMusicOptions["taste"],
+                  }))
+                }
+              >
+                <option value="piano">Soft piano</option>
+                <option value="ambient">Open, sustained textures</option>
+                <option value="acoustic">Gentle acoustic guitar</option>
+              </select>
+            </label>
             <button
-              aria-label="Refresh available music"
-              onClick={() => {
-                setLoading(true);
-                void refresh(controller.current?.signal);
-              }}
-              disabled={loading}
+              className="primary"
+              disabled={running || blocked || loading || !availability?.ready}
+              onClick={() => void create()}
             >
               <RefreshCw size={17} />
+              Create a new Current
             </button>
-          </div>
-          <p>
-            Suggested for {currentIntentLabels[options.intent].toLowerCase()},
-            with your taste in mind. A preference-based starting point, never a
-            treatment or clinical match.
-          </p>
-          {loading && <p role="status">Opening the local music shelf…</p>}
-          {!loading && !suggested.length && (
-            <div className="cm-empty">
-              <h3>Your shelf is ready for a beginning.</h3>
-              <p>
-                No technically checked music is available yet. Create a piece if
-                the local model is ready, or explore Classic soundscapes.
-              </p>
-            </div>
-          )}
-          {catalogueDescription && (
-            <p className="small">{catalogueDescription}</p>
-          )}
-          <div className="cm-starters">
-            {suggested.slice(0, expandedShelf ? 80 : 6).map((s) => (
-              <button
-                key={s.id}
-                className="cm-starter"
-                data-sample-id={s.id}
-                aria-pressed={selected?.id === s.id}
-                onClick={() => choose(s)}
-              >
-                <span
-                  className={`cm-mini cm-mini-${s.request.style}`}
-                  aria-hidden="true"
-                >
-                  <svg viewBox="0 0 100 64">
-                    <path d="M0 40Q25 12 50 30T100 22V64H0Z" />
-                    <path
-                      d="M57 24Q35 39 64 44T43 64H75Q34 44 67 34Z"
-                      fill="#efe1b4"
-                    />
-                  </svg>
+            <details className="cm-preferences">
+              <summary>Preferences & advanced options</summary>
+              <label className="current-field">
+                How are you feeling?{" "}
+                <span className="small">
+                  Optional · stays on this screen, never sent or saved
                 </span>
+                <input
+                  value={feeling}
+                  maxLength={160}
+                  onChange={(e) => setFeeling(e.target.value)}
+                  placeholder="A busy mind, a long day, a new start…"
+                />
+              </label>
+
+              <p>
+                Musical requests guide a candidate; they aren’t guarantees.
+                Voice-like artifacts and musical fit still need your listening
+                review.
+              </p>
+              <fieldset>
+                <legend>Leave out</legend>
+                {(["vocals", "percussion", "bright", "nature"] as const).map(
+                  (id) => (
+                    <label key={id}>
+                      <input
+                        type="checkbox"
+                        checked={options.avoid.includes(id)}
+                        onChange={() =>
+                          setOptions((o) => ({
+                            ...o,
+                            avoid: o.avoid.includes(id)
+                              ? o.avoid.filter((x) => x !== id)
+                              : [...o.avoid, id],
+                          }))
+                        }
+                      />
+                      {
+                        {
+                          vocals: "Vocals",
+                          percussion: "Drums and percussion",
+                          bright: "Sharp, bright sounds",
+                          nature: "Nature sounds",
+                        }[id]
+                      }
+                    </label>
+                  ),
+                )}
+              </fieldset>
+              <label className="current-field">
+                Musical journey
+                <select
+                  value={options.feel}
+                  onChange={(e) =>
+                    setOptions((o) => ({
+                      ...o,
+                      feel: e.target.value as CurrentMusicOptions["feel"],
+                    }))
+                  }
+                >
+                  <option value="steady">Keep it steady</option>
+                  <option value="gently-shift">Gently shift the feel</option>
+                </select>
+              </label>
+              <label className="current-field">
+                What should we prepare?
+                <select
+                  value={creationMode}
+                  onChange={(e) =>
+                    setCreationMode(e.target.value as "compare" | "session")
+                  }
+                >
+                  <option value="compare">Alternatives to compare</option>
+                  <option value="session">
+                    Movements for a longer session
+                  </option>
+                </select>
+              </label>
+              <label className="current-field">
+                Number of pieces
+                <select
+                  value={candidateCount}
+                  onChange={(e) => setCandidateCount(Number(e.target.value))}
+                >
+                  <option value={2}>Two</option>
+                  <option value={3}>Three</option>
+                </select>
+              </label>
+              <label className="current-field">
+                Length of each new composition
+                <select
+                  value={pieceSeconds}
+                  onChange={(e) => setPieceSeconds(Number(e.target.value))}
+                >
+                  <option value={30}>30 seconds</option>
+                  <option value={60}>60 seconds</option>
+                  <option value={90}>90 seconds</option>
+                </select>
+              </label>
+              <p className="small">
+                Gentle shifts are a preference, not proven better for mood. No
+                health or diagnosis information is inferred.
+              </p>
+              <label className="check-row cm-background">
+                <input
+                  type="checkbox"
+                  checked={continueInBackground}
+                  onChange={(e) => setContinueInBackground(e.target.checked)}
+                  disabled={running}
+                />
+                <span>Keep preparing when I leave Current</span>
+              </label>
+              <p className="small">
+                Optional, on this Mac only. Return to Current in this browser
+                tab to review or cancel. Preparation is bounded to eight minutes
+                and never starts playback.
+              </p>
+            </details>
+            <p className="small">
+              Made on this Mac with ACE-Step Turbo. Two or three real candidates
+              are generated and checked before preview; this can take a few
+              minutes. Advanced options choose piece length. Longer listening
+              cycles your selected movements. No paid service or cloud
+              generation. New pieces stay in local app storage; Save adds a
+              browser bookmark.
+            </p>
+            {availability && !availability.ready && (
+              <p role="status">
+                Custom generation unavailable: {availability.message} You can
+                still use available starters or Classic soundscapes.
+              </p>
+            )}
+            {job && (
+              <div className="cm-job" role="status">
+                <strong>
+                  {job.phase === "running"
+                    ? "Preparing your Current…"
+                    : job.phase === "done"
+                      ? job.candidateIds && job.candidateIds.length > 1
+                        ? "Your new pieces are ready"
+                        : "A new piece is on your shelf"
+                      : job.phase === "cancelled"
+                        ? "Generation cancelled"
+                        : "This piece couldn’t be prepared"}
+                </strong>
+                <p>{job.message}</p>
+                {!!job.candidateErrors?.length && (
+                  <details>
+                    <summary>
+                      {job.candidateErrors.length} candidate notes
+                    </summary>
+                    <ul>
+                      {job.candidateErrors.map((message, i) => (
+                        <li key={i}>{message}</li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
+              </div>
+            )}
+            {latestPieces.length > 0 && (
+              <section
+                className="cm-candidates"
+                aria-label="Prepared candidates"
+              >
+                <h3>
+                  {job?.mode === "session"
+                    ? "Your new movements"
+                    : "Compare your alternatives"}
+                </h3>
+                <p className="small">
+                  {job?.mode === "session"
+                    ? "The pieces follow their requested opening, development and closing order. Actual musical adherence is approximate."
+                    : "Ordered by loudness, clipping and peak checks, not musical taste."}{" "}
+                  Listen and choose. Nothing plays automatically.
+                </p>
+                {latestPieces.map((s, i) => (
+                  <article key={s.id}>
+                    <strong>Choice {String.fromCharCode(65 + i)}</strong>
+                    <p>
+                      {Math.round(s.metrics.duration)} seconds · audio checks
+                      passed
+                    </p>
+                    <details>
+                      <summary>What the checks mean</summary>
+                      <p>
+                        Technical fit {technicalFit(s)}/100 (loudness, clipping
+                        and headroom only). Normalized {s.metrics.matchedLufs}{" "}
+                        LUFS, peak {s.metrics.matchedTruePeakDb} dBTP, clipped
+                        samples {(s.metrics.clippedFraction * 100).toFixed(4)}%.
+                        This score does not measure pleasantness, health benefit
+                        or absence of voice-like artifacts.
+                      </p>
+                    </details>
+                    <div>
+                      <button disabled={blocked} onClick={() => preview(s)}>
+                        Preview choice {String.fromCharCode(65 + i)}
+                      </button>
+                      <button onClick={() => choose(s)}>
+                        Use choice {String.fromCharCode(65 + i)}
+                      </button>
+                    </div>
+                  </article>
+                ))}
+                {latestPieces.length > 1 && (
+                  <button
+                    className="primary"
+                    onClick={() => assemble(latestPieces)}
+                  >
+                    Make a session from these
+                  </button>
+                )}
+              </section>
+            )}
+          </div>
+          <div className="cm-shelf" hidden={workspace !== "explore"}>
+            <div className="cm-shelf-title">
+              <div>
+                <span className="eyebrow">A STARTING PLACE</span>
+                <h2>A Current to try.</h2>
+              </div>
+              <button
+                aria-label="Refresh available music"
+                onClick={() => {
+                  setLoading(true);
+                  void refresh(controller.current?.signal);
+                }}
+                disabled={loading}
+              >
+                <RefreshCw size={17} />
+              </button>
+            </div>
+            <p>
+              Suggested for {currentIntentLabels[options.intent].toLowerCase()},
+              with your taste in mind. A preference-based starting point, never
+              a treatment or clinical match.
+            </p>
+            <div
+              className="cm-goals"
+              role="group"
+              aria-label="Explore by intention"
+            >
+              {Object.entries(currentIntentLabels).map(([id, label]) => (
+                <button
+                  key={id}
+                  aria-pressed={options.intent === id}
+                  onClick={() =>
+                    setOptions((o) => ({
+                      ...o,
+                      intent: id as CurrentMusicOptions["intent"],
+                    }))
+                  }
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            {loading && <p role="status">Opening the local music shelf…</p>}
+            {!loading && !suggested.length && (
+              <div className="cm-empty">
+                <h3>Your shelf is ready for a beginning.</h3>
+                <p>
+                  No technically checked music is available yet. Create a piece
+                  if the local model is ready, or explore Classic soundscapes.
+                </p>
+              </div>
+            )}
+            {catalogueDescription && (
+              <p className="small">{catalogueDescription}</p>
+            )}
+            <div className="cm-starters">
+              <button
+                className="cm-create-card"
+                onClick={() => navigateWorkspace("create")}
+              >
+                <span aria-hidden="true">＋</span>
                 <span>
-                  <strong>
-                    {currentStarterName(
-                      s.request.style,
-                      s.request.seed,
-                      s.request.current,
-                    )}
-                  </strong>
-                  <small>
-                    {s.request.style === "piano"
-                      ? "Soft piano"
-                      : s.request.style === "ambient"
-                        ? "Sustained textures"
-                        : "Gentle acoustic"}{" "}
-                    · {Math.round(s.metrics.duration)}s piece
-                  </small>
-                  <small>
-                    {s.request.style === options.taste
-                      ? "Matches your sound preference"
-                      : "Another sound to explore"}{" "}
-                    · measured, not clinically validated
-                  </small>
+                  <strong>Create something new</strong>
+                  <small>Start with what you need. Make it your own.</small>
                 </span>
                 <ArrowRight size={18} />
               </button>
-            ))}
-          </div>
-          {suggested.length > 6 && (
-            <button
-              className="cm-browse"
-              onClick={() => setExpandedShelf((v) => !v)}
-            >
-              {expandedShelf
-                ? "Show fewer starting places"
-                : `Browse all ${suggested.length} pieces`}
-            </button>
-          )}
-          <p className="small">
-            {generatedConcepts} of{" "}
-            {currentSeedCatalogue.filter((s) => s.eligible).length} adult
-            catalogue recipes have real measured audio. Other measured study
-            pieces remain available. Every piece still needs your listening
-            choice.
-          </p>
-          <div
-            className="cm-shape"
-            role="region"
-            aria-label="Shape now"
-            tabIndex={-1}
-            ref={playerRegion}
-          >
-            <span className="eyebrow">SHAPE NOW</span>
-            <h2>{selected ? name : "Make it yours."}</h2>
-            {selected ? (
-              <>
-                {archivedSamples.some((s) => s.id === selected?.id) && (
-                  <p role="status" className="notice">
-                    Earlier catalogue version, retained for this saved session.
-                    New starters are available above; nothing was substituted.
-                  </p>
-                )}
-                <label className="current-field">
-                  Current name
-                  <input
-                    value={name}
-                    maxLength={60}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </label>
-                <p className="small">
-                  Locally generated instrumental request. Preview for unwanted
-                  sounds; technical checks cannot certify musical quality or a
-                  wellness effect.
-                </p>
-                <p role="status">{player.message}</p>
-                {sessionPlan && (
-                  <div className="cm-sequence">
-                    <strong>
-                      {sessionPieces.length}{" "}
-                      {sessionPieces.length === 1 ? "movement" : "movements"} ·{" "}
-                      {Math.round(sessionPlan.secondsOfUniqueMusic)} seconds of
-                      distinct music
-                    </strong>
-                    <p className="small">
-                      {effectiveTransition === "quiet-gap"
-                        ? "Each movement fades to quiet before the next. Tonal or pulse compatibility is uncertain."
-                        : "Measured compatibility permits gentle crossfades; musical fit still needs your preview."}{" "}
-                      Longer listening cycles this sequence, rather than
-                      claiming unlimited new music.
-                    </p>
-                    {sessionPieces.map((s) => (
-                      <div key={s.id}>
-                        <span>
-                          {currentStarterName(
-                            s.request.style,
-                            s.request.seed,
-                            s.request.current,
-                          )}
-                        </span>
-                        {sessionPieces.length > 1 && (
-                          <button
-                            aria-label={`Remove movement ${currentStarterName(s.request.style, s.request.seed, s.request.current)}`}
-                            onClick={() => {
-                              engine.current?.stop();
-                              const next = sessionPieces.filter(
-                                (x) => x.id !== s.id,
-                              );
-                              setSessionIds(next.map((x) => x.id));
-                              setSelected(next[0]);
-                            }}
-                          >
-                            Remove
-                          </button>
-                        )}
-                      </div>
-                    ))}
-                    {sessionPieces.length < 3 && (
-                      <label className="current-field">
-                        Add another measured movement
-                        <select
-                          value=""
-                          onChange={(e) => {
-                            const item = samples.find(
-                              (s) => s.id === e.target.value,
-                            );
-                            if (item) assemble([...sessionPieces, item]);
-                          }}
-                        >
-                          <option value="">Choose a different piece…</option>
-                          {suggested
-                            .filter((s) => !sessionIds.includes(s.id))
-                            .map((s) => (
-                              <option key={s.id} value={s.id}>
-                                {currentStarterName(
-                                  s.request.style,
-                                  s.request.seed,
-                                  s.request.current,
-                                )}
-                              </option>
-                            ))}
-                        </select>
-                      </label>
-                    )}
-                    <label className="check-row">
-                      <input
-                        type="checkbox"
-                        checked={quietTransitions}
-                        onChange={(e) => {
-                          engine.current?.stop();
-                          setQuietTransitions(e.target.checked);
-                        }}
-                      />
-                      <span>Always leave a quiet moment between movements</span>
-                    </label>
-                  </div>
-                )}
-
-                <div className="cm-transport">
-                  <button
-                    className="primary"
-                    disabled={blocked || player.phase === "loading"}
-                    onClick={() =>
-                      player.phase === "playing"
-                        ? engine.current?.pause()
-                        : void engine.current?.play(
-                            sessionPieces.map((s) => s.id),
-                            minutes,
-                            { volume, brightness, space },
-                            player.phase === "paused",
-                            effectiveTransition,
-                          )
-                    }
-                  >
-                    {player.phase === "playing" ? (
-                      <Pause size={18} />
-                    ) : (
-                      <Play size={18} />
-                    )}{" "}
-                    {player.phase === "playing"
-                      ? "Pause Current"
-                      : player.phase === "paused"
-                        ? "Resume Current"
-                        : "Play Current"}
-                  </button>
-                  <button
-                    disabled={!active}
-                    onClick={() => engine.current?.stop()}
-                  >
-                    <Square size={16} />
-                    Stop
-                  </button>
-                  <button
-                    onClick={() =>
-                      engine.current?.stop("Quiet is a good choice, too.")
-                    }
-                  >
-                    Choose quiet
-                  </button>
-                </div>
-                <p className="cm-time">
-                  {clock(player.elapsed)} /{" "}
-                  {clock(player.total || minutes * 60)}{" "}
-                  <span>
-                    {player.phase === "playing"
-                      ? "Music is playing"
-                      : player.phase === "paused"
-                        ? "Paused"
-                        : ""}
-                  </span>
-                </p>
-                <label className="current-field">
-                  Listening time
-                  <select
-                    value={minutes}
-                    onChange={(e) => {
-                      engine.current?.stop(
-                        "Duration changed. Press Play when ready.",
-                      );
-                      setMinutes(Number(e.target.value));
-                    }}
-                  >
-                    {[1, 3, 5, 10, 15, 30].map((n) => (
-                      <option key={n} value={n}>
-                        {n} {n === 1 ? "minute" : "minutes"}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                {(
-                  [
-                    ["Volume", volume, setVolume, 0, 0.6, 0.01],
-                    ["Brightness", brightness, setBrightness, 0, 1, 0.01],
-                    ["Space", space, setSpace, 0, 0.35, 0.01],
-                  ] as const
-                ).map(([label, value, set, min, max, step]) => (
-                  <label className="cm-slider" key={label}>
-                    {label}
-                    <input
-                      type="range"
-                      aria-label={`Current ${label.toLowerCase()}`}
-                      min={min}
-                      max={max}
-                      step={step}
-                      value={value}
-                      onChange={(e) => set(Number(e.target.value))}
-                    />
-                  </label>
-                ))}
-                <p className="small">
-                  These change level, tone and reverb immediately. They don’t
-                  change instruments or guarantee an effect. Start quietly;
-                  device volume still matters.
-                </p>
-                <label className="check-row">
-                  <input
-                    type="checkbox"
-                    checked={saveConsent}
-                    onChange={(e) => setSaveConsent(e.target.checked)}
-                  />
-                  <span>Save this music session in this browser</span>
-                </label>
+              {suggested.slice(0, expandedShelf ? 80 : 6).map((s) => (
                 <button
-                  disabled={!saveConsent || storageBad || !name.trim()}
-                  onClick={save}
+                  key={s.id}
+                  className="cm-starter"
+                  data-sample-id={s.id}
+                  aria-pressed={selected?.id === s.id}
+                  onClick={() => choose(s)}
                 >
-                  <Bookmark size={16} />
-                  Save Current
+                  <span
+                    className={`cm-mini cm-mini-${s.request.style}`}
+                    aria-hidden="true"
+                  >
+                    <svg viewBox="0 0 100 64">
+                      <path d="M0 40Q25 12 50 30T100 22V64H0Z" />
+                      <path
+                        d="M57 24Q35 39 64 44T43 64H75Q34 44 67 34Z"
+                        fill="#efe1b4"
+                      />
+                    </svg>
+                  </span>
+                  <span>
+                    <strong>
+                      {currentStarterName(
+                        s.request.style,
+                        s.request.seed,
+                        s.request.current,
+                      )}
+                    </strong>
+                    <small>
+                      {s.request.style === "piano"
+                        ? "Soft piano"
+                        : s.request.style === "ambient"
+                          ? "Sustained textures"
+                          : "Gentle acoustic"}{" "}
+                      · {Math.round(s.metrics.duration)}s piece
+                    </small>
+                    <small>
+                      {s.request.style === options.taste
+                        ? "Matches your sound preference"
+                        : "Another sound to explore"}{" "}
+                      · measured, not clinically validated
+                    </small>
+                  </span>
+                  <ArrowRight size={18} />
                 </button>
-              </>
-            ) : (
-              <p>
-                Choose a starter above. You can adjust its sound immediately, or
-                prepare a different piece in the background. Nothing autoplays.
-              </p>
-            )}
-          </div>
-          {saved.length > 0 && (
-            <div className="cm-saved">
-              <h3>Your saved Currents</h3>
-              {saved.map((item) => (
-                <div key={item.id}>
-                  <button
-                    onClick={() => {
-                      const refs = item.segments || [
-                        { sampleId: item.sampleId, pcmSha256: item.pcmSha256 },
-                      ];
-                      const pieces = refs.map((ref) =>
-                        knownSamples.find(
-                          (s) =>
-                            s.id === ref.sampleId &&
-                            s.metrics.pcmSha256 === ref.pcmSha256,
-                        ),
-                      );
-                      const s = pieces[0];
-                      if (
-                        !s ||
-                        pieces.some(
-                          (p) => !p || currentTechnicalIssues(p).length,
-                        )
-                      ) {
-                        setNotice(
-                          "The saved audio is unavailable or changed. Nothing was substituted.",
-                        );
-                        return;
-                      }
-                      choose(s);
-                      setSessionIds(pieces.map((s) => s!.id));
-                      setQuietTransitions(item.transition === "quiet-gap");
-                      setName(item.name);
-                      setOptions(item.options);
-                      setMinutes(item.minutes);
-                      setVolume(item.volume);
-                      setBrightness(item.brightness);
-                      setSpace(item.space);
-                    }}
-                  >
-                    {item.name}
-                  </button>
-                  <button
-                    aria-label={`Remove saved ${item.name}`}
-                    onClick={() => {
-                      try {
-                        const next = saved.filter((s) => s.id !== item.id);
-                        localStorage.setItem(
-                          currentMusicStorageKey,
-                          JSON.stringify(next),
-                        );
-                        setSaved(next);
-                      } catch {
-                        setNotice("Could not remove this saved entry.");
-                      }
-                    }}
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                </div>
               ))}
             </div>
+            {suggested.length > 6 && (
+              <button
+                className="cm-browse"
+                onClick={() => setExpandedShelf((v) => !v)}
+              >
+                {expandedShelf
+                  ? "Show fewer starting places"
+                  : `Browse all ${suggested.length} pieces`}
+              </button>
+            )}
+            <p className="small">
+              {generatedConcepts} of{" "}
+              {currentSeedCatalogue.filter((s) => s.eligible).length} adult
+              catalogue recipes have real measured audio. Other measured study
+              pieces remain available. Every piece still needs your listening
+              choice.
+            </p>
+            {saved.length > 0 && (
+              <div className="cm-saved">
+                <h3>Your saved Currents</h3>
+                {saved.map((item) => (
+                  <div key={item.id}>
+                    <button
+                      onClick={() => {
+                        const refs = item.segments || [
+                          {
+                            sampleId: item.sampleId,
+                            pcmSha256: item.pcmSha256,
+                          },
+                        ];
+                        const pieces = refs.map((ref) =>
+                          knownSamples.find(
+                            (s) =>
+                              s.id === ref.sampleId &&
+                              s.metrics.pcmSha256 === ref.pcmSha256,
+                          ),
+                        );
+                        const s = pieces[0];
+                        if (
+                          !s ||
+                          pieces.some(
+                            (p) => !p || currentTechnicalIssues(p).length,
+                          )
+                        ) {
+                          setNotice(
+                            "The saved audio is unavailable or changed. Nothing was substituted.",
+                          );
+                          return;
+                        }
+                        choose(s);
+                        setSessionIds(pieces.map((s) => s!.id));
+                        setQuietTransitions(item.transition === "quiet-gap");
+                        setName(item.name);
+                        setOptions(item.options);
+                        setMinutes(item.minutes);
+                        setVolume(item.volume);
+                        setBrightness(item.brightness);
+                        setSpace(item.space);
+                      }}
+                    >
+                      {item.name}
+                    </button>
+                    <button
+                      aria-label={`Remove saved ${item.name}`}
+                      onClick={() => {
+                        try {
+                          const next = saved.filter((s) => s.id !== item.id);
+                          localStorage.setItem(
+                            currentMusicStorageKey,
+                            JSON.stringify(next),
+                          );
+                          setSaved(next);
+                        } catch {
+                          setNotice("Could not remove this saved entry.");
+                        }
+                      }}
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+        <div
+          className={`cm-shape ${sheetOpen && mobile ? "cm-sheet-open" : ""}`}
+          role={sheetOpen && mobile ? "dialog" : "region"}
+          aria-modal={sheetOpen && mobile ? true : undefined}
+          aria-label="Shape now"
+          tabIndex={-1}
+          ref={playerRegion}
+        >
+          <button
+            className="cm-sheet-close"
+            onClick={() => navigateWorkspace(workspace, false, false)}
+            aria-label="Close shaping controls"
+          >
+            <X size={18} />
+            Done
+          </button>
+          <div className="cm-player-art">
+            <CurrentLandscape
+              moving={motionEnabled && player.phase === "playing"}
+            />
+            <span>YOUR SELECTED CURRENT</span>
+          </div>
+          <span className="eyebrow">SHAPE NOW</span>
+          <h2>{selected ? name : "Make it yours."}</h2>
+          {selected ? (
+            <>
+              {archivedSamples.some((s) => s.id === selected?.id) && (
+                <p role="status" className="notice">
+                  Earlier catalogue version, retained for this saved session.
+                  New starters are available above; nothing was substituted.
+                </p>
+              )}
+              <div className="cm-transport">
+                <button
+                  className="primary"
+                  disabled={blocked || player.phase === "loading"}
+                  onClick={() =>
+                    player.phase === "playing"
+                      ? engine.current?.pause()
+                      : void engine.current?.play(
+                          sessionPieces.map((s) => s.id),
+                          minutes,
+                          { volume, brightness, space },
+                          player.phase === "paused",
+                          effectiveTransition,
+                        )
+                  }
+                >
+                  {player.phase === "playing" ? (
+                    <Pause size={18} />
+                  ) : (
+                    <Play size={18} />
+                  )}{" "}
+                  {player.phase === "playing"
+                    ? "Pause Current"
+                    : player.phase === "paused"
+                      ? "Resume Current"
+                      : "Play Current"}
+                </button>
+                <button
+                  disabled={!active}
+                  onClick={() => engine.current?.stop()}
+                >
+                  <Square size={16} />
+                  Stop
+                </button>
+                <button
+                  onClick={() =>
+                    engine.current?.stop("Quiet is a good choice, too.")
+                  }
+                >
+                  Choose quiet
+                </button>
+              </div>
+              <p className="cm-time">
+                {clock(player.elapsed)} / {clock(player.total || minutes * 60)}{" "}
+                <span>
+                  {player.phase === "playing"
+                    ? "Music is playing"
+                    : player.phase === "paused"
+                      ? "Paused"
+                      : ""}
+                </span>
+              </p>
+              <label className="current-field">
+                Listening time
+                <select
+                  value={minutes}
+                  onChange={(e) => {
+                    engine.current?.stop(
+                      "Duration changed. Press Play when ready.",
+                    );
+                    setMinutes(Number(e.target.value));
+                  }}
+                >
+                  {[1, 3, 5, 10, 15, 30].map((n) => (
+                    <option key={n} value={n}>
+                      {n} {n === 1 ? "minute" : "minutes"}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              {(
+                [
+                  ["Volume", volume, setVolume, 0, 0.6, 0.01],
+                  ["Brightness", brightness, setBrightness, 0, 1, 0.01],
+                  ["Space", space, setSpace, 0, 0.35, 0.01],
+                ] as const
+              ).map(([label, value, set, min, max, step]) => (
+                <label className="cm-slider" key={label}>
+                  {label}
+                  <input
+                    type="range"
+                    aria-label={`Current ${label.toLowerCase()}`}
+                    min={min}
+                    max={max}
+                    step={step}
+                    value={value}
+                    onChange={(e) => set(Number(e.target.value))}
+                  />
+                </label>
+              ))}
+              <p className="small">
+                These change level, tone and reverb immediately. They don’t
+                change instruments or guarantee an effect. Start quietly; device
+                volume still matters.
+              </p>
+              <label className="current-field">
+                Current name
+                <input
+                  value={name}
+                  maxLength={60}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </label>
+              <p className="small">
+                Locally generated instrumental request. Preview for unwanted
+                sounds; technical checks cannot certify musical quality or a
+                wellness effect.
+              </p>
+              <p role="status">{player.message}</p>
+              {sessionPlan && (
+                <div className="cm-sequence">
+                  <strong>
+                    {sessionPieces.length}{" "}
+                    {sessionPieces.length === 1 ? "movement" : "movements"} ·{" "}
+                    {Math.round(sessionPlan.secondsOfUniqueMusic)} seconds of
+                    distinct music
+                  </strong>
+                  <p className="small">
+                    {effectiveTransition === "quiet-gap"
+                      ? "Each movement fades to quiet before the next. Tonal or pulse compatibility is uncertain."
+                      : "Measured compatibility permits gentle crossfades; musical fit still needs your preview."}{" "}
+                    Longer listening cycles this sequence, rather than claiming
+                    unlimited new music.
+                  </p>
+                  {sessionPieces.map((s) => (
+                    <div key={s.id}>
+                      <span>
+                        {currentStarterName(
+                          s.request.style,
+                          s.request.seed,
+                          s.request.current,
+                        )}
+                      </span>
+                      {sessionPieces.length > 1 && (
+                        <button
+                          aria-label={`Remove movement ${currentStarterName(s.request.style, s.request.seed, s.request.current)}`}
+                          onClick={() => {
+                            engine.current?.stop();
+                            const next = sessionPieces.filter(
+                              (x) => x.id !== s.id,
+                            );
+                            setSessionIds(next.map((x) => x.id));
+                            setSelected(next[0]);
+                          }}
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  {sessionPieces.length < 3 && (
+                    <label className="current-field">
+                      Add another measured movement
+                      <select
+                        value=""
+                        onChange={(e) => {
+                          const item = samples.find(
+                            (s) => s.id === e.target.value,
+                          );
+                          if (item) assemble([...sessionPieces, item]);
+                        }}
+                      >
+                        <option value="">Choose a different piece…</option>
+                        {suggested
+                          .filter((s) => !sessionIds.includes(s.id))
+                          .map((s) => (
+                            <option key={s.id} value={s.id}>
+                              {currentStarterName(
+                                s.request.style,
+                                s.request.seed,
+                                s.request.current,
+                              )}
+                            </option>
+                          ))}
+                      </select>
+                    </label>
+                  )}
+                  <label className="check-row">
+                    <input
+                      type="checkbox"
+                      checked={quietTransitions}
+                      onChange={(e) => {
+                        engine.current?.stop();
+                        setQuietTransitions(e.target.checked);
+                      }}
+                    />
+                    <span>Always leave a quiet moment between movements</span>
+                  </label>
+                </div>
+              )}
+
+              <label className="check-row">
+                <input
+                  type="checkbox"
+                  checked={saveConsent}
+                  onChange={(e) => setSaveConsent(e.target.checked)}
+                />
+                <span>Save this music session in this browser</span>
+              </label>
+              <button
+                disabled={!saveConsent || storageBad || !name.trim()}
+                onClick={save}
+              >
+                <Bookmark size={16} />
+                Save Current
+              </button>
+            </>
+          ) : (
+            <p>
+              Choose a starter above. You can adjust its sound immediately, or
+              prepare a different piece in the background. Nothing autoplays.
+            </p>
           )}
         </div>
       </div>
+      {sheetOpen && mobile && (
+        <div
+          className="cm-sheet-scrim"
+          onClick={() => navigateWorkspace(workspace, false, false)}
+          aria-hidden="true"
+        />
+      )}
       {error && (
         <p className="notice error" role="alert">
           {error}
@@ -1227,6 +1419,59 @@ function MusicCurrent({
         <p className="cm-notice" role="status">
           {notice}
         </p>
+      )}
+      {selected && (
+        <div className="cm-player-dock" aria-label="Selected Current player">
+          <div>
+            <strong>{name}</strong>
+            <small>
+              {player.phase === "playing"
+                ? "Playing"
+                : player.phase === "paused"
+                  ? "Paused"
+                  : "Ready · nothing starts automatically"}
+            </small>
+          </div>
+          <button
+            disabled={blocked || player.phase === "loading"}
+            onClick={() =>
+              player.phase === "playing"
+                ? engine.current?.pause()
+                : void engine.current?.play(
+                    sessionPieces.map((s) => s.id),
+                    minutes,
+                    { volume, brightness, space },
+                    player.phase === "paused",
+                    effectiveTransition,
+                  )
+            }
+            aria-label={
+              player.phase === "playing"
+                ? "Pause selected Current"
+                : "Play selected Current"
+            }
+          >
+            {player.phase === "playing" ? (
+              <Pause size={18} />
+            ) : (
+              <Play size={18} />
+            )}
+          </button>
+          <button
+            onClick={() => engine.current?.stop()}
+            aria-label="Stop Current audio"
+          >
+            <Square size={17} />
+          </button>
+          <button
+            className="cm-open-shape"
+            ref={sheetTrigger}
+            onClick={() => navigateWorkspace(workspace, true)}
+          >
+            <SlidersHorizontal size={16} />
+            Shape sound<span>Volume · brightness · space</span>
+          </button>
+        </div>
       )}
       {active && (
         <div className="cm-floating" aria-label="Current playback controls">

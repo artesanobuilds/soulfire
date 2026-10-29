@@ -1,0 +1,143 @@
+{
+  "results": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "creation": {
+        "box": {
+          "x": 221.9375,
+          "y": 345.734375,
+          "width": 172.609375,
+          "height": 46
+        },
+        "inViewport": true
+      },
+      "controls": {
+        "Current volume": {
+          "box": {
+            "x": 1094,
+            "y": 795.71875,
+            "width": 289,
+            "height": 42
+          },
+          "inViewport": true
+        },
+        "Current brightness": {
+          "box": {
+            "x": 1094,
+            "y": 853.71875,
+            "width": 289,
+            "height": 42
+          },
+          "inViewport": true
+        },
+        "Current space": {
+          "box": {
+            "x": 1094,
+            "y": 911.71875,
+            "width": 289,
+            "height": 42
+          },
+          "inViewport": true
+        }
+      },
+      "overflow": false,
+      "smallHeight": "Scrollable sheet retains Stop near its top; all controls remain reachable"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "creation": {
+        "box": {
+          "x": 197.5,
+          "y": 407.765625,
+          "width": 169.5,
+          "height": 46
+        },
+        "inViewport": true
+      },
+      "controls": {
+        "Current volume": {
+          "box": {
+            "x": 126,
+            "y": 504.984375,
+            "width": 237,
+            "height": 42
+          },
+          "inViewport": true
+        },
+        "Current brightness": {
+          "box": {
+            "x": 126,
+            "y": 562.984375,
+            "width": 237,
+            "height": 42
+          },
+          "inViewport": true
+        },
+        "Current space": {
+          "box": {
+            "x": 126,
+            "y": 620.984375,
+            "width": 237,
+            "height": 42
+          },
+          "inViewport": true
+        }
+      },
+      "overflow": false,
+      "smallHeight": "Scrollable sheet retains Stop near its top; all controls remain reachable"
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "creation": {
+        "box": {
+          "x": 182.5,
+          "y": 407.765625,
+          "width": 154.5,
+          "height": 46
+        },
+        "inViewport": true
+      },
+      "controls": {
+        "Current volume": {
+          "box": {
+            "x": 126,
+            "y": 554.984375,
+            "width": 207,
+            "height": 42
+          },
+          "inViewport": true
+        },
+        "Current brightness": {
+          "box": {
+            "x": 126,
+            "y": 612.984375,
+            "width": 207,
+            "height": 42
+          },
+          "inViewport": false
+        },
+        "Current space": {
+          "box": {
+            "x": 126,
+            "y": 670.984375,
+            "width": 207,
+            "height": 42
+          },
+          "inViewport": false
+        }
+      },
+      "overflow": false,
+      "smallHeight": "Scrollable sheet retains Stop near its top; all controls remain reachable"
+    }
+  ],
+  "realMusicRegenerated": false
+}

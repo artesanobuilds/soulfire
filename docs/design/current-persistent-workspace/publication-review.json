@@ -1,0 +1,16 @@
+{
+  "commitsReviewed": 17,
+  "uniqueBlobsReviewed": 929,
+  "credentialFindings": [],
+  "sensitiveTrackedPaths": [],
+  "base": "origin/feat/music-lab",
+  "scope": "Tracked unpublished history and final source; no secret values recorded",
+  "runtimeAudioExcluded": true,
+  "layoutFinalSourceReviewed": [
+    "app/globals.css",
+    "src/components/CurrentPanel.tsx",
+    "tests/browser/current-music.spec.ts"
+  ],
+  "historyReviewedThrough": "ae359199bb36ae977e4b6403e858582a5efa2497",
+  "newLayoutCredentialFindings": []
+}

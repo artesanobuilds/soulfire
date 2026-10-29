@@ -1,0 +1,11 @@
+{
+  "catalogueVersion": "current-listening-20261029-v1",
+  "activeMasterAndBedHashesUnchanged": 36,
+  "audioRevision": "ae359199bb36ae977e4b6403e858582a5efa2497",
+  "userListeningApproved": true,
+  "clinicalValidation": false,
+  "generatedRuntimeBytesOutsideGit": 5366212617,
+  "runtimeWavFilesOutsideGit": 334,
+  "sourceAudioAndWeightsCommitted": false,
+  "reproducibility": "Pinned runtime, prompts, seeds, settings, raw/master/PCM hashes archived. Audio remains local; seeds do not guarantee cross-backend byte identity."
+}
