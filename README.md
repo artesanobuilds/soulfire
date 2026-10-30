@@ -6,6 +6,7 @@ A local, responsive practice prototype based on the repository vision and select
 
 - [Product context](docs/context/README.md)
 - [Product strategy](docs/strategy/product-strategy.md)
+- [Current prototype roadmap](docs/strategy/product-strategy.md#current-prototype-roadmap--october-30-2026)
 - [Prototype journeys](docs/strategy/prototype-use-cases.md)
 - [Research](docs/research/README.md)
 - [Design archive](docs/design/README.md)

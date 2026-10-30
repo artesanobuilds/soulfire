@@ -71,6 +71,26 @@ export async function simulateVoice(page: import("@playwright/test").Page) {
         this.dc.onopen?.();
         this.dc.onmessage?.({
           data: JSON.stringify({
+            type: "session.updated",
+            session: {
+              model: "gpt-realtime",
+              max_output_tokens: 900,
+              audio: {
+                input: {
+                  transcription: { model: "gpt-4o-mini-transcribe" },
+                  turn_detection: {
+                    type: "server_vad",
+                    create_response: true,
+                    interrupt_response: true,
+                  },
+                },
+                output: { voice: "marin" },
+              },
+            },
+          }),
+        });
+        this.dc.onmessage?.({
+          data: JSON.stringify({
             type: "response.created",
             response: { id: "mock-greeting" },
           }),

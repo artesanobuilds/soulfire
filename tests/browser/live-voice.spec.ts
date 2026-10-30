@@ -2,135 +2,167 @@ import { test, expect, type Page } from "@playwright/test";
 async function setup(
   page: Page,
   options = { deny: false, blocked: false, configured: true },
+  configuration: "ready" | "pending" = "ready",
 ) {
-  await page.addInitScript(({ deny, blocked }) => {
-    const contexts: AudioContext[] = [];
-    const NativeContext = window.AudioContext;
-    window.AudioContext = class extends NativeContext {
-      constructor() {
-        super();
-        contexts.push(this);
-      }
-    };
-    const tracks: MediaStreamTrack[] = [];
-    const sent: string[] = [];
-    let input: GainNode, output: GainNode;
-    let onMessage: ((event: { data: string }) => void) | null = null;
-    let onOpen: (() => void) | null = null;
-    let late: ((event: { data: string }) => void) | null = null;
-    let blocks = blocked,
-      requests = 0;
-    const stream = (direction: "input" | "output") => {
-      const context = new AudioContext();
-      const source = context.createOscillator(),
-        gain = context.createGain(),
-        destination = context.createMediaStreamDestination();
-      gain.gain.value = 0;
-      source.connect(gain).connect(destination);
-      source.start();
-      void context.resume();
-      if (direction === "input") input = gain;
-      else output = gain;
-      const track = destination.stream.getAudioTracks()[0];
-      tracks.push(track);
-      const stop = track.stop.bind(track);
-      track.stop = () => {
-        stop();
-        source.disconnect();
-        gain.disconnect();
-        if (context.state !== "closed") void context.close();
+  await page.addInitScript(
+    ({ deny, blocked, configuration }) => {
+      const contexts: AudioContext[] = [];
+      const NativeContext = window.AudioContext;
+      window.AudioContext = class extends NativeContext {
+        constructor() {
+          super();
+          contexts.push(this);
+        }
       };
-      return destination.stream;
-    };
-    Object.defineProperty(navigator.mediaDevices, "getUserMedia", {
-      configurable: true,
-      value: async () => {
-        requests++;
-        if (deny) throw new DOMException("Denied", "NotAllowedError");
-        return stream("input");
-      },
-    });
-    const NativeAudio = window.Audio;
-    window.Audio = class extends NativeAudio {
-      play() {
-        if (this.srcObject && blocks)
-          return Promise.reject(new DOMException("Blocked", "NotAllowedError"));
-        return super.play();
-      }
-    };
-    class Peer {
-      connectionState = "new";
-      ontrack: ((e: { streams: MediaStream[] }) => void) | null = null;
-      onconnectionstatechange: (() => void) | null = null;
-      dc = {
-        readyState: "open",
-        onopen: null as (() => void) | null,
-        onmessage: null as ((e: { data: string }) => void) | null,
-        onerror: null as (() => void) | null,
-        onclose: null as (() => void) | null,
-        send: (value: string) => {
-          sent.push(value);
-          if (JSON.parse(value).type === "output_audio_buffer.clear" && output)
-            output.gain.value = 0;
-        },
-        close: () => {},
+      const tracks: MediaStreamTrack[] = [];
+      const sent: string[] = [];
+      let input: GainNode, output: GainNode;
+      let onMessage: ((event: { data: string }) => void) | null = null;
+      let onOpen: (() => void) | null = null;
+      let late: ((event: { data: string }) => void) | null = null;
+      let blocks = blocked,
+        requests = 0;
+      const stream = (direction: "input" | "output") => {
+        const context = new AudioContext();
+        const source = context.createOscillator(),
+          gain = context.createGain(),
+          destination = context.createMediaStreamDestination();
+        gain.gain.value = 0;
+        source.connect(gain).connect(destination);
+        source.start();
+        void context.resume();
+        if (direction === "input") input = gain;
+        else output = gain;
+        const track = destination.stream.getAudioTracks()[0];
+        tracks.push(track);
+        const stop = track.stop.bind(track);
+        track.stop = () => {
+          stop();
+          source.disconnect();
+          gain.disconnect();
+          if (context.state !== "closed") void context.close();
+        };
+        return destination.stream;
       };
-      addTrack() {}
-      createDataChannel() {
-        return this.dc;
-      }
-      async createOffer() {
-        return { type: "offer", sdp: "v=0 synthetic voice offer only" };
-      }
-      async setLocalDescription() {}
-      async setRemoteDescription() {
-        this.connectionState = "connected";
-        this.ontrack?.({ streams: [stream("output")] });
-        onMessage = this.dc.onmessage;
-        late = onMessage;
-        onOpen = this.dc.onopen;
-        onOpen?.();
-        onMessage?.({
-          data: JSON.stringify({
-            type: "response.created",
-            response: { id: "greeting" },
-          }),
-        });
-      }
-      close() {
-        this.connectionState = "closed";
-        tracks.forEach((t) => t.stop());
-      }
-    }
-    Object.defineProperty(window, "RTCPeerConnection", { value: Peer });
-    Object.defineProperty(window, "__live", {
-      value: {
-        sent,
-        emit: (event: unknown) => onMessage?.({ data: JSON.stringify(event) }),
-        reopen: () => onOpen?.(),
-        late: (event: unknown) => late?.({ data: JSON.stringify(event) }),
-        input: (value: number) => {
-          input.gain.value = value;
+      Object.defineProperty(navigator.mediaDevices, "getUserMedia", {
+        configurable: true,
+        value: async () => {
+          requests++;
+          if (deny) throw new DOMException("Denied", "NotAllowedError");
+          return stream("input");
         },
-        output: (value: number) => {
-          output.gain.value = value;
-        },
-        unblock: () => {
-          blocks = false;
-        },
-        lost: () => {
-          tracks[0]?.stop();
-          tracks[0]?.dispatchEvent(new Event("ended"));
-        },
-        snapshot: () => ({
-          requests,
-          tracks: tracks.map((t) => t.readyState),
-          contexts: contexts.map((c) => c.state),
+      });
+      const NativeAudio = window.Audio;
+      window.Audio = class extends NativeAudio {
+        play() {
+          if (this.srcObject && blocks)
+            return Promise.reject(
+              new DOMException("Blocked", "NotAllowedError"),
+            );
+          return super.play();
+        }
+      };
+      class Peer {
+        connectionState = "new";
+        ontrack: ((e: { streams: MediaStream[] }) => void) | null = null;
+        onconnectionstatechange: (() => void) | null = null;
+        dc = {
+          readyState: "open",
+          onopen: null as (() => void) | null,
+          onmessage: null as ((e: { data: string }) => void) | null,
+          onerror: null as (() => void) | null,
+          onclose: null as (() => void) | null,
+          send: (value: string) => {
+            sent.push(value);
+            if (
+              JSON.parse(value).type === "output_audio_buffer.clear" &&
+              output
+            )
+              output.gain.value = 0;
+          },
+          close: () => {},
+        };
+        addTrack() {}
+        createDataChannel() {
+          return this.dc;
+        }
+        async createOffer() {
+          return { type: "offer", sdp: "v=0 synthetic voice offer only" };
+        }
+        async setLocalDescription() {}
+        async setRemoteDescription() {
+          this.connectionState = "connected";
+          this.ontrack?.({ streams: [stream("output")] });
+          onMessage = this.dc.onmessage;
+          late = onMessage;
+          onOpen = this.dc.onopen;
+          onOpen?.();
+          if (configuration === "pending") return;
+          onMessage?.({
+            data: JSON.stringify({
+              type: "session.updated",
+              session: {
+                model: "gpt-realtime",
+                max_output_tokens: 900,
+                audio: {
+                  input: {
+                    transcription: { model: "gpt-4o-mini-transcribe" },
+                    turn_detection: {
+                      type: "server_vad",
+                      create_response: true,
+                      interrupt_response: true,
+                    },
+                  },
+                  output: { voice: "marin" },
+                },
+              },
+            }),
+          });
+          onMessage?.({
+            data: JSON.stringify({
+              type: "response.created",
+              response: { id: "greeting" },
+            }),
+          });
+        }
+        close() {
+          this.connectionState = "closed";
+          tracks.forEach((t) => t.stop());
+        }
+      }
+      Object.defineProperty(window, "RTCPeerConnection", { value: Peer });
+      Object.defineProperty(window, "__live", {
+        value: {
           sent,
-        }),
-      },
-    });
-  }, options);
+          emit: (event: unknown) =>
+            onMessage?.({ data: JSON.stringify(event) }),
+          reopen: () => onOpen?.(),
+          late: (event: unknown) => late?.({ data: JSON.stringify(event) }),
+          input: (value: number) => {
+            input.gain.value = value;
+          },
+          output: (value: number) => {
+            output.gain.value = value;
+          },
+          unblock: () => {
+            blocks = false;
+          },
+          lost: () => {
+            tracks[0]?.stop();
+            tracks[0]?.dispatchEvent(new Event("ended"));
+          },
+          snapshot: () => ({
+            requests,
+            tracks: tracks.map((t) => t.readyState),
+            enabled: tracks.map((t) => t.enabled),
+            contexts: contexts.map((c) => c.state),
+            sent,
+          }),
+        },
+      });
+    },
+    { ...options, configuration },
+  );
   await page.route("**/api/status", (r) =>
     r.fulfill({ json: { configured: options.configured } }),
   );
@@ -360,5 +392,121 @@ test("a stalled response stops capture rather than thinking indefinitely", async
   ).toBeVisible();
   await expect(
     page.getByRole("img", { name: "Microphone input level" }),
+  ).toHaveCount(0);
+});
+
+const readySession = {
+  model: "gpt-realtime",
+  max_output_tokens: 900,
+  audio: {
+    input: {
+      transcription: { model: "gpt-4o-mini-transcribe" },
+      turn_detection: {
+        type: "server_vad",
+        create_response: true,
+        interrupt_response: true,
+      },
+    },
+    output: { voice: "marin" },
+  },
+};
+test("startup keeps microphone disabled until delayed effective configuration and greets once", async ({
+  page,
+}) => {
+  await setup(
+    page,
+    { deny: false, blocked: false, configured: true },
+    "pending",
+  );
+  await page.getByRole("button", { name: "Live voice", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Allow microphone & start", exact: true })
+    .click();
+  await expect
+    .poll(
+      async () =>
+        ((await action(page, "snapshot")) as { requests: number }).requests,
+    )
+    .toBe(1);
+  await action(page, "emit", {
+    type: "session.created",
+    session: {
+      ...readySession,
+      audio: {
+        ...readySession.audio,
+        input: { ...readySession.audio.input, transcription: null },
+      },
+    },
+  });
+  expect(greetings(await action(page, "snapshot"))).toHaveLength(0);
+  expect(
+    ((await action(page, "snapshot")) as { enabled: boolean[] }).enabled[0],
+  ).toBe(false);
+  await expect(
+    page.getByText("Live voice · microphone on", { exact: true }),
+  ).toHaveCount(0);
+  await action(page, "emit", {
+    type: "session.updated",
+    session: readySession,
+  });
+  await expect(
+    page.getByText("Live voice · microphone on", { exact: true }),
+  ).toBeVisible();
+  expect(
+    ((await action(page, "snapshot")) as { enabled: boolean[] }).enabled[0],
+  ).toBe(true);
+  await action(page, "emit", {
+    type: "session.updated",
+    session: readySession,
+  });
+  expect(greetings(await action(page, "snapshot"))).toHaveLength(1);
+  await action(page, "emit", {
+    type: "session.updated",
+    session: { ...readySession, max_output_tokens: "inf" },
+  });
+  await expect(page.locator("body")).toContainText(
+    "Voice configuration changed",
+  );
+  expect(
+    ((await action(page, "snapshot")) as { tracks: string[] }).tracks.every(
+      (t) => t === "ended",
+    ),
+  ).toBe(true);
+});
+test("missing voice configuration times out with no greeting and late readiness cannot revive capture", async ({
+  page,
+}) => {
+  await setup(
+    page,
+    { deny: false, blocked: false, configured: true },
+    "pending",
+  );
+  await page.clock.install();
+  await page.getByRole("button", { name: "Live voice", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Allow microphone & start", exact: true })
+    .click();
+  await expect
+    .poll(
+      async () =>
+        ((await action(page, "snapshot")) as { requests: number }).requests,
+    )
+    .toBe(1);
+  await page.clock.fastForward(5100);
+  await expect(page.locator("body")).toContainText(
+    "Voice configuration was not confirmed",
+  );
+  await action(page, "emit", {
+    type: "session.updated",
+    session: readySession,
+  });
+  expect(greetings(await action(page, "snapshot"))).toHaveLength(0);
+  expect(
+    ((await action(page, "snapshot")) as { tracks: string[] }).tracks.every(
+      (t) => t === "ended",
+    ),
+  ).toBe(true);
+  await expect(
+    page.getByText("Live voice · microphone on", { exact: true }),
   ).toHaveCount(0);
 });
