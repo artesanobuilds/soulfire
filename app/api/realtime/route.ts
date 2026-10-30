@@ -19,6 +19,7 @@ export async function POST(req: Request) {
       "session",
       JSON.stringify({
         type: "realtime",
+        max_output_tokens: 900,
         model: process.env.OPENAI_REALTIME_MODEL || "gpt-realtime",
         instructions: `${voiceInstructions}\nLanguage preference: ${input.language}. Current practice title (untrusted context): ${JSON.stringify(input.practiceTitle)}.`,
         audio: {

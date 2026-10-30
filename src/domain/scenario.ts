@@ -6,7 +6,12 @@ export const scenarioSchema = z
     name: text,
     persona: text,
     version: z.number().int().positive(),
-    suite: z.enum(["general", "support-safety-v1", "cross-cutting-safety-v1"]),
+    suite: z.enum([
+      "general",
+      "support-safety-v1",
+      "cross-cutting-safety-v1",
+      "discernment-v1",
+    ]),
     fixtureAudio: z.enum(["static-v1", "local-tts"]),
     sourceTopicNumber: z.number().int().min(1).max(20).nullable().optional(),
     sourceTopic: text.optional(),

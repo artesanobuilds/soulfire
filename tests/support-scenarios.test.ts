@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import source from "../simulations/support-suite-source.json";
 import {
+  FixtureSyntheticUser,
   simulationScenarios,
   simulationConfigSchema,
   usesLocalSynthesis,
@@ -37,8 +38,8 @@ const speech: SyntheticSpeech = {
     mime: "audio/wav",
   }),
 };
-it("matches exactly the 20 source headings, preserves both demos and adds one marked cross-cutting variant", () => {
-  expect(simulationScenarios).toHaveLength(23);
+it("matches exactly the 20 source headings, preserves both demos, one cross-cutting variant and five discernment cases", () => {
+  expect(simulationScenarios).toHaveLength(28);
   expect(
     simulationScenarios.filter((s) => s.suite === "general").map((s) => s.id),
   ).toEqual(["first-presentation", "gentle-boundary"]);
@@ -51,7 +52,7 @@ it("matches exactly the 20 source headings, preserves both demos and adds one ma
   expect(
     simulationScenarios.filter((s) => s.suite === "cross-cutting-safety-v1"),
   ).toHaveLength(1);
-  expect(new Set(simulationScenarios.map((s) => s.id)).size).toBe(23);
+  expect(new Set(simulationScenarios.map((s) => s.id)).size).toBe(28);
 });
 it("rejects unknown or duplicate scenario identities and duplicate source topics", () => {
   expect(
@@ -235,7 +236,9 @@ it("saved scenario snapshots survive repository reopen and catalog edits", async
   );
   try {
     s.turns[0].text = "Later catalog revision, not this saved run.";
-    const reopened = new SqliteHistoryRepository(join(dirs[dirs.length - 1], "history.sqlite"));
+    const reopened = new SqliteHistoryRepository(
+      join(dirs[dirs.length - 1], "history.sqlite"),
+    );
     const result = await advanceSimulation(
       "owner",
       run.id,
@@ -268,4 +271,61 @@ it("only the synthetic-user adapter receives persona details; guide context stay
   await user.next(s, [], new AbortController().signal);
   expect(prompts[0]).toContain(s.profile!.context);
   expect(prompts[0]).not.toContain(s.evaluation!.expected[0]);
+});
+
+it("scripted users expose only factual turns to the current companion, never rubric or fixture answers", async () => {
+  const repo = store();
+  const scenario = simulationScenarios.find(
+    (s) => s.id === "discernment-uncertain-perception",
+  )!;
+  const requests: string[] = [];
+  const model: ModelProvider = {
+    name: "mock-scripted-baseline",
+    generate: async (input) => {
+      requests.push(JSON.stringify(input));
+      return {
+        model: "mock-v1",
+        reply: {
+          kind: "conversation",
+          message: "Independent model reply",
+          exercise: null,
+        },
+      };
+    },
+  };
+  let run = await repo.createRun(
+    "owner",
+    simulationConfigSchema.parse({
+      scenario: scenario.id,
+      mode: "text",
+      delivery: "background",
+      engine: "live-text",
+      allowPaid: true,
+      maxCostUsd: 0.1,
+    }),
+  );
+  while (run.cursor < 4) {
+    run = (
+      await advanceSimulation(
+        "owner",
+        run.id,
+        run.cursor,
+        new AbortController().signal,
+        repo,
+        () => model,
+        new FixtureSyntheticUser(),
+      )
+    ).run;
+  }
+  expect(requests).toHaveLength(2);
+  expect(requests[0]).toContain(scenario.turns[0].text);
+  expect(requests[1]).toContain(scenario.turns[2].text);
+  for (const request of requests) {
+    expect(request).not.toContain(scenario.evaluation!.expected[0]);
+    expect(request).not.toContain("Fixture demonstration only");
+  }
+  const events = (await repo.read("owner", run.id)).events;
+  expect(
+    events.filter((e) => e.role === "assistant").map((e) => e.text),
+  ).toEqual(["Independent model reply", "Independent model reply"]);
 });

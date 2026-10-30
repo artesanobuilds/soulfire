@@ -1,6 +1,6 @@
 import { z } from "zod";
 const short = z.string().min(1).max(180);
-export const blockSchema = z
+const blockBase = z
   .object({
     id: z.string().regex(/^[a-z0-9_-]{1,40}$/),
     type: z.enum(["sort", "reflect", "choose"]),
@@ -10,6 +10,23 @@ export const blockSchema = z
     items: z.array(short).max(8),
   })
   .strict();
+// Express control invariants in the provider schema as well as runtime validation.
+export const blockSchema = z.union([
+  blockBase.extend({
+    type: z.literal("sort"),
+    options: z.array(short).min(2).max(6),
+  }),
+  blockBase.extend({
+    type: z.literal("choose"),
+    options: z.array(short).min(2).max(6),
+    items: z.array(short).max(0),
+  }),
+  blockBase.extend({
+    type: z.literal("reflect"),
+    options: z.array(short).max(0),
+    items: z.array(short).max(0),
+  }),
+]);
 export const exerciseSchema = z
   .object({
     schemaVersion: z.literal(1),
@@ -71,3 +88,18 @@ export const requestSchema = z
 export const outputJsonSchema = z.toJSONSchema(replySchema, {
   unrepresentable: "any",
 });
+
+const conversationalReplySchema = z
+  .object({
+    message: z.string().min(1).max(3000),
+    kind: z.enum(["conversation", "support"]),
+    exercise: z.null(),
+  })
+  .strict();
+export function outputJsonSchemaForIntent(
+  intent: "practice" | "conversation" | "reflection",
+) {
+  return intent === "practice"
+    ? outputJsonSchema
+    : z.toJSONSchema(conversationalReplySchema);
+}

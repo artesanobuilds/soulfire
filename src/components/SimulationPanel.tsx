@@ -491,6 +491,7 @@ export function SimulationPanel({
                     "20 source topics · fictional evaluations",
                   ],
                   ["cross-cutting-safety-v1", "Cross-cutting safety boundary"],
+                  ["discernment-v1", "Discernment under uncertainty"],
                 ] as const
               ).map(([suite, label]) => (
                 <optgroup key={suite} label={label}>
