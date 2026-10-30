@@ -1,5 +1,7 @@
 # October 30 integration update
 
+Current unresolved work is tracked in the [canonical prototype roadmap](docs/strategy/product-strategy.md#current-prototype-roadmap--october-30-2026); update statuses there rather than creating another backlog.
+
 Shared-core/mode-specific instructions, structural response fixes and fictional discernment simulations are integrated. Text defaults to GPT-6.1 Sol; native voice remains gpt-realtime. Voice factual drafting is unresolved; failed variants were rejected. Start with [the integrated evidence and limitations](docs/implementation/integrated-discernment-20261030.md). Older validation and publication statements below are historical.
 
 # Current location — October 23, 2026

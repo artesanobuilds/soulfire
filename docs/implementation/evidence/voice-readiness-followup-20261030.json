@@ -1,0 +1,33 @@
+{
+  "retryCompleted": true,
+  "retryInitialNullToConfiguredMs": 40.0,
+  "gateSessionsCompleted": 2,
+  "gateGuideReplies": 3,
+  "gateWelcomeReplies": 2,
+  "allFiveResponsesComplete": true,
+  "gateOnsetMs": {
+    "median": 1348.675000011921,
+    "min": 1259.4249999821186,
+    "max": 1363.1083333392962
+  },
+  "cumulativeReservedUsd": 16.254054946666667,
+  "capUsd": 30,
+  "privateCaseExcludedFromPublicArtifacts": true,
+  "gateConfigurationTimings": [
+    {
+      "id": "discernment-practical-deadline",
+      "status": "completed",
+      "initialTranscriptionWasNull": true,
+      "configurationAckAfterChannelOpenMs": 172.90000000596046,
+      "welcomeCreatedAfterConfigAckMs": 79.7000000178814
+    },
+    {
+      "id": "heldout-reflection-without-assumption",
+      "status": "completed",
+      "initialTranscriptionWasNull": true,
+      "configurationAckAfterChannelOpenMs": 96.59999999403954,
+      "welcomeCreatedAfterConfigAckMs": 67.2000000178814
+    }
+  ],
+  "factuality": "Availability draft still invents availability/prior discussion; readiness fix does not address speech factuality."
+}

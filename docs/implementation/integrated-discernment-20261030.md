@@ -1,5 +1,7 @@
 # Integrated discernment prototype — 2026-10-30
 
+> Subsequent follow-up completed the previously omitted reflection case, identified asynchronous configuration settling, and verified a microphone-readiness gate. See [follow-up results and drafting options](voice-readiness-and-drafting-20261030.md) and the [canonical roadmap](../strategy/product-strategy.md#current-prototype-roadmap--october-30-2026). Original results below remain intact as historical evidence.
+
 The prototype now shares factuality, agency, optional spirituality and safety principles across text and voice, with separate delivery instructions. Text defaults to **GPT-6.1 Sol**, following actual matched provider-path comparisons and final endpoint checks. Voice remains native **gpt-realtime / marin** and uses the earlier evaluated direct-help bundle, with a 900-token output cap. The failed factual-slot revision and evidence-frame prototype are **not** runtime behavior. This remains experimental; voice factual drafting is unresolved.
 
 ## What changed and why

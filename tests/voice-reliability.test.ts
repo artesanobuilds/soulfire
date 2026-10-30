@@ -22,3 +22,62 @@ test("diagnostics never retain arbitrary provider content", () => {
   });
   expect(JSON.stringify(result)).toBe('{"fatal":true,"category":"unknown"}');
 });
+
+import { voiceSessionIsReady } from "../src/lib/voice-reliability";
+const ready = {
+  model: "gpt-realtime",
+  max_output_tokens: 900,
+  audio: {
+    input: {
+      transcription: { model: "gpt-4o-mini-transcribe" },
+      turn_detection: {
+        type: "server_vad",
+        create_response: true,
+        interrupt_response: true,
+      },
+    },
+    output: { voice: "marin" },
+  },
+};
+test("readiness requires effective transcription, bounded output and intended native turn handling", () => {
+  expect(voiceSessionIsReady(ready)).toBe(true);
+  expect(
+    voiceSessionIsReady({
+      ...ready,
+      audio: {
+        ...ready.audio,
+        input: {
+          ...ready.audio.input,
+          transcription: { model: "operator-selected-transcriber" },
+        },
+      },
+    }),
+  ).toBe(true);
+  for (const value of [
+    null,
+    {},
+    { ...ready, max_output_tokens: "inf" },
+    {
+      ...ready,
+      audio: {
+        ...ready.audio,
+        input: { ...ready.audio.input, transcription: null },
+      },
+    },
+    {
+      ...ready,
+      audio: {
+        ...ready.audio,
+        input: {
+          ...ready.audio.input,
+          turn_detection: {
+            ...ready.audio.input.turn_detection,
+            create_response: false,
+          },
+        },
+      },
+    },
+    { ...ready, audio: { ...ready.audio, output: { voice: "unexpected" } } },
+  ])
+    expect(voiceSessionIsReady(value)).toBe(false);
+});

@@ -6,7 +6,10 @@ import { voiceGreeting } from "../lib/voice-greeting";
 import { DictationWaveform } from "./DictationWaveform";
 import type { Message } from "../lib/schema";
 
-import { classifyVoiceError } from "../lib/voice-reliability";
+import {
+  classifyVoiceError,
+  voiceSessionIsReady,
+} from "../lib/voice-reliability";
 import type { BrowserHistoryEvent } from "../domain/history";
 
 type Props = {
@@ -376,8 +379,16 @@ export function VoiceControls(p: Props) {
         fail("Voice transport failed. Start voice again or keep typing.");
       dc.onclose = () =>
         fail("Voice disconnected. Start voice again or keep typing.");
-      dc.onopen = () => {
-        if (resources.current.epoch !== epoch || r.opened) return;
+      let transportOpen = false,
+        configurationReady = false;
+      const beginLive = () => {
+        if (
+          !transportOpen ||
+          !configurationReady ||
+          resources.current.epoch !== epoch ||
+          r.opened
+        )
+          return;
         r.opened = true;
         clearTimeout(r.timer);
         r.timer = setTimeout(() => {
@@ -446,11 +457,39 @@ export function VoiceControls(p: Props) {
           fail("Voice transport failed. Start voice again or keep typing.");
         }
       };
+      dc.onopen = () => {
+        if (!current() || transportOpen) return;
+        transportOpen = true;
+        if (configurationReady) beginLive();
+        else {
+          clearTimeout(r.timer);
+          r.timer = setTimeout(
+            () =>
+              fail(
+                "Voice configuration was not confirmed. Your microphone has stopped; try again or keep typing.",
+              ),
+            5000,
+          );
+        }
+      };
       dc.onmessage = (e) => {
         if (resources.current.epoch !== epoch) return;
         try {
           const event = JSON.parse(e.data);
           if (!event || typeof event.type !== "string") return;
+          if (
+            event.type === "session.created" ||
+            event.type === "session.updated"
+          ) {
+            configurationReady = voiceSessionIsReady(event.session);
+            if (configurationReady) beginLive();
+            else if (r.opened)
+              fail(
+                "Voice configuration changed. Your microphone has stopped; start again or keep typing.",
+              );
+            return;
+          }
+
           if (event.type === "response.created") {
             if (typeof event.response?.id === "string")
               r.responseId = event.response.id;
