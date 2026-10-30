@@ -1,6 +1,6 @@
 # soulfire · Proof of Concept One
 
-A local, responsive practice prototype based on the repository vision and selected sage-and-gold design. The complete interaction loop and real OpenAI integrations are implemented. **Real text generation was verified on October 23, 2026 with one synthetic request to OpenAI, rendered as an editable personalized practice. Cloud transcription and physical voice round trips remain unverified and require microphone consent.** Labeled examples are available without a key. This is not a public pilot or clinical product.
+A local, responsive practice prototype based on the repository vision and selected sage-and-gold design. The complete interaction loop and real OpenAI integrations are implemented. **Text and native voice were evaluated with fictional scenarios on October 30, 2026. Text defaults to GPT-6.1 Sol following matched model checks; voice uses separate Realtime delivery instructions. Factual voice drafting errors remain unresolved. Physical-microphone listening and clinical benefit are unverified.** Labeled examples are available without a key. This is not a public pilot or clinical product.
 
 **Taking over the project? Start with [the agent handoff](AGENT_HANDOFF.md).**
 
@@ -36,11 +36,11 @@ Use an **existing authorized OpenAI API key**. Do not paste it into chat, source
 
 Defaults (configurable server-side):
 
-- `OPENAI_MODEL=gpt-4.1-mini`: Responses API, strict structured output, runtime validation, `store:false`.
+- `OPENAI_MODEL=gpt-6.1-sol`: Responses API, strict structured output, runtime validation, `store:false`.
 - `OPENAI_TRANSCRIBE_MODEL=gpt-4o-mini-transcribe`: recorded audio → editable draft.
 - `OPENAI_REALTIME_MODEL=gpt-realtime`: WebRTC speech input/output, `marin` AI voice, transcription and voice interruption.
 
-These are implementation baselines, not a claim of optimal model quality, account access or evaluated latency. Provider errors are surfaced without substituting canned AI replies. The setup indicator is beside every composer and voice control.
+Explicit environment values override these defaults; existing installations must deliberately update `OPENAI_MODEL` to adopt Sol. Text takes longer than the previous mini baseline in the measured sample. Voice stays on its separate native model. See [today’s integrated evidence](docs/implementation/integrated-discernment-20261030.md) for improvements, rejected variants and unresolved limits. These defaults do not establish general reliability or clinical benefit. Provider errors are surfaced without substituting canned AI replies. The setup indicator is beside every composer and voice control.
 
 For microphone use, choose Dictate or Live voice, read the disclosure, then explicitly allow the browser microphone. Use localhost or HTTPS. Browser/OS permission is separate. Text remains usable on denial. No microphone permission was granted to this project during automated testing.
 

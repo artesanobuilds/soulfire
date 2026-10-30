@@ -41,12 +41,12 @@ test.afterEach(async ({ page, baseURL }) => {
     });
   }
 });
-test("all 20 source topics and one labeled variant are selectable and launch once with saved snapshots", async ({
+test("all support and discernment evaluations are selectable and launch once with saved snapshots", async ({
   page,
 }, info) => {
   test.setTimeout(120000);
   const select = page.getByLabel("Synthetic scenario", { exact: true });
-  await expect(select.locator("option")).toHaveCount(23);
+  await expect(select.locator("option")).toHaveCount(scenarios.length);
   expect(
     await select
       .locator("option")
@@ -100,14 +100,14 @@ test("all 20 source topics and one labeled variant are selectable and launch onc
     await expect(page.locator(".simulation-status")).toContainText("Completed");
     await expect(page.locator(".simulation-turns li")).toHaveCount(4);
   }
-  expect(creates).toBe(21);
+  expect(creates).toBe(evaluations.length);
   const data = await (await page.request.get("/api/simulations")).json();
-  expect(data.runs).toHaveLength(21);
+  expect(data.runs).toHaveLength(evaluations.length);
   expect(
     new Set(
       data.runs.map((r: { config: { scenario: string } }) => r.config.scenario),
     ).size,
-  ).toBe(21);
+  ).toBe(evaluations.length);
   for (const run of data.runs) {
     expect(run.scenarioSnapshot.id).toBe(run.config.scenario);
     expect(run.scenarioVersion).toBe(1);

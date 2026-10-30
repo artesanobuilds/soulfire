@@ -30,7 +30,10 @@ export function simulationModel(
   owner: string,
   id: string,
   claim: string,
+  outputLimit = 400,
 ) {
+  if (!Number.isInteger(outputLimit) || outputLimit < 100 || outputLimit > 2200)
+    throw new HistoryError(400, "Choose 100 to 2200 simulation output tokens.");
   if (!liveSimulationAvailable())
     throw new HistoryError(
       503,
@@ -47,15 +50,15 @@ export function simulationModel(
         "Simulation request exceeded its input bound.",
       );
     const payload = JSON.parse(body);
-    if (payload.max_output_tokens > 400)
+    if (payload.max_output_tokens > outputLimit)
       throw new HistoryError(400, "Simulation output budget exceeded.");
     // Deliberately conservative byte-count reservation plus framing allowance.
     // This is an estimate using operator-verified prices, not an account billing cap.
     const cost =
       ((Buffer.byteLength(body) + 4096) * simulationRates()!.input +
-        400 * simulationRates()!.output) /
+        outputLimit * simulationRates()!.output) /
       1000000;
     await repo.reserve(owner, id, claim, cost);
     return provider(path, body, request, contentType);
-  }, 400);
+  }, outputLimit);
 }

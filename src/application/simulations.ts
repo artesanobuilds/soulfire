@@ -47,6 +47,7 @@ export async function advanceSimulation(
   signal: AbortSignal,
   repo: SimulationRepository & HistoryRepository,
   modelFactory?: (claim: string) => ModelProvider,
+  userAdapter?: SyntheticUserAdapter,
 ) {
   const run = await repo.claim(owner, id, cursor);
   const claim = run.claim!;
@@ -70,9 +71,12 @@ export async function advanceSimulation(
         .filter((e) => e.kind === "message")
         .map((e) => ({ role: e.role!, content: e.text! }));
       if (cursor % 2 === 0) {
-        const user = new ModelSyntheticUser(provider);
+        const user = userAdapter || new ModelSyntheticUser(provider);
         message = await user.next(scenario, prior, signal);
-        model = user.lastModel;
+        model =
+          user instanceof ModelSyntheticUser
+            ? user.lastModel
+            : "scripted-user-v1";
       } else {
         const reply = await runCompanion(
           { messages: prior, language: "plain", intent: "conversation" },

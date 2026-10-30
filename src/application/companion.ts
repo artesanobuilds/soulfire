@@ -114,6 +114,11 @@ export async function runCompanion(
         "The response did not match a safe practice. Your work is unchanged; try again or choose a local example.",
       );
     const reply = parsed.data;
+    if (input.intent !== "practice" && reply.exercise)
+      throw new ModelFailure(
+        "invalid",
+        "An exercise requires practice mode. Your current practice has not changed.",
+      );
     if (
       reply.exercise?.blocks.some(
         (b) =>

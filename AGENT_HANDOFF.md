@@ -1,3 +1,7 @@
+# October 30 integration update
+
+Shared-core/mode-specific instructions, structural response fixes and fictional discernment simulations are integrated. Text defaults to GPT-6.1 Sol; native voice remains gpt-realtime. Voice factual drafting is unresolved; failed variants were rejected. Start with [the integrated evidence and limitations](docs/implementation/integrated-discernment-20261030.md). Older validation and publication statements below are historical.
+
 # Current location — October 23, 2026
 
 Authoritative source and Git working tree: `/Users/miguelalvarado/Coding/soulfire`. Preview: http://127.0.0.1:3100. Git origin remains https://github.com/artesanobuilds/soulfire.git. Current work includes immersive arrival, ambient audio, opt-in local practice persistence and verified real text generation. See `docs/implementation/live-ai-validation.md` for the latest acceptance evidence. Old Documents and /tmp copies are recovery/history, not the active project. See `docs/implementation/location-and-intro-controls.md` for migration evidence and current checks; the older handoff below is historical.

@@ -1,0 +1,85 @@
+{
+  "nativeSessionsAttempted": 5,
+  "nativeSessionsCompleted": 4,
+  "nativeGuideReplies": 7,
+  "nativeWelcomeReplies": 4,
+  "nativeCompleteResponses": 11,
+  "nativeIncompleteResponses": 0,
+  "nativeFailedCase": "heldout-reflection-without-assumption \u2014 provider session.created transcription null; no user input or model responses; no retry",
+  "nativeOnsetMs": {
+    "median": 1084.4083333214148,
+    "min": 911.3166666428224,
+    "max": 1727.25
+  },
+  "nativeKnownRealtimeUsageEstimateUsd": 0.3113824,
+  "nativeUsageAvailableResponses": 11,
+  "reservations": {
+    "prior": 12.12677852,
+    "native": 1.70008672,
+    "baselineText": 0.25,
+    "SolText": 1,
+    "SolPractice": 0.15,
+    "cumulative": 15.22686524,
+    "approvedCap": 30,
+    "remaining": 14.77313476
+  },
+  "baselineText": {
+    "state": "completed",
+    "calls": 8,
+    "accepted": 8,
+    "reportedModels": [
+      "gpt-4.1-mini-2025-04-14"
+    ],
+    "completeTextLatencyMsMedian": 1478.5,
+    "completeTextLatencyMsRange": [
+      1018,
+      2521
+    ]
+  },
+  "SolText": {
+    "state": "completed",
+    "calls": 8,
+    "accepted": 8,
+    "reportedModels": [
+      "gpt-6.1-sol"
+    ],
+    "completeTextLatencyMsMedian": 4581.0,
+    "completeTextLatencyMsRange": [
+      1964,
+      10600
+    ]
+  },
+  "scope": "Fictional inputs only; raw transcripts/audio/provider identifiers retained privately.",
+  "runtimeSourceHashesBeforeModelDefaultSelection": {
+    "src/lib/agent.ts": "1df4af160442eacc0bcf2ccc0a941788ec917655fdc6160b9883bb6e98755e76",
+    "app/api/realtime/route.ts": "ede84af1143490e482f3a54983ff464943aa5399bd316ffd4930ff009610ffbd",
+    "src/components/VoiceControls.tsx": "9d9e126e648c8fcc0d1e280fa95b778db11f266382f9f377cfd832a060e6f9c1",
+    "src/lib/schema.ts": "076ed702ca498422eccf3b346888908e61c7aaa187e54f24d19ed03656193a93",
+    "src/application/companion.ts": "521775d7a7986d5cc71e8a72a223ba5961119b9c4d8d89be8ea99d9d2547069e"
+  },
+  "finalSourceHashes": {
+    "src/lib/agent.ts": "1df4af160442eacc0bcf2ccc0a941788ec917655fdc6160b9883bb6e98755e76",
+    "src/lib/schema.ts": "076ed702ca498422eccf3b346888908e61c7aaa187e54f24d19ed03656193a93",
+    "src/infrastructure/openai-responses.ts": "9ade9748fd418e786c9dcb399b80d25796285aca70dd87535df6337719641adc",
+    "src/application/companion.ts": "521775d7a7986d5cc71e8a72a223ba5961119b9c4d8d89be8ea99d9d2547069e",
+    "app/api/realtime/route.ts": "ede84af1143490e482f3a54983ff464943aa5399bd316ffd4930ff009610ffbd"
+  },
+  "modelSelectionParity": "Final default is Sol. Actual Sol endpoint used the same provider model, prompt/schema/contracts via explicit env; unit test verifies unset fallback and explicit override paths. Final rebuild checks selected default; no additional behavioral trial implied.",
+  "offlineValidation": {
+    "unitTestsPassed": 238,
+    "unitFiles": 22,
+    "typecheck": "pass",
+    "lint": "pass",
+    "productionBuild": "pass, isolated copy with exact source parity",
+    "browserOriginal": {
+      "passed": 253,
+      "failed": 4,
+      "intentionalSkipped": 1
+    },
+    "browserCorrectedSubset": {
+      "passed": 12,
+      "failed": 0
+    },
+    "browserDistinctPassingChecks": 257
+  }
+}

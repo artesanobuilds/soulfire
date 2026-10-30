@@ -754,6 +754,12 @@ export function VoiceControls(p: Props) {
               : "Your microphone audio and submitted conversation go to OpenAI. You’ll hear an AI-generated voice. Private exercise fields are not sent. You can interrupt, mute, or end at any time."}
           </p>
           {mode === "consent-live" && (
+            <small role="note">
+              Experimental guidance. Check factual details before using
+              suggested wording.
+            </small>
+          )}
+          {mode === "consent-live" && (
             <label className="voice-name">
               What should I call you? (optional, this voice session only)
               <input

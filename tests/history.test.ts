@@ -434,40 +434,49 @@ it("stopping an in-flight model simulation prevents a late generated turn from b
     (await repo.read("sim", run.id)).events.some((e) => e.kind === "message"),
   ).toBe(false);
 });
-it("simulation transport reserves cost and refuses over-budget calls before networking", async () => {
-  const { simulationModel } =
-    await import("../src/infrastructure/simulation-model");
-  vi.stubEnv("OPENAI_API_KEY", "synthetic-test-only");
-  vi.stubEnv("SOULFIRE_SIM_INPUT_USD_PER_MILLION", "0.4");
-  vi.stubEnv("SOULFIRE_SIM_OUTPUT_USD_PER_MILLION", "1.6");
-  const { repo } = repository();
-  const config = simulationConfigSchema.parse({
-    scenario: "first-presentation",
-    mode: "text",
-    delivery: "background",
-    engine: "live-text",
-    allowPaid: true,
-    maxCostUsd: 0.000001,
-  });
-  const run = await repo.createRun("sim", config);
-  const claim = await repo.claim("sim", run.id, 0);
-  const network = vi.spyOn(globalThis, "fetch");
-  try {
-    await expect(
-      simulationModel(repo, "sim", run.id, claim.claim!).generate(
-        {
-          messages: [{ role: "user", content: "Synthetic" }],
-          language: "plain",
-          intent: "conversation",
-        },
-        new AbortController().signal,
-      ),
-    ).rejects.toThrow("limit");
-    expect(network).not.toHaveBeenCalled();
-  } finally {
-    network.mockRestore();
-  }
-});
+it.each([400, 2200])(
+  "simulation transport with %i tokens refuses over-budget calls before networking",
+  async (outputLimit) => {
+    const { simulationModel } =
+      await import("../src/infrastructure/simulation-model");
+    vi.stubEnv("OPENAI_API_KEY", "synthetic-test-only");
+    vi.stubEnv("SOULFIRE_SIM_INPUT_USD_PER_MILLION", "0.4");
+    vi.stubEnv("SOULFIRE_SIM_OUTPUT_USD_PER_MILLION", "1.6");
+    const { repo } = repository();
+    const config = simulationConfigSchema.parse({
+      scenario: "first-presentation",
+      mode: "text",
+      delivery: "background",
+      engine: "live-text",
+      allowPaid: true,
+      maxCostUsd: 0.000001,
+    });
+    const run = await repo.createRun("sim", config);
+    const claim = await repo.claim("sim", run.id, 0);
+    const network = vi.spyOn(globalThis, "fetch");
+    try {
+      await expect(
+        simulationModel(
+          repo,
+          "sim",
+          run.id,
+          claim.claim!,
+          outputLimit,
+        ).generate(
+          {
+            messages: [{ role: "user", content: "Synthetic" }],
+            language: "plain",
+            intent: "conversation",
+          },
+          new AbortController().signal,
+        ),
+      ).rejects.toThrow("limit");
+      expect(network).not.toHaveBeenCalled();
+    } finally {
+      network.mockRestore();
+    }
+  },
+);
 
 it("paid request count stays bounded across canceled/resumed turns", async () => {
   const { repo } = repository();
@@ -495,92 +504,97 @@ it("paid request count stays bounded across canceled/resumed turns", async () =>
   expect((await repo.run("sim", run.id)).providerRequests).toBe(4);
 });
 
-it("bounded live adapter runs alternating synthetic roles with validated provider output and no personal memory", async () => {
-  const { simulationModel } =
-    await import("../src/infrastructure/simulation-model");
-  vi.stubEnv("OPENAI_API_KEY", "synthetic-test-only");
-  vi.stubEnv("OPENAI_MODEL", "gpt-4.1-mini");
-  vi.stubEnv("SOULFIRE_SIM_INPUT_USD_PER_MILLION", "0.4");
-  vi.stubEnv("SOULFIRE_SIM_OUTPUT_USD_PER_MILLION", "1.6");
-  const { repo } = repository();
-  const run = await repo.createRun(
-    "sim",
-    simulationConfigSchema.parse({
-      scenario: "first-presentation",
-      mode: "text",
-      delivery: "background",
-      engine: "live-text",
-      allowPaid: true,
-      maxCostUsd: 0.1,
-    }),
-  );
-  const payloads: Record<string, unknown>[] = [];
-  const network = vi
-    .spyOn(globalThis, "fetch")
-    .mockImplementation(async (url, init) => {
-      expect(String(url)).toBe("https://api.openai.com/v1/responses");
-      const payload = JSON.parse(String(init?.body));
-      payloads.push(payload);
-      expect(payload.store).toBe(false);
-      expect(payload.max_output_tokens).toBe(400);
-      expect(payload.text.format.strict).toBe(true);
-      expect(JSON.stringify(payload.input)).not.toContain(
-        "notes I explicitly chose to remember",
-      );
-      return Response.json({
-        id: "resp_synthetic",
-        model: "mock-verified-model",
-        output: [
-          {
-            content: [
-              {
-                type: "output_text",
-                text: JSON.stringify({
-                  message:
-                    payloads.length % 2
-                      ? "I want to practice a short fictional presentation."
-                      : "Try rehearsing one opening sentence.",
-                  kind: "conversation",
-                  exercise: null,
-                }),
-              },
-            ],
-          },
-        ],
+it.each([400, 2200])(
+  "bounded live adapter at %i tokens validates provider output without personal memory",
+  async (outputLimit) => {
+    const { simulationModel } =
+      await import("../src/infrastructure/simulation-model");
+    vi.stubEnv("OPENAI_API_KEY", "synthetic-test-only");
+    vi.stubEnv("OPENAI_MODEL", "gpt-4.1-mini");
+    vi.stubEnv("SOULFIRE_SIM_INPUT_USD_PER_MILLION", "0.4");
+    vi.stubEnv("SOULFIRE_SIM_OUTPUT_USD_PER_MILLION", "1.6");
+    const { repo } = repository();
+    const run = await repo.createRun(
+      "sim",
+      simulationConfigSchema.parse({
+        scenario: "first-presentation",
+        mode: "text",
+        delivery: "background",
+        engine: "live-text",
+        allowPaid: true,
+        maxCostUsd: 0.1,
+      }),
+    );
+    const payloads: Record<string, unknown>[] = [];
+    const network = vi
+      .spyOn(globalThis, "fetch")
+      .mockImplementation(async (url, init) => {
+        expect(String(url)).toBe("https://api.openai.com/v1/responses");
+        const payload = JSON.parse(String(init?.body));
+        payloads.push(payload);
+        expect(payload.store).toBe(false);
+        expect(payload.max_output_tokens).toBe(outputLimit);
+        expect(payload.text.format.strict).toBe(true);
+        expect(JSON.stringify(payload.input)).not.toContain(
+          "notes I explicitly chose to remember",
+        );
+        return Response.json({
+          id: "resp_synthetic",
+          model: "mock-verified-model",
+          output: [
+            {
+              content: [
+                {
+                  type: "output_text",
+                  text: JSON.stringify({
+                    message:
+                      payloads.length % 2
+                        ? "I want to practice a short fictional presentation."
+                        : "Try rehearsing one opening sentence.",
+                    kind: "conversation",
+                    exercise: null,
+                  }),
+                },
+              ],
+            },
+          ],
+        });
       });
-    });
-  try {
-    for (let i = 0; i < 4; i++)
-      await advanceSimulation(
-        "sim",
-        run.id,
-        i,
-        new AbortController().signal,
-        repo,
-        (claim) => simulationModel(repo, "sim", run.id, claim),
+    try {
+      for (let i = 0; i < 4; i++)
+        await advanceSimulation(
+          "sim",
+          run.id,
+          i,
+          new AbortController().signal,
+          repo,
+          (claim) => simulationModel(repo, "sim", run.id, claim, outputLimit),
+        );
+      const saved = await repo.read("sim", run.id);
+      expect(saved.events.map((e) => e.role)).toEqual([
+        "user",
+        "assistant",
+        "user",
+        "assistant",
+      ]);
+      expect(
+        saved.events.every(
+          (e) =>
+            e.provenance.source === "live-synthetic" &&
+            e.provenance.model === "mock-verified-model",
+        ),
+      ).toBe(true);
+      expect(network).toHaveBeenCalledTimes(4);
+      expect((await repo.run("sim", run.id)).providerRequests).toBe(4);
+      expect((await repo.run("sim", run.id)).reservedCostUsd).toBeGreaterThan(
+        0,
       );
-    const saved = await repo.read("sim", run.id);
-    expect(saved.events.map((e) => e.role)).toEqual([
-      "user",
-      "assistant",
-      "user",
-      "assistant",
-    ]);
-    expect(
-      saved.events.every(
-        (e) =>
-          e.provenance.source === "live-synthetic" &&
-          e.provenance.model === "mock-verified-model",
-      ),
-    ).toBe(true);
-    expect(network).toHaveBeenCalledTimes(4);
-    expect((await repo.run("sim", run.id)).providerRequests).toBe(4);
-    expect((await repo.run("sim", run.id)).reservedCostUsd).toBeGreaterThan(0);
-    expect((await repo.run("sim", run.id)).status).toBe("completed");
-  } finally {
-    network.mockRestore();
-  }
-});
+      expect((await repo.run("sim", run.id)).status).toBe("completed");
+    } finally {
+      network.mockRestore();
+    }
+  },
+);
 
 it("synthetic import preserves claimed provenance without granting it trusted live status", async () => {
   const { dir } = repository();

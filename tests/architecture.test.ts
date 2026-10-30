@@ -191,11 +191,11 @@ describe("provider-neutral orchestration and synthetic evaluations", () => {
   function provider(): ModelProvider {
     return {
       name: "Synthetic contract provider",
-      generate: vi.fn(async () => ({
+      generate: vi.fn(async (request) => ({
         reply: {
-          kind: "practice",
+          kind: request.intent === "practice" ? "practice" : "conversation",
           message: "A fictional practice.",
-          exercise: samples.worry,
+          exercise: request.intent === "practice" ? samples.worry : null,
         },
         model: "synthetic",
       })),
