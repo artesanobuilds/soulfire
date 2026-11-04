@@ -6,7 +6,14 @@
   "typecheck": "passed",
   "lint": "passed",
   "productionBuild": "passed",
-  "browserSubset": {
+  "providerCalls": 0,
+  "qualityEvaluation": "not run; prospective fictional cases only",
+  "paidReservationAddedUsd": 0,
+  "priorReservedUsd": 18.254054946666663,
+  "remainingCapUsd": 11.745945053333337,
+  "vadFixIncluded": false,
+  "activeCheckoutModified": false,
+  "browserSubsetInitial": {
     "startTime": "2026-11-04T19:56:53.420Z",
     "duration": 49014.829,
     "expected": 42,
@@ -14,11 +21,10 @@
     "unexpected": 0,
     "flaky": 0
   },
-  "providerCalls": 0,
-  "qualityEvaluation": "not run; prospective fictional cases only",
-  "paidReservationAddedUsd": 0,
-  "priorReservedUsd": 18.254054946666663,
-  "remainingCapUsd": 11.745945053333337,
-  "vadFixIncluded": false,
-  "activeCheckoutModified": false
+  "browserHistoryTargetedRerun": {
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browserDistinctPassed": 44
 }

@@ -38,5 +38,5 @@ Remaining: real matched model evaluation, independent unseen cases, voice delive
 
 - Baseline: 239 tests passed across 22 files.
 - Candidate: 240 tests passed across 22 files; TypeScript, lint and isolated production build passed.
-- Browser subset: 42 passed, 2 skipped (opt-in history requires a configured history fixture) across desktop/mobile API, voice protocol and live-voice files. Synthetic transport only; no paid provider or physical microphone.
+- Browser subset: 44 distinct checks passed across desktop/mobile API, voice protocol and live-voice files. Initial run passed 42 and skipped 2 history checks because SOULFIRE_TEST_ISOLATED was unset; both passed in a targeted rerun with that flag against the same isolated key-free server/data directory. Synthetic transport only; no paid provider or physical microphone.
 - Original sandbox browser attempt could not launch/access localhost (EPERM); retained locally separately from the authorized outside-sandbox run. It is an environment failure, not a model result.
