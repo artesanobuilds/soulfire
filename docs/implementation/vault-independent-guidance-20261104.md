@@ -32,6 +32,8 @@ Acceptance requires no new invented facts/commitments, no safety/no-contact regr
 
 Read the authoritative local `soulfire-evaluation-budget-20261030.json`: cumulative reservations **$18.2540549467** of **$30**, leaving **$11.7459450533**. These are obligations/reservations, not invoiced spending. No new reservation or paid call was made because authorization for a new paid stage was not clear. A later paid stage needs an explicitly authorized finite allocation and conservative reservation including failures/ASR before starting.
 
+A subsequent [bounded comparison plan and no-cost probes](situated-evaluation-plan-20261104.md) prepare exact model/settings/cost bounds. Offline capture passes; a local Qwen surrogate stops on an incomplete baseline answer, leaving candidate semantics unassessed. No paid stage has started.
+
 Remaining: real matched model evaluation, independent unseen cases, voice delivery/latency assessment and user review. Prompt changes alone cannot establish parity. More invasive retrieval, hybrid model routing or deterministic drafting changes should follow evidence and a concrete product decision rather than being silently added here.
 
 ## Software verification

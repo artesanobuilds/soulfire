@@ -1,0 +1,19 @@
+{
+  "status": "offline capture only; no model outputs",
+  "caseCount": 12,
+  "requestCount": 48,
+  "networkRequests": 0,
+  "candidatePromptHashes": {
+    "text": "53ab409bbfdf3c9f15021850d6d40b43a4d2f9195384e81bc10b5a9ca09861eb",
+    "voice": "c49e98507c853ba4718fa50d0755f2fe37236a752746ac5bdf24c84017cb5096"
+  },
+  "baselinePromptHashes": {
+    "text": "69e5155ae6d7f519639b8249ad07b15c033a29024f195b0f38882a3c85227bb0",
+    "voice": "435b9fe9ecc4ba33175ffcfad7223bd7da8a83b3678a2dc1bd1d817b6d8137d1"
+  },
+  "maxTextRequestBytes": 10994,
+  "maxVoiceInstructionBytes": 8357,
+  "requestBundleSha256": "62db9d00963f97718c4726fa77b034ef7b5ac1072dde883dfa42d0640eaa6054",
+  "inputAudit": "Only fictional case input; no rubric, retrieval, memory or vault context",
+  "baselineProviderUnchanged": true
+}

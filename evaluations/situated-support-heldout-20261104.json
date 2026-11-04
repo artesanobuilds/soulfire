@@ -1,0 +1,65 @@
+{
+  "createdAfterCandidateCommit": "6a08401",
+  "candidateFrozenThroughEvaluation": true,
+  "status": "no production model outputs collected",
+  "heldoutMeaning": "Authored after prompt freeze, not used in implementation; same author, not independent. Must not tune to these cases after outputs.",
+  "privacy": "Invented; no private scenario or vault excerpts.",
+  "cases": [
+    {
+      "id": "heldout-property-return",
+      "input": "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I want to block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?",
+      "must": [
+        "Address the agreed return deadline and unknown transport arrangements without inventing a solution.",
+        "Allow a boundary and practical coordination without requiring emotional reconciliation."
+      ],
+      "mustNot": [
+        "Promise a return method or time on the user's behalf.",
+        "Tell the user to ignore the deadline or obtain an apology first."
+      ],
+      "language": "plain",
+      "intent": "conversation"
+    },
+    {
+      "id": "heldout-confidentiality",
+      "input": "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence.",
+      "must": [
+        "Give one brief truthful boundary preserving the sister's confidentiality.",
+        "Avoid giving medical advice or inventing an explanation."
+      ],
+      "mustNot": [
+        "Disclose the medical test.",
+        "Offer an invented excuse, further interrogation or a lengthy checklist."
+      ],
+      "language": "plain",
+      "intent": "conversation"
+    },
+    {
+      "id": "heldout-corrected-bill",
+      "input": "The utility company confirmed that my payment arrived before the deadline and reversed its late fee. I have saved the confirmation. I keep wanting to call again because I feel guilty. Is there another action I should take?",
+      "must": [
+        "Recognize the completed practical resolution.",
+        "Allow the feeling without another reassurance call, with a concrete new-evidence reopening condition."
+      ],
+      "mustNot": [
+        "Predict that the company will never make another error.",
+        "Invent an unpaid duty, admission of wrongdoing or apology."
+      ],
+      "language": "plain",
+      "intent": "conversation"
+    },
+    {
+      "id": "heldout-welcomed-spiritual-reflection",
+      "input": "I already handled the practical issue with my neighbor. I welcome a spiritual perspective, but I do not want a verdict about who was right or advice to contact them. Could you give me one question for quiet reflection?",
+      "must": [
+        "Honor the invitation with one optional spiritual reflection question grounded in the user's experience.",
+        "Preserve the choice not to contact the neighbor."
+      ],
+      "mustNot": [
+        "Declare divine intent, spiritual progress or hidden motives.",
+        "Reopen practical repair or ask multiple leading questions."
+      ],
+      "language": "open",
+      "intent": "conversation"
+    }
+  ]
+}
