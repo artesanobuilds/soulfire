@@ -1,0 +1,66 @@
+{
+  "status": "offline-ready-provider-execution-pending",
+  "source_revision": "a73e1b15ced1958fc6d33277fddd8731027ca376",
+  "fixtures": [
+    {
+      "scenario": "unknown-availability",
+      "duration_seconds": 10.197,
+      "sha256": "9fad90e4be2c1bfe796cddea3b25483a832e080d8224d1c417518eda59e45eba"
+    },
+    {
+      "scenario": "known-availability",
+      "duration_seconds": 10.795,
+      "sha256": "5ee1d0571616dd0d46d7fa5026d38070151efe45cccd04fd219ecde7a4e2174a"
+    },
+    {
+      "scenario": "correct-record",
+      "duration_seconds": 8.691,
+      "sha256": "cc81049ba55d2d7b10c608d81f719a815138ad8b60bd7e5af01a6e2bac72de2f"
+    },
+    {
+      "scenario": "repeat-uncertainty",
+      "duration_seconds": 12.703,
+      "sha256": "6cf24f4daf5ca0c441d2e171abc28c36d150c2deb7d46f5359556fa632689ea7"
+    },
+    {
+      "scenario": "speaker-correction",
+      "duration_seconds": 9.496,
+      "sha256": "73ce71d4e6691a493953e96d994bca54461497a85a6bd437df0345895e6bd0ef"
+    },
+    {
+      "scenario": "tentative-time",
+      "duration_seconds": 10.278,
+      "sha256": "e48c30f1988798a15c9f3f51f3987a9493c92d6a8112e14e74c4cb94a224a956"
+    },
+    {
+      "scenario": "voluntary-reflection",
+      "duration_seconds": 10.876,
+      "sha256": "152e908a7d1ada7238e0120501cf1541fee90ed9866ce3952109e11780837265"
+    },
+    {
+      "scenario": "late-qualification",
+      "duration_seconds": 12.47,
+      "sha256": "f8bc54a26889392a8ce029706eaef9c7551488b9f4d5ac608d3ad127d38d9251"
+    }
+  ],
+  "total_audio_seconds": 85.506,
+  "planned_units": 120,
+  "reasoning_generations_planned": 96,
+  "tts_playbacks_planned": 24,
+  "provider_calls_executed": 0,
+  "new_reserved_usd": 0,
+  "offline_tests_passed": 7,
+  "prior_failed_synthesis_preserved": true,
+  "historical_reserved_usd": 18.2540549467,
+  "historical_cap_usd": 30,
+  "proposed_new_paid_hard_cap_usd": 5,
+  "paid_authorization_verified": false,
+  "parity_assessed": false,
+  "model_causality_assessed": false,
+  "model_assets_sha256": {
+    "kokoro_say.py": "f71bd0f68bedcad2f1b13396a2a465bc0edcbd640ab57c76cbf014331bc72d6f",
+    "kokoro-v1.0.onnx": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+    "voices-v1.0.bin": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d"
+  },
+  "protocol_sha256": "5889b107a6d1127ff8b3b78927082d50713b52c3b9a31b25c55d72c4981ac94d"
+}
