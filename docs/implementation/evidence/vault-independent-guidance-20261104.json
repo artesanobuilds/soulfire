@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-04",
+  "baseCommit": "a73e1b15ced1958fc6d33277fddd8731027ca376",
+  "baselineUnitTests": 239,
+  "candidateUnitTests": 240,
+  "typecheck": "passed",
+  "lint": "passed",
+  "productionBuild": "passed",
+  "browserSubset": {
+    "startTime": "2026-11-04T19:56:53.420Z",
+    "duration": 49014.829,
+    "expected": 42,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "providerCalls": 0,
+  "qualityEvaluation": "not run; prospective fictional cases only",
+  "paidReservationAddedUsd": 0,
+  "priorReservedUsd": 18.254054946666663,
+  "remainingCapUsd": 11.745945053333337,
+  "vadFixIncluded": false,
+  "activeCheckoutModified": false
+}

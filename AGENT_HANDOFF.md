@@ -1,3 +1,7 @@
+# November 4 isolated guidance candidate
+
+This review branch contains a vault-independent situated-support candidate. See [evidence, validation and remaining gates](docs/implementation/vault-independent-guidance-20261104.md). Historical October 30 evaluated prompt hashes/results do not validate the new prompt. No paid candidate responses were collected, no parity is established, and no preview was restarted or deployed. The original checkout's uncommitted VAD fix remains separate and is not in this branch.
+
 # October 30 integration update
 
 Current unresolved work is tracked in the [canonical prototype roadmap](docs/strategy/product-strategy.md#current-prototype-roadmap--october-30-2026); update statuses there rather than creating another backlog.
