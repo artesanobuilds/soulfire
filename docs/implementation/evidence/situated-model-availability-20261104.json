@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-04T20:09:01.292Z",
+  "method": "GET model metadata only; no inference",
+  "paidCalls": 0,
+  "models": [
+    {
+      "requested": "gpt-6.1-sol",
+      "status": 200,
+      "reportedId": "gpt-6.1-sol",
+      "errorType": null
+    },
+    {
+      "requested": "gpt-realtime-2025-08-28",
+      "status": 200,
+      "reportedId": "gpt-realtime-2025-08-28",
+      "errorType": null
+    },
+    {
+      "requested": "gpt-4o-mini-transcribe-2025-12-15",
+      "status": 200,
+      "reportedId": "gpt-4o-mini-transcribe-2025-12-15",
+      "errorType": null
+    }
+  ]
+}

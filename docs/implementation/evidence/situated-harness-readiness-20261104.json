@@ -1,0 +1,70 @@
+{
+  "status": "offline-ready; awaiting paid authorization",
+  "paidCalls": 0,
+  "newBudgetReservationMade": false,
+  "globalReservedUsd": 18.254054946666663,
+  "contractChecksPassed": 18,
+  "compiledRouteAudit": {
+    "status": "passed",
+    "compiledRouteCaptures": 4,
+    "arms": [
+      "baseline",
+      "candidate"
+    ],
+    "networkCalls": 0,
+    "paidCalls": 0,
+    "assertions": "Exact text and voice payloads match frozen offline requests; only matched staged substitutions",
+    "compiledFilesHashed": 73
+  },
+  "browserChecks": [
+    {
+      "arm": "baseline",
+      "condition": "ready",
+      "status": "completed",
+      "expectedOutcomeMatched": true,
+      "welcomesSent": 1,
+      "responses": 2,
+      "syntheticCaptureCalls": 1,
+      "pageErrors": []
+    },
+    {
+      "arm": "candidate",
+      "condition": "pending-transcription",
+      "status": "completed",
+      "expectedOutcomeMatched": true,
+      "welcomesSent": 1,
+      "responses": 2,
+      "syntheticCaptureCalls": 1,
+      "pageErrors": []
+    },
+    {
+      "arm": "candidate",
+      "condition": "model-drift",
+      "status": "failed",
+      "expectedOutcomeMatched": true,
+      "welcomesSent": 0,
+      "responses": 0,
+      "syntheticCaptureCalls": 1,
+      "pageErrors": []
+    }
+  ],
+  "modelMetadataHTTPStatuses": [
+    {
+      "id": "gpt-6.1-sol",
+      "status": 200
+    },
+    {
+      "id": "gpt-realtime-2025-08-28",
+      "status": 200
+    },
+    {
+      "id": "gpt-4o-mini-transcribe-2025-12-15",
+      "status": 200
+    }
+  ],
+  "isolatedBuild": "passed",
+  "typecheck": "passed",
+  "lint": "passed",
+  "originalCheckoutVADFix": "untouched; not included in candidate branch",
+  "qualityConclusion": "none; mocks are software evidence only; native effective settings and model behavior pending"
+}

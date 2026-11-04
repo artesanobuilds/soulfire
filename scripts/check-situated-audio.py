@@ -26,7 +26,7 @@ for fixture in manifest['fixtures']:
         run = run + 1 if silent else 0
         longest = max(longest, run)
     match = hashlib.sha256(path.read_bytes()).hexdigest() == fixture['audioSha256']
-    checks.append({**fixture, 'durationSeconds': round(duration, 4), 'sampleRate': rate,
+    checks.append({**fixture, 'durationSeconds': round(duration, 4), 'sampleRate': rate, 'lastNonSilentSeconds': (max(i for i, sample in enumerate(samples) if abs(sample) >= 32768 * 0.003) + 1) / rate,
                    'peak': round(peak, 5), 'rms': round(rms, 5),
                    'longestNearSilentRunMsIncludingEdges': longest * 10,
                    'sha256Matches': match, 'within30Seconds': duration <= 30,

@@ -1,5 +1,5 @@
 {
-  "status": "prepared; paid execution blocked pending explicit stage authorization and preflight",
+  "status": "harness prepared and offline verified; awaiting explicit paid-stage authorization",
   "baselineCommit": "a73e1b15ced1958fc6d33277fddd8731027ca376",
   "candidatePromptCommit": "6a08401",
   "candidateFrozen": true,
@@ -136,5 +136,18 @@
     "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
     "https://developers.openai.com/api/docs/models/gpt-realtime",
     "https://developers.openai.com/api/docs/models/gpt-4o-mini-transcribe"
-  ]
+  ],
+  "modelAvailability": "All three exact IDs returned HTTP 200 in read-only metadata checks; no inference compatibility claim.",
+  "offlineReadiness": {
+    "contractChecksPassed": 18,
+    "compiledRouteCapturesMatched": 4,
+    "browserConditions": [
+      "baseline ready completes",
+      "candidate delayed transcription completes",
+      "model drift blocks before welcome"
+    ],
+    "stageBuild": "passed",
+    "paidGate": "default command exits without key lookup or inference",
+    "evidence": "docs/implementation/evidence/situated-harness-readiness-20261104.json"
+  }
 }
