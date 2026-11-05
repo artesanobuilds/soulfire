@@ -67,8 +67,11 @@ it("actual voice route uses integrated instructions and matched cap without chan
   expect(session.audio.input.transcription.model).toBe(
     "gpt-4o-mini-transcribe",
   );
+  expect(session.audio.input.noise_reduction).toEqual({ type: "far_field" });
   expect(session.audio.input.turn_detection).toEqual({
     type: "server_vad",
+    threshold: 0.65,
+    silence_duration_ms: 1500,
     interrupt_response: true,
     create_response: true,
   });

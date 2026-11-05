@@ -195,7 +195,18 @@ export function VoiceControls(p: Props) {
         throw new Error(
           "Microphone is unavailable here. Use text, or a supported browser on localhost or HTTPS.",
         );
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio:
+          kind === "live"
+            ? {
+                // Preferences, not required capabilities: unsupported browsers
+                // can still capture audio without an extra permission attempt.
+                echoCancellation: { ideal: true },
+                noiseSuppression: { ideal: true },
+              }
+            : true,
+        video: false,
+      });
       if (resources.current.epoch !== epoch) {
         stream.getTracks().forEach((t) => t.stop());
         return;

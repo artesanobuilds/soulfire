@@ -1,6 +1,6 @@
 # soulfire · Proof of Concept One
 
-A local, responsive practice prototype based on the repository vision and selected sage-and-gold design. The complete interaction loop and real OpenAI integrations are implemented. **Text and native voice were evaluated with fictional scenarios on October 30, 2026. Text defaults to GPT-6.1 Sol following matched model checks; voice uses separate Realtime delivery instructions. Factual voice drafting errors remain unresolved. Physical-microphone listening and clinical benefit are unverified.** Labeled examples are available without a key. This is not a public pilot or clinical product.
+A local, responsive practice prototype based on the repository vision and selected sage-and-gold design. The complete interaction loop and real OpenAI integrations are implemented. **Text and native voice were evaluated with fictional scenarios on October 30, 2026. Text defaults to GPT-6.1 Sol following matched model checks; voice uses separate Realtime delivery instructions. Factual voice drafting errors remain unresolved. Physical-microphone behavior is under limited manual evaluation; clinical benefit is unverified.** Labeled examples are available without a key. This is not a public pilot or clinical product.
 
 **Taking over the project? Start with [the agent handoff](AGENT_HANDOFF.md).**
 
@@ -44,6 +44,8 @@ Defaults (configurable server-side):
 Explicit environment values override these defaults; existing installations must deliberately update `OPENAI_MODEL` to adopt Sol. Text takes longer than the previous mini baseline in the measured sample. Voice stays on its separate native model. See [today’s integrated evidence](docs/implementation/integrated-discernment-20261030.md) for improvements, rejected variants and unresolved limits. These defaults do not establish general reliability or clinical benefit. Provider errors are surfaced without substituting canned AI replies. The setup indicator is beside every composer and voice control.
 
 For microphone use, choose Dictate or Live voice, read the disclosure, then explicitly allow the browser microphone. Use localhost or HTTPS. Browser/OS permission is separate. Text remains usable on denial. No microphone permission was granted to this project during automated testing.
+
+Live voice requests browser echo cancellation and noise suppression when supported, plus server-side far-field noise reduction for a laptop microphone. Server VAD uses a 0.65 activation threshold and a 1,500 ms end-of-turn pause; deliberate spoken interruptions remain enabled. The creator manually tested this tuning on November 4, 2026 and reported substantially improved turn-taking. Automated checks use synthetic audio; behavior across other microphones and room-noise levels remains unverified. Softer speech may be missed at the higher threshold; compare normal-volume speech, a brief pause and a deliberate interruption during further manual testing. Start a new voice session after refreshing to use the settings. Parameter behavior is documented in OpenAI’s [VAD guide](https://developers.openai.com/api/docs/guides/realtime-vad) and [create-call reference](https://developers.openai.com/api/reference/resources/realtime/subresources/calls/methods/create).
 
 ## Implemented experience
 

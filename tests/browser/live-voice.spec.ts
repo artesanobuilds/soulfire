@@ -16,6 +16,7 @@ async function setup(
       };
       const tracks: MediaStreamTrack[] = [];
       const sent: string[] = [];
+      const captureConstraints: MediaStreamConstraints[] = [];
       let input: GainNode, output: GainNode;
       let onMessage: ((event: { data: string }) => void) | null = null;
       let onOpen: (() => void) | null = null;
@@ -46,8 +47,9 @@ async function setup(
       };
       Object.defineProperty(navigator.mediaDevices, "getUserMedia", {
         configurable: true,
-        value: async () => {
+        value: async (constraints: MediaStreamConstraints) => {
           requests++;
+          captureConstraints.push(constraints);
           if (deny) throw new DOMException("Denied", "NotAllowedError");
           return stream("input");
         },
@@ -153,6 +155,7 @@ async function setup(
           },
           snapshot: () => ({
             requests,
+            captureConstraints,
             tracks: tracks.map((t) => t.readyState),
             enabled: tracks.map((t) => t.enabled),
             contexts: contexts.map((c) => c.state),
@@ -218,6 +221,25 @@ test("unconfigured preview explains disabled voice without requesting capture", 
   expect(
     ((await action(page, "snapshot")) as { requests: number }).requests,
   ).toBe(0);
+});
+test("live capture prefers noise and echo suppression without required hardware or camera", async ({
+  page,
+}) => {
+  await setup(page);
+  await start(page);
+  const snapshot = (await action(page, "snapshot")) as {
+    captureConstraints: MediaStreamConstraints[];
+  };
+  expect(snapshot.captureConstraints).toEqual([
+    {
+      audio: {
+        echoCancellation: { ideal: true },
+        noiseSuppression: { ideal: true },
+      },
+      video: false,
+    },
+  ]);
+  await page.getByRole("button", { name: "End voice", exact: true }).click();
 });
 test("startup greets once, repeated open is inert, and a new manual start greets once", async ({
   page,
