@@ -1,0 +1,56 @@
+{
+  "queried_at": "2026-11-05T05:27:33.806Z",
+  "metadata_only": true,
+  "paid_model_generations": 0,
+  "models": [
+    {
+      "requested_id": "gpt-realtime",
+      "http_status": 200,
+      "returned_id": "gpt-realtime",
+      "created": 1756271701,
+      "owned_by": "system",
+      "error_code": null
+    },
+    {
+      "requested_id": "gpt-realtime-2025-08-28",
+      "http_status": 200,
+      "returned_id": "gpt-realtime-2025-08-28",
+      "created": 1756271773,
+      "owned_by": "system",
+      "error_code": null
+    },
+    {
+      "requested_id": "gpt-6.1-sol",
+      "http_status": 200,
+      "returned_id": "gpt-6.1-sol",
+      "created": 1790552874,
+      "owned_by": "system",
+      "error_code": null
+    },
+    {
+      "requested_id": "gpt-4o-mini-transcribe",
+      "http_status": 200,
+      "returned_id": "gpt-4o-mini-transcribe",
+      "created": 1742068596,
+      "owned_by": "system",
+      "error_code": null
+    },
+    {
+      "requested_id": "gpt-4o-mini-transcribe-2025-12-15",
+      "http_status": 200,
+      "returned_id": "gpt-4o-mini-transcribe-2025-12-15",
+      "created": 1765610407,
+      "owned_by": "system",
+      "error_code": null
+    },
+    {
+      "requested_id": "gpt-4o-mini-transcribe-2025-03-20",
+      "http_status": 200,
+      "returned_id": "gpt-4o-mini-transcribe-2025-03-20",
+      "created": 1765610545,
+      "owned_by": "system",
+      "error_code": null
+    }
+  ],
+  "caveat": "Model metadata does not attest which dated backend version served a prior alias request."
+}
