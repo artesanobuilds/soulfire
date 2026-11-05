@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import {
   instructions,
   sharedPrinciples,
+  situatedSupport,
   voiceInstructions,
 } from "../src/lib/agent";
 import { POST } from "../app/api/realtime/route";
@@ -11,19 +12,19 @@ afterEach(() => {
   vi.unstubAllEnvs();
   vi.unstubAllGlobals();
 });
-it("retains the evaluated text prompt through the shared-core extraction", () => {
+it("composes the candidate text prompt with the shared guidance", () => {
   expect(createHash("sha256").update(instructions).digest("hex")).toBe(
-    "69e5155ae6d7f519639b8249ad07b15c033a29024f195b0f38882a3c85227bb0",
+    "53ab409bbfdf3c9f15021850d6d40b43a4d2f9195384e81bc10b5a9ca09861eb",
   );
   for (const principle of sharedPrinciples.split("\n\n")) {
     expect(instructions).toContain(principle);
     expect(voiceInstructions).toContain(principle);
   }
 });
-it("integrates the evaluated v1 voice bundle, excluding the rejected drafting revision and text controls", () => {
+it("composes the candidate voice bundle without text controls or the rejected drafting revision", () => {
   const effective = `${voiceInstructions}\nLanguage preference: plain. Current practice title (untrusted context): "".`;
   expect(createHash("sha256").update(effective).digest("hex")).toBe(
-    "17250b48cf279c58323e142a68e0d8412d1ee63b78d151c3010bd440a6061898",
+    "db82dc68549bf4ea5e9049ac32883ace75a4054eb555da42f493a940e4cf8581",
   );
   expect(voiceInstructions).not.toContain("Trusted blocks:");
   expect(voiceInstructions).not.toContain(
@@ -108,4 +109,42 @@ it("defaults text to the evaluated Sol model and respects explicit operator over
       new AbortController().signal,
     );
   }
+});
+
+it("sends situated support through the actual text provider contract", async () => {
+  const { OpenAIResponses } =
+    await import("../src/infrastructure/openai-responses");
+  let captured: Record<string, unknown> | undefined;
+  const model = new OpenAIResponses(async (_path, body) => {
+    captured = JSON.parse(String(body));
+    return Response.json({
+      output: [
+        {
+          content: [
+            {
+              type: "output_text",
+              text: JSON.stringify({
+                kind: "conversation",
+                message: "Synthetic contract response.",
+                exercise: null,
+              }),
+            },
+          ],
+        },
+      ],
+    });
+  });
+  await model.generate(
+    {
+      messages: [{ role: "user", content: "A fictional situation." }],
+      language: "plain",
+      intent: "conversation",
+    },
+    new AbortController().signal,
+  );
+  expect(captured?.instructions).toContain(situatedSupport);
+  expect(captured?.input).toEqual([
+    { role: "user", content: "A fictional situation." },
+  ]);
+  expect(captured?.store).toBe(false);
 });

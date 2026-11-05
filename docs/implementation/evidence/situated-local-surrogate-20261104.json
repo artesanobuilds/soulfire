@@ -1,0 +1,44 @@
+{
+  "status": "stopped-on-delivery-failure; no retries",
+  "model": "qwen3:30b",
+  "modelDigest": "ad815644918f0eaab341c12b67837cc6dd4562342cdaf118f83d5d554cb37226",
+  "limitation": "Surrogate content probe using voice instructions with text input/output. No Sol, Realtime, ASR, speech, production schema, quality parity or human benefit evidence.",
+  "candidateFrozen": true,
+  "paidCalls": 0,
+  "cloudEndpoints": [],
+  "requestBundleSha256": "62db9d00963f97718c4726fa77b034ef7b5ac1072dde883dfa42d0640eaa6054",
+  "settings": {
+    "think": false,
+    "temperature": 0,
+    "seed": 7,
+    "num_ctx": 8192,
+    "num_predict": 512
+  },
+  "responses": [
+    {
+      "case": "heldout-property-return",
+      "arm": "baseline",
+      "response": {
+        "model": "qwen3:30b",
+        "created_at": "2026-11-04T20:04:21.418379Z",
+        "message": {
+          "role": "assistant",
+          "content": "Okay, let me unpack this. User borrowed a camera, agreed to return by noon, owner insulted them, now at 11am with no transport and wanting to block but fearing another argument. \n\nFirst, safety check: no immediate danger mentioned, just conflict. Key facts they stated: 1) camera due at noon 2) owner insulted them 3) 11am now 4) no transport 5) want to block but avoid argument. \n\nHmm, their core need isn't about the camera - it's about ending the interaction without escalating. They're stuck between a deadline and emotional hurt. The \"block\" impulse shows they're prioritizing self-protection, but the transport issue creates practical tension.\n\nImportant boundaries to respect: \n- Can't suggest blocking (that's not my role) \n- Must avoid \"just return it\" advice (ignores the insult) \n- Can't assume they want to keep the camera (they might not) \n\nWhat's concrete they can do right now? \n- The 11am deadline is real. \n- \"No transport\" means they can't physically return it. \n- Insult makes verbal interaction risky. \n\nSo the only actionable step is to communicate the return delay without engaging the insult. \"I'll return it at noon\" is too vague - they need to specify *how* since transport is an issue. \n\nAh! The key is making the return method clear: \"I'll bring it to your door at noon\" or \"I'll leave it at the front desk\" - but they didn't say where the owner lives. So safest is to say \"I'll return it by noon\" and let them handle the method. \n\nMust avoid: \n- \"Don't worry\" (invalidates hurt) \n- \"Just apologize\" (they didn't do anything wrong) \n- \"Block them\" (not my place) \n\n...And absolutely no spiritual framing since they didn't ask for it. Plain language only. \n\n*Double-checking instructions*: \n- No diagnosis? Check. \n- No forced calm? Check. \n- Grounded in their facts? Yes - 11am, no transport, insult happened. \n- One actionable point? Yes: send a simple text about return time. \n\nFinal phrasing must be: \n- Short (max 4 sentences) \n- Fact-based (\"I'll return it by noon\" not \"I'll be there\") \n- No emotional language (\"I"
+        },
+        "done": true,
+        "done_reason": "length",
+        "total_duration": 13260437250,
+        "load_duration": 7620333833,
+        "prompt_eval_count": 1223,
+        "prompt_eval_cached_count": 0,
+        "prompt_eval_duration": 1070589000,
+        "eval_count": 512,
+        "eval_duration": 4563097000
+      },
+      "status": "incomplete",
+      "wallSeconds": 13.261
+    }
+  ],
+  "candidateAssessment": "unassessed; stopped after incomplete baseline",
+  "interpretation": "Local response was capped at 512 tokens without a completed user-facing answer, despite think=false. No production inference or pairwise quality comparison occurred."
+}

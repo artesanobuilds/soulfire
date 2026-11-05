@@ -1,0 +1,294 @@
+{
+  "status": "prepared; no execution authorized",
+  "candidateFrozenAt": "6a08401",
+  "tasks": [
+    {
+      "order": 1,
+      "mode": "text",
+      "case": "shift-handoff",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "de1ab31ce376d0057235b36fd745fbf731ecb3621d8a9ad3512b31303eb5a4f5"
+    },
+    {
+      "order": 2,
+      "mode": "text",
+      "case": "shift-handoff",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "6ef5b1e81192948aa470e06b47036b4d50b88165931feea27d45124930a58074"
+    },
+    {
+      "order": 3,
+      "mode": "text",
+      "case": "no-contact-counterexample",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "909749151f3a385a434b1e32a6d6d1ea1229a013b38cb40b7d9dcff1ba1e00e2"
+    },
+    {
+      "order": 4,
+      "mode": "text",
+      "case": "no-contact-counterexample",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "5cc6d813d9a1fec67490f78132cc79924470db031c2ef911c5c1ee6a07f26842"
+    },
+    {
+      "order": 5,
+      "mode": "text",
+      "case": "practice-compatibility",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "33727c0e9c1c7347487fd55ce842b56ca156a978da82c4205ec4e46d1e15fc2c"
+    },
+    {
+      "order": 6,
+      "mode": "text",
+      "case": "practice-compatibility",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "c26ac3a9e7b507e517c369b6e622093a05cb8b11ae85e81ad677bcc257e7a8c9"
+    },
+    {
+      "order": 7,
+      "mode": "text",
+      "case": "heldout-property-return",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "597f39cd41fa4df0d339ebc1521a21f3782f570f82e1b834a326b0d3871794f2"
+    },
+    {
+      "order": 8,
+      "mode": "text",
+      "case": "heldout-property-return",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "0d6f3c3ce7f8a61fb50c93e039e05f3fac5a90705cfe20d30070cb4ca2a34f11"
+    },
+    {
+      "order": 9,
+      "mode": "text",
+      "case": "heldout-property-return",
+      "repeat": 2,
+      "arm": "baseline",
+      "requestSha256": "0d6f3c3ce7f8a61fb50c93e039e05f3fac5a90705cfe20d30070cb4ca2a34f11"
+    },
+    {
+      "order": 10,
+      "mode": "text",
+      "case": "heldout-property-return",
+      "repeat": 2,
+      "arm": "candidate",
+      "requestSha256": "597f39cd41fa4df0d339ebc1521a21f3782f570f82e1b834a326b0d3871794f2"
+    },
+    {
+      "order": 11,
+      "mode": "text",
+      "case": "heldout-confidentiality",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "577af5df7b2ee47cf45dda263f2b67ef2e141556b4d2d916684ed78512be39a5"
+    },
+    {
+      "order": 12,
+      "mode": "text",
+      "case": "heldout-confidentiality",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "6fd252453f8c6c99bdd5c54745bd6402142a3466940095ba9cfbb76312eca787"
+    },
+    {
+      "order": 13,
+      "mode": "text",
+      "case": "heldout-confidentiality",
+      "repeat": 2,
+      "arm": "candidate",
+      "requestSha256": "6fd252453f8c6c99bdd5c54745bd6402142a3466940095ba9cfbb76312eca787"
+    },
+    {
+      "order": 14,
+      "mode": "text",
+      "case": "heldout-confidentiality",
+      "repeat": 2,
+      "arm": "baseline",
+      "requestSha256": "577af5df7b2ee47cf45dda263f2b67ef2e141556b4d2d916684ed78512be39a5"
+    },
+    {
+      "order": 15,
+      "mode": "text",
+      "case": "heldout-corrected-bill",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "0fb1a437816b4ce992a119a285041e09139ac889af0f7516b943e461fab931da"
+    },
+    {
+      "order": 16,
+      "mode": "text",
+      "case": "heldout-corrected-bill",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "7d86668988d2164b3b10776d1a9b360791f18416a5d32aa31a9bd06a1f0aef34"
+    },
+    {
+      "order": 17,
+      "mode": "text",
+      "case": "heldout-welcomed-spiritual-reflection",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "10621625ebf21309be6fd422011fce252f01518d54b6007d207a2872d7c44d82"
+    },
+    {
+      "order": 18,
+      "mode": "text",
+      "case": "heldout-welcomed-spiritual-reflection",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "68e8c87bf649a1a7c3918c43cb2a4aa2c1f211536d2ca3da563ab56bc4a2ece2"
+    },
+    {
+      "order": 19,
+      "mode": "voice",
+      "case": "shift-handoff",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
+      "audioFile": "shift-handoff.wav"
+    },
+    {
+      "order": 20,
+      "mode": "voice",
+      "case": "shift-handoff",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
+      "audioFile": "shift-handoff.wav"
+    },
+    {
+      "order": 21,
+      "mode": "voice",
+      "case": "no-contact-counterexample",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
+      "audioFile": "no-contact-counterexample.wav"
+    },
+    {
+      "order": 22,
+      "mode": "voice",
+      "case": "no-contact-counterexample",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
+      "audioFile": "no-contact-counterexample.wav"
+    },
+    {
+      "order": 23,
+      "mode": "voice",
+      "case": "heldout-property-return",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
+      "audioFile": "heldout-property-return.wav"
+    },
+    {
+      "order": 24,
+      "mode": "voice",
+      "case": "heldout-property-return",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
+      "audioFile": "heldout-property-return.wav"
+    },
+    {
+      "order": 25,
+      "mode": "voice",
+      "case": "heldout-property-return",
+      "repeat": 2,
+      "arm": "baseline",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
+      "audioFile": "heldout-property-return.wav"
+    },
+    {
+      "order": 26,
+      "mode": "voice",
+      "case": "heldout-property-return",
+      "repeat": 2,
+      "arm": "candidate",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
+      "audioFile": "heldout-property-return.wav"
+    },
+    {
+      "order": 27,
+      "mode": "voice",
+      "case": "heldout-confidentiality",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
+      "audioFile": "heldout-confidentiality.wav"
+    },
+    {
+      "order": 28,
+      "mode": "voice",
+      "case": "heldout-confidentiality",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
+      "audioFile": "heldout-confidentiality.wav"
+    },
+    {
+      "order": 29,
+      "mode": "voice",
+      "case": "heldout-confidentiality",
+      "repeat": 2,
+      "arm": "candidate",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
+      "audioFile": "heldout-confidentiality.wav"
+    },
+    {
+      "order": 30,
+      "mode": "voice",
+      "case": "heldout-confidentiality",
+      "repeat": 2,
+      "arm": "baseline",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
+      "audioFile": "heldout-confidentiality.wav"
+    },
+    {
+      "order": 31,
+      "mode": "voice",
+      "case": "heldout-corrected-bill",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
+      "audioFile": "heldout-corrected-bill.wav"
+    },
+    {
+      "order": 32,
+      "mode": "voice",
+      "case": "heldout-corrected-bill",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
+      "audioFile": "heldout-corrected-bill.wav"
+    },
+    {
+      "order": 33,
+      "mode": "voice",
+      "case": "heldout-welcomed-spiritual-reflection",
+      "repeat": 1,
+      "arm": "baseline",
+      "requestSha256": "65abdd502ad731a6026d55666e2d95e864da9f2ec78444ed5f1d5cf56b234f88",
+      "audioFile": "heldout-welcomed-spiritual-reflection.wav"
+    },
+    {
+      "order": 34,
+      "mode": "voice",
+      "case": "heldout-welcomed-spiritual-reflection",
+      "repeat": 1,
+      "arm": "candidate",
+      "requestSha256": "2e85db0b97996ede799ce8592420308f49dba0835a469b8cacc6c37ef786a31f",
+      "audioFile": "heldout-welcomed-spiritual-reflection.wav"
+    }
+  ]
+}

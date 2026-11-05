@@ -1,0 +1,189 @@
+{
+  "status": "completed with two preserved pre-input harness stops; masked semantic review complete",
+  "baselineCommit": "a73e1b15ced1958fc6d33277fddd8731027ca376",
+  "candidatePromptCommit": "6a08401",
+  "candidateFrozen": true,
+  "authorization": {
+    "priorCapUsd": 30,
+    "priorReservedUsd": 18.254054946666663,
+    "remainingUsd": 11.745945053333337,
+    "proposedIncrementalCeilingUsd": 10.15,
+    "proposedNewCumulativeReservationUsd": 28.40405494666666,
+    "remainingAfterProposedReservationUsd": 1.595945053333337,
+    "newReservationMade": true,
+    "paidCallsMade": 34,
+    "evidence": "Parent-supplied trusted transcript: Miguel approved the $10.15 guidance stage plus a separate $5 voice stage and later permitted proceeding without resolved parity.",
+    "paidCallDefinition": "18 text inference requests and16 native connection attempts;14 native sessions produced28 welcome/guide responses. Metadata GETs excluded. Two connections stopped before input/response."
+  },
+  "models": {
+    "text": {
+      "requestedId": "gpt-6.1-sol",
+      "datedSnapshot": "No separately pinned version available in inspected documentation; record exact response.model and stop on mismatch between arms.",
+      "maxOutputTokens": 2200,
+      "temperature": "omitted as production",
+      "reasoning": "omitted as production; record reasoning token usage",
+      "path": "actual OpenAIResponses plus production validation"
+    },
+    "voice": {
+      "requestedId": "gpt-realtime-2025-08-28",
+      "voice": "marin",
+      "transcriptionRequestedId": "gpt-4o-mini-transcribe-2025-12-15",
+      "guideMaxOutputTokens": 900,
+      "greetingMaxOutputTokens": 512,
+      "turnDetection": {
+        "type": "server_vad",
+        "silence_duration_ms": 1500,
+        "interrupt_response": true,
+        "create_response": true,
+        "threshold": 0.65
+      },
+      "path": "isolated actual WebRTC app route; override exact model IDs and matched VAD only in test configuration/session, acknowledge effective settings before input",
+      "deprecation": "Current official documentation marks these voice/transcription models deprecated; verify authorized account availability without inference first. Stop rather than silently substitute.",
+      "noiseReduction": {
+        "type": "far_field"
+      }
+    }
+  },
+  "cases": {
+    "coreOneRepeat": [
+      "shift-handoff",
+      "no-contact-counterexample",
+      "practice-compatibility"
+    ],
+    "heldoutTwoRepeats": [
+      "heldout-property-return",
+      "heldout-confidentiality"
+    ],
+    "heldoutOneRepeat": [
+      "heldout-corrected-bill",
+      "heldout-welcomed-spiritual-reflection"
+    ],
+    "sameAuthorHeldoutCaveat": "Four cases authored after candidate freeze; independent unseen author review still needed. No implementation tuning after outputs.",
+    "fullOfflineCorpus": 12,
+    "paidTextRequests": 18,
+    "paidVoiceSessions": 16,
+    "voiceWelcomeResponses": 16,
+    "voiceGuideResponses": 16,
+    "voicePracticeCase": "Excluded from semantic voice paired counts: app voice cannot generate controls. Practice remains a text compatibility check."
+  },
+  "pairedDesign": {
+    "arms": [
+      "baseline",
+      "candidate"
+    ],
+    "order": "Alternate arm order by case; reverse on second repeat. Capture schedule before first paid call.",
+    "context": "Fresh sessions; synthetic name Taylor; empty history, memory and practice title; no tools/retrieval; identical user input/audio bytes per arm.",
+    "speech": "Locally generated offline synthetic speech only; no microphone/cloud TTS. Maximum full user fixture duration 30 seconds including pauses; reject longer fixtures before any call. Never shorten pauses after seeing outcomes.",
+    "vad": "1500ms in BOTH arms, a matched test-harness condition reproducing the separately verified VAD fix; no change to candidate source or active checkout. Natural conversational turn-taking remains unassessed.",
+    "delivery": "Use original baseline delivery instructions and candidate revised delivery; result is whole-bundle comparison, not a causal ablation of individual clauses or length."
+  },
+  "costRatesUsdPerMillion": {
+    "solInputConservativeIncludingCacheWrite": 2.5,
+    "solOutput": 10,
+    "realtimeTextInput": 4,
+    "realtimeTextOutput": 16,
+    "realtimeAudioInput": 32,
+    "realtimeAudioOutput": 64
+  },
+  "costBoundAssumptions": {
+    "textInputTokenBound": 12288,
+    "textOutputTokenBound": 2200,
+    "textPerRequestComputedUsd": 0.05272,
+    "textPerRequestReservationUsd": 0.06,
+    "voiceTextInputTokensPerResponse": 12288,
+    "voiceResponses": 2,
+    "voiceOutputTokensTotal": 1412,
+    "voiceUserAudioSeconds": 30,
+    "voiceAudioTokensPerSecondConservative": 100,
+    "voiceAudioFramingTokens": 1024,
+    "voicePriorGreetingAudioTokens": 512,
+    "voicePriorGreetingTextTokens": 512,
+    "voiceASRAllowanceUsd": 0.02,
+    "voiceImmediateCancelAllowanceUsd": 0.03,
+    "voicePerSessionComputedUsd": 0.40846400000000005,
+    "voicePerSessionReservationUsd": 0.55,
+    "allRequestReservationsUsd": 9.88,
+    "globalContingencyUsd": 0.25,
+    "computedStageReservationUsd": 10.13,
+    "roundedStageCeilingUsd": 10.15,
+    "limitation": "Conservative estimate, not a provider invoice guarantee. Abort before paid execution if current prices, tokenizer/audio accounting or effective settings invalidate assumptions. Never use contingency to add another unplanned session."
+  },
+  "stopRules": [
+    "No paid execution until finite stage allocation explicitly authorized. Re-read cumulative ledger and reserve stage before first call.",
+    "Verify account availability of exact IDs without inference. No silent fallback.",
+    "Validate hashes, prompt byte bounds, corpus hashes, full text schemas, <=30s audio and effective settings before input.",
+    "No automatic retries, prompt edits, case replacements or extra follow-ups. Retain failed/uncertain reservations.",
+    "One welcome and one guide response maximum per voice session; mute/disconnect on unexpected or premature response, extra response, cap drift or deadline. Record any uncertain additional liability and stop stage if it threatens reservation.",
+    "Text 45s deadline; voice 30s input ceiling and 45s answer deadline. A timeout is a delivery result, not a semantic pass.",
+    "Keep semantic failures, ASR changes, turn clipping, incomplete responses and transport failures separate.",
+    "No vault content, private scenario, personal microphone, deployment, merge, persistent permission or active-preview restart."
+  ],
+  "reporting": {
+    "criteria": [
+      "facts and no invented commitments",
+      "specific feasible action and actual responsibilities",
+      "safety/no-contact and human-support boundaries",
+      "optional non-leading reflection and secular/spiritual preference",
+      "requested brevity and valid practice controls"
+    ],
+    "grades": "per case per criterion pass/fail/unassessed with direct fictional-output evidence; delivery assessed separately; blind arm labels for review where possible; no composite score or significance claims",
+    "metrics": [
+      "complete text latency and schema validity",
+      "voice exact ASR and material errors",
+      "last non-silent input to first sustained audio",
+      "VAD-stop to first audio",
+      "full answer duration, spoken word count, completion and cancellations",
+      "usage, cached/reasoning/audio tokens and conservative obligations separately from invoices"
+    ],
+    "acceptance": "No observed safety or invented-fact regression; better duty/action coverage without worse requested brevity. Report ties and mixed outcomes. Passing these finite cases does not establish parity or clinical benefit."
+  },
+  "priceSourcesCheckedOn": "2026-11-04",
+  "priceSources": [
+    "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+    "https://developers.openai.com/api/docs/models/gpt-realtime",
+    "https://developers.openai.com/api/docs/models/gpt-4o-mini-transcribe"
+  ],
+  "modelAvailability": "All three exact IDs returned HTTP 200 in read-only metadata checks; no inference compatibility claim.",
+  "offlineReadiness": {
+    "contractChecksPassed": 18,
+    "compiledRouteCapturesMatched": 4,
+    "browserConditions": [
+      "baseline ready completes",
+      "candidate delayed transcription completes",
+      "model drift blocks before welcome"
+    ],
+    "stageBuild": "passed",
+    "paidGate": "default command exits without key lookup or inference",
+    "evidence": "docs/implementation/evidence/situated-harness-readiness-20261104.json"
+  },
+  "runtimeCommit": "00bc156",
+  "frozenAtUtc": "2026-11-05T05:35:28.981648+00:00",
+  "matchedRuntimeSettings": {
+    "sourceCommit": "00bc156",
+    "noise_reduction": {
+      "type": "far_field"
+    },
+    "vadThreshold": 0.65,
+    "silenceDurationMs": 1500,
+    "sameWebRTCClient": true,
+    "instructionsUnchangedSinceCandidate": "6a08401",
+    "noHistoryMemoryRetrieval": true,
+    "audioWavHashesVerified": true
+  },
+  "executionAmendment": {
+    "timeUtc": "2026-11-05T05:40:09.940168+00:00",
+    "observedBeforeReview": "All 18 text deliveries complete, outputs not yet read for semantic review. First native baseline session stopped on initial acknowledgement before input/welcome/response.",
+    "reason": "Initial acknowledgement exposed transcriber null and default VAD before asynchronous effective update; guard had checked VAD too early.",
+    "change": "Permit only initial unready settling with no transcription; model/instructions/cap/voice/tools remain checked. Full requested VAD/noise/transcriber contract required before any welcome/input. Drift after readiness remains fatal.",
+    "continuation": "Manual continuation of original unattempted orders20-34 only, after offline verification. Never retry or replace failed order19. No new cases or followups.",
+    "counts": "Original maximum18 text and16 native sessions unchanged; one native failure is retained.",
+    "cost": "Same existing10.15 reservation; no new allocation. Failed-session0.55 obligation retained.",
+    "methodologicalLimit": "Post-technical-failure amendment, not a pristine preregistered run; failed baseline shift-handoff remains unassessed. No prompt/model/audio/settings changes.",
+    "secondObservedInitialAcknowledgement": "Order21 likewise stopped before input/welcome/response, this time with entirely default prompt/cap/voice as well as null transcription. Treat the unconfigured session.created acknowledgement as pending, not effective attestation; continue only unattempted22-34, preserving failed19 and21. Exact full settings still required before welcome/input; no prompt, model, audio or effective-setting changes.",
+    "updatedAtUtc": "2026-11-05T05:42:21.297099+00:00"
+  },
+  "results": "docs/implementation/vault-independent-guidance-results-20261105.md",
+  "knownTokenEstimateUsd": 0.5674874,
+  "ASRCostUnavailable": true,
+  "retainedStageReservationUsd": 10.15
+}

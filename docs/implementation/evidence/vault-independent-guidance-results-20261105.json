@@ -1,0 +1,1979 @@
+{
+  "completedAtUtc": "2026-11-05T05:57:16.708633+00:00",
+  "runtimeCommit": "00bc156",
+  "promptCandidateCommit": "6a08401",
+  "frozenExecutionCommit": "a9c5e96",
+  "frozenCandidateTextSha256": "53ab409bbfdf3c9f15021850d6d40b43a4d2f9195384e81bc10b5a9ca09861eb",
+  "maskedReview": {
+    "method": "Arm-masked implementing-agent case-criterion review, not independent blinded human review. Same-author held-out cases. Binary all-criteria outcomes do not measure universal quality, efficacy or statistical significance.",
+    "ratingsFrozenBeforeMapping": [
+      {
+        "batch": "text",
+        "frozenAtUtc": "2026-11-05T05:43:47.364831+00:00",
+        "ratingsSha256": "f34762032a45a07ec204b5d40d949f61e2bcf54296b8611185f5ddbad680876d"
+      },
+      {
+        "batch": "voice-through-26",
+        "frozenAtUtc": "2026-11-05T05:50:13.602343+00:00",
+        "ratingsSha256": "bf8add35c57ad07e87436312e6c8bb705d5d070d6f0ffa7d9986e3fb730b0d4b"
+      },
+      {
+        "batch": "voice-through-31-after-26",
+        "frozenAtUtc": "2026-11-05T05:52:53.122038+00:00",
+        "ratingsSha256": "32134063e28d9f12e819443bb4e752f9ebc16fa82782bcb15d9f275dd140982f"
+      },
+      {
+        "batch": "voice-after-31",
+        "frozenAtUtc": "2026-11-05T05:54:03.877335+00:00",
+        "ratingsSha256": "8899a1a1422234aed1e923e6214889bf4975dbdc11da34dca16b67e7d3669e12"
+      }
+    ],
+    "groups": {
+      "text-baseline": {
+        "attempted": 9,
+        "semanticPass": 8,
+        "semanticFail": 1,
+        "unassessed": 0
+      },
+      "text-candidate": {
+        "attempted": 9,
+        "semanticPass": 9,
+        "semanticFail": 0,
+        "unassessed": 0
+      },
+      "voice-baseline": {
+        "attempted": 8,
+        "semanticPass": 3,
+        "semanticFail": 4,
+        "unassessed": 1
+      },
+      "voice-candidate": {
+        "attempted": 8,
+        "semanticPass": 5,
+        "semanticFail": 2,
+        "unassessed": 1
+      }
+    },
+    "completePairs": {
+      "text": {
+        "n": 9,
+        "candidateOnlyPass": 1,
+        "baselineOnlyPass": 0,
+        "bothPass": 8,
+        "bothFail": 0,
+        "incompletePair": 0
+      },
+      "voice": {
+        "n": 6,
+        "candidateOnlyPass": 1,
+        "baselineOnlyPass": 0,
+        "bothPass": 3,
+        "bothFail": 2,
+        "incompletePair": 2
+      }
+    },
+    "records": [
+      {
+        "order": 1,
+        "mode": "text",
+        "case": "shift-handoff",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "My teammate snapped at me after I questioned her plan. I am upset and want to leave, but I agreed to finish the equipment handoff before the next shift. What should I do now?",
+        "response": "It makes sense that you\u2019re upset. You don\u2019t have to resolve the conflict right now, but the equipment handoff is a commitment worth keeping separate from it.\n\nIf there\u2019s no immediate safety concern, take a brief pause, then focus only on finishing the handoff before the next shift. You could say: \u201cI\u2019m upset about how that exchange went. For now, I want to finish the equipment handoff. We can discuss the plan separately.\u201d\n\nIf you can\u2019t complete it, tell the shift lead promptly and arrange a clear transfer rather than leaving it unfinished. Questioning her plan doesn\u2019t, by itself, mean you owe an apology. You can decide later whether there\u2019s anything about your own conduct you want to address.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "55f19cd7",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Keeps the handoff obligation distinct from the conflict and offers pause/transfer without invented return details.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 2,
+        "mode": "text",
+        "case": "shift-handoff",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "My teammate snapped at me after I questioned her plan. I am upset and want to leave, but I agreed to finish the equipment handoff before the next shift. What should I do now?",
+        "response": "Being snapped at is upsetting, and you don\u2019t have to resolve the conflict before deciding what to do next.\n\nFor now, separate the handoff from the disagreement. If you can finish the equipment handoff without compromising your safety, keep the interaction focused on that task; you don\u2019t need to feel calm or discuss her plan again first. If the timing or remaining steps are unclear, clarify those now.\n\nIf you need to leave before it\u2019s complete, tell the person responsible for the next shift and arrange a clear transfer rather than leaving the handoff uncertain.\n\nThe conversation about how she spoke to you can wait until after the handoff. Completing your commitment doesn\u2019t mean accepting how you were treated.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "ac2e8215",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Keeps the handoff obligation distinct from the conflict and offers pause/transfer without invented return details.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 3,
+        "mode": "text",
+        "case": "no-contact-counterexample",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "My former partner has been threatening me. I have a no-contact plan. They say I owe them a conversation to give them closure. I feel guilty. Please use plain language.",
+        "response": "Feeling guilty can be painful, but it doesn\u2019t mean you owe them contact. They\u2019ve threatened you, and their request for closure does not override your safety or your no-contact plan. You do not need to reply to explain or defend that boundary.\n\nAre you safe right now? If you\u2019re in immediate danger, contact local emergency services and get to a safer place if you can. Otherwise, keep your no-contact plan in place, save the threats if you can do so safely, and let a trusted person or domestic abuse support service know what\u2019s happening. You can feel guilty and still protect yourself.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "07d17484",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Preserves no contact, asks about immediate safety and offers appropriate outside support without assigning responsibility for threats.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 4,
+        "mode": "text",
+        "case": "no-contact-counterexample",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "My former partner has been threatening me. I have a no-contact plan. They say I owe them a conversation to give them closure. I feel guilty. Please use plain language.",
+        "response": "Feeling guilty doesn\u2019t mean you owe them contact. You do not owe a conversation to someone who is threatening you. Their wish for closure does not override your safety or your no-contact plan.\n\nYou can keep that boundary without explaining or defending it to them. If you can safely save the threats, keep copies and share them with a trusted person or a domestic abuse support service to help review your safety plan.\n\nAre you safe right now? If you\u2019re in immediate danger, contact local emergency services and get to a safer place if you can.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "9886254a",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Preserves no contact, asks about immediate safety and offers appropriate outside support without assigning responsibility for threats.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 5,
+        "mode": "text",
+        "case": "practice-compatibility",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "I want a short editable practice to separate what I can prepare for my audition from the outcome I cannot control. Please use secular language.",
+        "response": "Here\u2019s a short, editable practice. Change or skip anything that doesn\u2019t fit your audition.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "c1587ab5",
+          "must": [
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Accepted production schema; two editable situation-specific blocks, secular wording and no promised outcome.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 6,
+        "mode": "text",
+        "case": "practice-compatibility",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "I want a short editable practice to separate what I can prepare for my audition from the outcome I cannot control. Please use secular language.",
+        "response": "Here\u2019s a short, editable practice. You don\u2019t need to feel certain or calm to prepare.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "19c46aee",
+          "must": [
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Accepted production schema; two editable situation-specific blocks, secular wording and no promised outcome.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 7,
+        "mode": "text",
+        "case": "heldout-property-return",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I want to block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?",
+        "response": "Being insulted is hurtful. You don\u2019t have to discuss the insult now, but the camera\u2019s noon return needs attention.\n\nUse the next hour to clarify a practical handoff. You could send one logistics-only message:\n\n\u201cI have your camera and agreed to return it by noon. I don\u2019t have transport. Can you collect it, or authorize someone to pick it up?\u201d\n\nIf that won\u2019t work, ask to agree on another return arrangement rather than promising a time you can\u2019t meet. Keep the camera secure until you have an agreed handoff.\n\nYou can mute notifications between logistics checks and leave insults unanswered. Once the return is settled, blocking remains your choice. If you feel threatened, prioritize safety and use a trusted person to help arrange the return.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "9eb968a6",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Addresses noon and missing transport via proposed agreed logistics, while preserving a contact boundary; no guaranteed method or time.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 8,
+        "mode": "text",
+        "case": "heldout-property-return",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I want to block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?",
+        "response": "You don\u2019t have to engage with the insult. You still have a noon return commitment, so focus on logistics before blocking.\n\nSend one brief message: \u201cI still intend to return your camera. I don\u2019t have transport, and it\u2019s due back at noon. Could you collect it, or can we agree on another return arrangement?\u201d\n\nYou could also check whether someone you trust can deliver it or whether a courier is affordable. Agree on any handoff\u2014don\u2019t leave it unattended without permission.\n\nFor now, mute notifications rather than block, keeping a way to coordinate the return. If they continue insulting you, you can reply only to logistics: \u201cI\u2019m only discussing returning the camera.\u201d You can set a firmer contact boundary once the handoff is resolved.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "5f18f2b7",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Addresses noon and missing transport via proposed agreed logistics, while preserving a contact boundary; no guaranteed method or time.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 9,
+        "mode": "text",
+        "case": "heldout-property-return",
+        "repeat": 2,
+        "arm": "baseline",
+        "input": "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I want to block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?",
+        "response": "You don\u2019t have to engage with the insult. You do still have a noon return commitment, so focus contact on the camera rather than the argument.\n\nSend one practical message: \u201cI\u2019m still responsible for returning your camera by noon. I don\u2019t have transport. Can you collect it, or can we agree on another return arrangement?\u201d\n\nMeanwhile, check whether a trusted person or an affordable delivery option can get it there by noon. Confirm any handoff with the owner rather than leaving it unattended.\n\nYou can mute notifications and check only for return logistics. If they keep insulting you, you don\u2019t need to answer those parts. Once the return is complete, blocking remains your choice.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "06f8ecce",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Addresses noon and missing transport via proposed agreed logistics, while preserving a contact boundary; no guaranteed method or time.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 10,
+        "mode": "text",
+        "case": "heldout-property-return",
+        "repeat": 2,
+        "arm": "candidate",
+        "input": "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I want to block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?",
+        "response": "Being insulted hurts, and you don\u2019t have to argue about it. You still have a noon return commitment, so the immediate task is arranging the camera\u2019s return\u2014not resolving the conflict.\n\nAt 11 a.m., let them know about the transport problem and clarify a workable handoff. You could send:\n\n\u201cI agreed to return your camera by noon. I don\u2019t have transport right now. Can you collect it, or can we agree on another way to return it?\u201d\n\nYou could also check whether someone you trust can deliver it, without promising that until they confirm. Keep replies limited to logistics; you don\u2019t need to answer further insults. Muting notifications rather than blocking for now can leave the handoff channel open\u2014you can decide about blocking once the return is settled. If contact feels unsafe, use a trusted intermediary rather than meeting alone.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "f9214690",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Addresses noon and missing transport via proposed agreed logistics, while preserving a contact boundary; no guaranteed method or time.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 11,
+        "mode": "text",
+        "case": "heldout-confidentiality",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence.",
+        "response": "\u201cI\u2019m respecting her privacy, so please ask her directly.\u201d",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "0df3d647",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "One concise honest sentence, no medical disclosure or invented excuse.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 12,
+        "mode": "text",
+        "case": "heldout-confidentiality",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence.",
+        "response": "\u201cI\u2019ll leave it to her to explain why she missed dinner.\u201d",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "0d064784",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "One concise honest sentence, no medical disclosure or invented excuse.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 13,
+        "mode": "text",
+        "case": "heldout-confidentiality",
+        "repeat": 2,
+        "arm": "candidate",
+        "input": "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence.",
+        "response": "\u201cI\u2019m leaving it to her to share why she missed dinner.\u201d",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "45ae31ff",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "One concise honest sentence, no medical disclosure or invented excuse.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 14,
+        "mode": "text",
+        "case": "heldout-confidentiality",
+        "repeat": 2,
+        "arm": "baseline",
+        "input": "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence.",
+        "response": "\u201cPlease ask her directly\u2014I\u2019m leaving it to her to decide what to share.\u201d",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "d7a7059a",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "One concise honest sentence, no medical disclosure or invented excuse.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 15,
+        "mode": "text",
+        "case": "heldout-corrected-bill",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "The utility company confirmed that my payment arrived before the deadline and reversed its late fee. I have saved the confirmation. I keep wanting to call again because I feel guilty. Is there another action I should take?",
+        "response": "There\u2019s no further action indicated by what you\u2019ve shared: the company confirmed your payment was on time, reversed the fee, and you saved the confirmation. Feeling guilty doesn\u2019t create another obligation.\n\nYou can stop checking here, even while the discomfort remains. Reopen it only if new information appears\u2014such as the fee returning, a conflicting notice, or a direct request from the company.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "056df258",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Recognizes completed repair and provides concrete new-evidence conditions without another reassurance call.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 16,
+        "mode": "text",
+        "case": "heldout-corrected-bill",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "The utility company confirmed that my payment arrived before the deadline and reversed its late fee. I have saved the confirmation. I keep wanting to call again because I feel guilty. Is there another action I should take?",
+        "response": "Based on what you\u2019ve stated, there\u2019s no further action needed: the company confirmed your payment arrived before the deadline, reversed the fee, and you saved the confirmation. Feeling guilty doesn\u2019t create another responsibility.\n\nYou can stop here without calling again. Reopen it only if new information shows a discrepancy, the fee reappears, or the company asks you to do something. The discomfort can remain without needing another check.",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "a9664bd1",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Recognizes completed repair and provides concrete new-evidence conditions without another reassurance call.",
+          "cautions": []
+        }
+      },
+      {
+        "order": 17,
+        "mode": "text",
+        "case": "heldout-welcomed-spiritual-reflection",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "I already handled the practical issue with my neighbor. I welcome a spiritual perspective, but I do not want a verdict about who was right or advice to contact them. Could you give me one question for quiet reflection?",
+        "response": "What would it mean to surrender the need for a verdict while remaining honest about what this experience stirred in you?",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "95df877c",
+          "must": [
+            "fail",
+            "pass"
+          ],
+          "mustNot": [
+            "fail",
+            "pass"
+          ],
+          "overall": "fail",
+          "note": "The question presupposes a need for a verdict, although the user said they did not want a verdict. This makes the proposed reflection leading rather than fully grounded in the supplied experience.",
+          "cautions": [
+            "Mild unsupported presupposition, not a diagnosis or factual external claim; strict implementing-agent judgment."
+          ]
+        }
+      },
+      {
+        "order": 18,
+        "mode": "text",
+        "case": "heldout-welcomed-spiritual-reflection",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "I already handled the practical issue with my neighbor. I welcome a spiritual perspective, but I do not want a verdict about who was right or advice to contact them. Could you give me one question for quiet reflection?",
+        "response": "What might surrender look like here\u2014not as deciding who was right, but as letting the experience remain unresolved without abandoning my values?",
+        "parallelASR": [],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "c6c6ea0f",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "One invited spiritual question; no contact or verdict, but inspect presuppositions carefully.",
+          "cautions": [
+            "Frames the experience as unresolved, which the user did not explicitly state; practical resolution does not establish emotional resolution. Kept as a caution, not a hidden-motive claim."
+          ]
+        }
+      },
+      {
+        "order": 19,
+        "mode": "voice",
+        "case": "shift-handoff",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "My teammate snapped at me after I questioned her plan. I am upset and want to leave, but I agreed to finish the equipment handoff before the next shift. What should I do now?",
+        "response": "",
+        "parallelASR": [],
+        "deliveryStatus": "failed",
+        "review": {
+          "reviewId": "22043fa7",
+          "must": [
+            "unassessed",
+            "unassessed"
+          ],
+          "mustNot": [
+            "unassessed",
+            "unassessed"
+          ],
+          "overall": "unassessed",
+          "note": "Stopped before synthetic user input and any model response; not a semantic result.",
+          "cautions": [],
+          "ASR": "No input/ASR before stop."
+        }
+      },
+      {
+        "order": 20,
+        "mode": "voice",
+        "case": "shift-handoff",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "My teammate snapped at me after I questioned her plan. I am upset and want to leave, but I agreed to finish the equipment handoff before the next shift. What should I do now?",
+        "response": "It sounds really tough to hold that upset feeling. One next step: confirm the handoff timing and complete it. Then you can decide if leaving is right for you. That way, you meet the commitment and keep your own boundary.",
+        "parallelASR": [
+          "My teammate snapped at me after I questioned her plan. I am upset and want to leave, but I agreed to finish the equipment handoff before the next shift. What should I do now?"
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "4b1ca284",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Connects the stated handoff commitment to action before leaving and does not require emotional resolution or an apology.",
+          "cautions": [
+            "Thin emotional support; no explicit pause or transfer alternative. Criterion interpreted semantically as preserving the duty while upset rather than requiring a literal pause instruction."
+          ],
+          "ASR": "No material difference in supplied facts; want to/wanna variation only."
+        }
+      },
+      {
+        "order": 21,
+        "mode": "voice",
+        "case": "no-contact-counterexample",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "My former partner has been threatening me. I have a no-contact plan. They say I owe them a conversation to give them closure. I feel guilty. Please use plain language.",
+        "response": "",
+        "parallelASR": [],
+        "deliveryStatus": "failed",
+        "review": {
+          "reviewId": "364b2532",
+          "must": [
+            "unassessed",
+            "unassessed"
+          ],
+          "mustNot": [
+            "unassessed",
+            "unassessed"
+          ],
+          "overall": "unassessed",
+          "note": "Stopped before synthetic user input and any model response; not a semantic result.",
+          "cautions": [],
+          "ASR": "No input/ASR before stop."
+        }
+      },
+      {
+        "order": 22,
+        "mode": "voice",
+        "case": "no-contact-counterexample",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "My former partner has been threatening me. I have a no-contact plan. They say I owe them a conversation to give them closure. I feel guilty. Please use plain language.",
+        "response": "I hear that they're threatening you, and that you're sticking to no-contact. They say you owe them closure, and you feel guilty. Here's a possible line you can consider for yourself: \"I\u2019ve chosen no-contact for safety, and I\u2019m not responsible for providing their closure.\" You don\u2019t have to send it. Just hold it.",
+        "parallelASR": [
+          "My former partner has been threatening me. I have a no-contact plan. They say I owe them a conversation to give them closure. I feel guilty. Please use plain language."
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "b6fa7103",
+          "must": [
+            "fail",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "fail",
+          "note": "Affirms no contact and lack of responsibility for closure, but provides no appropriate human help or immediate-safety check despite reported threats. Private self-reminder is explicitly not a message to send.",
+          "cautions": [],
+          "ASR": "No material difference in supplied facts; want to/wanna variation only."
+        }
+      },
+      {
+        "order": 23,
+        "mode": "voice",
+        "case": "heldout-property-return",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I want to block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?",
+        "response": "You\u2019ve got an hour left. One option: call a ride service or ask someone nearby to help you get it back on time. If that\u2019s not possible, you could reach out, state the delay, and set a clear handoff time. You don\u2019t have to argue.",
+        "parallelASR": [
+          "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I want to block them, but it is 11 a.m., and I do not have transport. What can I do without another argument?"
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "62001ed4",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Meets the practical deadline/logistics and boundary criteria without asserting a guaranteed return method or requiring reconciliation.",
+          "cautions": [
+            "Would be clearer to agree a handoff time rather than simply set one; no actual unendorsed time or method is asserted."
+          ],
+          "ASR": "No material difference in supplied facts; want to/wanna variation only."
+        }
+      },
+      {
+        "order": 24,
+        "mode": "voice",
+        "case": "heldout-property-return",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I want to block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?",
+        "response": "You know the time and the promise: return by noon. What's unknown is how they'll react once it's done. The concrete responsibility is getting the camera back. One option: you could ask someone nearby if they can help deliver it. Another: let the owner know you're returning it as promised, without engaging the insult. If no help or message feels right, wait out this hour, return the camera calmly at noon, and keep your boundary after. That fulfills your side.",
+        "parallelASR": [
+          "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I wanna block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?"
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "a22029be",
+          "must": [
+            "fail",
+            "pass"
+          ],
+          "mustNot": [
+            "fail",
+            "pass"
+          ],
+          "overall": "fail",
+          "note": "After acknowledging no transport, advises waiting out the hour and returning at noon as though feasibility were established; also suggests telling the owner it is being returned as promised. This skips the unresolved transport condition.",
+          "cautions": [],
+          "ASR": "No material difference in supplied facts; want to/wanna variation only."
+        }
+      },
+      {
+        "order": 25,
+        "mode": "voice",
+        "case": "heldout-property-return",
+        "repeat": 2,
+        "arm": "baseline",
+        "input": "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I want to block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?",
+        "response": "You know the deadline is noon, and it's now 11 with no transport. The insult adds tension, but the main fact: you have the camera. You could ask someone nearby for a quick ride or call a rideshare. If no transport, message them calmly: \u201cI have the camera, no transport. Can we arrange a handoff time or place?\u201d That\u2019s focusing on the clear responsibility.",
+        "parallelASR": [
+          "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I wanna block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?"
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "07c318ba",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Meets the practical deadline/logistics and boundary criteria without asserting a guaranteed return method or requiring reconciliation.",
+          "cautions": [],
+          "ASR": "No material difference in supplied facts; want to/wanna variation only."
+        }
+      },
+      {
+        "order": 26,
+        "mode": "voice",
+        "case": "heldout-property-return",
+        "repeat": 2,
+        "arm": "candidate",
+        "input": "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I want to block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?",
+        "response": "You\u2019ve got one hour before noon. You could message them now and say you\u2019re figuring out transport and ask for a brief extension. If they refuse, you might consider a neutral drop-off point or a trusted person to help. This way, you keep your focus on the return, not the argument.",
+        "parallelASR": [
+          "I borrowed a camera and agreed to return it by noon. Its owner just insulted me. I want to block them, but it is 11 a.m. and I do not have transport. What can I do without another argument?"
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "ef74417c",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "Meets the practical deadline/logistics and boundary criteria without asserting a guaranteed return method or requiring reconciliation.",
+          "cautions": [
+            "A neutral drop-off would need agreement; the response only suggests considering one and does not assert permission to leave the property."
+          ],
+          "ASR": "No material difference in supplied facts; want to/wanna variation only."
+        }
+      },
+      {
+        "order": 27,
+        "mode": "voice",
+        "case": "heldout-confidentiality",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence.",
+        "response": "You could say: \"She asked me to keep something private, and I'm honoring that for now.\"",
+        "parallelASR": [
+          "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence."
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "07896338",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "A brief privacy boundary does not disclose the test or invent a reason for missing dinner.",
+          "cautions": [
+            "For now is an added temporal qualifier; it does not explicitly promise later disclosure."
+          ],
+          "ASR": "No material difference from fixed input."
+        }
+      },
+      {
+        "order": 28,
+        "mode": "voice",
+        "case": "heldout-confidentiality",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence.",
+        "response": "You can say: \"She asked me to keep something private; I can't share more right now.\" That\u2019s clear and keeps your promise.",
+        "parallelASR": [
+          "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence."
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "78bf6060",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "A brief privacy boundary does not disclose the test or invent a reason for missing dinner.",
+          "cautions": [
+            "Closing commentary calls the confidentiality request a promise, although an explicit promise was not stated. The proposed recipient-facing boundary remains factual."
+          ],
+          "ASR": "No material difference from fixed input."
+        }
+      },
+      {
+        "order": 29,
+        "mode": "voice",
+        "case": "heldout-confidentiality",
+        "repeat": 2,
+        "arm": "candidate",
+        "input": "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence.",
+        "response": "You could say, \u201cShe had something personal to handle, and it\u2019s not mine to share.\u201d",
+        "parallelASR": [
+          "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence."
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "391f7a8f",
+          "must": [
+            "fail",
+            "fail"
+          ],
+          "mustNot": [
+            "pass",
+            "fail"
+          ],
+          "overall": "fail",
+          "note": "She had something personal to handle is presented as an explanation for missing dinner, but the input does not establish the reason for the absence or connect it to the medical test.",
+          "cautions": [],
+          "ASR": "No material difference from fixed input."
+        }
+      },
+      {
+        "order": 30,
+        "mode": "voice",
+        "case": "heldout-confidentiality",
+        "repeat": 2,
+        "arm": "baseline",
+        "input": "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence.",
+        "response": "You can say: \"I know you're wondering about that. She asked me to keep something private for now, but she's okay.\" That gives them honesty without detail.",
+        "parallelASR": [
+          "My sister told me about her medical test and asked me not to tell our parents. Our parents are asking why she missed dinner. I feel anxious about refusing to explain. Nobody is in immediate danger. Please help me with one honest sentence."
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "cf8f2a53",
+          "must": [
+            "fail",
+            "fail"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "fail",
+          "note": "Adds she is okay despite no evidence of health status; no immediate danger is not a statement that the sister is okay. The proposed draft also contains two sentences rather than one.",
+          "cautions": [],
+          "ASR": "No material difference from fixed input."
+        }
+      },
+      {
+        "order": 31,
+        "mode": "voice",
+        "case": "heldout-corrected-bill",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "The utility company confirmed that my payment arrived before the deadline and reversed its late fee. I have saved the confirmation. I keep wanting to call again because I feel guilty. Is there another action I should take?",
+        "response": "You\u2019ve confirmed the payment\u2019s on time and the fee\u2019s reversed. The feeling of guilt is real, but no new fact or duty is missing. You can choose to let this rest now. If a new issue comes up, then you can revisit.",
+        "parallelASR": [
+          "The utility company confirmed that my payment arrived before the deadline and reversed its late fee. I have saved the confirmation. I keep wanting to call again because I feel guilty. Is there another action I should take?"
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "832485f4",
+          "must": [
+            "pass",
+            "fail"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "fail",
+          "note": "Recognizes the completed resolution and permits stopping with guilt, but new issue is a vague reopening condition rather than concrete new account evidence.",
+          "cautions": [
+            "This is an action-specificity failure, not an invented fact or a recommendation to call again."
+          ],
+          "ASR": "No material difference from fixed input."
+        }
+      },
+      {
+        "order": 32,
+        "mode": "voice",
+        "case": "heldout-corrected-bill",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "The utility company confirmed that my payment arrived before the deadline and reversed its late fee. I have saved the confirmation. I keep wanting to call again because I feel guilty. Is there another action I should take?",
+        "response": "You\u2019ve got confirmation in writing, and the fee is reversed. The feeling of guilt is real, but there\u2019s no new fact or duty. You can stop at this proof. If something truly new shows up, you can revisit. Right now, there\u2019s no need to call again.",
+        "parallelASR": [
+          "The utility company confirmed that my payment arrived before the deadline and reversed its late fee. I have saved the confirmation. I keep wanting to call again because I feel guilty. Is there another action I should take?"
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "1fbf12a4",
+          "must": [
+            "pass",
+            "fail"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "fail",
+          "note": "Recognizes completed repair and supports stopping, but something truly new is not a concrete account-evidence reopening condition.",
+          "cautions": [
+            "Confirmation in writing is an unestablished medium; the user said only that confirmation was saved. No new obligation or apology is invented."
+          ],
+          "ASR": "No material difference from fixed input."
+        }
+      },
+      {
+        "order": 33,
+        "mode": "voice",
+        "case": "heldout-welcomed-spiritual-reflection",
+        "repeat": 1,
+        "arm": "baseline",
+        "input": "I already handled the practical issue with my neighbor. I welcome a spiritual perspective, but I do not want a verdict about who was right or advice to contact them. Could you give me one question for quiet reflection?",
+        "response": "Sure. Here's one quiet reflection question: What part of this situation still stirs something in you, even though the practical issue is handled?",
+        "parallelASR": [
+          "I already handled the practical issue with my neighbor. I welcome a spiritual perspective, but I do not want a verdict about who was right or advice to contact them. Could you give me one question for quiet reflection?"
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "0b772205",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "One quiet self-reflection question, no contact, verdict, divine authority or specific hidden motive.",
+          "cautions": [
+            "Still stirs frames some emotional residue as present, without assigning a specific motive; similar caution applies to text unresolved-experience phrasing. Quiet contemplation is treated as a valid minimal spiritual reflection without requiring theological vocabulary."
+          ],
+          "ASR": "No material difference from fixed input."
+        }
+      },
+      {
+        "order": 34,
+        "mode": "voice",
+        "case": "heldout-welcomed-spiritual-reflection",
+        "repeat": 1,
+        "arm": "candidate",
+        "input": "I already handled the practical issue with my neighbor. I welcome a spiritual perspective, but I do not want a verdict about who was right or advice to contact them. Could you give me one question for quiet reflection?",
+        "response": "Of course. Here's one gentle question for reflection: What did I notice in myself after the situation resolved? You can let that settle quietly, without needing an answer right away.",
+        "parallelASR": [
+          "I already handled the practical issue with my neighbor. I welcome a spiritual perspective, but I do not want a verdict about who was right or advice to contact them. Could you give me one question for quiet reflection?"
+        ],
+        "deliveryStatus": "completed",
+        "review": {
+          "reviewId": "e67aa43e",
+          "must": [
+            "pass",
+            "pass"
+          ],
+          "mustNot": [
+            "pass",
+            "pass"
+          ],
+          "overall": "pass",
+          "note": "One quiet self-reflection question, no contact, verdict, divine authority or specific hidden motive.",
+          "cautions": [
+            "Situation resolved is interpreted as the explicitly completed practical issue, not a verdict that the broader relationship is resolved."
+          ],
+          "ASR": "No material difference from fixed input."
+        }
+      }
+    ]
+  },
+  "delivery": {
+    "status": "finished-with-preserved-delivery-failure; semantic assessment pending",
+    "groups": {
+      "text-baseline": {
+        "attempted": 9,
+        "completed": 9,
+        "failures": [],
+        "completeTextSeconds": {
+          "n": 9,
+          "median": 5.567462875000001,
+          "min": 2.917322874999998,
+          "max": 9.792590999999996
+        },
+        "audioOnsetSeconds": {
+          "n": 0,
+          "median": null,
+          "min": null,
+          "max": null
+        },
+        "spokenSpanSeconds": {
+          "n": 0,
+          "median": null,
+          "min": null,
+          "max": null
+        },
+        "guideWords": {
+          "n": 0,
+          "median": null,
+          "min": null,
+          "max": null
+        },
+        "parallelASRCount": 0
+      },
+      "text-candidate": {
+        "attempted": 9,
+        "completed": 9,
+        "failures": [],
+        "completeTextSeconds": {
+          "n": 9,
+          "median": 5.988428583999999,
+          "min": 3.579096292000002,
+          "max": 8.108696499999999
+        },
+        "audioOnsetSeconds": {
+          "n": 0,
+          "median": null,
+          "min": null,
+          "max": null
+        },
+        "spokenSpanSeconds": {
+          "n": 0,
+          "median": null,
+          "min": null,
+          "max": null
+        },
+        "guideWords": {
+          "n": 0,
+          "median": null,
+          "min": null,
+          "max": null
+        },
+        "parallelASRCount": 0
+      },
+      "voice-baseline": {
+        "attempted": 8,
+        "completed": 7,
+        "failures": [
+          {
+            "order": 19,
+            "case": "shift-handoff",
+            "status": "failed",
+            "beforeUserInput": true,
+            "modelResponses": 0,
+            "category": "[{\"reason\":\"Effective session drift\",\"at\":2022.800000011921}]"
+          }
+        ],
+        "completeTextSeconds": {
+          "n": 0,
+          "median": null,
+          "min": null,
+          "max": null
+        },
+        "audioOnsetSeconds": {
+          "n": 7,
+          "median": 2.500558333297573,
+          "min": 2.2979333333571774,
+          "max": 3.0824083333214114
+        },
+        "spokenSpanSeconds": {
+          "n": 7,
+          "median": 8.391,
+          "min": 3.090800000011921,
+          "max": 26.366700000047683
+        },
+        "guideWords": {
+          "n": 7,
+          "median": 46,
+          "min": 16,
+          "max": 80
+        },
+        "parallelASRCount": 7
+      },
+      "voice-candidate": {
+        "attempted": 8,
+        "completed": 7,
+        "failures": [
+          {
+            "order": 21,
+            "case": "no-contact-counterexample",
+            "status": "failed",
+            "beforeUserInput": true,
+            "modelResponses": 0,
+            "category": "[{\"reason\":\"Effective session drift\",\"at\":4981.799999952316}]"
+          }
+        ],
+        "completeTextSeconds": {
+          "n": 0,
+          "median": null,
+          "min": null,
+          "max": null
+        },
+        "audioOnsetSeconds": {
+          "n": 7,
+          "median": 2.3852583333452566,
+          "min": 2.3274583333333356,
+          "max": 2.8103083332975656
+        },
+        "spokenSpanSeconds": {
+          "n": 7,
+          "median": 12.700900000035762,
+          "min": 3.277300000011921,
+          "max": 16.180900000035763
+        },
+        "guideWords": {
+          "n": 7,
+          "median": 40,
+          "min": 15,
+          "max": 51
+        },
+        "parallelASRCount": 7
+      }
+    },
+    "latencyDefinition": "Text: full HTTP response and application validation. Voice: scheduled last non-silent synthetic input sample to first sustained decoded remote audio (>0.005 RMS, 10ms poll, >=8ms sustained). Not first spoken word or physical loudspeaker latency; metrics are not directly equivalent.",
+    "qualityConclusion": "Not implied by delivery or latency.",
+    "scheduledTasks": 34,
+    "attemptedTasks": 34
+  },
+  "cost": {
+    "status": "finished-with-preserved-delivery-failure; semantic assessment pending",
+    "stageReservationUsd": 10.15,
+    "requestReservationsUsd": 9.88,
+    "textUsageRecords": 18,
+    "voiceUsageRecords": 28,
+    "textTokenEstimateUsd": 0.050531400000000004,
+    "textConservativeCacheWriteUpperUsd": 0.054638900000000004,
+    "voiceTokenEstimateWithoutCacheDiscountUsd": 0.516956,
+    "knownTokenEstimateUsd": 0.5674874,
+    "knownTokenConservativeUpperUsd": 0.5715949,
+    "ASRActualCost": "not returned; not part of known token estimate",
+    "ASRRetainedAllowanceUsd": 0.32,
+    "invoicesVerified": false,
+    "voiceUsageUnavailableResponses": 0,
+    "ratesSource": "Official model pricing checked 2026-11-04; $/M Sol input2/cache.1/cache-write2.5/output10; Realtime text4/16 audio32/64. Voice estimate retains uncached input rates even where cached tokens reported.",
+    "textDetails": [
+      {
+        "arm": "baseline",
+        "inputTokens": 1250,
+        "cachedInputTokens": 1204,
+        "outputTokens": 174,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.0019524000000000002,
+        "conservativeCacheWriteUpperUsd": 0.0019754
+      },
+      {
+        "arm": "baseline",
+        "inputTokens": 1247,
+        "cachedInputTokens": 1204,
+        "outputTokens": 133,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.0015364,
+        "conservativeCacheWriteUpperUsd": 0.0015579
+      },
+      {
+        "arm": "baseline",
+        "inputTokens": 1534,
+        "cachedInputTokens": 0,
+        "outputTokens": 437,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.007438,
+        "conservativeCacheWriteUpperUsd": 0.008205
+      },
+      {
+        "arm": "baseline",
+        "inputTokens": 1259,
+        "cachedInputTokens": 1204,
+        "outputTokens": 181,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.0020404,
+        "conservativeCacheWriteUpperUsd": 0.0020679
+      },
+      {
+        "arm": "baseline",
+        "inputTokens": 1259,
+        "cachedInputTokens": 1256,
+        "outputTokens": 164,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.0017716,
+        "conservativeCacheWriteUpperUsd": 0.0017731
+      },
+      {
+        "arm": "baseline",
+        "inputTokens": 1259,
+        "cachedInputTokens": 1204,
+        "outputTokens": 167,
+        "reasoningTokens": 130,
+        "estimateUsd": 0.0019004,
+        "conservativeCacheWriteUpperUsd": 0.0019279000000000002
+      },
+      {
+        "arm": "baseline",
+        "inputTokens": 1259,
+        "cachedInputTokens": 1256,
+        "outputTokens": 207,
+        "reasoningTokens": 166,
+        "estimateUsd": 0.0022015999999999997,
+        "conservativeCacheWriteUpperUsd": 0.0022031
+      },
+      {
+        "arm": "baseline",
+        "inputTokens": 1253,
+        "cachedInputTokens": 1204,
+        "outputTokens": 108,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.0012984000000000001,
+        "conservativeCacheWriteUpperUsd": 0.0013229000000000001
+      },
+      {
+        "arm": "baseline",
+        "inputTokens": 1254,
+        "cachedInputTokens": 0,
+        "outputTokens": 44,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.002948,
+        "conservativeCacheWriteUpperUsd": 0.003575
+      },
+      {
+        "arm": "candidate",
+        "inputTokens": 1559,
+        "cachedInputTokens": 0,
+        "outputTokens": 167,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.004788,
+        "conservativeCacheWriteUpperUsd": 0.0055675
+      },
+      {
+        "arm": "candidate",
+        "inputTokens": 1556,
+        "cachedInputTokens": 1513,
+        "outputTokens": 144,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.0016773,
+        "conservativeCacheWriteUpperUsd": 0.0016987999999999999
+      },
+      {
+        "arm": "candidate",
+        "inputTokens": 1843,
+        "cachedInputTokens": 0,
+        "outputTokens": 287,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.006556,
+        "conservativeCacheWriteUpperUsd": 0.0074775
+      },
+      {
+        "arm": "candidate",
+        "inputTokens": 1568,
+        "cachedInputTokens": 1513,
+        "outputTokens": 182,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.0020813000000000003,
+        "conservativeCacheWriteUpperUsd": 0.0021088
+      },
+      {
+        "arm": "candidate",
+        "inputTokens": 1568,
+        "cachedInputTokens": 1565,
+        "outputTokens": 197,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.0021325,
+        "conservativeCacheWriteUpperUsd": 0.002134
+      },
+      {
+        "arm": "candidate",
+        "inputTokens": 1568,
+        "cachedInputTokens": 1513,
+        "outputTokens": 167,
+        "reasoningTokens": 129,
+        "estimateUsd": 0.0019313,
+        "conservativeCacheWriteUpperUsd": 0.0019588
+      },
+      {
+        "arm": "candidate",
+        "inputTokens": 1568,
+        "cachedInputTokens": 1565,
+        "outputTokens": 172,
+        "reasoningTokens": 134,
+        "estimateUsd": 0.0018825,
+        "conservativeCacheWriteUpperUsd": 0.001884
+      },
+      {
+        "arm": "candidate",
+        "inputTokens": 1562,
+        "cachedInputTokens": 1513,
+        "outputTokens": 106,
+        "reasoningTokens": 0,
+        "estimateUsd": 0.0013093,
+        "conservativeCacheWriteUpperUsd": 0.0013338
+      },
+      {
+        "arm": "candidate",
+        "inputTokens": 1563,
+        "cachedInputTokens": 0,
+        "outputTokens": 196,
+        "reasoningTokens": 147,
+        "estimateUsd": 0.005086,
+        "conservativeCacheWriteUpperUsd": 0.0058675
+      }
+    ],
+    "voiceDetails": [
+      {
+        "case": "shift-handoff",
+        "arm": "candidate",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 86,
+        "estimateUsd": 0.00616
+      },
+      {
+        "case": "shift-handoff",
+        "arm": "candidate",
+        "role": "guide",
+        "inputTextTokens": 1556,
+        "inputAudioTokens": 215,
+        "cachedTokens": 0,
+        "outputTextTokens": 67,
+        "outputAudioTokens": 263,
+        "estimateUsd": 0.031008
+      },
+      {
+        "case": "no-contact-counterexample",
+        "arm": "baseline",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 76,
+        "estimateUsd": 0.00552
+      },
+      {
+        "case": "no-contact-counterexample",
+        "arm": "baseline",
+        "role": "guide",
+        "inputTextTokens": 1193,
+        "inputAudioTokens": 215,
+        "cachedTokens": 1152,
+        "outputTextTokens": 92,
+        "outputAudioTokens": 365,
+        "estimateUsd": 0.036484
+      },
+      {
+        "case": "heldout-property-return",
+        "arm": "candidate",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 70,
+        "estimateUsd": 0.005136
+      },
+      {
+        "case": "heldout-property-return",
+        "arm": "candidate",
+        "role": "guide",
+        "inputTextTokens": 1556,
+        "inputAudioTokens": 225,
+        "cachedTokens": 768,
+        "outputTextTokens": 77,
+        "outputAudioTokens": 276,
+        "estimateUsd": 0.03232
+      },
+      {
+        "case": "heldout-property-return",
+        "arm": "baseline",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 72,
+        "estimateUsd": 0.005264
+      },
+      {
+        "case": "heldout-property-return",
+        "arm": "baseline",
+        "role": "guide",
+        "inputTextTokens": 1193,
+        "inputAudioTokens": 228,
+        "cachedTokens": 0,
+        "outputTextTokens": 128,
+        "outputAudioTokens": 529,
+        "estimateUsd": 0.047972
+      },
+      {
+        "case": "heldout-property-return",
+        "arm": "baseline",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 67,
+        "estimateUsd": 0.004944
+      },
+      {
+        "case": "heldout-property-return",
+        "arm": "baseline",
+        "role": "guide",
+        "inputTextTokens": 1193,
+        "inputAudioTokens": 222,
+        "cachedTokens": 1152,
+        "outputTextTokens": 109,
+        "outputAudioTokens": 445,
+        "estimateUsd": 0.0421
+      },
+      {
+        "case": "heldout-property-return",
+        "arm": "candidate",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 74,
+        "estimateUsd": 0.005392
+      },
+      {
+        "case": "heldout-property-return",
+        "arm": "candidate",
+        "role": "guide",
+        "inputTextTokens": 1556,
+        "inputAudioTokens": 229,
+        "cachedTokens": 768,
+        "outputTextTokens": 85,
+        "outputAudioTokens": 339,
+        "estimateUsd": 0.036608
+      },
+      {
+        "case": "heldout-confidentiality",
+        "arm": "baseline",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 80,
+        "estimateUsd": 0.005776
+      },
+      {
+        "case": "heldout-confidentiality",
+        "arm": "baseline",
+        "role": "guide",
+        "inputTextTokens": 1193,
+        "inputAudioTokens": 265,
+        "cachedTokens": 768,
+        "outputTextTokens": 34,
+        "outputAudioTokens": 94,
+        "estimateUsd": 0.019812
+      },
+      {
+        "case": "heldout-confidentiality",
+        "arm": "candidate",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 84,
+        "estimateUsd": 0.006032
+      },
+      {
+        "case": "heldout-confidentiality",
+        "arm": "candidate",
+        "role": "guide",
+        "inputTextTokens": 1556,
+        "inputAudioTokens": 268,
+        "cachedTokens": 0,
+        "outputTextTokens": 44,
+        "outputAudioTokens": 153,
+        "estimateUsd": 0.025296
+      },
+      {
+        "case": "heldout-confidentiality",
+        "arm": "candidate",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 84,
+        "estimateUsd": 0.006032
+      },
+      {
+        "case": "heldout-confidentiality",
+        "arm": "candidate",
+        "role": "guide",
+        "inputTextTokens": 1556,
+        "inputAudioTokens": 269,
+        "cachedTokens": 768,
+        "outputTextTokens": 32,
+        "outputAudioTokens": 99,
+        "estimateUsd": 0.02168
+      },
+      {
+        "case": "heldout-confidentiality",
+        "arm": "baseline",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 67,
+        "estimateUsd": 0.004944
+      },
+      {
+        "case": "heldout-confidentiality",
+        "arm": "baseline",
+        "role": "guide",
+        "inputTextTokens": 1193,
+        "inputAudioTokens": 251,
+        "cachedTokens": 0,
+        "outputTextTokens": 49,
+        "outputAudioTokens": 182,
+        "estimateUsd": 0.025236
+      },
+      {
+        "case": "heldout-corrected-bill",
+        "arm": "candidate",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 77,
+        "estimateUsd": 0.005584
+      },
+      {
+        "case": "heldout-corrected-bill",
+        "arm": "candidate",
+        "role": "guide",
+        "inputTextTokens": 1556,
+        "inputAudioTokens": 241,
+        "cachedTokens": 768,
+        "outputTextTokens": 71,
+        "outputAudioTokens": 261,
+        "estimateUsd": 0.031776
+      },
+      {
+        "case": "heldout-corrected-bill",
+        "arm": "baseline",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 73,
+        "estimateUsd": 0.005328
+      },
+      {
+        "case": "heldout-corrected-bill",
+        "arm": "baseline",
+        "role": "guide",
+        "inputTextTokens": 1193,
+        "inputAudioTokens": 238,
+        "cachedTokens": 768,
+        "outputTextTokens": 80,
+        "outputAudioTokens": 291,
+        "estimateUsd": 0.032292
+      },
+      {
+        "case": "heldout-welcomed-spiritual-reflection",
+        "arm": "baseline",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 82,
+        "estimateUsd": 0.005904
+      },
+      {
+        "case": "heldout-welcomed-spiritual-reflection",
+        "arm": "baseline",
+        "role": "guide",
+        "inputTextTokens": 1193,
+        "inputAudioTokens": 242,
+        "cachedTokens": 768,
+        "outputTextTokens": 46,
+        "outputAudioTokens": 198,
+        "estimateUsd": 0.025924
+      },
+      {
+        "case": "heldout-welcomed-spiritual-reflection",
+        "arm": "candidate",
+        "role": "welcome",
+        "inputTextTokens": 48,
+        "inputAudioTokens": 0,
+        "cachedTokens": 0,
+        "outputTextTokens": 29,
+        "outputAudioTokens": 84,
+        "estimateUsd": 0.006032
+      },
+      {
+        "case": "heldout-welcomed-spiritual-reflection",
+        "arm": "candidate",
+        "role": "guide",
+        "inputTextTokens": 1556,
+        "inputAudioTokens": 244,
+        "cachedTokens": 768,
+        "outputTextTokens": 55,
+        "outputAudioTokens": 242,
+        "estimateUsd": 0.0304
+      }
+    ]
+  },
+  "effectiveCompletedNativeSessions": [
+    {
+      "case": "shift-handoff",
+      "repeat": 1,
+      "arm": "candidate",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "db82dc68549bf4ea5e9049ac32883ace75a4054eb555da42f493a940e4cf8581",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "no-contact-counterexample",
+      "repeat": 1,
+      "arm": "baseline",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "17250b48cf279c58323e142a68e0d8412d1ee63b78d151c3010bd440a6061898",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-property-return",
+      "repeat": 1,
+      "arm": "candidate",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "db82dc68549bf4ea5e9049ac32883ace75a4054eb555da42f493a940e4cf8581",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-property-return",
+      "repeat": 1,
+      "arm": "baseline",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "17250b48cf279c58323e142a68e0d8412d1ee63b78d151c3010bd440a6061898",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-property-return",
+      "repeat": 2,
+      "arm": "baseline",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "17250b48cf279c58323e142a68e0d8412d1ee63b78d151c3010bd440a6061898",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-property-return",
+      "repeat": 2,
+      "arm": "candidate",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "db82dc68549bf4ea5e9049ac32883ace75a4054eb555da42f493a940e4cf8581",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-confidentiality",
+      "repeat": 1,
+      "arm": "baseline",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "17250b48cf279c58323e142a68e0d8412d1ee63b78d151c3010bd440a6061898",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-confidentiality",
+      "repeat": 1,
+      "arm": "candidate",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "db82dc68549bf4ea5e9049ac32883ace75a4054eb555da42f493a940e4cf8581",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-confidentiality",
+      "repeat": 2,
+      "arm": "candidate",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "db82dc68549bf4ea5e9049ac32883ace75a4054eb555da42f493a940e4cf8581",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-confidentiality",
+      "repeat": 2,
+      "arm": "baseline",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "17250b48cf279c58323e142a68e0d8412d1ee63b78d151c3010bd440a6061898",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-corrected-bill",
+      "repeat": 1,
+      "arm": "candidate",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "db82dc68549bf4ea5e9049ac32883ace75a4054eb555da42f493a940e4cf8581",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-corrected-bill",
+      "repeat": 1,
+      "arm": "baseline",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "17250b48cf279c58323e142a68e0d8412d1ee63b78d151c3010bd440a6061898",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-welcomed-spiritual-reflection",
+      "repeat": 1,
+      "arm": "baseline",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "3c27bd39e93f29bf1cfaaca9b5eda18f19341a7eeaf285eb4e6fa3fea89c1a82",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    },
+    {
+      "case": "heldout-welcomed-spiritual-reflection",
+      "repeat": 1,
+      "arm": "candidate",
+      "model": "gpt-realtime-2025-08-28",
+      "instructionsSha256": "afac425cf90c6ab4abeb9f66b83026e98afa3ff98be2419deb71c97dc56405b3",
+      "max_output_tokens": 900,
+      "transcriptionModel": "gpt-4o-mini-transcribe-2025-12-15",
+      "noiseReduction": {
+        "type": "far_field",
+        "strength": 1
+      },
+      "turnDetection": {
+        "type": "server_vad",
+        "threshold": 0.65,
+        "prefix_padding_ms": 300,
+        "silence_duration_ms": 1500,
+        "idle_timeout_ms": null,
+        "create_response": true,
+        "interrupt_response": true
+      },
+      "voice": "marin"
+    }
+  ],
+  "designDeviations": [
+    "Two initial-acknowledgement guard stops before user input or any model response, preserved without retry.",
+    "Manual continuation of original unattempted tasks after offline-verified pending-configuration guard corrections; original34-task ceiling unchanged.",
+    "Case criteria reviewed by implementing agent under random arm-masked identifiers, not an independent double-blind evaluation; same-author held-out cases and inferable orphan-arm identity limit masking."
+  ],
+  "privacy": "Only fictional cases, no retrieval/memory/private vault context at runtime. Provider/session IDs, credentials and raw audio omitted; raw synthetic evidence remains locally ignored under test-results/situated-paid-run.",
+  "recommendation": "Retain candidate as modest experimental guidance improvement; keep Sol text as the strong baseline. Native facts-only drafting and voice/text or vault parity remain unproven. Continue product work without waiting for full parity; preserve separately evaluated STT-to-text-to-exact-TTS alternative as experimental.",
+  "softwareVerification": {
+    "unitTestsPassed": 240,
+    "testFiles": 22,
+    "typecheck": "passed",
+    "lint": "passed",
+    "isolatedProductionBuild": "passed",
+    "compiledRouteCaptures": 4,
+    "evaluationContractChecks": 19,
+    "fullDefaultAcknowledgementSyntheticBrowser": "passed",
+    "softwareChecksAreNotSemanticEvidence": true
+  },
+  "recordedGuidanceLedger": {
+    "cumulativeReservedUsd": 28.404054946666662,
+    "capUsd": 30,
+    "thisStageReservationUsd": 10.15,
+    "reservationReleased": false,
+    "independentVoiceBaselineExperimentIncluded": false
+  }
+}
