@@ -20,8 +20,9 @@ class FakeSocket extends EventEmitter implements Socket {
     if(e.type==='response.create'){
       emit({type:'response.created'});
       if(this.mode==='duplicate')emit({type:'response.created'});
-      if(this.mode!=='silent')emit({type:'response.output_audio.delta',delta:pcm.toString('base64')});
-      emit({type:'response.output_audio_transcript.done',transcript:'Which times are you available?'});
+      if(this.mode!=='silent' && this.mode!=='text')emit({type:'response.output_audio.delta',delta:pcm.toString('base64')});
+      if(this.mode==='text')emit({type:'response.output_text.done',text:'Which times are you available?'});
+      else emit({type:'response.output_audio_transcript.done',transcript:'Which times are you available?'});
       emit({type:'conversation.item.input_audio_transcription.completed',transcript:'What should I do?'});
       emit({type:'response.done',response:{status:this.mode==='cap'?'incomplete':'completed',usage:{output_tokens:10}}});
     }
@@ -118,4 +119,9 @@ it('runs the native adapter through a real local WebSocket PCM loopback with no 
 it.each([{content:[]},{content:[{type:'refusal',refusal:'No'}]}])('does not count empty/refused matched text as completed',async ({content})=>{
  const result=await textAdapter('matched-text',capture,'test',async()=>({status:'completed',model:'gpt-6.1-sol',output:[{content}]}),signal());
  expect(result.status).not.toBe('completed');
+});
+
+it('supports a matched native text-output control without requiring audio frames',async()=>{
+ const ws=new FakeSocket('text');const r=await nativeAdapter('native-text',capture,'test',Buffer.alloc(0),()=>ws,signal(),{outputMode:'text'});
+ expect(r.status).toBe('completed');expect(r.answer).toBe('Which times are you available?');expect(r.pcm?.length).toBe(0);expect(r.raw.expected.output_modalities).toEqual(['text']);
 });

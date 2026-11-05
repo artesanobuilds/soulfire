@@ -1,5 +1,7 @@
 # Text reasoning with exact speech — bounded follow-up, 2026-11-05
 
+Subsequent work: [budget reconciliation, independent review and further controls](voice-parity-reconciliation-20261105.md). The historical no-release budget stop below has been superseded; original observations remain preserved.
+
 **A working experimental product path now generates an accepted text reply once and sends that exact message to local speech. One previously unused held-out recording completed through this path and the updated native WebRTC route. This is feasibility evidence, not established parity.** All $5 of conservative voice reservations are now retained, so paid work has stopped. The vault-guidance comparison remains paused.
 
 ## Implemented in the experiment branch

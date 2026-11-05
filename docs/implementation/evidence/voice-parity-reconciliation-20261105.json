@@ -1,0 +1,154 @@
+{
+  "status": "bounded-cohorts-complete-parity-not-established",
+  "financial_audit": {
+    "new_known_usage_estimate_usd": [
+      0.19909664999999996,
+      0.20260665
+    ],
+    "combined_known_usage_estimate_usd": [
+      0.5369063,
+      0.5471438
+    ],
+    "new_counts": {
+      "native": 13,
+      "text": 10,
+      "asr": 13
+    },
+    "new_generation_responses": 23,
+    "missing_usage": [
+      "tentative-time-1/transcribe"
+    ],
+    "unknown_request_full_reservation_usd": 0.0256,
+    "conservative_completed_upper_usd": 3.742182,
+    "protected_completed_usd": 3.75,
+    "total_committed_upper_usd": 3.7756,
+    "remaining_safe_headroom_usd": 1.2244000000000002,
+    "ceiling_usd": 5,
+    "invoice_observed": false
+  },
+  "independent_quality_review": {
+    "method": "fresh-context condition-masked agent; no human reviewer",
+    "original_items": 42,
+    "new_paired_items": 12,
+    "mechanism_items": 9,
+    "original_summary": {
+      "native-audio": {
+        "n": 8,
+        "grounding": 4,
+        "no_unsupported_assumptions": 4,
+        "decision_usefulness": 4,
+        "actionability": 4,
+        "material_grounding_failure": 0
+      },
+      "production-text": {
+        "n": 8,
+        "grounding": 8,
+        "no_unsupported_assumptions": 8,
+        "decision_usefulness": 8,
+        "actionability": 8,
+        "material_grounding_failure": 0
+      },
+      "native-text": {
+        "n": 8,
+        "grounding": 6,
+        "no_unsupported_assumptions": 6,
+        "decision_usefulness": 5,
+        "actionability": 5,
+        "material_grounding_failure": 0
+      },
+      "text-tts": {
+        "n": 8,
+        "grounding": 8,
+        "no_unsupported_assumptions": 8,
+        "decision_usefulness": 8,
+        "actionability": 8,
+        "material_grounding_failure": 0
+      },
+      "matched-text": {
+        "n": 8,
+        "grounding": 8,
+        "no_unsupported_assumptions": 8,
+        "decision_usefulness": 8,
+        "actionability": 8,
+        "material_grounding_failure": 0
+      }
+    },
+    "paired_summary": {
+      "native-production-auto": {
+        "n": 6,
+        "grounding": 5,
+        "no_unsupported_assumptions": 5,
+        "decision_usefulness": 5,
+        "actionability": 5,
+        "material_grounding_failures": 1
+      },
+      "text-exact-speech": {
+        "n": 6,
+        "grounding": 5,
+        "no_unsupported_assumptions": 5,
+        "decision_usefulness": 5,
+        "actionability": 5,
+        "material_grounding_failures": 0
+      }
+    },
+    "mechanism_summary": {
+      "native-text": {
+        "n": 3,
+        "grounding": 2,
+        "no_unsupported_assumptions": 2,
+        "decision_usefulness": 2,
+        "actionability": 2,
+        "material_grounding_failures": 1
+      },
+      "sol-text": {
+        "n": 3,
+        "grounding": 3,
+        "no_unsupported_assumptions": 3,
+        "decision_usefulness": 3,
+        "actionability": 3,
+        "material_grounding_failures": 0
+      },
+      "native-audio": {
+        "n": 3,
+        "grounding": 1,
+        "no_unsupported_assumptions": 1,
+        "decision_usefulness": 1,
+        "actionability": 1,
+        "material_grounding_failures": 1
+      }
+    },
+    "severity_disagreement": true
+  },
+  "independent_budget_audit_completed": true,
+  "original_ledger_hashes_preserved": true,
+  "production_native_generation_complete": 6,
+  "production_native_auto_response_enabled": 6,
+  "serial_file_transcription_complete": 5,
+  "serial_file_transcription_failed_unknown_usage": 1,
+  "typed_recovery_without_retry": 1,
+  "text_and_local_speech_outputs_complete": 6,
+  "old_media_recording_invalid": 1,
+  "old_media_provider_buffer_stop_seen": 5,
+  "fresh_corrected_media_validation_complete": true,
+  "offline_asr_audio_files": 14,
+  "human_listening": false,
+  "final_text_config_matches_primary_text_backend": true,
+  "final_text_output_cap": 2200,
+  "new_stale_draft_ui_test": "passed with mocked API; no provider calls",
+  "server_timing_instrumented": true,
+  "guidance_comparison_started": false,
+  "model_weights_causality_established": false,
+  "parity_established": false,
+  "remaining_scope": [
+    "human listening",
+    "multi-turn/history integration",
+    "real microphone/noise evaluation",
+    "preregistered acceptance margin"
+  ],
+  "validation": {
+    "targeted_ts_checks": 33,
+    "python_tests": 14,
+    "typecheck": "passed",
+    "targeted_lint": "passed"
+  }
+}

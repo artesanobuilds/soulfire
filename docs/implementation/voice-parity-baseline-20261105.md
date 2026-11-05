@@ -1,5 +1,7 @@
 # Voice parity baseline — 2026-11-05
 
+Subsequent work: [budget reconciliation, independent review and further controls](voice-parity-reconciliation-20261105.md). The historical no-release budget stop below has been superseded; original observations remain preserved.
+
 **Instruction parity is verified in the matched experiment; guidance-quality parity is not established.** Native replies still introduced a present action and changed a deadline's recipient even with identical guidance bytes, full input submission and no VAD cutoff. Keep the vault-inspired comparison paused. The strongest next architecture to validate is the same text reasoning path followed by exact-text speech; do not claim that the native model alone caused the gap.
 
 ## Frozen source, actual runtime and latest voice fix

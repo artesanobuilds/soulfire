@@ -22,9 +22,9 @@ export function matchedRequest(capture: Capture, input: string): Json {
 export function productionRequest(capture: Capture, input: string): Json {
   return { ...capture.productionTextRequest, input: [{ role: 'user', content: input }] };
 }
-export function nativeSession(capture: Capture): Json {
+export function nativeSession(capture: Capture, outputMode: 'audio' | 'text' = 'audio'): Json {
   return { type: 'realtime', model: 'gpt-realtime', instructions: capture.matchedInstructions,
-    output_modalities: ['audio'], max_output_tokens: 900, tools: [], tool_choice: 'none',
+    output_modalities: [outputMode], max_output_tokens: 900, tools: [], tool_choice: 'none',
     audio: { input: { format: { type: 'audio/pcm', rate: 24000 },
       transcription: { model: 'gpt-4o-mini-transcribe' }, turn_detection: null, noise_reduction: {type: 'far_field'} },
       output: { format: { type: 'audio/pcm', rate: 24000 }, voice: 'marin', speed: 1 } } };
@@ -32,7 +32,7 @@ export function nativeSession(capture: Capture): Json {
 export function verifyNative(effective: Json, expected: Json): boolean {
   const i = effective.audio?.input, o = effective.audio?.output;
   return effective.model === expected.model && effective.instructions === expected.instructions &&
-    effective.max_output_tokens === 900 && JSON.stringify(effective.output_modalities) === '["audio"]' &&
+    effective.max_output_tokens === 900 && JSON.stringify(effective.output_modalities) === JSON.stringify(expected.output_modalities) &&
     Array.isArray(effective.tools) && effective.tools.length === 0 && effective.tool_choice === 'none' &&
     i?.turn_detection === null && i?.noise_reduction?.type === 'far_field' && i?.transcription?.model === 'gpt-4o-mini-transcribe' &&
     i?.format?.type === 'audio/pcm' && i.format.rate === 24000 &&
@@ -138,11 +138,13 @@ export function paidSocketFactory(key: string): SocketFactory {
 }
 export async function nativeAdapter(arm: 'native-text' | 'native-audio', capture: Capture,
   input: string, pcm: Buffer, factory: SocketFactory, signal: AbortSignal,
-  options: { timeoutMs?: number; pace?: (ms: number) => Promise<void> } = {}): Promise<Observation> {
+  options: { timeoutMs?: number; pace?: (ms: number) => Promise<void>; outputMode?: 'audio' | 'text' } = {}): Promise<Observation> {
   if (pcm.length > 20*48000 || (arm==='native-audio' && (!pcm.length || !hasEnergy(pcm)))) throw Error('Input audio bound/energy');
-  const expected = nativeSession(capture), started=performance.now();
+  const outputMode=options.outputMode || 'audio';
+  const expected = nativeSession(capture, outputMode), started=performance.now();
   const events: Json[] = [], sent: Json[] = [], chunks: Buffer[] = [];
   let effective: Json = {}, response: Json = {}, asr='', answer='', inputEnded: number|undefined;
+  let firstText: number|undefined;
   let firstEnergy: number|undefined, doneAt: number|undefined, verified=false, submitted=false, committed=false, created=0;
   const pace=options.pace || ((ms:number)=>new Promise<void>(r=>setTimeout(r,ms)));
   return new Promise<Observation>((resolve) => {
@@ -153,7 +155,7 @@ export async function nativeAdapter(arm: 'native-text' | 'native-audio', capture
       resolve({ status, answer, asr, pcm: audio, effective_config_verified: verified,
         // Complete submission/commit is mechanical evidence; ASR semantic review stays pending.
         full_turn_verified: arm==='native-text' ? submitted : submitted && committed,
-        timing: { first_pcm_energy_received_ms: firstEnergy!==undefined && inputEnded!==undefined ? firstEnergy-inputEnded : null,
+        timing: { first_text_received_ms: firstText!==undefined && inputEnded!==undefined ? firstText-inputEnded : null, first_pcm_energy_received_ms: firstEnergy!==undefined && inputEnded!==undefined ? firstEnergy-inputEnded : null,
           response_done_after_input_ms: doneAt!==undefined && inputEnded!==undefined ? doneAt-inputEnded : null,
           output_pcm_duration_ms: audio.length/48, total_ms: performance.now()-started },
         raw: { expected, effective, sent, events, response, error, semantic_asr_review_pending: arm==='native-audio',
@@ -212,6 +214,8 @@ export async function nativeAdapter(arm: 'native-text' | 'native-audio', capture
             if(chunks.reduce((n,c)=>n+c.length,0)>100*48000)throw Error('Output PCM bound');
             if(firstEnergy===undefined && hasEnergy(chunk))firstEnergy=performance.now();
           }
+          if(e.type==='response.output_text.delta' && e.delta && firstText===undefined)firstText=performance.now();
+          if(e.type==='response.output_text.done')answer=e.text;
           if(e.type==='response.output_audio_transcript.done')answer=e.transcript;
           if(e.type==='conversation.item.input_audio_transcription.failed')throw Error('ASR failed');
           if(e.type==='conversation.item.input_audio_transcription.completed')asr=e.transcript;
@@ -221,7 +225,7 @@ export async function nativeAdapter(arm: 'native-text' | 'native-audio', capture
             if(response.status!=='completed'){finish(String(response.status || 'failed'));return;}
           }
           if(doneAt!==undefined && (arm==='native-text' || asr)) {
-            if(!answer || firstEnergy===undefined)throw Error('Missing native transcript or non-silent returned PCM');
+            if(!answer || (outputMode==='audio' && firstEnergy===undefined))throw Error('Missing native answer or required returned PCM');
             finish('completed');
           }
         }catch(error){finish('protocol-failed',String(error));}

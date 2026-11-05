@@ -2,10 +2,10 @@
 import {useState} from 'react';
 type Result={reply:{message:string};audio:{mime:string;base64:string}|null;audioError:string|null};
 export default function ReasonedVoiceExperiment(){
- const [text,setText]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[result,setResult]=useState<Result|null>(null);
+ const [text,setText]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[result,setResult]=useState<Result|null>(null),[previousDraft,setPreviousDraft]=useState('');
  async function transcribe(file:File){
-  setBusy(true);setError('');setResult(null);
-  try{const form=new FormData();form.set('audio',file);const r=await fetch('/api/transcribe',{method:'POST',body:form});const data=await r.json();if(!r.ok)throw Error(data.error||'Transcription failed.');setText(data.text);}catch(e){setError(e instanceof Error?e.message:'Transcription failed.');}finally{setBusy(false);}
+  setPreviousDraft(text);setText('');setBusy(true);setError('');setResult(null);
+  try{const form=new FormData();form.set('audio',file);const r=await fetch('/api/transcribe',{method:'POST',body:form});const data=await r.json();if(!r.ok)throw Error(data.error||'Transcription failed.');setText(data.text);setPreviousDraft('');}catch(e){setError(e instanceof Error?e.message:'Transcription failed.');}finally{setBusy(false);}
  }
  async function ask(){
   setBusy(true);setError('');setResult(null);
@@ -20,7 +20,7 @@ export default function ReasonedVoiceExperiment(){
    <label htmlFor="question">Your question</label><textarea id="question" value={text} onChange={e=>setText(e.target.value)} maxLength={3000} rows={6} style={{display:'block',width:'100%',margin:'1rem 0'}} disabled={busy}/>
    <button disabled={busy||!text.trim()}>{busy?'Working…':'Ask and prepare speech'}</button>
   </form>
-  {error&&<p role="alert">{error}</p>}
+  {error&&<div><p role="alert">{error} Review or type your question before asking.</p>{previousDraft&&<button type="button" onClick={()=>{setText(previousDraft);setPreviousDraft('');setError('');}}>Restore previous draft</button>}</div>}
   {result&&<section aria-label="Your reply"><h2>Your reply</h2><p style={{whiteSpace:'pre-wrap'}}>{result.reply.message}</p>
    {result.audio&&<audio aria-label="Play the exact reply" controls src={`data:${result.audio.mime};base64,${result.audio.base64}`}/>}
    {result.audioError&&<p role="status">{result.audioError}</p>}
