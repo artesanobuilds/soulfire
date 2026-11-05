@@ -97,10 +97,12 @@ try {
           max_output_tokens: 900,
           audio: {
             input: {
+              noise_reduction: { type: "far_field" },
               transcription: { model: "gpt-4o-mini-transcribe-2025-12-15" },
               turn_detection: {
                 type: "server_vad",
                 silence_duration_ms: 1500,
+                threshold: 0.65,
                 interrupt_response: true,
                 create_response: true,
               },

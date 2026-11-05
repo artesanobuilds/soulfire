@@ -17,6 +17,8 @@ function voiceContract(state, event, now, expected) {
       output?.voice !== "marin" ||
       input?.turn_detection?.type !== "server_vad" ||
       input.turn_detection.silence_duration_ms !== 1500 ||
+      input.turn_detection.threshold !== 0.65 ||
+      input.noise_reduction?.type !== "far_field" ||
       input.turn_detection.interrupt_response !== true ||
       input.turn_detection.create_response !== true ||
       (s.tools || []).length > 0

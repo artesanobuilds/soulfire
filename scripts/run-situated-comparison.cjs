@@ -31,7 +31,7 @@ const assert = require("node:assert/strict"),
   { loadEnvConfig } = require("@next/env");
 const { runVoiceSession } = require("./situated-browser-session.cjs");
 const root = process.cwd(),
-  runtime = "/tmp/soulfire-situated-runtime-20261104",
+  runtime = "/tmp/soulfire-situated-runtime-20261105",
   out = path.join(root, "test-results/situated-paid-run");
 const tasks = JSON.parse(
   fs.readFileSync(
@@ -217,6 +217,7 @@ const updateStage = (state) => {
           OPENAI_REALTIME_MODEL: plan.models.voice.requestedId,
           OPENAI_TRANSCRIBE_MODEL: plan.models.voice.transcriptionRequestedId,
           SOULFIRE_EVAL_ARM: arm,
+          SOULFIRE_EVAL_USAGE_FILE: path.join(out, arm + "-text-usage.jsonl"),
           SOULFIRE_DATA_DIR: path.join(dataRoot, arm),
         },
         stdio: ["ignore", "ignore", "pipe"],

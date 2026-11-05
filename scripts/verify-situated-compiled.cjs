@@ -4,7 +4,7 @@ const fs = require("node:fs"),
   path = require("node:path"),
   assert = require("node:assert/strict"),
   crypto = require("node:crypto");
-const root = "/tmp/soulfire-situated-runtime-20261104";
+const root = "/tmp/soulfire-situated-runtime-20261105";
 const bundle = JSON.parse(
   fs.readFileSync(
     "test-results/situated-evaluation-offline-requests.json",

@@ -152,7 +152,7 @@
       "case": "shift-handoff",
       "repeat": 1,
       "arm": "baseline",
-      "requestSha256": "9c45260a42ca311112b56992f4770a909b1dd48412338bc3afa580c488818add",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
       "audioFile": "shift-handoff.wav"
     },
     {
@@ -161,7 +161,7 @@
       "case": "shift-handoff",
       "repeat": 1,
       "arm": "candidate",
-      "requestSha256": "3ab470c7474921726df3d798a30662ce6cb1f3c090e8ffbda47f01e6af269ebc",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
       "audioFile": "shift-handoff.wav"
     },
     {
@@ -170,7 +170,7 @@
       "case": "no-contact-counterexample",
       "repeat": 1,
       "arm": "candidate",
-      "requestSha256": "3ab470c7474921726df3d798a30662ce6cb1f3c090e8ffbda47f01e6af269ebc",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
       "audioFile": "no-contact-counterexample.wav"
     },
     {
@@ -179,7 +179,7 @@
       "case": "no-contact-counterexample",
       "repeat": 1,
       "arm": "baseline",
-      "requestSha256": "9c45260a42ca311112b56992f4770a909b1dd48412338bc3afa580c488818add",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
       "audioFile": "no-contact-counterexample.wav"
     },
     {
@@ -188,7 +188,7 @@
       "case": "heldout-property-return",
       "repeat": 1,
       "arm": "candidate",
-      "requestSha256": "3ab470c7474921726df3d798a30662ce6cb1f3c090e8ffbda47f01e6af269ebc",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
       "audioFile": "heldout-property-return.wav"
     },
     {
@@ -197,7 +197,7 @@
       "case": "heldout-property-return",
       "repeat": 1,
       "arm": "baseline",
-      "requestSha256": "9c45260a42ca311112b56992f4770a909b1dd48412338bc3afa580c488818add",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
       "audioFile": "heldout-property-return.wav"
     },
     {
@@ -206,7 +206,7 @@
       "case": "heldout-property-return",
       "repeat": 2,
       "arm": "baseline",
-      "requestSha256": "9c45260a42ca311112b56992f4770a909b1dd48412338bc3afa580c488818add",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
       "audioFile": "heldout-property-return.wav"
     },
     {
@@ -215,7 +215,7 @@
       "case": "heldout-property-return",
       "repeat": 2,
       "arm": "candidate",
-      "requestSha256": "3ab470c7474921726df3d798a30662ce6cb1f3c090e8ffbda47f01e6af269ebc",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
       "audioFile": "heldout-property-return.wav"
     },
     {
@@ -224,7 +224,7 @@
       "case": "heldout-confidentiality",
       "repeat": 1,
       "arm": "baseline",
-      "requestSha256": "9c45260a42ca311112b56992f4770a909b1dd48412338bc3afa580c488818add",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
       "audioFile": "heldout-confidentiality.wav"
     },
     {
@@ -233,7 +233,7 @@
       "case": "heldout-confidentiality",
       "repeat": 1,
       "arm": "candidate",
-      "requestSha256": "3ab470c7474921726df3d798a30662ce6cb1f3c090e8ffbda47f01e6af269ebc",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
       "audioFile": "heldout-confidentiality.wav"
     },
     {
@@ -242,7 +242,7 @@
       "case": "heldout-confidentiality",
       "repeat": 2,
       "arm": "candidate",
-      "requestSha256": "3ab470c7474921726df3d798a30662ce6cb1f3c090e8ffbda47f01e6af269ebc",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
       "audioFile": "heldout-confidentiality.wav"
     },
     {
@@ -251,7 +251,7 @@
       "case": "heldout-confidentiality",
       "repeat": 2,
       "arm": "baseline",
-      "requestSha256": "9c45260a42ca311112b56992f4770a909b1dd48412338bc3afa580c488818add",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
       "audioFile": "heldout-confidentiality.wav"
     },
     {
@@ -260,7 +260,7 @@
       "case": "heldout-corrected-bill",
       "repeat": 1,
       "arm": "candidate",
-      "requestSha256": "3ab470c7474921726df3d798a30662ce6cb1f3c090e8ffbda47f01e6af269ebc",
+      "requestSha256": "47878b76f940a85b6737b3e605c3da51cca0825fc592128dcbf11ddaba9f702e",
       "audioFile": "heldout-corrected-bill.wav"
     },
     {
@@ -269,7 +269,7 @@
       "case": "heldout-corrected-bill",
       "repeat": 1,
       "arm": "baseline",
-      "requestSha256": "9c45260a42ca311112b56992f4770a909b1dd48412338bc3afa580c488818add",
+      "requestSha256": "021292e5d1476c87977ea0161d97107f87b588740d39ad1a520a370620ab7c53",
       "audioFile": "heldout-corrected-bill.wav"
     },
     {
@@ -278,7 +278,7 @@
       "case": "heldout-welcomed-spiritual-reflection",
       "repeat": 1,
       "arm": "baseline",
-      "requestSha256": "2dd937da340f6d6e3a76245397b7dcefd4568c41c2f563fe794e1a38bddc78b2",
+      "requestSha256": "65abdd502ad731a6026d55666e2d95e864da9f2ec78444ed5f1d5cf56b234f88",
       "audioFile": "heldout-welcomed-spiritual-reflection.wav"
     },
     {
@@ -287,7 +287,7 @@
       "case": "heldout-welcomed-spiritual-reflection",
       "repeat": 1,
       "arm": "candidate",
-      "requestSha256": "fc64d482141767e5dc2e2052ef675dcaa22945c4d3408097a740bd3882475771",
+      "requestSha256": "2e85db0b97996ede799ce8592420308f49dba0835a469b8cacc6c37ef786a31f",
       "audioFile": "heldout-welcomed-spiritual-reflection.wav"
     }
   ]

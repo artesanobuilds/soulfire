@@ -1,5 +1,5 @@
 {
-  "status": "harness prepared and offline verified; awaiting explicit paid-stage authorization",
+  "status": "authorized for up to $10.15; frozen to merged runtime 00bc156 before paid outputs",
   "baselineCommit": "a73e1b15ced1958fc6d33277fddd8731027ca376",
   "candidatePromptCommit": "6a08401",
   "candidateFrozen": true,
@@ -11,7 +11,8 @@
     "proposedNewCumulativeReservationUsd": 28.40405494666666,
     "remainingAfterProposedReservationUsd": 1.595945053333337,
     "newReservationMade": false,
-    "paidCallsMade": 0
+    "paidCallsMade": 0,
+    "evidence": "Parent-supplied trusted transcript: Miguel approved the $10.15 guidance stage plus a separate $5 voice stage and later permitted proceeding without resolved parity."
   },
   "models": {
     "text": {
@@ -32,10 +33,14 @@
         "type": "server_vad",
         "silence_duration_ms": 1500,
         "interrupt_response": true,
-        "create_response": true
+        "create_response": true,
+        "threshold": 0.65
       },
       "path": "isolated actual WebRTC app route; override exact model IDs and matched VAD only in test configuration/session, acknowledge effective settings before input",
-      "deprecation": "Current official documentation marks these voice/transcription models deprecated; verify authorized account availability without inference first. Stop rather than silently substitute."
+      "deprecation": "Current official documentation marks these voice/transcription models deprecated; verify authorized account availability without inference first. Stop rather than silently substitute.",
+      "noiseReduction": {
+        "type": "far_field"
+      }
     }
   },
   "cases": {
@@ -149,5 +154,19 @@
     "stageBuild": "passed",
     "paidGate": "default command exits without key lookup or inference",
     "evidence": "docs/implementation/evidence/situated-harness-readiness-20261104.json"
+  },
+  "runtimeCommit": "00bc156",
+  "frozenAtUtc": "2026-11-05T05:35:28.981648+00:00",
+  "matchedRuntimeSettings": {
+    "sourceCommit": "00bc156",
+    "noise_reduction": {
+      "type": "far_field"
+    },
+    "vadThreshold": 0.65,
+    "silenceDurationMs": 1500,
+    "sameWebRTCClient": true,
+    "instructionsUnchangedSinceCandidate": "6a08401",
+    "noHistoryMemoryRetrieval": true,
+    "audioWavHashesVerified": true
   }
 }
