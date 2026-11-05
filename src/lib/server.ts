@@ -83,13 +83,52 @@ export async function provider(
     body,
     signal: AbortSignal.any([req.signal, AbortSignal.timeout(45000)]),
   });
-  if (!res.ok)
+  if (!res.ok) {
+    if (res.status === 429) {
+      // Only inspect allowlisted machine codes. Never expose or log the provider's
+      // raw message, request body, credentials, account identifiers or user text.
+      const payload: unknown = await res.json().catch(() => null);
+      const error =
+        payload && typeof payload === "object" && "error" in payload
+          ? (payload as { error: unknown }).error
+          : null;
+      const codes =
+        error && typeof error === "object"
+          ? [
+              (error as { code?: unknown }).code,
+              (error as { type?: unknown }).type,
+            ]
+          : [];
+      const quota = codes.some(
+        (code) =>
+          code === "insufficient_quota" ||
+          code === "billing_hard_limit_reached" ||
+          code === "billing_not_active",
+      );
+      const rate = codes.includes("rate_limit_exceeded");
+      const category = quota
+        ? "quota_or_billing_limit"
+        : rate
+          ? "rate_limit"
+          : "unclassified_429";
+      console.warn("Soulfire provider request rejected", {
+        status: 429,
+        category,
+      });
+      throw new HttpError(
+        429,
+        quota
+          ? "The AI provider reports that API quota is unavailable or a billing limit was reached. Check the API account's billing and usage limits before retrying. Your draft is still here."
+          : rate
+            ? "The AI provider's request or token rate limit was reached. Wait a little before trying again. Your draft is still here."
+            : "The AI provider rejected this request with a usage-limit response (429), but did not identify whether it is a temporary rate limit or unavailable quota. Check API usage and billing if it continues. Your draft is still here.",
+      );
+    }
     throw new HttpError(
-      res.status === 429 ? 429 : 502,
-      res.status === 429
-        ? "The AI service is busy or its usage limit was reached. Try later."
-        : "The AI service could not complete this request. Your drafts are still here; try again or use an example.",
+      502,
+      "The AI service could not complete this request. Your drafts are still here; try again or use an example.",
     );
+  }
   return res;
 }
 export function failure(e: unknown) {

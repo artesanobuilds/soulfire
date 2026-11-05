@@ -199,3 +199,39 @@ test("private understanding participates in opt-in saving and replacement confir
     ),
   ).toBe("A private saved understanding");
 });
+
+test("provider quota failure preserves question and does not retry automatically", async ({
+  page,
+}) => {
+  let calls = 0;
+  await page.route("**/api/experimental/reasoned-voice", (r) => {
+    calls++;
+    return r.fulfill({
+      status: 429,
+      json: {
+        error:
+          "The AI provider reports that API quota is unavailable or a billing limit was reached. Check the API account's billing and usage limits before retrying. Your draft is still here.",
+      },
+    });
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Compare voice options" }).click();
+  await page
+    .getByLabel("Your question", { exact: true })
+    .fill("A fictional diagnostic question");
+  await page.getByRole("button", { name: "Ask and prepare speech" }).click();
+  await expect(
+    page.locator(".reasoned-voice-studio [role=alert]"),
+  ).toContainText("API quota is unavailable");
+  await expect(
+    page.locator(".reasoned-voice-studio [role=alert]"),
+  ).not.toContainText("Review or type");
+  await expect(page.getByLabel("Your question", { exact: true })).toHaveValue(
+    "A fictional diagnostic question",
+  );
+  await expect(page.getByLabel("Your reply")).toHaveCount(0);
+  await expect(
+    page.getByRole("button", { name: "Ask and prepare speech" }),
+  ).toBeEnabled();
+  expect(calls).toBe(1);
+});

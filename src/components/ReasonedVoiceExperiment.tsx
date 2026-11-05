@@ -193,9 +193,7 @@ export default function ReasonedVoiceExperiment({
       </form>
       {error && (
         <div>
-          <p role="alert">
-            {error} Review or type your question before asking.
-          </p>
+          <p role="alert">{error}</p>
           {previousDraft && (
             <button
               type="button"
