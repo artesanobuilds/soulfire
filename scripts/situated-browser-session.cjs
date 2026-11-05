@@ -91,6 +91,10 @@ function installMockPeer({ expected, failure }) {
         if (failure === "model-drift") initial.model = "wrong";
         if (failure === "pending") {
           initial.audio.input.transcription = null;
+          initial.instructions = "provider defaults";
+          initial.max_output_tokens = "inf";
+          initial.audio.output.voice = "alloy";
+          initial.audio.input.noise_reduction = null;
           initial.audio.input.turn_detection.threshold = 0.5;
           initial.audio.input.turn_detection.silence_duration_ms = 200;
         }

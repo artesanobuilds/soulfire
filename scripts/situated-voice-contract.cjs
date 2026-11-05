@@ -10,6 +10,9 @@ function voiceContract(state, event, now, expected) {
     state.sessions.push({ at: now, type: event.type, session: s });
     const input = s.audio?.input,
       output = s.audio?.output;
+    // session.created may still contain entirely default settings. It is not
+    // an attestation; keep capture/greeting blocked until the full update arrives.
+    if (input?.transcription?.model == null && !state.ready) return null;
     if (
       s.model !== e.model ||
       s.instructions !== e.instructions ||

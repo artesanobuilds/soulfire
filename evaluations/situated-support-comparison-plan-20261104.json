@@ -177,6 +177,8 @@
     "continuation": "Manual continuation of original unattempted orders20-34 only, after offline verification. Never retry or replace failed order19. No new cases or followups.",
     "counts": "Original maximum18 text and16 native sessions unchanged; one native failure is retained.",
     "cost": "Same existing10.15 reservation; no new allocation. Failed-session0.55 obligation retained.",
-    "methodologicalLimit": "Post-technical-failure amendment, not a pristine preregistered run; failed baseline shift-handoff remains unassessed. No prompt/model/audio/settings changes."
+    "methodologicalLimit": "Post-technical-failure amendment, not a pristine preregistered run; failed baseline shift-handoff remains unassessed. No prompt/model/audio/settings changes.",
+    "secondObservedInitialAcknowledgement": "Order21 likewise stopped before input/welcome/response, this time with entirely default prompt/cap/voice as well as null transcription. Treat the unconfigured session.created acknowledgement as pending, not effective attestation; continue only unattempted22-34, preserving failed19 and21. Exact full settings still required before welcome/input; no prompt, model, audio or effective-setting changes.",
+    "updatedAtUtc": "2026-11-05T05:42:21.297099+00:00"
   }
 }

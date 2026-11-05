@@ -121,10 +121,11 @@ const results = resume
     };
 if (resume) {
   assert.equal(results.status, "stopped");
-  assert.equal(results.tasks.length, 19);
+  assert.ok([19, 21].includes(results.tasks.length));
+  assert.ok(results.tasks.every((t, i) => t.order === i + 1));
   assert.ok(results.tasks.slice(0, 18).every((t) => t.status === "completed"));
-  const failed = results.tasks[18];
-  assert.equal(failed.order, 19);
+  const failed = results.tasks.at(-1);
+  assert.ok([19, 21].includes(failed.order));
   assert.equal(failed.status, "failed");
   assert.equal(failed.evidence.responses.length, 0);
   assert.equal(failed.evidence.injection, null);
@@ -133,14 +134,14 @@ if (resume) {
     failed.evidence.errors.some((e) => e.reason === "Effective session drift"),
   );
   fs.writeFileSync(
-    path.join(out, "initial-stopped-ledger.json"),
+    path.join(out, "stopped-before-resume-after-" + failed.order + ".json"),
     JSON.stringify(results, null, 2) + "\n",
     { flag: "wx", mode: 0o600 },
   );
   results.amendment = {
     at: new Date().toISOString(),
     reason:
-      "Initial acknowledgement had null transcription and unsettled VAD; corrected readiness guard offline. Continue only unattempted original tasks; failed task19 is never retried or replaced.",
+      "Initial acknowledgement had null transcription and unsettled VAD; corrected readiness guard offline. Continue only unattempted original tasks; failed tasks19 and21 are never retried or replaced.",
     inputInstructionsModelsAudioUnchanged: true,
     additionalCallsAboveOriginalSchedule: 0,
     originalStageCeilingUsd: 10.15,

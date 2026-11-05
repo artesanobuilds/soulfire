@@ -69,6 +69,23 @@ for (const [name, change] of Object.entries({
     change(value);
     assert.ok(applyEvent(s, { type: "session.created", session: value }));
   });
+test("initial full defaults cannot unlock a welcome", () => {
+  const s = fresh(),
+    value = structuredClone(expected);
+  value.instructions = "provider defaults";
+  value.max_output_tokens = "inf";
+  value.audio.output.voice = "alloy";
+  value.audio.input.transcription = null;
+  value.audio.input.noise_reduction = null;
+  value.audio.input.turn_detection.silence_duration_ms = 200;
+  assert.equal(
+    applyEvent(s, { type: "session.created", session: value }),
+    null,
+  );
+  assert.equal(s.ready, false);
+  assert.equal(ready(s), null);
+  assert.equal(s.ready, true);
+});
 test("rejects transcriber loss after readiness", () => {
   const s = fresh();
   ready(s);
