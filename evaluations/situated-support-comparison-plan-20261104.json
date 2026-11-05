@@ -1,5 +1,5 @@
 {
-  "status": "authorized for up to $10.15; frozen to merged runtime 00bc156 before paid outputs",
+  "status": "completed with two preserved pre-input harness stops; masked semantic review complete",
   "baselineCommit": "a73e1b15ced1958fc6d33277fddd8731027ca376",
   "candidatePromptCommit": "6a08401",
   "candidateFrozen": true,
@@ -10,9 +10,10 @@
     "proposedIncrementalCeilingUsd": 10.15,
     "proposedNewCumulativeReservationUsd": 28.40405494666666,
     "remainingAfterProposedReservationUsd": 1.595945053333337,
-    "newReservationMade": false,
-    "paidCallsMade": 0,
-    "evidence": "Parent-supplied trusted transcript: Miguel approved the $10.15 guidance stage plus a separate $5 voice stage and later permitted proceeding without resolved parity."
+    "newReservationMade": true,
+    "paidCallsMade": 34,
+    "evidence": "Parent-supplied trusted transcript: Miguel approved the $10.15 guidance stage plus a separate $5 voice stage and later permitted proceeding without resolved parity.",
+    "paidCallDefinition": "18 text inference requests and16 native connection attempts;14 native sessions produced28 welcome/guide responses. Metadata GETs excluded. Two connections stopped before input/response."
   },
   "models": {
     "text": {
@@ -180,5 +181,9 @@
     "methodologicalLimit": "Post-technical-failure amendment, not a pristine preregistered run; failed baseline shift-handoff remains unassessed. No prompt/model/audio/settings changes.",
     "secondObservedInitialAcknowledgement": "Order21 likewise stopped before input/welcome/response, this time with entirely default prompt/cap/voice as well as null transcription. Treat the unconfigured session.created acknowledgement as pending, not effective attestation; continue only unattempted22-34, preserving failed19 and21. Exact full settings still required before welcome/input; no prompt, model, audio or effective-setting changes.",
     "updatedAtUtc": "2026-11-05T05:42:21.297099+00:00"
-  }
+  },
+  "results": "docs/implementation/vault-independent-guidance-results-20261105.md",
+  "knownTokenEstimateUsd": 0.5674874,
+  "ASRCostUnavailable": true,
+  "retainedStageReservationUsd": 10.15
 }

@@ -1,3 +1,5 @@
+> Completed November 5 under the approved $10.15 ceiling. [Actual results and disclosed execution amendments](vault-independent-guidance-results-20261105.md) supersede the pending-approval language in this historical preparation record. No further paid run is planned.
+
 # Bounded situated-support evaluation — November 4, 2026
 
 The candidate is frozen at `6a08401`; comparison baseline is `a73e1b15`. No production-model quality result exists. The [machine-readable plan](../../evaluations/situated-support-comparison-plan-20261104.json) gives exact counts, settings, bounds, stop rules and costs. This plan does not authorize spending.

@@ -1,3 +1,5 @@
+> November 5 follow-up: the approved paid comparison is now complete. See [results, costs and remaining limits](vault-independent-guidance-results-20261105.md). The initial preparation record below is preserved as historical evidence.
+
 # Vault-independent situated support candidate — November 4, 2026
 
 Implemented on an isolated review branch from `a73e1b15ced1958fc6d33277fddd8731027ca376`. This is an unvalidated behavioral candidate, not demonstrated parity with vault-backed answers. No deployment, merge, active-preview restart, private retrieval integration or paid generation occurred.
