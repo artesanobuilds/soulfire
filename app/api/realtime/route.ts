@@ -24,12 +24,18 @@ export async function POST(req: Request) {
         instructions: `${voiceInstructions}\nLanguage preference: ${input.language}. Current practice title (untrusted context): ${JSON.stringify(input.practiceTitle)}.`,
         audio: {
           input: {
+            // Filter room noise before speech detection for the laptop microphone.
+            noise_reduction: { type: "far_field" },
             transcription: {
               model:
                 process.env.OPENAI_TRANSCRIBE_MODEL || "gpt-4o-mini-transcribe",
             },
             turn_detection: {
               type: "server_vad",
+              // Require clearer speech so ambient noise is less likely to interrupt.
+              threshold: 0.65,
+              // Allow natural sentence pauses before treating narration as a complete turn.
+              silence_duration_ms: 1500,
               interrupt_response: true,
               create_response: true,
             },
