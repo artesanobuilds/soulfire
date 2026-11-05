@@ -7,7 +7,7 @@ import {
 import type { z } from "zod";
 import type { MemoryRepository } from "../domain/memory";
 import { allowsMemory } from "../domain/session";
-import { safetyNotice } from "../lib/safety";
+import { safetyNotice, urgentSafetyNotice } from "../lib/safety";
 export type CompanionInput = z.infer<typeof requestSchema>;
 export type ModelRequest = {
   messages: Message[];
@@ -67,9 +67,9 @@ export async function runCompanion(
   };
   try {
     signal.throwIfAborted();
-    const notice = safetyNotice(
-      input.messages.filter((m) => m.role === "user").at(-1)?.content || "",
-    );
+    const latest =
+      input.messages.filter((m) => m.role === "user").at(-1)?.content || "";
+    const notice = urgentSafetyNotice(latest) || safetyNotice(latest);
     if (notice) {
       report("safety");
       return {

@@ -34,7 +34,7 @@ import { sceneFor } from "../domain/scene";
 import { createRequestGate, type JourneyState } from "../domain/session";
 import type { MemorySnapshot } from "../domain/memory";
 import { VoiceControls } from "./VoiceControls";
-import { safetyNotice } from "../lib/safety";
+import { safetyNotice, urgentSafetyNotice } from "../lib/safety";
 import { samples, steps, topics } from "../lib/catalog";
 import { replySchema, type Exercise, type Message } from "../lib/schema";
 
@@ -108,6 +108,7 @@ export function Soulfire() {
   const [fields, setFields] = useState<Drafts>({});
   const [cards, setCards] = useState<Record<string, Card[]>>({});
   const [action, setAction] = useState("");
+  const [urgentNotice, setUrgentNotice] = useState("");
   const [reflection, setReflection] = useState("");
   const [selected, setSelected] = useState<string[]>([]);
   const [busy, setBusy] = useState(false);
@@ -486,8 +487,11 @@ export function Soulfire() {
         setView("suggestion");
       } else if (intent === "reflection") {
         setView("finish");
-      } else if (parsed.data.kind === "support") {
-        setDialog("support");
+      }
+      const urgent = urgentSafetyNotice(content);
+      if (urgent) {
+        setUrgentNotice(urgent);
+        openDialog("support");
       }
     } catch (e) {
       if (turn.current.isCurrent(current)) {
@@ -722,7 +726,10 @@ export function Soulfire() {
           });
         }}
         onMessage={(m) => {
-          const notice = m.role === "user" ? safetyNotice(m.content) : null;
+          const notice =
+            m.role === "user"
+              ? urgentSafetyNotice(m.content) || safetyNotice(m.content)
+              : null;
           if (notice) {
             setMessages(
               (v) =>
@@ -731,7 +738,14 @@ export function Soulfire() {
                 ) as Message[],
             );
             setReply(notice);
-            openDialog("support");
+            const urgent = urgentSafetyNotice(m.content);
+            if (urgent) {
+              setUrgentNotice(urgent);
+              openDialog("support");
+            } else {
+              // Keep the existing voice safety stop, without a generic popup.
+              quiet();
+            }
           } else setMessages((v) => [...v, m].slice(-30));
         }}
         onError={setError}
@@ -1873,7 +1887,25 @@ export function Soulfire() {
         </span>
         <div>
           <button onClick={() => openDialog("privacy")}>Privacy & about</button>
-          <button onClick={() => openDialog("support")}>Human support</button>
+          <details className="human-support-resources">
+            <summary>Human support</summary>
+            <p>
+              If you want support beyond this conversation, a trusted person,
+              recovery peer or qualified professional may help. Soulfire is not
+              an emergency service.
+            </p>
+            <p>
+              For immediate danger, contact local emergency services.{" "}
+              <a
+                href="https://findahelpline.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Find local support
+              </a>
+              .
+            </p>
+          </details>
         </div>
         <small>Proof of Concept One · Adult self-help preview</small>
       </footer>
@@ -1979,34 +2011,13 @@ export function Soulfire() {
           </>
         ) : dialog === "support" ? (
           <>
-            <span className="eyebrow">SUPPORT BEYOND THIS SCREEN</span>
-            <h2>You deserve human support.</h2>
-            {reply.startsWith("Safety notice:") && (
-              <div className="message-card">{reply}</div>
-            )}
-            <p>
-              soulfire is an AI self-help companion, not a therapist, emergency
-              service, or human recovery sponsor.
-            </p>
-            <p>
-              If you may act on thoughts of harming yourself or someone else, or
-              are in immediate danger, contact local emergency services now or
-              ask a trusted person to stay with you. For a local crisis line,
-              visit{" "}
-              <a
-                href="https://findahelpline.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Find A Helpline
-              </a>
-              .
-            </p>
-            <p>
-              Substance withdrawal can need urgent medical care. Do not rely on
-              an exercise or try to manage dangerous withdrawal alone. For
-              ongoing distress, a qualified professional, recovery peer, or
-              trusted person can help.
+            <span className="eyebrow">IMMEDIATE SAFETY</span>
+            <h2>Let’s pause for your immediate safety.</h2>
+            <div className="message-card">{urgentNotice}</div>
+            <p className="small">
+              This notice responds to explicit danger in the words shared.
+              Automated detection can misunderstand or miss risk; this is not a
+              safety assessment.
             </p>
             <button className="primary" onClick={() => setDialog(null)}>
               Return to my space

@@ -22,3 +22,57 @@ export function safetyNotice(text: string): string | null {
     return "Safety notice: Safety and boundaries come before repair or reconciliation. You are not responsible for harm done to you. Respect no-contact boundaries; an exercise is not a reason to contact someone. If you are in danger, seek local emergency help. A trusted person or specialist support can help you consider a safer next step.";
   return null;
 }
+
+/** Presentation gate only. Broader safety responses above still remain available
+ * inline and the model still receives its safety instructions. This deliberately
+ * narrow heuristic cannot establish that someone is safe or detect every crisis.
+ */
+export function urgentSafetyNotice(text: string): string | null {
+  const direct = text
+    .toLowerCase()
+    .replace(/[’‘]/g, "'")
+    .replace(/"[^"\n]*"|“[^”\n]*”/g, " ")
+    .replace(/(^|\s)'[^'\n]+'(?=\s|[.!?]|$)/g, " ");
+  const clauses = direct.split(/[.!?;\n]+/).map((s) => s.trim());
+  for (const rawClause of clauses) {
+    const clause = rawClause
+      .replace(/^i\'m\b/, "i am")
+      .replace(/^i\'ve\b/, "i have");
+    if (
+      /\bhurt someone'?s? feelings\b/.test(clause) ||
+      /\b(?:in my|for a) (?:novel|story|screenplay|character)\b/.test(clause)
+    )
+      continue;
+    if (/\b(?:kill|hurt) myself (?:laughing|with laughter)\b/.test(clause))
+      continue;
+    if (
+      /^i (?:am going to|am about to|plan to|intend to|will) (?:(?:kill|hurt) (?:myself|someone)|end my life|take my own life)\b/.test(
+        clause,
+      ) ||
+      /^i have (?:a )?suicide plan\b/.test(clause) ||
+      /^i (?:(?:just )?(?:took|swallowed)|have (?:just )?(?:taken|swallowed)) (?:an overdose|too many pills)\b/.test(
+        clause,
+      ) ||
+      /^i (?:can't|cannot|can not) keep myself safe\b/.test(clause)
+    ) {
+      return safetyNotice("I can't keep myself safe.");
+    }
+    if (
+      /^(?:i am|i'm) (?:having a seizure|severely confused|hallucinating)\b/.test(
+        clause,
+      ) &&
+      /\b(?:alcohol|benzo\w*|sedative)\b/.test(direct) &&
+      /\bwithdrawal\b/.test(direct)
+    ) {
+      return safetyNotice("Alcohol withdrawal is giving me hallucinations.");
+    }
+    if (
+      /^my (?:partner|ex) (?:is threatening|is attacking|is hurting) me (?:right now|now)\b/.test(
+        clause,
+      )
+    ) {
+      return safetyNotice("My partner threatens me.");
+    }
+  }
+  return null;
+}
