@@ -168,5 +168,15 @@
     "instructionsUnchangedSinceCandidate": "6a08401",
     "noHistoryMemoryRetrieval": true,
     "audioWavHashesVerified": true
+  },
+  "executionAmendment": {
+    "timeUtc": "2026-11-05T05:40:09.940168+00:00",
+    "observedBeforeReview": "All 18 text deliveries complete, outputs not yet read for semantic review. First native baseline session stopped on initial acknowledgement before input/welcome/response.",
+    "reason": "Initial acknowledgement exposed transcriber null and default VAD before asynchronous effective update; guard had checked VAD too early.",
+    "change": "Permit only initial unready settling with no transcription; model/instructions/cap/voice/tools remain checked. Full requested VAD/noise/transcriber contract required before any welcome/input. Drift after readiness remains fatal.",
+    "continuation": "Manual continuation of original unattempted orders20-34 only, after offline verification. Never retry or replace failed order19. No new cases or followups.",
+    "counts": "Original maximum18 text and16 native sessions unchanged; one native failure is retained.",
+    "cost": "Same existing10.15 reservation; no new allocation. Failed-session0.55 obligation retained.",
+    "methodologicalLimit": "Post-technical-failure amendment, not a pristine preregistered run; failed baseline shift-handoff remains unassessed. No prompt/model/audio/settings changes."
   }
 }

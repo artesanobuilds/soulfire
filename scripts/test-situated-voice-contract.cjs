@@ -44,6 +44,8 @@ test("pending initial transcriber settles before welcome", () => {
   const s = fresh(),
     pending = structuredClone(expected);
   pending.audio.input.transcription = null;
+  pending.audio.input.turn_detection.threshold = 0.5;
+  pending.audio.input.turn_detection.silence_duration_ms = 200;
   assert.equal(
     applyEvent(s, { type: "session.created", session: pending }),
     null,

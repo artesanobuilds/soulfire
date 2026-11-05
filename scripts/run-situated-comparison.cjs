@@ -91,8 +91,10 @@ for (const task of tasks) {
 }
 assert.equal(tasks.filter((t) => t.mode === "text").length, 18);
 assert.equal(tasks.filter((t) => t.mode === "voice").length, 16);
-if (fs.existsSync(out))
+const resume = process.argv.includes("--resume-unattempted-after-settling-fix");
+if (fs.existsSync(out) && !resume)
   throw Error("Prior run exists; refuse accidental paid rerun");
+if (resume && !fs.existsSync(out)) throw Error("No prior run to resume");
 loadEnvConfig("/Users/miguelalvarado/Coding/soulfire", false, {
   info() {},
   error() {},
@@ -107,14 +109,44 @@ const stage = "situated-support-20261104";
 const servers = [];
 const dataRoot = path.join(os.tmpdir(), "situated-stage-data-20261104");
 let browser;
-const results = {
-  status: "preparing",
-  paidAuthorizationFlag: true,
-  stageCeilingUsd: 10.15,
-  requestReservationsUsd: 0,
-  tasks: [],
-  serverErrors: [],
-};
+const results = resume
+  ? JSON.parse(fs.readFileSync(path.join(out, "ledger.json"), "utf8"))
+  : {
+      status: "preparing",
+      paidAuthorizationFlag: true,
+      stageCeilingUsd: 10.15,
+      requestReservationsUsd: 0,
+      tasks: [],
+      serverErrors: [],
+    };
+if (resume) {
+  assert.equal(results.status, "stopped");
+  assert.equal(results.tasks.length, 19);
+  assert.ok(results.tasks.slice(0, 18).every((t) => t.status === "completed"));
+  const failed = results.tasks[18];
+  assert.equal(failed.order, 19);
+  assert.equal(failed.status, "failed");
+  assert.equal(failed.evidence.responses.length, 0);
+  assert.equal(failed.evidence.injection, null);
+  assert.equal(failed.evidence.welcomesSent, 0);
+  assert.ok(
+    failed.evidence.errors.some((e) => e.reason === "Effective session drift"),
+  );
+  fs.writeFileSync(
+    path.join(out, "initial-stopped-ledger.json"),
+    JSON.stringify(results, null, 2) + "\n",
+    { flag: "wx", mode: 0o600 },
+  );
+  results.amendment = {
+    at: new Date().toISOString(),
+    reason:
+      "Initial acknowledgement had null transcription and unsettled VAD; corrected readiness guard offline. Continue only unattempted original tasks; failed task19 is never retried or replaced.",
+    inputInstructionsModelsAudioUnchanged: true,
+    additionalCallsAboveOriginalSchedule: 0,
+    originalStageCeilingUsd: 10.15,
+  };
+  delete results.failure;
+}
 const save = () =>
   fs.writeFileSync(
     path.join(out, "ledger.json"),
@@ -159,35 +191,43 @@ const updateStage = (state) => {
   }
   const rawLedger = fs.readFileSync(ledgerPath, "utf8"),
     ledger = JSON.parse(rawLedger);
-  assert.ok(
-    !ledger.obligations.some((o) => o.stage === stage),
-    "Stage already reserved; refuse rerun",
-  );
-  assert.ok(
-    ledger.cumulativeReservedUsd + 10.15 <= ledger.approvedCumulativeCapUsd,
-    "Cumulative reservation exceeded",
-  );
-  ledger.obligations.push({
-    stage,
-    reservedUsd: 10.15,
-    state: "reserved-before-generation",
-    maximumTextRequests: 18,
-    maximumVoiceSessions: 16,
-    actualInvoiceClaim: false,
-  });
-  ledger.cumulativeReservedUsd += 10.15;
-  assert.equal(
-    fs.readFileSync(ledgerPath, "utf8"),
-    rawLedger,
-    "Budget changed during preflight",
-  );
-  const temp = ledgerPath + ".situated-temp";
-  fs.writeFileSync(temp, JSON.stringify(ledger, null, 2) + "\n", {
-    mode: 0o600,
-  });
-  fs.renameSync(temp, ledgerPath);
-  fs.mkdirSync(out, { mode: 0o700 });
-  results.startedAt = new Date().toISOString();
+  if (resume) {
+    const existing = ledger.obligations.find((o) => o.stage === stage);
+    assert.equal(existing?.reservedUsd, 10.15);
+    assert.ok(ledger.cumulativeReservedUsd <= ledger.approvedCumulativeCapUsd);
+    updateStage("resuming-unattempted-original-schedule");
+  } else {
+    assert.ok(
+      !ledger.obligations.some((o) => o.stage === stage),
+      "Stage already reserved; refuse rerun",
+    );
+    assert.ok(
+      ledger.cumulativeReservedUsd + 10.15 <= ledger.approvedCumulativeCapUsd,
+      "Cumulative reservation exceeded",
+    );
+    ledger.obligations.push({
+      stage,
+      reservedUsd: 10.15,
+      state: "reserved-before-generation",
+      maximumTextRequests: 18,
+      maximumVoiceSessions: 16,
+      actualInvoiceClaim: false,
+    });
+    ledger.cumulativeReservedUsd += 10.15;
+    assert.equal(
+      fs.readFileSync(ledgerPath, "utf8"),
+      rawLedger,
+      "Budget changed during preflight",
+    );
+    const temp = ledgerPath + ".situated-temp";
+    fs.writeFileSync(temp, JSON.stringify(ledger, null, 2) + "\n", {
+      mode: 0o600,
+    });
+    fs.renameSync(temp, ledgerPath);
+    fs.mkdirSync(out, { mode: 0o700 });
+  }
+  if (!results.startedAt) results.startedAt = new Date().toISOString();
+  if (resume) results.resumedAt = new Date().toISOString();
   results.status = "running";
   save();
   for (const [arm, port] of [
@@ -252,7 +292,9 @@ const updateStage = (state) => {
       "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     args: ["--mute-audio", "--autoplay-policy=no-user-gesture-required"],
   });
-  for (const task of tasks) {
+  for (const task of tasks.filter(
+    (t) => !results.tasks.some((previous) => previous.order === t.order),
+  )) {
     const reserve = task.mode === "text" ? 0.06 : 0.55;
     if (!fitsStage(results.requestReservationsUsd, reserve))
       throw Error("Stage reservation bound");
@@ -339,7 +381,9 @@ const updateStage = (state) => {
     if (item.status !== "completed")
       throw Error("Stopped on delivery failure; no retries");
   }
-  results.status = "completed; semantic assessment pending";
+  results.status = results.tasks.some((t) => t.status !== "completed")
+    ? "finished-with-preserved-delivery-failure; semantic assessment pending"
+    : "completed; semantic assessment pending";
 })()
   .catch((error) => {
     results.status = "stopped";

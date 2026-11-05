@@ -89,7 +89,11 @@ function installMockPeer({ expected, failure }) {
         this.channel.open();
         const initial = structuredClone(expected);
         if (failure === "model-drift") initial.model = "wrong";
-        if (failure === "pending") initial.audio.input.transcription = null;
+        if (failure === "pending") {
+          initial.audio.input.transcription = null;
+          initial.audio.input.turn_detection.threshold = 0.5;
+          initial.audio.input.turn_detection.silence_duration_ms = 200;
+        }
         this.channel.emit({ type: "session.created", session: initial });
         if (failure === "pending")
           setTimeout(
