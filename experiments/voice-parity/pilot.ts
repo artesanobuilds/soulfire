@@ -51,7 +51,7 @@ export function preparePilot(study:string,out:string) {
     revision:execFileSync('git',['rev-parse','HEAD'],{cwd:ROOT,encoding:'utf8'}).trim(),
     source_sha256:manifest.source_sha256,code_sha256:codeHashes,runs,worksheet:audio,
     instruction_sha256:manifest.instruction_sha256,scenario_sha256:hash(JSON.stringify(scenarios,null,2)+'\n'),
-    price_book:{checked_date:'2026-11-04',sol_input_upper_usd_per_million:5,sol_output:10,
+    price_book:{checked_date:'2026-11-05',sol_input_upper_usd_per_million:5,sol_output:10,
       native_text_input:4,native_text_output:16,native_audio_input:32,native_audio_output:64,
       transcribe_input:1.25,transcribe_output:5,
       sources:['https://developers.openai.com/api/docs/models/gpt-6.1-sol','https://developers.openai.com/api/docs/models/gpt-realtime','https://developers.openai.com/api/docs/models/gpt-4o-mini-transcribe','https://developers.openai.com/api/docs/guides/voice-latency-cost']},

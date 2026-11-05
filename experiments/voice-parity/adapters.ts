@@ -26,7 +26,7 @@ export function nativeSession(capture: Capture): Json {
   return { type: 'realtime', model: 'gpt-realtime', instructions: capture.matchedInstructions,
     output_modalities: ['audio'], max_output_tokens: 900, tools: [], tool_choice: 'none',
     audio: { input: { format: { type: 'audio/pcm', rate: 24000 },
-      transcription: { model: 'gpt-4o-mini-transcribe' }, turn_detection: null, noise_reduction: null },
+      transcription: { model: 'gpt-4o-mini-transcribe' }, turn_detection: null, noise_reduction: {type: 'far_field'} },
       output: { format: { type: 'audio/pcm', rate: 24000 }, voice: 'marin', speed: 1 } } };
 }
 export function verifyNative(effective: Json, expected: Json): boolean {
@@ -34,7 +34,7 @@ export function verifyNative(effective: Json, expected: Json): boolean {
   return effective.model === expected.model && effective.instructions === expected.instructions &&
     effective.max_output_tokens === 900 && JSON.stringify(effective.output_modalities) === '["audio"]' &&
     Array.isArray(effective.tools) && effective.tools.length === 0 && effective.tool_choice === 'none' &&
-    i?.turn_detection === null && i?.noise_reduction === null && i?.transcription?.model === 'gpt-4o-mini-transcribe' &&
+    i?.turn_detection === null && i?.noise_reduction?.type === 'far_field' && i?.transcription?.model === 'gpt-4o-mini-transcribe' &&
     i?.format?.type === 'audio/pcm' && i.format.rate === 24000 &&
     o?.format?.type === 'audio/pcm' && o.format.rate === 24000 && o.voice === 'marin' && o.speed === 1;
 }

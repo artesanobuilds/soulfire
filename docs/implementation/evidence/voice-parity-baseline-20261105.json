@@ -1,0 +1,138 @@
+{
+  "status": "completed-controlled-pilot-quality-parity-not-established",
+  "source_revision": "555d899",
+  "voice_fix_commits": [
+    "d6ea83f",
+    "37909e1"
+  ],
+  "instruction_parity_verified": true,
+  "guidance_comparison_started": false,
+  "provider_attempts": 32,
+  "tts_units": 8,
+  "all_delivery_completed": true,
+  "reserved_usd": 4.8,
+  "approved_ceiling_usd": 5,
+  "reported_token_cost_estimate_usd": [
+    0.3081533,
+    0.31479830000000003
+  ],
+  "invoice_observed": false,
+  "usage_missing": [],
+  "quality": {
+    "text-tts": {
+      "n": 8,
+      "grounding_full": 8,
+      "no_assumptions_full": 7,
+      "decision_full": 8,
+      "action_full": 8,
+      "all_full": 7,
+      "material_grounding_failures": 0
+    },
+    "matched-text": {
+      "n": 8,
+      "grounding_full": 8,
+      "no_assumptions_full": 7,
+      "decision_full": 8,
+      "action_full": 8,
+      "all_full": 7,
+      "material_grounding_failures": 0
+    },
+    "native-audio": {
+      "n": 8,
+      "grounding_full": 4,
+      "no_assumptions_full": 4,
+      "decision_full": 4,
+      "action_full": 4,
+      "all_full": 3,
+      "material_grounding_failures": 1
+    },
+    "production-text": {
+      "n": 8,
+      "grounding_full": 8,
+      "no_assumptions_full": 8,
+      "decision_full": 8,
+      "action_full": 8,
+      "all_full": 8,
+      "material_grounding_failures": 0
+    },
+    "native-text": {
+      "n": 8,
+      "grounding_full": 6,
+      "no_assumptions_full": 4,
+      "decision_full": 6,
+      "action_full": 6,
+      "all_full": 4,
+      "material_grounding_failures": 1
+    }
+  },
+  "reviewer_count": 1,
+  "independent_human_raters": 0,
+  "heldout_cases_used": 0,
+  "source_parity": {
+    "native_matched_instruction_hashes": [
+      "17250b48cf279c58323e142a68e0d8412d1ee63b78d151c3010bd440a6061898"
+    ],
+    "matched_text_instruction_hashes": [
+      "17250b48cf279c58323e142a68e0d8412d1ee63b78d151c3010bd440a6061898"
+    ]
+  },
+  "timing_ms": {
+    "native-text": {
+      "n": 8,
+      "median": 377.6049999999898,
+      "min": 343.4413329999952,
+      "max": 633.7729160000017
+    },
+    "production-text": {
+      "n": 8,
+      "median": 2871.7944169999882,
+      "min": 1780.7445409999928,
+      "max": 3281.3837920000005
+    },
+    "native-audio": {
+      "n": 8,
+      "median": 520.8416040000011,
+      "min": 411.7316250000149,
+      "max": 830.2363750000004
+    },
+    "matched-text": {
+      "n": 8,
+      "median": 1988.2862504999957,
+      "min": 1471.827707999997,
+      "max": 2415.9978330000013
+    },
+    "text-tts": {
+      "n": 8,
+      "median": 4298.574833499981,
+      "min": 3091.9790419999918,
+      "max": 5793.982417000021
+    }
+  },
+  "route_runtime_verification": {
+    "status": 200,
+    "content_type": "application/sdp",
+    "body_sha256": "22a1448693496bd84b5144595cdcb59925dfd5ba0226b0ad6362d578c2f721cf",
+    "native_live_sessions": 16,
+    "native_far_field_verified": 16,
+    "effective_noise_strength": [
+      1
+    ],
+    "native_vad_disabled_by_design": 16,
+    "production_vad_route_verified": true,
+    "route_source_sha256": "a8d3b37abcfa71ed2773c6c225c41db9f3defd4c7309c7a7ba754b84fa64e85c",
+    "model_calls_in_route_probe": 0,
+    "limitation": "Actual Next route executed with provider fetch intercepted; paid baseline used a separate WebSocket PCM adapter and did not exercise production VAD/WebRTC.",
+    "actual_route_instruction_sha256": "17250b48cf279c58323e142a68e0d8412d1ee63b78d151c3010bd440a6061898",
+    "actual_route_instruction_matches_live_matched_sessions": true
+  },
+  "production_webrtc_parity_verified": false,
+  "actual_source_asr_normalized_identical": 8,
+  "latest_far_field_used_live_sessions": 16,
+  "live_native_turn_detection": "null; full-turn manual commit",
+  "validation": {
+    "typescript_tests": 22,
+    "python_tests": 9,
+    "typecheck": "pass",
+    "targeted_lint": "pass"
+  }
+}

@@ -55,7 +55,7 @@ describe('offline voice parity adapters',()=>{
  });
  it('verifies all important native configuration before submitting',()=>{
   const expected=nativeSession(capture);expect(verifyNative(expected,expected)).toBe(true);
-  for(const mutate of [(s:Json)=>s.audio.input.turn_detection={},(s:Json)=>s.audio.input.transcription=null,(s:Json)=>s.tools=[{}],(s:Json)=>s.audio.output.speed=2]){
+  for(const mutate of [(s:Json)=>s.audio.input.turn_detection={},(s:Json)=>s.audio.input.transcription=null,(s:Json)=>s.audio.input.noise_reduction=null,(s:Json)=>s.tools=[{}],(s:Json)=>s.audio.output.speed=2]){
    const bad=structuredClone(expected);mutate(bad);expect(verifyNative(bad,expected)).toBe(false);
   }
  });

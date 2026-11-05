@@ -1,5 +1,7 @@
 # Bounded adapter pilot — prepared, awaiting paid authorization
 
+Completed run: [2026-11-05 results](../../docs/implementation/voice-parity-baseline-20261105.md). The approved pilot completed within its dedicated cap; instruction matching passed, quality parity remains open, and the vault-inspired comparison is paused. Earlier preparation/gating instructions below are retained for reproducibility.
+
 This is the executable subset of the larger [baseline protocol](README.md). No vault candidate is accessed. Four **development** cases (unknown availability, supplied availability, actual correction, repeated uncertainty), two repeats, five arms: 40 units. There are 32 potential paid generations and eight local exact-text TTS outputs. All four held-out cases remain unused.
 
 ## Exact reservation envelope

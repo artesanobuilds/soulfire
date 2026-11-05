@@ -1,5 +1,7 @@
 # Voice quality baseline (prepared 2026-11-04)
 
+Completed run: [2026-11-05 results](../../docs/implementation/voice-parity-baseline-20261105.md). The approved pilot completed within its dedicated cap; instruction matching passed, quality parity remains open, and the vault-inspired comparison is paused. Earlier preparation/gating instructions below are retained for reproducibility.
+
 Status: offline preparation executed; executable adapters and a bounded subset are now available in [PILOT.md](PILOT.md); **zero new provider calls and no quality/parity result**. Separate clone/branch `experiment/voice-parity-baseline`, starting at `a73e1b15ced1958fc6d33277fddd8731027ca376`. The original checkout's uncommitted 1500ms VAD edit and vault-inspired candidate are untouched. No credentials or environment files copied. No deployment, merge or running-app changes.
 
 ## Reproduce offline preparation
