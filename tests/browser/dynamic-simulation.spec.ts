@@ -101,6 +101,7 @@ test("dynamic voice plays both cached Kokoro voices, stops and replays without g
     return route.continue();
   });
   await page.goto("/");
+  await page.getByText("Review tools", { exact: true }).click();
   await page.getByRole("button", { name: "Simulations", exact: true }).click();
   await page
     .getByLabel("Simulation mode", { exact: true })
@@ -247,6 +248,7 @@ test("closing a replayed background run stops its audio without leaving a job", 
   baseURL,
 }) => {
   await page.goto("/");
+  await page.getByText("Review tools", { exact: true }).click();
   await page.getByRole("button", { name: "Simulations", exact: true }).click();
   await page
     .getByLabel("Simulation mode", { exact: true })

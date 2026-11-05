@@ -418,6 +418,7 @@ test("fatal voice error preserves opt-in history final turns and ends the sessio
     false,
   );
   await simulate(page);
+  await page.getByText("My space", { exact: true }).click();
   await page.getByRole("button", { name: "History", exact: true }).click();
   await page
     .getByLabel(

@@ -36,3 +36,6 @@ assets/audio-originals/generation_notes.txt
 music-models/
 music-lab-data/
 music-lab-results/
+
+# Local shared dependency symlink in isolated test worktree.
+node_modules

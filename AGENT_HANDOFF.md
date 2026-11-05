@@ -1,3 +1,7 @@
+# Unified test build — November 5, 2026
+
+This local branch combines the voice experiment, candidate situated guidance and grounded practice studio. Read [scope and manual testing](docs/implementation/unified-practice-studio-20261105.md). This is not published main and does not establish voice/text parity. Preserve original experiments and unrelated work.
+
 # November 5 bounded guidance results
 
 The approved old-versus-candidate guidance comparison is complete. See [results and recommendation](docs/implementation/vault-independent-guidance-results-20261105.md): 18 text deliveries and 14 completed native sessions out of 16 attempts, with two pre-input harness stops preserved. Arm-masked implementing-agent review found one candidate-only all-criteria pass in nine text pairs and one in six complete native pairs; most pairs tied and native factual drafting remains unresolved. Estimated recorded generation tokens are about $0.57 excluding unreturned ASR; the full $10.15 reservation remains retained. Candidate guidance remains an experimental review-branch improvement; no vault or voice/text parity claim, deployment, push or merge is authorized by this task. The merged runtime includes main's voice tuning at `00bc156`; prompts are frozen from `6a08401` versus `a73e1b15`.

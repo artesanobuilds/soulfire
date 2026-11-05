@@ -25,11 +25,13 @@ export function EmberPanel({
   motionEnabled,
   headingRef,
   onBack,
+  returnLabel = "Back to Soulfire",
 }: {
   blocked: boolean;
   motionEnabled: boolean;
   headingRef: Ref<HTMLHeadingElement>;
   onBack: () => void;
+  returnLabel?: string;
 }) {
   const [input, setInput] = useState<EmberInput>({ ...defaultEmberInput });
   const [session, setSession] = useState<EmberSession | null>(null);
@@ -133,7 +135,7 @@ export function EmberPanel({
   return (
     <section className="ember-page" aria-label="Ember meditation">
       <button className="back-link" onClick={onBack}>
-        <ArrowLeft size={16} /> Back to Soulfire
+        <ArrowLeft size={16} /> {returnLabel}
       </button>
       <div className="ember-heading">
         <span className="eyebrow">

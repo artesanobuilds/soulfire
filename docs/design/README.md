@@ -37,3 +37,7 @@ The creator's original MidJourney grid and cropped color reference were shared i
 - [Arrival and replay controls](intro-controls-review/README.md): current desktop/mobile UI.
 - [Real personalized practice](live-ai-review/README.md): one synthetic OpenAI request rendered by the production app.
 - Current scene and motion are code-native in `src/components/LandscapeArtwork.tsx` and `QuietScene.tsx`. Selected music, narration and reproducible sources are included under `public/audio` and `assets`.
+
+## Unified practice studio test branch · November 5, 2026
+
+[Actual desktop/mobile captures and scope](unified-studio-review/README.md) show the local-only grounded studio integration. This branch preserves previous designs and experiments. New exercise families and automatic Current/Ember context transfer remain proposals.

@@ -28,6 +28,7 @@ test.afterEach(async ({ page, baseURL }) => {
     });
 });
 async function enable(page: Page) {
+  await page.getByText("My space", { exact: true }).click();
   await page.getByRole("button", { name: "History", exact: true }).click();
   await page
     .getByLabel(
@@ -45,6 +46,7 @@ async function enable(page: Page) {
 }
 async function studio(page: Page) {
   await page.goto("/");
+  await page.getByText("Review tools", { exact: true }).click();
   await page.getByRole("button", { name: "Simulations", exact: true }).click();
   await page
     .getByLabel(
@@ -107,6 +109,7 @@ test("opt-in captures only new text and final voice events, supports feedback/ex
     })
     .toBe(1);
   await page.getByRole("button", { name: "End voice", exact: true }).click();
+  await page.getByText("My space", { exact: true }).click();
   await page.getByRole("button", { name: "History", exact: true }).click();
   await page.locator(".history-list button").first().click();
   await expect(page.locator(".history-detail")).toContainText(
@@ -159,6 +162,7 @@ test("opt-in captures only new text and final voice events, supports feedback/ex
   );
   expect((await page.request.get("/api/history?id=" + id)).status()).toBe(404);
   await page.reload();
+  await page.getByText("My space", { exact: true }).click();
   await page.getByRole("button", { name: "History", exact: true }).click();
   await expect(page.getByRole("dialog")).toContainText("History off");
 });
@@ -376,6 +380,7 @@ test("background voice stays silent and reload exposes saved state rather than r
     ),
   ).toBe(false);
   await page.reload();
+  await page.getByText("Review tools", { exact: true }).click();
   await page.getByRole("button", { name: "Simulations", exact: true }).click();
   await page.locator(".simulation-panel .history-list button").first().click();
   await expect(page.locator(".simulation-status")).toContainText(
@@ -399,6 +404,7 @@ test("reload during witnessed audio does not restart or leave playback running",
     page.locator(".simulation-turns [data-speaking=true]"),
   ).toHaveCount(1);
   await page.reload();
+  await page.getByText("Review tools", { exact: true }).click();
   await page.getByRole("button", { name: "Simulations", exact: true }).click();
   await page.locator(".simulation-panel .history-list button").first().click();
   await expect(page.locator(".simulation-status")).toContainText(

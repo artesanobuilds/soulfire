@@ -211,7 +211,7 @@ test("distinct journeys and decline keep the map available", async ({
     ["Conflict with someone", "Return to what matters."],
   ]) {
     await page
-      .getByRole("button", { name: "The practice", exact: true })
+      .getByRole("button", { name: "Practices", exact: true })
       .click();
     await page.getByRole("button", { name: topic, exact: true }).click();
     await expect(
@@ -256,7 +256,7 @@ test("short mobile viewport keeps all filled action text visible and status by c
 }) => {
   await page.setViewportSize({ width: 390, height: 450 });
   await expect(page.locator(".composer-status")).toContainText("AI configured");
-  await page.getByRole("button", { name: "The practice", exact: true }).click();
+  await page.getByRole("button", { name: "Practices", exact: true }).click();
   await page
     .getByRole("button", { name: "Conflict with someone", exact: true })
     .click();

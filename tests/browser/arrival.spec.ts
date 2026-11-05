@@ -206,7 +206,7 @@ test("rapid play and pause, modal and navigation interruptions do not complete t
     .poll(() => intro(page).evaluate((a: HTMLAudioElement) => a.currentTime))
     .toBeGreaterThan(0.1);
   const speech = await intro(page).elementHandle();
-  await page.getByRole("button", { name: "The practice", exact: true }).click();
+  await page.getByRole("button", { name: "Practices", exact: true }).click();
   expect(await speech!.evaluate((a: HTMLAudioElement) => a.paused)).toBe(true);
   expect(await flag(page)).toBeNull();
   await page
@@ -392,7 +392,7 @@ test("saved action and reflection survive a finished visit; replacing a saved pr
   );
   expect(saved.reflection).toBe("PRIVATE NOTICE");
   expect(Object.values(saved.fields)).toContain("PRIVATE FIELD");
-  await page.getByRole("button", { name: "The practice", exact: true }).click();
+  await page.getByRole("button", { name: "Practices", exact: true }).click();
   await page
     .getByRole("button", { name: "Explore step 3", exact: true })
     .click();

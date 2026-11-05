@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-05",
+  "branch": "experiment/unified-practice-studio-20261105",
+  "mainBase": "d6ea83f",
+  "voiceExperiment": "8876571",
+  "guidanceExperiment": "3cfee8f",
+  "typecheck": "passed",
+  "lint": "passed",
+  "build": "passed",
+  "unit": {
+    "files": 28,
+    "passed": 279
+  },
+  "browserFull": {
+    "total": 272,
+    "passed": 267,
+    "skipped": 1,
+    "failed": 4
+  },
+  "unchangedAudioRerun": {
+    "passed": 6,
+    "failed": 0,
+    "coversAllFourFailures": true
+  },
+  "paidRequests": 0,
+  "physicalMicrophoneTested": false,
+  "runtime": "http://127.0.0.1:3102",
+  "limits": [
+    "Intermittent automated media clocks; not a single fully green browser run.",
+    "Voice/text quality parity not established.",
+    "New inventory/repair families and cross-tool context transfer remain proposed."
+  ]
+}

@@ -328,6 +328,7 @@ test("opening Ember stops live voice and another dialog pauses meditation", asyn
   ).toBeGreaterThan(0);
   await create(page);
   await start(page);
+  await page.getByText("My space", { exact: true }).click();
   await page.getByRole("button", { name: "My memory", exact: true }).click();
   await page.getByRole("button", { name: "Close dialog", exact: true }).click();
   await expect(

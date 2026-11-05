@@ -22,6 +22,7 @@ export const savedPracticeSchema = z
     ),
     action: z.string().max(600),
     reflection: z.string().max(1500),
+    understanding: z.string().max(1500).optional(),
     language: z.enum(["open", "spiritual", "plain"]),
     practiceStep: z.number().int().min(0).max(4),
     view: z.enum(["suggestion", "practice", "meditation", "review", "finish"]),

@@ -28,6 +28,7 @@ test.beforeEach(async ({ page, request }) => {
   for (const path of ["companion", "transcribe", "realtime"])
     await page.route("**/api/" + path, (r) => r.abort());
   await page.goto("/");
+  await page.getByText("Review tools", { exact: true }).click();
   await page.getByRole("button", { name: "Simulations", exact: true }).click();
 });
 test.afterEach(async ({ page, baseURL }) => {

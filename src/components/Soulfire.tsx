@@ -1,4 +1,5 @@
 "use client";
+import ReasonedVoiceExperiment from "./ReasonedVoiceExperiment";
 import { EmberPanel } from "./EmberPanel";
 import { CurrentPanel } from "./CurrentPanel";
 import { SimulationPanel } from "./SimulationPanel";
@@ -37,7 +38,7 @@ import { safetyNotice } from "../lib/safety";
 import { samples, steps, topics } from "../lib/catalog";
 import { replySchema, type Exercise, type Message } from "../lib/schema";
 
-type View = JourneyState | "current" | "ember";
+type View = JourneyState | "current" | "ember" | "voice-test";
 type Card = { id: string; text: string; group: number };
 type Drafts = Record<string, string>;
 export function Soulfire() {
@@ -93,6 +94,8 @@ export function Soulfire() {
 
   const [dictationTarget, setDictationTarget] = useState("conversation");
   const [dictationReview, setDictationReview] = useState("");
+  const [understanding, setUnderstanding] = useState("");
+  const returnView = useRef<View>("home");
   const [view, setView] = useState<View>("home");
   const [draft, setDraft] = useState("");
   const [language, setLanguage] = useState<"open" | "spiritual" | "plain">(
@@ -149,6 +152,7 @@ export function Soulfire() {
         setCards(saved.cards);
         setAction(saved.action);
         setReflection(saved.reflection);
+        setUnderstanding(saved.understanding || "");
         setLanguage(saved.language);
         setPracticeStep(
           Math.min(saved.practiceStep, saved.exercise.blocks.length),
@@ -168,7 +172,8 @@ export function Soulfire() {
       view !== "home" &&
       view !== "map" &&
       view !== "current" &&
-      view !== "ember"
+      view !== "ember" &&
+      view !== "voice-test"
     )
       resumeView.current = view;
     if (!storageReady || !rememberPractice || !exercise) return;
@@ -184,6 +189,7 @@ export function Soulfire() {
           cards,
           action,
           reflection,
+          understanding,
           language,
           practiceStep,
           view: resumeView.current,
@@ -204,6 +210,7 @@ export function Soulfire() {
     cards,
     action,
     reflection,
+    understanding,
     language,
     practiceStep,
     view,
@@ -331,6 +338,14 @@ export function Soulfire() {
     setBusy(false);
   }
   function go(next: View) {
+    document
+      .querySelectorAll(".studio-menu[open]")
+      .forEach((menu) => menu.removeAttribute("open"));
+    if (
+      ["current", "ember", "voice-test"].includes(next) &&
+      !["current", "ember", "voice-test"].includes(view)
+    )
+      returnView.current = view;
     quiet();
     cancel();
     setRunning(false);
@@ -339,14 +354,20 @@ export function Soulfire() {
   }
   const replacementSample = useRef<string | null>(null);
   function openDialog(next: typeof dialog) {
+    const menu = document.activeElement?.closest(".studio-menu");
+    menu?.querySelector<HTMLElement>("summary")?.focus();
+    document
+      .querySelectorAll(".studio-menu[open]")
+      .forEach((menu) => menu.removeAttribute("open"));
     replacementSample.current = null;
     quiet();
     cancel();
     setRunning(false);
     setDialog(next);
   }
-  function loadExercise(next: Exercise, isExample: boolean) {
+  function loadExercise(next: Exercise, isExample: boolean, situation = "") {
     setExercise(next);
+    setUnderstanding(situation);
     setPracticeStep(0);
     setShowAll(false);
     setDictationTarget("conversation");
@@ -374,6 +395,7 @@ export function Soulfire() {
     const hasAnswers =
       exercise &&
       (rememberPractice ||
+        understanding ||
         reflection ||
         Object.values(fields).some(Boolean) ||
         action !== exercise.actionSuggestion ||
@@ -460,7 +482,7 @@ export function Soulfire() {
       ]);
       setReply(parsed.data.message);
       if (parsed.data.exercise) {
-        loadExercise(parsed.data.exercise, false);
+        loadExercise(parsed.data.exercise, false, content);
         setView("suggestion");
       } else if (intent === "reflection") {
         setView("finish");
@@ -537,6 +559,7 @@ export function Soulfire() {
     quiet();
     setDraft("");
     setMessages([]);
+    setUnderstanding("");
     setExercise(null);
     setFields({});
     setCards({});
@@ -746,7 +769,8 @@ export function Soulfire() {
   );
   return (
     <div
-      className="app-shell"
+      className="app-shell practice-studio"
+      data-view={view}
       data-motion={motion && !reducedMotion && pageVisible ? "on" : "off"}
     >
       <a className="skip-link" href="#main">
@@ -766,16 +790,59 @@ export function Soulfire() {
           soulfire
         </button>
         <nav aria-label="Main navigation">
-          <button onClick={() => openDialog("memory")}>My memory</button>
           <button
+            className={view === "home" ? "nav-active" : ""}
             onClick={() => {
-              setHistoryFocus(null);
-              openDialog("history");
+              setHomeStarted(true);
+              go("home");
             }}
           >
-            History
+            Home
           </button>
-          <button onClick={() => openDialog("simulation")}>Simulations</button>
+          <button
+            className={view === "map" ? "nav-active" : ""}
+            onClick={() => go("map")}
+          >
+            Practices
+          </button>
+          <details className="studio-menu">
+            <summary>My space</summary>
+            <div>
+              <button onClick={() => openDialog("memory")}>My memory</button>
+              <button
+                onClick={() => {
+                  setHistoryFocus(null);
+                  openDialog("history");
+                }}
+              >
+                History
+              </button>
+              {exercise && (
+                <button onClick={() => go("practice")}>
+                  Resume my practice
+                </button>
+              )}
+              <p className="small">
+                History, saved practice and AI memory are separate choices.
+              </p>
+            </div>
+          </details>
+          <details className="studio-menu">
+            <summary>Review tools</summary>
+            <div>
+              <button onClick={() => openDialog("simulation")}>
+                Simulations
+              </button>
+              <button onClick={() => go("voice-test")}>
+                Voice quality test
+              </button>
+              <p className="small">
+                Experimental text reasoning + exact speech. Native Live voice
+                remains available in conversation. Quality parity is not
+                established.
+              </p>
+            </div>
+          </details>
           <button
             className={view === "current" ? "nav-active" : ""}
             onClick={() => go("current")}
@@ -787,12 +854,6 @@ export function Soulfire() {
             onClick={() => go("ember")}
           >
             Ember
-          </button>
-          <button
-            className={view === "map" ? "nav-active" : ""}
-            onClick={() => go("map")}
-          >
-            The practice
           </button>
           {exercise && (
             <button onClick={() => go("practice")}>My practice</button>
@@ -837,6 +898,45 @@ export function Soulfire() {
         />
       </div>
       <main id="main">
+        <div className="studio-build">
+          <span>Unified test build · grounded practice studio</span>
+          <button onClick={() => go("voice-test")}>
+            Compare voice options
+          </button>
+        </div>
+        {!["current", "ember", "voice-test", "map"].includes(view) &&
+          (homeStarted || view !== "home") && (
+            <ol className="studio-journey" aria-label="Practice journey">
+              {["Understand", "Practice", "Reflect"].map((label, i) => (
+                <li
+                  key={label}
+                  aria-current={
+                    (i === 0 && ["home", "suggestion"].includes(view)) ||
+                    (i === 1 && ["practice", "meditation"].includes(view)) ||
+                    (i === 2 && ["review", "finish"].includes(view))
+                      ? "step"
+                      : undefined
+                  }
+                >
+                  {label}
+                </li>
+              ))}
+            </ol>
+          )}
+        {view === "voice-test" && (
+          <button className="back" onClick={() => go(returnView.current)}>
+            Return to{" "}
+            {returnView.current === "practice"
+              ? "this practice"
+              : "my previous activity"}
+          </button>
+        )}
+        <div hidden={view !== "voice-test"}>
+          <ReasonedVoiceExperiment
+            active={view === "voice-test" && dialog === null}
+          />
+        </div>
+
         {view === "ember" && (
           <EmberPanel
             blocked={
@@ -844,7 +944,12 @@ export function Soulfire() {
             }
             motionEnabled={motion && !reducedMotion && pageVisible}
             headingRef={heading}
-            onBack={() => go("home")}
+            returnLabel={
+              returnView.current === "practice"
+                ? "Return to this practice"
+                : undefined
+            }
+            onBack={() => go(returnView.current)}
           />
         )}
         {view === "current" && (
@@ -854,7 +959,12 @@ export function Soulfire() {
             }
             motionEnabled={motion && !reducedMotion && pageVisible}
             headingRef={heading}
-            onBack={() => go("home")}
+            returnLabel={
+              returnView.current === "practice"
+                ? "Return to this practice"
+                : undefined
+            }
+            onBack={() => go(returnView.current)}
           />
         )}
         {error && (
@@ -1013,7 +1123,36 @@ export function Soulfire() {
             <h1 ref={heading} tabIndex={-1}>
               {exercise.title}
             </h1>
-            <PromptArt kind={exercise.blocks[0]?.type || "reflect"} />
+            <div className="studio-understanding">
+              <label className="field-label">
+                My understanding of the situation
+                <AutoTextarea
+                  rows={3}
+                  maxLength={1500}
+                  value={understanding}
+                  onChange={(e) => setUnderstanding(e.target.value)}
+                  placeholder="What matters here? Use your own words…"
+                />
+              </label>
+              <p className="small">
+                Private working note, included only if you choose device saving.
+                Editing this does not send it to AI or change the suggested
+                practice.
+              </p>
+              <button
+                onClick={() => {
+                  setDraft(understanding);
+                  setHomeStarted(true);
+                  go("home");
+                }}
+              >
+                Review this in conversation
+              </button>
+            </div>
+            <div className="studio-fit">
+              <h2>Why try this?</h2>
+              <p>{exercise.purpose}</p>
+            </div>
             <details className="principle-detail">
               <summary>{exercise.principle} · about this practice</summary>
               <p>{exercise.purpose}</p>
@@ -1064,9 +1203,16 @@ export function Soulfire() {
                 <summary>About this practice</summary>
                 <p>{exercise.purpose}</p>
               </details>
-              <div className="landscape">
-                <QuietScene />
-              </div>
+              <details className="studio-context-note" open={!mobile}>
+                <summary>Take a quiet moment</summary>
+                <p>Your practice stays here while you take a quiet moment.</p>
+                <button onClick={() => go("ember")}>Open Ember</button>
+                <button onClick={() => go("current")}>Open Current</button>
+                <p className="small">
+                  These existing tools do not receive your private answers.
+                  Personalized context transfer is proposed, not implemented.
+                </p>
+              </details>
               <button className="text-link" onClick={() => go("map")}>
                 <Leaf size={17} /> Try a different practice
               </button>

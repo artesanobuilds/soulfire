@@ -518,6 +518,7 @@ test("dialog interruptions pause music without an automatic restart", async ({
   await open(page);
   await play(page);
   await closeShape(page);
+  await page.getByText("Review tools", { exact: true }).click();
   await page.getByRole("button", { name: "Simulations", exact: true }).click();
   await expect
     .poll(async () => (await snap(page)).contexts.every((s) => s === "closed"))

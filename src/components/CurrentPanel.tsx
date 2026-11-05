@@ -56,6 +56,7 @@ export function CurrentPanel(props: {
   motionEnabled: boolean;
   headingRef: Ref<HTMLHeadingElement>;
   onBack: () => void;
+  returnLabel?: string;
 }) {
   const [classic, setClassic] = useState(false);
   return classic ? (
@@ -70,11 +71,13 @@ function MusicCurrent({
   headingRef,
   onBack,
   onClassic,
+  returnLabel = "Back to Soulfire",
 }: {
   blocked: boolean;
   motionEnabled: boolean;
   headingRef: Ref<HTMLHeadingElement>;
   onBack: () => void;
+  returnLabel?: string;
   onClassic: () => void;
 }) {
   const [options, setOptions] = useState<CurrentMusicOptions>({
@@ -637,7 +640,7 @@ function MusicCurrent({
       <div className="cm-heading">
         <button className="text-button" onClick={onBack}>
           <ArrowLeft size={16} />
-          Back to Soulfire
+          {returnLabel}
         </button>
         <span className="eyebrow">A LITTLE ROOM FOR WHAT YOU NEED</span>
         <h1 ref={headingRef} tabIndex={-1}>

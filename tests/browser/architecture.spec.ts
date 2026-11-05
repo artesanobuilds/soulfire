@@ -31,6 +31,7 @@ test("explicit memory persists, personalizes only a selected request, and delete
   baseURL,
 }) => {
   await page.goto("/");
+  await page.getByText("My space", { exact: true }).click();
   await page.getByRole("button", { name: "My memory", exact: true }).click();
   const goal = page.getByLabel("A goal I want to remember", { exact: true });
   await expect(goal).toHaveValue("");
@@ -105,6 +106,7 @@ test("explicit memory persists, personalizes only a selected request, and delete
   await expect(page.locator("main")).not.toContainText(
     "Synthetic: learn pottery.",
   );
+  await page.getByText("My space", { exact: true }).click();
   await page.getByRole("button", { name: "My memory", exact: true }).click();
   await expect(goal).toHaveValue("Synthetic: learn pottery.");
   await goal.fill("Synthetic: enjoy a small clay project.");
@@ -220,6 +222,7 @@ test("visual placement, simple editing, saved scene resume and reduced motion ag
     .locator(".exercise-block.sort")
     .screenshot({ path: info.outputPath("visual-influence-map.png") });
   // Existing private work must never be imported into new durable memory.
+  await page.getByText("My space", { exact: true }).click();
   await page.getByRole("button", { name: "My memory", exact: true }).click();
   await expect(
     page.getByLabel("A goal I want to remember", { exact: true }),
@@ -239,6 +242,7 @@ test("unavailable memory and malformed generation keep the local practice usable
       : r.fallback(),
   );
   await page.goto("/");
+  await page.getByText("My space", { exact: true }).click();
   await page.getByRole("button", { name: "My memory", exact: true }).click();
   await expect(page.getByRole("dialog")).toContainText(
     "Synthetic storage unavailable",

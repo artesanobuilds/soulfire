@@ -4709,3 +4709,32 @@ aside > p {
 /* Keep the catalogue and selected controls in the first viewport. */
 .cm-heading{text-align:left;padding:0 0 12px;margin-bottom:20px}.cm-heading .text-button{position:static;margin-bottom:14px}.cm-heading>.eyebrow{display:none}.cm-heading h1{font-size:38px}.cm-heading>p{font-size:15px;margin:8px 0 0}.cm-heading>p br{display:none}.cm-shelf>.cm-goals{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}.cm-shelf>.cm-goals button{min-height:42px;font-size:12px;padding:8px 12px;border-radius:22px}.cm-shelf-title .eyebrow{display:none}.cm-shelf-title h2{margin:0;font-size:26px}.cm-starters{margin:18px 0}.cm-workspace-heading{margin-bottom:16px}
 @media(max-width:850px){.cm-heading{padding:0 0 4px;margin-bottom:18px}.cm-heading .text-button{margin-bottom:10px}.cm-heading h1{font-size:32px}.cm-heading>p{font-size:13px;line-height:1.5}.cm-shelf>.cm-goals{margin:14px 0}.cm-shelf>.cm-goals button{font-size:11px;min-height:40px;padding:8px 10px}.cm-workspace-heading{font-size:23px}.cm-intention>h2{font-size:26px}.cm-intention>.current-field{margin:12px 0}}
+
+/* Unified test build: grounded working surfaces, existing identity. */
+.studio-build {display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:#4c6456;border-bottom:1px solid #d6ddd4;padding:12px 0;margin-bottom:20px}
+.studio-build button {font-size:12px;text-decoration:underline}
+.studio-journey {list-style:none;display:flex;gap:8px;padding:0;margin:18px 0 28px;counter-reset:journey}
+.studio-journey li {counter-increment:journey;padding:10px 18px;border:1px solid #c6d0c5;border-radius:30px;color:#4c6456;font-size:14px}
+.studio-journey li:before {content:counter(journey) " · "}
+.studio-journey li[aria-current] {background:#2e483d;color:#fdf8ef;border-color:#2e483d}
+.studio-menu {position:relative;font-size:14px}
+.studio-menu>summary {cursor:pointer;padding:12px;border-radius:8px}
+.studio-menu[open]>div {position:absolute;right:0;top:100%;z-index:40;width:270px;padding:18px;background:#fdf8ef;border:1px solid #bdc9bc;border-radius:14px;box-shadow:0 12px 30px #292c2820;display:grid;gap:8px}
+.studio-menu button {text-align:left;padding:10px}
+.studio-understanding,.studio-fit,.studio-context-note,.reasoned-voice-studio {background:#fffdf8;border:1px solid #d6ddd4;border-radius:18px;padding:24px;margin:20px 0}
+.studio-fit h2 {font-size:24px;margin-bottom:8px}
+.studio-context-note button {display:block;margin:10px 0;text-decoration:underline}
+.practice-studio[data-view="practice"] .practice-layout>aside {max-width:300px}
+.practice-studio[data-view="practice"] .practice-layout>section {background:#fffdf8;border:1px solid #d6ddd4;border-radius:20px;padding:28px}
+.reasoned-voice-studio button {border:1px solid #4c6456;border-radius:8px;padding:10px 14px;margin:8px 8px 8px 0}
+.reasoned-voice-studio textarea,.reasoned-voice-studio select {border:1px solid #778d7c;border-radius:8px;padding:12px;background:#fffdf8;color:#292c28}
+.reasoned-voice-studio audio {max-width:100%}
+@media(max-width:700px){.studio-build{align-items:flex-start}.studio-journey{gap:4px}.studio-journey li{padding:8px 12px;font-size:12px}.studio-menu[open]>div{position:fixed;left:16px;right:16px;top:130px;width:auto}.practice-studio[data-view="practice"] .practice-layout>section{padding:18px}.studio-understanding,.studio-fit{padding:18px}}
+.practice-studio .studio-build,.practice-studio .studio-journey {margin-left:clamp(16px,4vw,64px);margin-right:clamp(16px,4vw,64px)}
+.practice-studio[data-view="practice"] .scene-art {max-width:380px;margin:0 auto}
+.practice-studio[data-view="practice"] .scene-art svg {max-height:160px}
+@media(max-width:700px){.practice-studio[data-view="practice"] .scene-art svg{max-height:110px}.practice-studio header nav{gap:4px}.practice-studio header nav>button{padding:8px}}
+/* Existing media workspaces retain their viewport budget; the return control stays visible. */
+.practice-studio[data-view="current"] .studio-build,.practice-studio[data-view="ember"] .studio-build {display:none}
+.studio-context-note summary {cursor:pointer;font-weight:600;color:#2e483d}
+@media(max-width:850px){.practice-studio[data-view="practice"] .practice-layout>aside{max-width:none}.practice-studio .practice-layout aside>.studio-context-note{display:block;margin:12px 0;padding:12px 16px}.practice-studio .studio-context-note button{display:inline-block;margin-right:12px}}

@@ -14,6 +14,18 @@ const saved = {
   view: "practice",
 };
 describe("saved practice recovery", () => {
+  it("retains the optional private understanding without weakening bounds", () => {
+    expect(
+      readSavedPractice(
+        JSON.stringify({ ...saved, understanding: "My private note" }),
+      )?.understanding,
+    ).toBe("My private note");
+    expect(
+      readSavedPractice(
+        JSON.stringify({ ...saved, understanding: "x".repeat(1501) }),
+      ),
+    ).toBeNull();
+  });
   it("round-trips a bounded practice without conversation or sharing consent", () => {
     expect(readSavedPractice(JSON.stringify(saved))).toEqual(saved);
     expect(

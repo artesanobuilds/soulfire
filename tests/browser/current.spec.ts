@@ -155,7 +155,7 @@ async function allClosed(page: Page) {
     .toBe(true);
 }
 
-test("Current is beside Simulations, keeps Soulfire identity, and recipe creation is silent and private", async ({
+test("Current remains directly accessible, keeps Soulfire identity, and recipe creation is silent and private", async ({
   page,
 }) => {
   await instrument(page);
@@ -173,7 +173,8 @@ test("Current is beside Simulations, keeps Soulfire identity, and recipe creatio
   const labels = await page
     .locator('nav[aria-label="Main navigation"] button')
     .allTextContents();
-  expect(labels.indexOf("Current")).toBe(labels.indexOf("Simulations") + 1);
+  expect(labels).toContain("Current");
+  await expect(page.getByText("Review tools", {exact:true})).toBeVisible();
   await page
     .getByLabel("A few words about the sound", { exact: false })
     .fill("PRIVATE-SOUND-NOTE, water, no rain");
@@ -384,7 +385,7 @@ test("backgrounding and navigation release audio with no automatic resume", asyn
   await expect(
     page.getByRole("button", { name: "Pause mix", exact: true }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "The practice", exact: true }).click();
+  await page.getByRole("button", { name: "Practices", exact: true }).click();
   await allClosed(page);
 });
 test("blocked and unavailable Web Audio show a truthful recoverable error", async ({
@@ -477,6 +478,7 @@ test("opening Current stops voice and music, and other activities pause Current"
   await create(page);
   await play(page);
   expect((await snapshot(page)).mediaPaused).toBe(true);
+  await page.getByText("My space", { exact: true }).click();
   await page.getByRole("button", { name: "My memory", exact: true }).click();
   await allClosed(page);
   await page.getByRole("button", { name: "Close dialog", exact: true }).click();
