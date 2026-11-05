@@ -1,0 +1,109 @@
+{
+  "state": "followup-complete-budget-exhausted-no-parity-claim",
+  "prior_reserved_usd": 4.8,
+  "followup_reserved_usd": 0.2,
+  "total_reserved_usd": 5,
+  "ceiling_usd": 5,
+  "new_provider_requests": 3,
+  "new_generation_responses": 2,
+  "new_transcription_usages": 2,
+  "usage_missing": false,
+  "new_reported_token_estimate_usd": [
+    0.02965635,
+    0.02973885
+  ],
+  "combined_reported_token_estimate_usd": [
+    0.33780965,
+    0.34453715
+  ],
+  "invoiced_spend_observed": false,
+  "native_status": "completed",
+  "native_responses": 1,
+  "production_route_vad_initial": {
+    "type": "server_vad",
+    "threshold": 0.65,
+    "prefix_padding_ms": 300,
+    "silence_duration_ms": 1500,
+    "idle_timeout_ms": null,
+    "create_response": true,
+    "interrupt_response": true
+  },
+  "vad_evaluation_override": {
+    "type": "server_vad",
+    "threshold": 0.65,
+    "prefix_padding_ms": 300,
+    "silence_duration_ms": 1500,
+    "idle_timeout_ms": null,
+    "create_response": false,
+    "interrupt_response": true
+  },
+  "far_field_effective": {
+    "type": "far_field",
+    "strength": 1
+  },
+  "vad_stop_after_scheduled_input_ms": 1688.300000011921,
+  "native_first_audio_after_manual_request_ms": 1230.5999999642372,
+  "heldout_scenario": "speaker-correction",
+  "heldout_repeats": 1,
+  "independent_human_raters": 0,
+  "ratings": {
+    "rater": "implementing agent, condition-masked pair; no independent human review",
+    "ratings": [
+      {
+        "id": "answer-1",
+        "grounding": 2,
+        "no_unsupported_assumptions": 1,
+        "decision_usefulness": 1,
+        "actionability": 2,
+        "evidence": "Preserves who said Tuesday/Wednesday and does not draft a false admission. Reframes the unknown as whether anyone felt misled, which was not supplied, and gives conditional waiting advice instead of directly rejecting an unsupported admission. Mild framing/usefulness issue, not a material invented fact."
+      },
+      {
+        "id": "answer-2",
+        "grounding": 2,
+        "no_unsupported_assumptions": 2,
+        "decision_usefulness": 2,
+        "actionability": 2,
+        "evidence": "Directly rejects admitting an error the user did not make, preserves the colleague/user distinction, and offers factual clarification only if coordination or a duty calls for it."
+      }
+    ],
+    "unblinded_arms": {
+      "answer-1": "native",
+      "answer-2": "reasoned"
+    }
+  },
+  "text_to_speech_accepted_text_hash_verified": true,
+  "physical_listening_assessed": false,
+  "parity_established": false,
+  "model_weights_causality_established": false,
+  "guidance_comparison_started": false,
+  "stop_reason": "All $5 conservative reservations retained; one held-out sample cannot support a reliable parity conclusion.",
+  "offline_ui_playback": {
+    "audio_duration_seconds": 25.450667,
+    "played_seconds": 0.851282,
+    "peak_rms": 0.21944146237845527,
+    "provider_calls": 0,
+    "note": "Replays the saved exact-speech artifact with browser requests mocked; not a new quality sample or human listening."
+  },
+  "offline_webrtc_loopback": {
+    "peak": 0.10730463163376715,
+    "frames": 180,
+    "recorded_bytes": 26507,
+    "provider_calls": 0
+  },
+  "verification": {
+    "new_service_route_tests": 7,
+    "full_suite_first_run": {
+      "passed": 267,
+      "failed": 1,
+      "failure": "Existing Current cancellation temporary-directory ENOTEMPTY cleanup race"
+    },
+    "isolated_current_rerun_passed": 6,
+    "typecheck": "passed after archiving duplicate generated Next type files",
+    "targeted_lint": "passed",
+    "actual_next_routes_compiled_and_http200": true
+  },
+  "experimental_path": "/experiments/reasoned-voice",
+  "default_enabled": false,
+  "full_original_voice_ui_validated": false,
+  "model_causal_design_recommendation": "Balanced within-native input text/audio \u00d7 output text/audio, plus matched Sol text contract and identical exact TTS; not run due budget."
+}
