@@ -41,10 +41,10 @@ for (const [name, question] of [
     );
     await page.getByLabel("What’s weighing on you today?").fill(question);
     await page
-      .getByRole("button", { name: "Send & find a practice", exact: true })
+      .getByRole("button", { name: "Send", exact: true })
       .click();
     await expect(
-      page.locator(".message-card").filter({
+      page.locator(".chat-message").filter({
         hasText: "A fictional supportive response with a relevant next step.",
       }),
     ).toBeVisible();
@@ -59,7 +59,7 @@ test("explicit present danger retains specific intervention without unrelated bo
     .fill("I cannot keep myself safe.");
   // Real local route uses the deterministic backstop before any provider request.
   await page
-    .getByRole("button", { name: "Send & find a practice", exact: true })
+    .getByRole("button", { name: "Send", exact: true })
     .click();
   await expect(page.getByRole("dialog")).toContainText("immediate safety");
   await expect(page.getByRole("dialog")).toContainText("Safety notice:");

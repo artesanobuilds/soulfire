@@ -69,9 +69,7 @@ test("opt-in captures only new text and final voice events, supports feedback/ex
   await page
     .getByLabel("What’s weighing on you today?")
     .fill("Synthetic submitted text.");
-  await page
-    .getByRole("button", { name: "Send & find a practice", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Send", exact: true }).click();
   await expect(page.locator("main [role=alert]")).toContainText(
     "not connected",
   );
@@ -212,9 +210,7 @@ test("stopping history prevents later voice writes and new text capture without 
       },
     });
   });
-  await page
-    .getByRole("button", { name: "Send & find a practice", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Send", exact: true }).click();
   await expect.poll(() => !!sent).toBe(true);
   expect(sent).not.toHaveProperty("history");
 });

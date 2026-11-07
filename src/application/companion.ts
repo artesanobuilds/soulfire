@@ -21,6 +21,7 @@ export interface ModelProvider {
   generate(
     input: ModelRequest,
     signal: AbortSignal,
+    onMessageDelta?: (delta: string) => void,
   ): Promise<{ reply: unknown; model: string; responseId?: string }>;
 }
 export class ModelFailure extends Error {
@@ -50,6 +51,7 @@ export async function runCompanion(
   model: ModelProvider,
   repository: MemoryRepository,
   observe: (event: RunEvent) => void = () => {},
+  onMessageDelta?: (delta: string) => void,
 ) {
   const started = Date.now();
   let usedMemory = false;
@@ -105,6 +107,7 @@ export async function runCompanion(
         memoryContext,
       },
       signal,
+      onMessageDelta,
     );
     signal.throwIfAborted();
     const parsed = replySchema.safeParse(result.reply);
@@ -114,6 +117,11 @@ export async function runCompanion(
         "The response did not match a safe practice. Your work is unchanged; try again or choose a local example.",
       );
     const reply = parsed.data;
+    if (input.intent === "reflection" && reply.practiceOffer)
+      throw new ModelFailure(
+        "invalid",
+        "Private reflection sharing cannot offer another practice. Your work is unchanged.",
+      );
     if (input.intent !== "practice" && reply.exercise)
       throw new ModelFailure(
         "invalid",

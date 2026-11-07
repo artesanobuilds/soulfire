@@ -39,3 +39,9 @@ music-lab-results/
 
 # Local shared dependency symlink in isolated test worktree.
 node_modules
+
+# Private authoring/review corpus stays local; publish only approved public projection/docs.
+docs/wisdom-vault/*
+!docs/wisdom-vault/public-runtime.json
+!docs/wisdom-vault/README.md
+!docs/wisdom-vault/RUNTIME-REVIEW.md

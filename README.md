@@ -1,6 +1,10 @@
 # soulfire · Proof of Concept One
 
+**Integrated conversation-first studio (November 7):** streaming multi-turn chat, an animated landscape/chat/optional-practice layout, and curated all-twelve-step knowledge. See [current scope](docs/implementation/conversation-studio-20261107.md). First-turn text now answers conversationally; exercises and media tools are explicit choices. Live quality for this new prompt remains unverified. The [reviewed public wisdom subset](docs/wisdom-vault/RUNTIME-REVIEW.md) is integrated without a feature flag; the full private Vault stays local.
+
 A local, responsive practice prototype based on the repository vision and selected sage-and-gold design. The complete interaction loop and real OpenAI integrations are implemented. **Text and native voice were evaluated with fictional scenarios on October 30, 2026. Text defaults to GPT-6.1 Sol following matched model checks; voice uses separate Realtime delivery instructions. Factual voice drafting errors remain unresolved. Physical-microphone behavior is under limited manual evaluation; clinical benefit is unverified.** Labeled examples are available without a key. This is not a public pilot or clinical product.
+
+**Latest integration verification:** [November 7 results and boundaries](docs/implementation/integrated-studio-20261107.md).
 
 **Taking over the project? Start with [the agent handoff](AGENT_HANDOFF.md).**
 

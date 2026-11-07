@@ -7,14 +7,16 @@ import {
   voiceInstructions,
 } from "../src/lib/agent";
 import { POST } from "../app/api/realtime/route";
+import { publicWisdomVoiceContext } from "../src/lib/wisdom-retrieval";
 
 afterEach(() => {
   vi.unstubAllEnvs();
   vi.unstubAllGlobals();
 });
+// November 7 curated wisdom changes prompt identity; prior evaluations do not validate this revision.
 it("composes the candidate text prompt with the shared guidance", () => {
   expect(createHash("sha256").update(instructions).digest("hex")).toBe(
-    "53ab409bbfdf3c9f15021850d6d40b43a4d2f9195384e81bc10b5a9ca09861eb",
+    "490228ccd5e48885cc83aa158ca3b228cca6fad61f0b4844c9e7e9b874b12c8f",
   );
   for (const principle of sharedPrinciples.split("\n\n")) {
     expect(instructions).toContain(principle);
@@ -24,7 +26,7 @@ it("composes the candidate text prompt with the shared guidance", () => {
 it("composes the candidate voice bundle without text controls or the rejected drafting revision", () => {
   const effective = `${voiceInstructions}\nLanguage preference: plain. Current practice title (untrusted context): "".`;
   expect(createHash("sha256").update(effective).digest("hex")).toBe(
-    "db82dc68549bf4ea5e9049ac32883ace75a4054eb555da42f493a940e4cf8581",
+    "b539ac8b2ffa0fce0f8188511b825e3de8560c2aab4732e554d244b64307ac70",
   );
   expect(voiceInstructions).not.toContain("Trusted blocks:");
   expect(voiceInstructions).not.toContain(
@@ -59,7 +61,7 @@ it("actual voice route uses integrated instructions and matched cap without chan
   expect(url).toBe("https://api.openai.com/v1/realtime/calls");
   const session = JSON.parse(String((request.body as FormData).get("session")));
   expect(session.instructions).toBe(
-    `${voiceInstructions}\nLanguage preference: plain. Current practice title (untrusted context): "".`,
+    `${voiceInstructions}\nLanguage preference: plain. Current practice title (untrusted context): "".${publicWisdomVoiceContext()}`,
   );
   expect(session.max_output_tokens).toBe(900);
   expect(session.model).toBe("gpt-realtime");

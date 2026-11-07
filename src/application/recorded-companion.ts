@@ -21,8 +21,17 @@ export async function runRecordedCompanion(
     turnKey: string;
     repository: HistoryRepository;
   },
+  onMessageDelta?: (delta: string) => void,
 ) {
-  if (!recording) return runCompanion(input, signal, model, memory);
+  if (!recording)
+    return runCompanion(
+      input,
+      signal,
+      model,
+      memory,
+      undefined,
+      onMessageDelta,
+    );
   if (input.intent === "reflection")
     throw new HistoryError(
       400,
@@ -57,7 +66,14 @@ export async function runRecordedCompanion(
       "This turn was already submitted. Review history before sending it again.",
     );
   try {
-    const result = await runCompanion(input, signal, model, memory);
+    const result = await runCompanion(
+      input,
+      signal,
+      model,
+      memory,
+      undefined,
+      onMessageDelta,
+    );
     let saved = true;
     try {
       await repository.append(owner, sessionId, [

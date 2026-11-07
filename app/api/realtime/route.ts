@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { voiceInstructions } from "@/src/lib/agent";
+import { publicWisdomVoiceContext } from "@/src/lib/wisdom-retrieval";
 import { guard, jsonBody, provider, failure } from "@/src/lib/server";
 export const runtime = "nodejs";
 const schema = z
@@ -21,7 +22,7 @@ export async function POST(req: Request) {
         type: "realtime",
         max_output_tokens: 900,
         model: process.env.OPENAI_REALTIME_MODEL || "gpt-realtime",
-        instructions: `${voiceInstructions}\nLanguage preference: ${input.language}. Current practice title (untrusted context): ${JSON.stringify(input.practiceTitle)}.`,
+        instructions: `${voiceInstructions}\nLanguage preference: ${input.language}. Current practice title (untrusted context): ${JSON.stringify(input.practiceTitle)}.${publicWisdomVoiceContext()}`,
         audio: {
           input: {
             // Filter room noise before speech detection for the laptop microphone.

@@ -93,13 +93,16 @@ test("full private loop, editing, movement, repeated controls and no overflow", 
 test("simulated model transport renders validated responses and shares only checked fields", async ({
   page,
 }) => {
-  const bodies: unknown[] = [];
+  const bodies: Array<{
+    intent: string;
+    messages: Array<{ content: string }>;
+  }> = [];
   await page.route("**/api/companion", async (route) => {
     bodies.push(route.request().postDataJSON());
     await route.fulfill({
       json: {
         reply:
-          bodies.length === 1
+          bodies.at(-1)?.intent === "practice"
             ? {
                 kind: "practice",
                 message: "A tailored practice.",
@@ -107,19 +110,32 @@ test("simulated model transport renders validated responses and shares only chec
               }
             : {
                 kind: "conversation",
-                message: "One small preparation step can be enough.",
+                message:
+                  bodies.at(-1)?.intent === "reflection"
+                    ? "One small preparation step can be enough."
+                    : "What part of tomorrow feels hardest?",
                 exercise: null,
               },
       },
     });
   });
-  await page.getByText("Make this space yours", { exact: true }).click();
+  await page
+    .getByText("Language & optional practices", { exact: true })
+    .click();
   await page.getByLabel("Language that feels right").selectOption("plain");
   await page
     .getByLabel("What’s weighing on you today?")
     .fill("My presentation is tomorrow.");
+  await page.getByRole("button", { name: "Send", exact: true }).click();
+  await expect(page.getByRole("log")).toContainText(
+    "What part of tomorrow feels hardest?",
+  );
+  expect(bodies[0].intent).toBe("conversation");
   await page
-    .getByRole("button", { name: "Send & find a practice", exact: true })
+    .getByRole("button", {
+      name: "Shape a practice from our conversation",
+      exact: true,
+    })
     .click();
   await page.getByRole("button", { name: "Try this practice" }).click();
   await page
@@ -140,6 +156,18 @@ test("simulated model transport renders validated responses and shares only chec
   expect(JSON.stringify(bodies)).not.toContain("SECRET-UNSELECTED");
   expect(JSON.stringify(bodies)).toContain("SELECTED-INSIGHT");
   expect(JSON.stringify(bodies[0])).toContain("plain");
+  expect(bodies.map((body) => body.intent)).toEqual([
+    "conversation",
+    "practice",
+    "reflection",
+  ]);
+  await page
+    .getByLabel("Talk this through", { exact: true })
+    .fill("A synthetic follow-up.");
+  await page.getByRole("button", { name: "Send", exact: true }).click();
+  await expect.poll(() => bodies.length).toBe(4);
+  expect(JSON.stringify(bodies[3])).not.toContain("SELECTED-INSIGHT");
+  expect(JSON.stringify(bodies[3])).not.toContain("SECRET-UNSELECTED");
 });
 test("failure and interruption retain draft; repeated clicks produce one request", async ({
   page,
@@ -156,18 +184,12 @@ test("failure and interruption retain draft; repeated clicks produce one request
       })
       .catch(() => {});
   });
-  await page
-    .getByRole("button", { name: "Send & find a practice", exact: true })
-    .click();
-  await page
-    .getByRole("button", { name: "Stop response", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Send", exact: true }).click();
+  await page.getByRole("button", { name: "Stop", exact: true }).click();
   await expect(page.getByLabel("What’s weighing on you today?")).toHaveValue(
     "Keep my message",
   );
-  await page
-    .getByRole("button", { name: "Send & find a practice", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Send", exact: true }).click();
   await expect(page.locator("main [role=alert]")).toContainText(
     "Service unavailable",
   );
@@ -199,7 +221,7 @@ test("microphone denial leaves text and recovery available", async ({
     "Still here",
   );
   await expect(
-    page.getByRole("button", { name: "Send & find a practice", exact: true }),
+    page.getByRole("button", { name: "Send", exact: true }),
   ).toBeEnabled();
 });
 test("distinct journeys and decline keep the map available", async ({
@@ -210,9 +232,7 @@ test("distinct journeys and decline keep the map available", async ({
     ["Feeling low or disconnected", "One small act of care."],
     ["Conflict with someone", "Return to what matters."],
   ]) {
-    await page
-      .getByRole("button", { name: "Practices", exact: true })
-      .click();
+    await page.getByRole("button", { name: "Practices", exact: true }).click();
     await page.getByRole("button", { name: topic, exact: true }).click();
     await expect(
       page.getByRole("heading", { name: title, exact: true }),

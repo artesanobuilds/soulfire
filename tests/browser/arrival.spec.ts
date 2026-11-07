@@ -166,13 +166,13 @@ test("begin during narration stops speech, restores ducked music, and preserves 
     .poll(async () => (await music(page)).volume)
     .toBeCloseTo(0.055, 2);
   const before = await music(page);
-  const scene = await page.locator(".quiet-scene").elementHandle();
   const speech = await intro(page).elementHandle();
   await page
     .getByRole("button", { name: "Begin journey", exact: true })
     .click();
   expect(await speech!.evaluate((a: HTMLAudioElement) => a.paused)).toBe(true);
-  expect(await scene!.evaluate((a) => a.isConnected)).toBe(true);
+  // The same artwork moves to the dedicated illustration pane in chat mode.
+  await expect(page.locator(".conversation-landscape .quiet-scene")).toBeVisible();
   await expect
     .poll(async () => (await music(page)).volume)
     .toBeCloseTo(0.25, 2);

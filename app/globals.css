@@ -4738,3 +4738,474 @@ aside > p {
 .practice-studio[data-view="current"] .studio-build,.practice-studio[data-view="ember"] .studio-build {display:none}
 .studio-context-note summary {cursor:pointer;font-weight:600;color:#2e483d}
 @media(max-width:850px){.practice-studio[data-view="practice"] .practice-layout>aside{max-width:none}.practice-studio .practice-layout aside>.studio-context-note{display:block;margin:12px 0;padding:12px 16px}.practice-studio .studio-context-note button{display:inline-block;margin-right:12px}}
+
+/* Conversation-first studio. Private practice fields stay on their own surface. */
+.conversation-studio {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.65fr) minmax(340px, 1.15fr);
+  gap: 22px;
+  max-width: 1600px;
+  padding: 0 clamp(16px, 3vw, 46px) 36px;
+  margin: 0 auto;
+  align-items: start;
+}
+.conversation-studio.with-practice {
+  grid-template-columns: minmax(160px, 0.55fr) minmax(320px, 1fr) minmax(
+      350px,
+      1.15fr
+    );
+}
+.conversation-landscape {
+  position: sticky;
+  top: 20px;
+  border-radius: 28px;
+  overflow: hidden;
+  min-height: 620px;
+  height: calc(100dvh - 210px);
+  background: #dde6d5;
+}
+.conversation-landscape .quiet-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: none;
+}
+.conversation-landscape .landscape-caption {
+  position: absolute;
+  bottom: 30px;
+  left: 24px;
+  right: 24px;
+  color: #304c3d;
+  font: italic 20px/1.4 Georgia;
+  text-align: center;
+}
+.conversation-center {
+  min-width: 0;
+  border: 1px solid #d0dacf;
+  border-radius: 24px;
+  background: #fffdf8;
+  overflow: hidden;
+  box-shadow: 0 8px 30px #304c3d08;
+}
+.chat-heading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 18px 22px;
+  border-bottom: 1px solid #e2e7dc;
+  color: #35513f;
+  font: 22px/1.2 Georgia;
+}
+.chat-heading svg {
+  height: 27px;
+  width: 27px;
+}
+.chat-heading button {
+  font: 12px/1.4 var(--font-body, sans-serif);
+  margin-left: auto;
+}
+.chat-timeline {
+  padding: 24px;
+  overflow: auto;
+  max-height: 48dvh;
+  min-height: 220px;
+  scroll-behavior: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+.chat-welcome {
+  padding: 22px 4px 30px;
+}
+.chat-welcome h1 {
+  font: clamp(30px, 3vw, 42px)/1.15 Georgia;
+  color: #36533e;
+  margin: 16px 0;
+}
+.chat-welcome p {
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 36em;
+}
+.chat-message {
+  margin: 0 0 22px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.chat-message p {
+  white-space: pre-wrap;
+  line-height: 1.65;
+  font-size: 15px;
+  margin: 7px 0 0;
+}
+.chat-speaker {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #526a57;
+  font-weight: 700;
+}
+.chat-user {
+  margin-left: 24px;
+  background: #eaf0e5;
+  border-radius: 16px 16px 4px 16px;
+  padding: 14px 16px;
+}
+.chat-assistant {
+  padding: 0 4px 0 0;
+}
+.chat-pending {
+  border-left: 2px solid #b88945;
+  padding-left: 13px;
+}
+.conversation-center .composer {
+  margin: 0;
+  padding: 18px 22px;
+  border: 0;
+  border-top: 1px solid #e0e6d9;
+  border-radius: 0;
+  background: #f8f9f1;
+}
+.conversation-center .composer > label {
+  font-size: 13px;
+}
+.conversation-center .composer textarea {
+  min-height: 82px;
+  font-size: 15px;
+  max-height: 220px;
+}
+.conversation-center .composer-send-row {
+  align-items: center;
+  gap: 10px;
+}
+.conversation-center .composer-send-row small {
+  font-size: 11px;
+  line-height: 1.4;
+}
+.conversation-center .voice-controls {
+  padding-top: 10px;
+}
+.conversation-center .composer-status {
+  font-size: 10px;
+}
+.conversation-center .history-capture {
+  font-size: 11px;
+  flex-wrap: wrap;
+}
+.conversation-center .notice {
+  margin: 12px 18px;
+  font-size: 13px;
+}
+.conversation-center .chat-options,
+.conversation-center > .starting {
+  margin: 0;
+  padding: 14px 22px;
+  border-top: 1px solid #e0e6d9;
+  font-size: 13px;
+}
+.chat-options summary {
+  cursor: pointer;
+  color: #405b47;
+}
+.chat-options .actions {
+  flex-wrap: wrap;
+}
+.chat-options button {
+  font-size: 12px;
+}
+.conversation-practice-pane {
+  min-width: 0;
+  container-type: inline-size;
+}
+.conversation-practice-pane[hidden] {
+  display: none;
+}
+.conversation-practice-pane .studio-journey {
+  margin: 0 0 16px;
+  gap: 5px;
+}
+.conversation-practice-pane .studio-journey li {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+.conversation-practice-pane .page-narrow,
+.conversation-practice-pane .practice-layout {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+.conversation-practice-pane .suggestion,
+.conversation-practice-pane .review-page,
+.conversation-practice-pane .finish-page,
+.practice-offer {
+  padding: 24px;
+  background: #fffdf8;
+  border: 1px solid #d0dacf;
+  border-radius: 24px;
+}
+.conversation-practice-pane h1 {
+  font-size: 32px;
+  line-height: 1.15;
+}
+.conversation-practice-pane h2 {
+  font-size: 23px;
+}
+.conversation-practice-pane .practice-layout {
+  display: block;
+}
+.conversation-practice-pane .practice-layout > aside {
+  max-width: none !important;
+  padding: 0;
+  margin: 0 0 16px;
+}
+.conversation-practice-pane .practice-layout > aside h2,
+.conversation-practice-pane .practice-layout > aside .practice-context {
+  display: none;
+}
+.conversation-practice-pane .studio-context-note {
+  padding: 12px 16px;
+  margin: 10px 0;
+}
+.conversation-practice-pane .studio-context-note p {
+  font-size: 13px;
+}
+.conversation-practice-pane .studio-context-note button {
+  display: inline-block;
+  margin: 8px 12px 0 0;
+  font-size: 13px;
+}
+.conversation-practice-pane .studio-understanding,
+.conversation-practice-pane .studio-fit {
+  padding: 16px;
+  margin: 14px 0;
+}
+.conversation-practice-pane .sort-grid {
+  grid-template-columns: 1fr;
+}
+.conversation-practice-pane .practice-main {
+  padding: 20px !important;
+}
+.practice-offer {
+  animation: studio-reveal 250ms ease-out;
+}
+.practice-offer > button {
+  margin: 12px 8px 12px 0;
+}
+.practice-offer > p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+.practice-offer > .small {
+  font-size: 12px;
+}
+.practice-offer .prompt-art {
+  max-width: 170px;
+}
+.conversation-practice-pane .current-music,
+.conversation-practice-pane .ember-page,
+.conversation-practice-pane .current-page {
+  margin: 0;
+  padding: 18px;
+  width: 100%;
+  max-width: none;
+}
+.conversation-practice-pane .cm-workspace,
+.conversation-practice-pane .ember-layout,
+.conversation-practice-pane .current-layout {
+  display: block;
+}
+.conversation-practice-pane .cm-starters {
+  grid-template-columns: 1fr;
+}
+.conversation-practice-pane .cm-shape {
+  position: static;
+  margin-top: 20px;
+}
+.conversation-practice-pane .cm-floating {
+  position: static;
+  margin-top: 20px;
+}
+.conversation-practice-pane .cm-heading h1 {
+  font-size: 32px;
+}
+.conversation-practice-pane .cm-workspace {
+  padding: 0;
+}
+.conversation-practice-pane .cm-mode-tabs {
+  width: 100%;
+}
+.conversation-practice-pane .cm-mode-tabs button {
+  white-space: normal;
+  padding: 10px;
+}
+@keyframes studio-reveal {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+[data-motion="off"] .practice-offer {
+  animation: none;
+}
+@media (max-width: 1150px) {
+  .conversation-studio.with-practice {
+    grid-template-columns: minmax(300px, 1fr) minmax(320px, 1fr);
+  }
+  .conversation-studio.with-practice .conversation-landscape {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .conversation-studio,
+  .conversation-studio.with-practice {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 0 12px 28px;
+  }
+  .conversation-landscape {
+    position: relative;
+    top: auto;
+    min-height: 110px;
+    height: 110px;
+    border-radius: 18px;
+  }
+  .conversation-landscape .landscape-caption {
+    bottom: 15px;
+    font-size: 17px;
+    margin: 0;
+  }
+  .conversation-center {
+    border-radius: 18px;
+  }
+  .chat-heading {
+    padding: 15px 18px;
+  }
+  .chat-timeline {
+    padding: 18px;
+    min-height: 160px;
+    max-height: 45dvh;
+  }
+  .chat-welcome {
+    padding: 5px 0 14px;
+  }
+  .chat-welcome h1 {
+    font-size: 32px;
+  }
+  .conversation-center .composer {
+    padding: 16px;
+  }
+  .conversation-center .composer-send-row {
+    flex-wrap: wrap;
+  }
+  .conversation-center .composer-send-row > small {
+    flex: 1;
+    min-width: 160px;
+  }
+  .conversation-practice-pane .suggestion,
+  .conversation-practice-pane .review-page,
+  .conversation-practice-pane .finish-page,
+  .practice-offer {
+    padding: 20px;
+  }
+  .conversation-practice-pane .cm-shape.cm-sheet-open {
+    position: fixed;
+    margin: 0;
+  }
+  .conversation-practice-pane .current-music {
+    padding: 12px;
+  }
+  .conversation-practice-pane .cm-floating {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .practice-offer {
+    animation: none;
+  }
+}
+.conversation-center > .chat-example {
+  margin: 12px 22px;
+  font-size: 13px;
+}
+/* Keep chat input within easy reach, with the landscape aligned to the conversation. */
+.conversation-landscape {
+  padding: 0;
+  align-self: start;
+  border: 0;
+}
+.conversation-center .chat-timeline {
+  max-height: 36dvh;
+}
+.conversation-center .composer textarea {
+  margin: 6px 0;
+  min-height: 70px;
+  padding: 8px;
+}
+.conversation-center .composer-bottom {
+  margin-top: 6px;
+  padding-top: 10px;
+}
+.conversation-center .history-capture {
+  margin: 6px 0;
+  gap: 4px 10px;
+}
+.conversation-center .history-capture small {
+  font-size: 10px;
+  line-height: 1.35;
+}
+.conversation-center .history-capture .text-link {
+  min-height: 30px;
+  font-size: 11px;
+}
+.conversation-center .voice-controls {
+  padding-top: 4px;
+}
+.conversation-center .voice-controls button {
+  min-height: 36px;
+  font-size: 13px;
+  padding: 7px 10px;
+}
+.conversation-center .composer-status {
+  margin-top: 6px;
+}
+.conversation-center .dictation-target {
+  font-size: 11px;
+  margin: 6px 0;
+}
+.conversation-center .dictation-target select {
+  padding: 6px;
+  margin-top: 3px;
+}
+@media (max-width: 760px) {
+  .conversation-studio.with-practice .conversation-landscape {
+    display: block;
+  }
+  .conversation-center .chat-timeline {
+    max-height: 32dvh;
+  }
+  .conversation-center .composer-bottom .primary {
+    width: auto;
+    margin: 0;
+  }
+  .conversation-center .composer-send-row {
+    flex-direction: row;
+  }
+  .conversation-center .composer-send-row > small {
+    order: 0;
+    flex: 1;
+    min-width: 120px;
+  }
+  .conversation-center .composer textarea {
+    min-height: 65px;
+  }
+}
+.expand-practice-tool {
+  margin: 0 0 14px;
+  font-size: 13px;
+}

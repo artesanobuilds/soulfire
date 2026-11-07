@@ -11,8 +11,11 @@ test("studio keeps private practice through quiet tools and exposes separate voi
   await page
     .getByRole("button", { name: "Begin journey", exact: true })
     .click();
-  await expect(page.getByLabel("Practice journey")).toContainText("Understand");
+  await expect(
+    page.getByRole("log", { name: "Our conversation" }),
+  ).toBeVisible();
   await page.getByRole("button", { name: /Try the example/ }).click();
+  await expect(page.getByLabel("Practice journey")).toContainText("Understand");
   await page
     .getByLabel("My understanding of the situation")
     .fill("Private corrected premise");
@@ -78,6 +81,18 @@ test("generated practice uses current submitted premise and correction requires 
   let calls = 0;
   await page.route("**/api/companion", (r) => {
     calls++;
+    const intent = r.request().postDataJSON().intent;
+    expect(intent).toBe(calls === 1 ? "conversation" : "practice");
+    if (intent === "conversation")
+      return r.fulfill({
+        json: {
+          reply: {
+            kind: "conversation",
+            message: "Tell me what feels most important about that.",
+            exercise: null,
+          },
+        },
+      });
     return r.fulfill({
       json: {
         reply: {
@@ -95,8 +110,18 @@ test("generated practice uses current submitted premise and correction requires 
   await page
     .getByLabel("What’s weighing on you today?")
     .fill("Current fictional premise");
+  await page.getByRole("button", { name: "Send", exact: true }).click();
+  await expect(page.getByRole("log")).toContainText(
+    "Tell me what feels most important about that.",
+  );
   await page
-    .getByRole("button", { name: "Send & find a practice", exact: true })
+    .getByText("Language & optional practices", { exact: true })
+    .click();
+  await page
+    .getByRole("button", {
+      name: "Shape a practice from our conversation",
+      exact: true,
+    })
     .click();
   await expect(
     page.getByLabel("My understanding of the situation"),
@@ -110,7 +135,7 @@ test("generated practice uses current submitted premise and correction requires 
   await expect(page.getByLabel("What’s weighing on you today?")).toHaveValue(
     "Corrected private premise",
   );
-  expect(calls).toBe(1);
+  expect(calls).toBe(2);
 });
 
 test("exact speech test keeps accepted history and selected language without auto-playing", async ({

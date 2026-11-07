@@ -1,0 +1,541 @@
+{
+  "version": "public-wisdom-20261107-v1",
+  "integrationStatus": "enabled-no-feature-flag",
+  "reviewStatus": "editorial-reviewed-user-approved",
+  "rightsBasis": "Newly authored conceptual paraphrases only. No raw source wording, private notes or verified source-text reuse license. No endorsement. User approved the public subset for provider use and repository push on 2026-11-07; full private review corpus excluded.",
+  "pivots": [
+    {
+      "id": "chamath-inconsistency-05",
+      "source": {
+        "id": "chamath-inconsistency",
+        "name": "Chamath Palihapitiya — Ambitious but Inconsistent (Delete the Apps)",
+        "url": "https://youtu.be/gWd9r_KnXG8",
+        "locator": "Saved source summary lines 34–36; original media not independently reviewed",
+        "reviewBasis": "available-summary-only"
+      },
+      "steps": [10],
+      "text": "A brief review can notice what is working alongside what needs attention, rather than seeing only deficits.",
+      "limits": "Gratitude is optional and never cancels real problems or requires forced positivity.",
+      "triggers": [
+        "gratitude",
+        "review",
+        "daily",
+        "inventory",
+        "deficit",
+        "progress",
+        "good"
+      ],
+      "sourceSha256": "8db2dff347f1e96bf048366f9f1c8b35cfb4fd7bcb696f289423387e3d30893b",
+      "reviewedPivotSha256": "cfd14a820c0d20bcee309dcb590e8f2451ae993d30176c0b826303de3943c1aa"
+    },
+    {
+      "id": "hudson-clean-fuel-03",
+      "source": {
+        "id": "hudson-clean-fuel",
+        "name": "Joe Hudson — Emotional Fluidity and Clean Fuel (Rich Roll)",
+        "url": "https://youtu.be/BC4GEm1Tm4Q?si=0awFCb5pblZesjzS",
+        "locator": "Saved source summary lines 31–37; original media not independently reviewed",
+        "reviewBasis": "available-summary-only"
+      },
+      "steps": [1, 6],
+      "text": "A feeling can be acknowledged without shame and without directing harmful behavior at another person.",
+      "limits": "Feelings are not wrongdoing. Do not infer trauma, illness or responsibility for harm done to the person.",
+      "triggers": [
+        "feeling",
+        "anger",
+        "shame",
+        "angry",
+        "emotion",
+        "reactive",
+        "upset"
+      ],
+      "sourceSha256": "a8099cd7cfe82631d0eeab870e3bb60b0e01c301c2f2d62c0e86cb45fed1442a",
+      "reviewedPivotSha256": "b53099bb67c7870c28c67b1f19ad47f47d32ea57cf242d3b10999529245e3651"
+    },
+    {
+      "id": "hudson-clean-fuel-05",
+      "source": {
+        "id": "hudson-clean-fuel",
+        "name": "Joe Hudson — Emotional Fluidity and Clean Fuel (Rich Roll)",
+        "url": "https://youtu.be/BC4GEm1Tm4Q?si=0awFCb5pblZesjzS",
+        "locator": "Saved source summary lines 45–47; original media not independently reviewed",
+        "reviewBasis": "available-summary-only"
+      },
+      "steps": [7],
+      "text": "Rather than arguing with self-criticism using another rigid rule, try a small different response and notice whether it helps.",
+      "limits": "Experiments are optional, not treatment; stop if distress increases and seek suitable support.",
+      "triggers": [
+        "inner",
+        "critic",
+        "self",
+        "criticism",
+        "harsh",
+        "selftalk",
+        "perfectionism"
+      ],
+      "sourceSha256": "a8099cd7cfe82631d0eeab870e3bb60b0e01c301c2f2d62c0e86cb45fed1442a",
+      "reviewedPivotSha256": "7c446562af930f9b89ca5adfc725b4efa608469870b7532af257a984a6b5843b"
+    },
+    {
+      "id": "hudson-clean-fuel-09",
+      "source": {
+        "id": "hudson-clean-fuel",
+        "name": "Joe Hudson — Emotional Fluidity and Clean Fuel (Rich Roll)",
+        "url": "https://youtu.be/BC4GEm1Tm4Q?si=0awFCb5pblZesjzS",
+        "locator": "Saved source summary lines 63–69; original media not independently reviewed",
+        "reviewBasis": "available-summary-only"
+      },
+      "steps": [4, 6],
+      "text": "Look at a recurring pattern with curiosity without treating the whole person as defective or broken.",
+      "limits": "Curiosity does not remove accountability or replace professional care.",
+      "triggers": [
+        "broken",
+        "defective",
+        "pattern",
+        "shame",
+        "self",
+        "improvement",
+        "flaw"
+      ],
+      "sourceSha256": "a8099cd7cfe82631d0eeab870e3bb60b0e01c301c2f2d62c0e86cb45fed1442a",
+      "reviewedPivotSha256": "6ab05f01494cf5face8836fd604922148196925dcb385d9ad8e392989de18436"
+    },
+    {
+      "id": "hudson-open-heart-04",
+      "source": {
+        "id": "hudson-open-heart",
+        "name": "Joe Hudson — Breaking the Helplessness Loop (Chris Williamson)",
+        "url": "https://youtu.be/AZ2JA4y4xPY?si=3-nOCbff7LZudBTv",
+        "locator": "Saved source summary lines 31–35; original media not independently reviewed",
+        "reviewBasis": "available-summary-only"
+      },
+      "steps": [1, 7],
+      "text": "Describe a boundary through your own choices and actions, rather than a demand to control another person’s response.",
+      "limits": "No requirement for warmth, contact, reconciliation or remaining in danger.",
+      "triggers": [
+        "boundary",
+        "boundaries",
+        "partner",
+        "boss",
+        "coworker",
+        "conflict",
+        "control"
+      ],
+      "sourceSha256": "7626384c7af15c448abd0417e865f3e1b37a33f3eec16ad5550339263beda459",
+      "reviewedPivotSha256": "165bff264a3b25036f318b5efc7f4f7a16771aaba40ffc90fa31329f0d7b6a36"
+    },
+    {
+      "id": "hudson-open-heart-06",
+      "source": {
+        "id": "hudson-open-heart",
+        "name": "Joe Hudson — Breaking the Helplessness Loop (Chris Williamson)",
+        "url": "https://youtu.be/AZ2JA4y4xPY?si=3-nOCbff7LZudBTv",
+        "locator": "Saved source summary lines 41–43; original media not independently reviewed",
+        "reviewBasis": "available-summary-only"
+      },
+      "steps": [7],
+      "text": "If useful, explore a recurring thought through private writing or a brief pause without directing the emotion at someone else.",
+      "limits": "Private expression is not a substitute for human sharing and is not a guaranteed cure; do not prolong reassurance loops.",
+      "triggers": [
+        "rumination",
+        "looping",
+        "replay",
+        "overthinking",
+        "thoughts",
+        "stuck"
+      ],
+      "sourceSha256": "7626384c7af15c448abd0417e865f3e1b37a33f3eec16ad5550339263beda459",
+      "reviewedPivotSha256": "92eb8426527e8d5c57ec3782e40cbe2e724d3968fe80303d9aed8d53aa4829cd"
+    },
+    {
+      "id": "hudson-open-heart-09",
+      "source": {
+        "id": "hudson-open-heart",
+        "name": "Joe Hudson — Breaking the Helplessness Loop (Chris Williamson)",
+        "url": "https://youtu.be/AZ2JA4y4xPY?si=3-nOCbff7LZudBTv",
+        "locator": "Saved source summary lines 55–57; original media not independently reviewed",
+        "reviewBasis": "available-summary-only"
+      },
+      "steps": [1, 3],
+      "text": "A decision can leave room for feelings you cannot predict, instead of requiring a guarantee that you will feel a certain way.",
+      "limits": "Use available facts and judgment. Willingness to feel discomfort is not consent to harm.",
+      "triggers": [
+        "decision",
+        "feelings",
+        "future",
+        "anxious",
+        "regret",
+        "uncertainty"
+      ],
+      "sourceSha256": "7626384c7af15c448abd0417e865f3e1b37a33f3eec16ad5550339263beda459",
+      "reviewedPivotSha256": "d0afd9332a5c31015170d6bfbe27ff333e663e155c5815deb37595403e9575c7"
+    },
+    {
+      "id": "hudson-procrastination-02",
+      "source": {
+        "id": "hudson-procrastination",
+        "name": "Joe Hudson — Dissolving Procrastination (Coaching Session)",
+        "url": "https://youtu.be/N65NPYRN8z8?si=w3W-H-xpXSEN905Q",
+        "locator": "Saved source summary lines 21–27; original media not independently reviewed",
+        "reviewBasis": "available-summary-only"
+      },
+      "steps": [3, 4],
+      "text": "Notice whether pressure to guarantee a result is making it harder to start, then choose one manageable part of the task.",
+      "limits": "This is one possible lens, not an explanation for every delay; practical barriers still matter.",
+      "triggers": [
+        "procrastination",
+        "pressure",
+        "outcome",
+        "task",
+        "start",
+        "avoid"
+      ],
+      "sourceSha256": "cd97bd73f6066ad652b5d77aebae9b6d6a801e94fa9b79ee9c61ab2e9e0c5d63",
+      "reviewedPivotSha256": "ed5d184473eacd791224c367670fab2eaf3dfbfb50b3c6604b6e80e31bb7c6dd"
+    },
+    {
+      "id": "hudson-procrastination-03",
+      "source": {
+        "id": "hudson-procrastination",
+        "name": "Joe Hudson — Dissolving Procrastination (Coaching Session)",
+        "url": "https://youtu.be/N65NPYRN8z8?si=w3W-H-xpXSEN905Q",
+        "locator": "Saved source summary lines 29–33; original media not independently reviewed",
+        "reviewBasis": "available-summary-only"
+      },
+      "steps": [6, 7],
+      "text": "Consider whether your self-management is as reasonable and respectful as what you would offer another person.",
+      "limits": "Kindness can coexist with limits and accountability; no inference of laziness or wrongdoing.",
+      "triggers": [
+        "harsh",
+        "discipline",
+        "self",
+        "boss",
+        "pressure",
+        "productivity",
+        "burnout"
+      ],
+      "sourceSha256": "cd97bd73f6066ad652b5d77aebae9b6d6a801e94fa9b79ee9c61ab2e9e0c5d63",
+      "reviewedPivotSha256": "b9d57f86569e3bf26869729ab25610400983e743a896ae35a315d5d493bd166a"
+    },
+    {
+      "id": "rohn-development-05",
+      "source": {
+        "id": "rohn-development",
+        "name": "Jim Rohn — The Speech That Will Change Your Life",
+        "url": "https://www.youtube.com/watch?v=xeF7VUGTu6M",
+        "locator": "Saved source summary lines 49–55; original media not independently reviewed",
+        "reviewBasis": "available-summary-only"
+      },
+      "steps": [2, 7],
+      "text": "Name a concrete kind of help you need and consider an appropriate person or resource to ask.",
+      "limits": "Asking does not guarantee help and does not authorize disclosure or contact; the person decides.",
+      "triggers": [
+        "help",
+        "support",
+        "ask",
+        "alone",
+        "stuck",
+        "learning",
+        "mentor"
+      ],
+      "sourceSha256": "5390fa1fc9a40e3d52cc7b97f92c0bff2de95d8f8a2ce4e330b437a8dee8f9cf",
+      "reviewedPivotSha256": "ca80b99e4e8593b564efcad101388ec8081f363c60a3a6e2134ae9d01dd758a1"
+    },
+    {
+      "id": "rubin-10",
+      "source": {
+        "id": "rubin",
+        "name": "Rick Rubin - Creativity, Taste and the Four Phases (The Diary of a CEO)",
+        "url": "https://www.youtube.com/watch?v=a_GiFiHXJ6g",
+        "locator": "0:35:00–0:38:18",
+        "reviewBasis": "full-available-transcript"
+      },
+      "steps": [3, 7],
+      "text": "A chosen task can begin before reluctance disappears. Try a manageable start rather than demanding the perfect mood.",
+      "limits": "Rest, illness and overload can make stopping appropriate. This is not a discipline test.",
+      "triggers": [
+        "procrastination",
+        "motivation",
+        "reluctant",
+        "resistance",
+        "start",
+        "task",
+        "avoidance"
+      ],
+      "sourceSha256": "6947fa769881ac92f91bbf098a7b2a06577e20e0beaa2c7d70df30b36708e54a",
+      "reviewedPivotSha256": "cb8d0ca18b48ff7547dbc772f80603f05acd8e59ecc5b998464672f3aecbf4d6"
+    },
+    {
+      "id": "rubin-19",
+      "source": {
+        "id": "rubin",
+        "name": "Rick Rubin - Creativity, Taste and the Four Phases (The Diary of a CEO)",
+        "url": "https://www.youtube.com/watch?v=a_GiFiHXJ6g",
+        "locator": "0:51:25–0:54:10",
+        "reviewBasis": "full-available-transcript"
+      },
+      "steps": [1, 3],
+      "text": "Keep a plan revisable as experience changes, without needing to predict an entire future before acting.",
+      "limits": "Do not replace practical commitments, financial planning or informed decisions with intuition.",
+      "triggers": [
+        "future",
+        "plan",
+        "uncertain",
+        "career",
+        "change",
+        "unknown",
+        "direction"
+      ],
+      "sourceSha256": "6947fa769881ac92f91bbf098a7b2a06577e20e0beaa2c7d70df30b36708e54a",
+      "reviewedPivotSha256": "bd7b49fc894fafe8a225a1fc20dc9c0956fe27c904442f7be3c8d32c089c4666"
+    },
+    {
+      "id": "rubin-33",
+      "source": {
+        "id": "rubin",
+        "name": "Rick Rubin - Creativity, Taste and the Four Phases (The Diary of a CEO)",
+        "url": "https://www.youtube.com/watch?v=a_GiFiHXJ6g",
+        "locator": "1:46:40–1:51:20",
+        "reviewBasis": "full-available-transcript"
+      },
+      "steps": [3],
+      "text": "Define a reasonable completion criterion for work, then distinguish releasing it from controlling how it will be received.",
+      "limits": "Keep real follow-up duties and contractual obligations; do not promise acceptance or success.",
+      "triggers": [
+        "finish",
+        "release",
+        "feedback",
+        "outcome",
+        "publish",
+        "approval",
+        "interview",
+        "delivered"
+      ],
+      "sourceSha256": "6947fa769881ac92f91bbf098a7b2a06577e20e0beaa2c7d70df30b36708e54a",
+      "reviewedPivotSha256": "fb8837284eb0ac45cd5115b1c046248ac760914be92792aebd55caa7008fac59"
+    },
+    {
+      "id": "rubin-39",
+      "source": {
+        "id": "rubin",
+        "name": "Rick Rubin - Creativity, Taste and the Four Phases (The Diary of a CEO)",
+        "url": "https://www.youtube.com/watch?v=a_GiFiHXJ6g",
+        "locator": "2:09:03–2:12:09",
+        "reviewBasis": "full-available-transcript"
+      },
+      "steps": [2],
+      "text": "Consider genuinely different viewpoints, then make a bounded decision without requiring perfect certainty.",
+      "limits": "More research is not always better. Avoid endless checking and do not outsource judgment.",
+      "triggers": [
+        "decision",
+        "advice",
+        "perspectives",
+        "uncertainty",
+        "research",
+        "doubt"
+      ],
+      "sourceSha256": "6947fa769881ac92f91bbf098a7b2a06577e20e0beaa2c7d70df30b36708e54a",
+      "reviewedPivotSha256": "8f96e55882f101d88a634bf5bf0d96b4016eea30e9eb990108c0cb5399fa242c"
+    },
+    {
+      "id": "rubin-4",
+      "source": {
+        "id": "rubin",
+        "name": "Rick Rubin - Creativity, Taste and the Four Phases (The Diary of a CEO)",
+        "url": "https://www.youtube.com/watch?v=a_GiFiHXJ6g",
+        "locator": "0:11:19–0:16:38",
+        "reviewBasis": "full-available-transcript"
+      },
+      "steps": [4, 6],
+      "text": "Before optimizing for approval, clarify what you honestly want a creative piece to express.",
+      "limits": "Artistic expression and solving a customer’s problem have different obligations; do not dismiss audience requirements.",
+      "triggers": [
+        "creative",
+        "art",
+        "approval",
+        "audience",
+        "authentic",
+        "express",
+        "perfectionist"
+      ],
+      "sourceSha256": "6947fa769881ac92f91bbf098a7b2a06577e20e0beaa2c7d70df30b36708e54a",
+      "reviewedPivotSha256": "8c352a5393a8e50187c0c46fc4a246389783b227fa4b00d0aa2164341493df11"
+    },
+    {
+      "id": "rubin-8",
+      "source": {
+        "id": "rubin",
+        "name": "Rick Rubin - Creativity, Taste and the Four Phases (The Diary of a CEO)",
+        "url": "https://www.youtube.com/watch?v=a_GiFiHXJ6g",
+        "locator": "0:28:55–0:33:46",
+        "reviewBasis": "full-available-transcript"
+      },
+      "steps": [6, 7],
+      "text": "A fixed label about ability need not prevent a small, chosen experiment in learning a skill.",
+      "limits": "Do not deny real limits, disability, training needs or unequal opportunity.",
+      "triggers": [
+        "creative",
+        "ability",
+        "identity",
+        "cannot",
+        "learning",
+        "beginner",
+        "practice",
+        "talent"
+      ],
+      "sourceSha256": "6947fa769881ac92f91bbf098a7b2a06577e20e0beaa2c7d70df30b36708e54a",
+      "reviewedPivotSha256": "6029a312b1dc72aaba435406a136263f8e34df64382781432f05889033a647a4"
+    },
+    {
+      "id": "rubin-9",
+      "source": {
+        "id": "rubin",
+        "name": "Rick Rubin - Creativity, Taste and the Four Phases (The Diary of a CEO)",
+        "url": "https://www.youtube.com/watch?v=a_GiFiHXJ6g",
+        "locator": "0:33:46–0:35:42",
+        "reviewBasis": "full-available-transcript"
+      },
+      "steps": [4, 6],
+      "text": "Use comparison to identify a technique worth learning, rather than to rank your worth against another person.",
+      "limits": "Useful standards and constructive feedback still matter.",
+      "triggers": [
+        "comparison",
+        "comparing",
+        "worth",
+        "inferior",
+        "better",
+        "worse",
+        "talent",
+        "creative"
+      ],
+      "sourceSha256": "6947fa769881ac92f91bbf098a7b2a06577e20e0beaa2c7d70df30b36708e54a",
+      "reviewedPivotSha256": "c37d4a0845a16653a7ef31cc00375de400bc82ed669f86325bc9c296246f06df"
+    },
+    {
+      "id": "sage-goop",
+      "source": {
+        "id": "sage",
+        "name": "Peter Sage - Four Levels of Consciousness (Lewis Howes)",
+        "url": "https://www.youtube.com/watch?v=D0swRHEIpYM",
+        "locator": "0:38:45–0:41:45",
+        "reviewBasis": "full-available-transcript"
+      },
+      "steps": [4, 6],
+      "text": "Distinguish actual feedback and responsibilities from imagined demands to win everyone’s approval.",
+      "limits": "Do not assume criticism is imagined or dismiss legitimate feedback.",
+      "triggers": [
+        "approval",
+        "opinion",
+        "others",
+        "judged",
+        "judgment",
+        "reputation",
+        "interview",
+        "impress",
+        "comparison"
+      ],
+      "sourceSha256": "be7c259f028d3b9c8a44e6840bf96ae221d12267ec534c9dc446154725acfde7",
+      "reviewedPivotSha256": "f2667ed99281d804a73153080c3f15ac5b7ff8eafe65fa49a77c8730c82b311d"
+    },
+    {
+      "id": "sage-permission",
+      "source": {
+        "id": "sage",
+        "name": "Peter Sage - Four Levels of Consciousness (Lewis Howes)",
+        "url": "https://www.youtube.com/watch?v=D0swRHEIpYM",
+        "locator": "0:23:26–0:26:33",
+        "reviewBasis": "full-available-transcript"
+      },
+      "steps": [3],
+      "text": "A meaningful process can matter before the final goal is reached. Notice what is worthwhile in today’s work.",
+      "limits": "Do not imply distress is a choice or that someone must feel happy.",
+      "triggers": [
+        "goal",
+        "success",
+        "happy",
+        "happiness",
+        "enjoy",
+        "process",
+        "achievement",
+        "enough"
+      ],
+      "sourceSha256": "be7c259f028d3b9c8a44e6840bf96ae221d12267ec534c9dc446154725acfde7",
+      "reviewedPivotSha256": "c9b998965a5c354e1fa194ce0be170c007e51bda388964f0900838530be7796e"
+    },
+    {
+      "id": "sage-river",
+      "source": {
+        "id": "sage",
+        "name": "Peter Sage - Four Levels of Consciousness (Lewis Howes)",
+        "url": "https://www.youtube.com/watch?v=D0swRHEIpYM",
+        "locator": "0:33:35–0:35:45",
+        "reviewBasis": "full-available-transcript"
+      },
+      "steps": [1, 3],
+      "text": "When circumstances change, preserve the purpose while revising the route and the next feasible action.",
+      "limits": "Acceptance does not mean accepting harm or abandoning responsibilities.",
+      "triggers": [
+        "changed",
+        "plan",
+        "setback",
+        "adapt",
+        "blocked",
+        "obstacle",
+        "failed",
+        "rejection"
+      ],
+      "sourceSha256": "be7c259f028d3b9c8a44e6840bf96ae221d12267ec534c9dc446154725acfde7",
+      "reviewedPivotSha256": "ba91e2d07b2f43ec0fa96c96855ca5b32544adaa23bf7ae800265182851e05e4"
+    },
+    {
+      "id": "sage-trust",
+      "source": {
+        "id": "sage",
+        "name": "Peter Sage - Four Levels of Consciousness (Lewis Howes)",
+        "url": "https://www.youtube.com/watch?v=D0swRHEIpYM",
+        "locator": "0:12:21–0:15:10",
+        "reviewBasis": "full-available-transcript"
+      },
+      "steps": [1, 2, 3],
+      "text": "Separate what you can influence from an outcome you cannot guarantee. Choose the next responsible action.",
+      "limits": "Releasing outcome control is not giving up agency, planning or protection.",
+      "triggers": [
+        "uncertainty",
+        "control",
+        "outcome",
+        "interview",
+        "waiting",
+        "anxious",
+        "worry",
+        "surrender"
+      ],
+      "sourceSha256": "be7c259f028d3b9c8a44e6840bf96ae221d12267ec534c9dc446154725acfde7",
+      "reviewedPivotSha256": "7e4ee1c1487d3e964321a63943a82b867041a86872a3f17ea8ca2465a5726084"
+    },
+    {
+      "id": "williamson-lonely-chapter-07",
+      "source": {
+        "id": "williamson-lonely-chapter",
+        "name": "Chris Williamson — The Lonely Chapter and Evidence Over Self-Belief (Mental Quest)",
+        "url": "https://youtu.be/lP01StYUtBc",
+        "locator": "Saved source summary lines 43–47; original media not independently reviewed",
+        "reviewBasis": "available-summary-only"
+      },
+      "steps": [7],
+      "text": "A small promise you can realistically keep can provide useful evidence of progress without needing confident feelings first.",
+      "limits": "Worth is not earned through productivity, and plans should respect capacity.",
+      "triggers": [
+        "confidence",
+        "insecure",
+        "self",
+        "doubt",
+        "small",
+        "promise",
+        "progress",
+        "evidence"
+      ],
+      "sourceSha256": "fd31bdd698c11d4ea23d17222fe0d4b76dc769d5767080662f17922b9a081ec8",
+      "reviewedPivotSha256": "9598a20bd3c26336203a25694d3b2ccfb291720bb947e35cf9b6ef0d963d48fe"
+    }
+  ]
+}

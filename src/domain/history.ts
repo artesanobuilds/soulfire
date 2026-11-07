@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { exerciseSchema } from "../lib/schema";
 export const historyVersion = "history-v1";
-export const promptVersion = "soulfire-poc1-20261024";
+export const promptVersion = "soulfire-conversation-wisdom-20261107";
 export const retentionDays = 30;
 const key = z.string().regex(/^[A-Za-z0-9_.:-]{1,160}$/);
 export const historyEventSchema = z

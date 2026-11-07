@@ -47,14 +47,29 @@ export const exerciseSchema = z
       if ((b.type === "sort" || b.type === "choose") && b.options.length < 2)
         ctx.addIssue({ code: "custom", message: "Options required" });
   });
-export const replySchema = z
+export const practiceOfferSchema = z
   .object({
-    message: z.string().min(1).max(3000),
-    kind: z.enum(["practice", "conversation", "support"]),
-    exercise: exerciseSchema.nullable(),
+    kind: z.enum(["exercise", "current", "meditation"]),
+    label: z.string().trim().min(1).max(100),
   })
+  .strict();
+export type PracticeOffer = z.infer<typeof practiceOfferSchema>;
+
+const replyFields = {
+  message: z.string().min(1).max(3000),
+  kind: z.enum(["practice", "conversation", "support"]),
+  exercise: exerciseSchema.nullable(),
+  practiceOffer: practiceOfferSchema.nullable().optional(),
+};
+export const replySchema = z
+  .object(replyFields)
   .strict()
   .superRefine((v, c) => {
+    if (v.kind !== "conversation" && v.practiceOffer)
+      c.addIssue({
+        code: "custom",
+        message: "Only conversation can offer a practice",
+      });
     if (v.kind !== "practice" && v.exercise)
       c.addIssue({
         code: "custom",
@@ -85,15 +100,21 @@ export const requestSchema = z
       .optional(),
   })
   .strict();
-export const outputJsonSchema = z.toJSONSchema(replySchema, {
-  unrepresentable: "any",
-});
+export const outputJsonSchema = z.toJSONSchema(
+  z
+    .object({ ...replyFields, practiceOffer: practiceOfferSchema.nullable() })
+    .strict(),
+  {
+    unrepresentable: "any",
+  },
+);
 
 const conversationalReplySchema = z
   .object({
     message: z.string().min(1).max(3000),
     kind: z.enum(["conversation", "support"]),
     exercise: z.null(),
+    practiceOffer: practiceOfferSchema.nullable(),
   })
   .strict();
 export function outputJsonSchemaForIntent(
@@ -101,5 +122,9 @@ export function outputJsonSchemaForIntent(
 ) {
   return intent === "practice"
     ? outputJsonSchema
-    : z.toJSONSchema(conversationalReplySchema);
+    : z.toJSONSchema(
+        intent === "reflection"
+          ? conversationalReplySchema.extend({ practiceOffer: z.null() })
+          : conversationalReplySchema,
+      );
 }

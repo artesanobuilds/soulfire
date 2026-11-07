@@ -1,3 +1,11 @@
+## November 7 integration
+
+The conversation-first studio, all-twelve-step guidance and 22 reviewed public wisdom summaries are integrated without a wisdom feature flag. See `docs/wisdom-vault/RUNTIME-REVIEW.md`. Only the approved public projection is tracked; private authoring corpus and source files remain local/ignored. No paid live-model evaluation or deployment is implied. Historical branch/validation sections below describe earlier checkpoints.
+
+# Conversation-first candidate — November 7, 2026
+
+Local branch `feature/conversation-first-studio-20261107` adds genuine streamed multi-turn chat, three-pane conversation/practice layout, optional exercise/Current/meditation offers and complete curated twelve-step wisdom. See [implementation](docs/implementation/conversation-studio-20261107.md) and [source coverage](docs/implementation/conversation-wisdom-20261107.md). New prompt revision has deterministic/mocked coverage only; older paid evaluations do not validate it. Personal Wisdom Vault import remains a subsequent phase. No push, merge or deployment is part of this task.
+
 # Unified test build — November 5, 2026
 
 This local branch combines the voice experiment, candidate situated guidance and grounded practice studio. Read [scope and manual testing](docs/implementation/unified-practice-studio-20261105.md). This is not published main and does not establish voice/text parity. Preserve original experiments and unrelated work.

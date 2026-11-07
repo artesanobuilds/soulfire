@@ -1,5 +1,4 @@
 import { test, expect, type Page } from "@playwright/test";
-import { samples } from "../../src/lib/catalog";
 
 // Real Web Audio + MediaRecorder, driven by a local oscillator. Never use the
 // physical microphone, and intercept every transcription request before networking.
@@ -401,15 +400,15 @@ test("long dictated draft exposes explicit Send after processing, with one keybo
     await r.fulfill({
       json: {
         reply: {
-          kind: "practice",
+          kind: "conversation",
           message: "Synthetic response.",
-          exercise: samples.worry,
+          exercise: null,
         },
       },
     });
   });
   const send = page.getByRole("button", {
-    name: "Send & find a practice",
+    name: "Send",
     exact: true,
   });
   await start(page);
@@ -436,7 +435,9 @@ test("long dictated draft exposes explicit Send after processing, with one keybo
   await expect.poll(() => modelCalls).toBe(1);
   finishModel();
   await expect(
-    page.getByRole("button", { name: "Try this practice", exact: true }),
+    page
+      .getByRole("log", { name: "Our conversation" })
+      .getByText("Synthetic response."),
   ).toBeVisible();
   expect(modelCalls).toBe(1);
 });
@@ -447,7 +448,7 @@ test("typed draft keeps newlines, survives failed send and canceled permission",
   await setup(page);
   const input = page.getByLabel("What’s weighing on you today?");
   const send = page.getByRole("button", {
-    name: "Send & find a practice",
+    name: "Send",
     exact: true,
   });
   let calls = 0;
@@ -502,7 +503,7 @@ test("unconfigured and checking states explain disabled Send without discarding 
   const input = page.getByLabel("What’s weighing on you today?");
   await input.fill("Synthetic preserved words.");
   const send = page.getByRole("button", {
-    name: "Send & find a practice",
+    name: "Send",
     exact: true,
   });
   await expect(send).toBeDisabled();

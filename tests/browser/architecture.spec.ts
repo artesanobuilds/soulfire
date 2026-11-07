@@ -63,7 +63,21 @@ test("explicit memory persists, personalizes only a selected request, and delete
     .fill("A fictional first pottery class.");
   const sent: Record<string, unknown>[] = [];
   await page.route("**/api/companion", async (route) => {
-    sent.push(route.request().postDataJSON());
+    const body = route.request().postDataJSON();
+    sent.push(body);
+    if (body.intent === "conversation") {
+      await route.fulfill({
+        json: {
+          reply: {
+            kind: "conversation",
+            message: "What would help with the first class?",
+            exercise: null,
+          },
+        },
+      });
+      return;
+    }
+    expect(body.intent).toBe("practice");
     await route.fulfill({
       json: {
         reply: {
@@ -88,13 +102,29 @@ test("explicit memory persists, personalizes only a selected request, and delete
       },
     });
   });
+  await page.getByRole("button", { name: "Send", exact: true }).click();
+  await expect(page.getByRole("log")).toContainText(
+    "What would help with the first class?",
+  );
+  await expect(
+    page.getByLabel("Include my saved memory with this request"),
+  ).not.toBeChecked();
   await page
-    .getByRole("button", { name: "Send & find a practice", exact: true })
+    .getByText("Language & optional practices", { exact: true })
+    .click();
+  await page
+    .getByRole("button", {
+      name: "Shape a practice from our conversation",
+      exact: true,
+    })
     .click();
   await expect(
     page.getByRole("heading", { name: "Steady hands at the pottery table." }),
   ).toBeVisible();
+  expect(sent[0].intent).toBe("conversation");
+  expect(sent[1].intent).toBe("practice");
   expect(sent[0].useMemory).toBe(true);
+  expect(sent[1].useMemory).toBeUndefined(); // Consent applies only to the selected request.
   expect(JSON.stringify(sent)).not.toContain("Synthetic: learn pottery."); // Looked up by server, not trusted client memory.
   await page
     .getByRole("button", { name: "Try this practice", exact: true })
@@ -278,9 +308,7 @@ test("unavailable memory and malformed generation keep the local practice usable
       },
     }),
   );
-  await page
-    .getByRole("button", { name: "Send & find a practice", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Send", exact: true }).click();
   await expect(page.locator("main [role=alert]")).toContainText(
     "could not be read safely",
   );

@@ -156,7 +156,12 @@ test("dictation remains editable and targets a private field without model submi
   await page
     .getByRole("button", { name: "Show all prompts", exact: true })
     .click();
-  await page.locator(".companion-disclosure:visible > summary").click();
+  await expect(
+    page.getByLabel("Talk this through", { exact: true }),
+  ).toHaveCount(1);
+  await expect(
+    page.getByLabel("Talk this through", { exact: true }),
+  ).toBeVisible();
   await page.getByLabel("Dictation destination").selectOption("feeling");
   await page.getByRole("button", { name: "Dictate", exact: true }).click();
   await expect(
@@ -209,7 +214,12 @@ test("live protocol merges transcripts once, interrupts, mutes and cleans up for
   await page
     .getByRole("button", { name: "Show all prompts", exact: true })
     .click();
-  await page.locator(".companion-disclosure:visible > summary").click();
+  await expect(
+    page.getByLabel("Talk this through", { exact: true }),
+  ).toHaveCount(1);
+  await expect(
+    page.getByLabel("Talk this through", { exact: true }),
+  ).toBeVisible();
   await page
     .getByLabel("Name what is here", { exact: true })
     .fill("NEVER-SEND-PRIVATE");
@@ -244,9 +254,11 @@ test("live protocol merges transcripts once, interrupts, mutes and cleans up for
       transcript: "What is yours to prepare?",
     });
   });
-  await page.getByText("Our conversation · 2 messages").click();
   await expect(
-    page.locator(".transcript p").filter({ hasText: "A spoken thought." }),
+    page.getByRole("log", { name: "Our conversation" }),
+  ).toBeVisible();
+  await expect(
+    page.locator(".chat-timeline p").filter({ hasText: "A spoken thought." }),
   ).toHaveCount(1);
   await page.getByRole("button", { name: "Interrupt", exact: true }).click();
   await page.getByRole("button", { name: "Mute mic", exact: true }).click();
@@ -270,7 +282,12 @@ test("live protocol merges transcripts once, interrupts, mutes and cleans up for
   await expect(
     page.getByLabel("Name what is here", { exact: true }),
   ).toHaveValue("NEVER-SEND-PRIVATE");
-  await page.locator(".companion-disclosure:visible > summary").click();
+  await expect(
+    page.getByLabel("Talk this through", { exact: true }),
+  ).toHaveCount(1);
+  await expect(
+    page.getByLabel("Talk this through", { exact: true }),
+  ).toBeVisible();
   await expect(page.getByLabel("Talk this through")).toHaveValue(
     "UNSENT-CONVERSATION",
   );

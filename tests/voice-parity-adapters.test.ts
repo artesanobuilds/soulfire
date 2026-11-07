@@ -1,5 +1,9 @@
 import { describe, it, expect, vi } from 'vitest';
 import { EventEmitter } from 'node:events';
+import { mkdtempSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { Ledger } from '../experiments/voice-parity/pilot';
 import { instructions, sharedPrinciples, voiceDeliveryInstructions } from '../src/lib/agent';
 import { outputJsonSchemaForIntent } from '../src/lib/schema';
 import { matchedRequest, productionRequest, nativeSession, verifyNative, textAdapter, nativeAdapter,
@@ -88,10 +92,25 @@ describe('offline voice parity adapters',()=>{
   expect(pcmFromWav(wavFromPcm(pcm))).toEqual(pcm);
   for(const wav of [Buffer.alloc(0),wavFromPcm(Buffer.alloc(4800)),wavFromPcm(Buffer.alloc(21*48000)),wavFromPcm(pcm).subarray(0,45)])expect(()=>pcmFromWav(wav)).toThrow();
  });
- it('bounds each planned call below its reserved allocation',()=>{
-  expect(reservation('production-text',capture,'test')).toBeLessThan(.15);
-  expect(reservation('matched-text',capture,'test')).toBeLessThan(.15);
-  expect(reservation('native-audio',capture,'test',20)).toBeLessThan(.25);
+ it('keeps expanded wisdom ineligible for the unchanged historical pilot allocation',()=>{
+  // The all-step corpus intentionally changes prompt size. Do not raise the old
+  // plan's $0.10 text allocation or silently reuse its prior authorization.
+  const root=mkdtempSync(join(tmpdir(),'voice-wisdom-budget-'));
+  const run={id:'expanded-wisdom-production-text',arm:'production-text',allocation_usd:.10};
+  const plan={runs:[run]};
+  try {
+   writeFileSync(join(root,'plan.json'),JSON.stringify(plan));
+   const ledger=new Ledger(root,plan);
+   try {
+    const bound=reservation('production-text',capture,'test');
+    expect(bound).toBeGreaterThan(run.allocation_usd);
+    expect(()=>ledger.reserve(run,bound)).toThrow('Budget, attempt or duplicate guard');
+    const saved=JSON.parse(readFileSync(join(root,'ledger.json'),'utf8'));
+    expect(saved.attempts).toHaveLength(0);expect(saved.reserved_usd).toBe(0);
+   } finally {ledger.close();}
+  } finally {rmSync(root,{recursive:true,force:true});}
+  expect(reservation('matched-text',capture,'test')).toBeGreaterThan(0);
+  expect(reservation('native-audio',capture,'test',20)).toBeGreaterThan(0);
   expect(()=>reservation('native-audio',capture,'test',21)).toThrow();
  });
 });
