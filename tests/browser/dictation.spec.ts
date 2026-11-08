@@ -420,7 +420,7 @@ test("long dictated draft exposes explicit Send after processing, with one keybo
   await expect(send).toBeDisabled();
   await released(page);
   finishTranscription();
-  const input = page.getByLabel("What’s weighing on you today?");
+  const input = page.locator("#opening");
   await expect(input).toHaveValue("Existing draft.\n" + words);
   await expect(page.locator(".draft-review")).toContainText("Draft ready");
   await expect(send).toBeEnabled();
@@ -446,7 +446,7 @@ test("typed draft keeps newlines, survives failed send and canceled permission",
   page,
 }) => {
   await setup(page);
-  const input = page.getByLabel("What’s weighing on you today?");
+  const input = page.locator("#opening");
   const send = page.getByRole("button", {
     name: "Send",
     exact: true,
@@ -461,7 +461,7 @@ test("typed draft keeps newlines, survives failed send and canceled permission",
   });
   await input.fill("Synthetic editable draft");
   await input.press("End");
-  await input.press("Enter");
+  await input.press("Shift+Enter");
   await expect(input).toHaveValue("Synthetic editable draft\n");
   expect(calls).toBe(0);
   await page.getByRole("button", { name: "Dictate", exact: true }).click();
@@ -500,7 +500,7 @@ test("unconfigured and checking states explain disabled Send without discarding 
   await page
     .getByRole("button", { name: "Begin journey", exact: true })
     .click();
-  const input = page.getByLabel("What’s weighing on you today?");
+  const input = page.locator("#opening");
   await input.fill("Synthetic preserved words.");
   const send = page.getByRole("button", {
     name: "Send",

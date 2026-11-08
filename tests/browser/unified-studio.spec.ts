@@ -132,9 +132,9 @@ test("generated practice uses current submitted premise and correction requires 
   await page
     .getByRole("button", { name: "Review this in conversation" })
     .click();
-  await expect(page.getByLabel("What’s weighing on you today?")).toHaveValue(
-    "Corrected private premise",
-  );
+  await expect(
+    page.getByLabel("Talk this through", { exact: true }),
+  ).toHaveValue("Corrected private premise");
   expect(calls).toBe(2);
 });
 

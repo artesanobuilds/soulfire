@@ -51,7 +51,7 @@ test("conversation first, multiple turns, optional practice and private working 
         event("result", { reply }),
     });
   });
-  const prompt = page.getByLabel("What’s weighing on you today?");
+  const prompt = page.locator("#opening");
   await prompt.fill("I have a fictional presentation tomorrow.");
   await page.getByRole("button", { name: "Send", exact: true }).click();
   await expect(page.getByRole("log")).toContainText(

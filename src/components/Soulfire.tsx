@@ -1,5 +1,7 @@
 "use client";
 import { ChatTimeline } from "./ChatTimeline";
+import { ResponseDots } from "./ResponseDots";
+import { isConversationSubmitKey } from "../lib/chat-composer";
 import {
   readCompanionStream,
   CompanionStreamError,
@@ -641,7 +643,9 @@ export function Soulfire() {
   const composer = (hero = false, id = "message") => (
     <div className={`composer ${hero ? "hero-composer" : ""}`}>
       <label htmlFor={hero ? "opening" : id}>
-        {hero ? "What’s weighing on you today?" : "Talk this through"}
+        {hero && messages.length === 0
+          ? "What’s weighing on you today?"
+          : "Talk this through"}
       </label>
       <AutoTextarea
         id={hero ? "opening" : id}
@@ -651,21 +655,27 @@ export function Soulfire() {
           setDraft(e.target.value);
           setDictationReview("");
         }}
-        aria-describedby={`${hero ? "opening" : id}-send-help`}
+        aria-describedby={`${hero ? "opening" : id}-send-help ${hero ? "opening" : id}-keyboard-help`}
         onKeyDown={(e) => {
-          if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+          if (isConversationSubmitKey(e.nativeEvent)) {
             e.preventDefault();
             if (configured && !busy && !voiceActive && draft.trim())
               void send(draft, "conversation");
           }
         }}
         placeholder={
-          hero
+          hero && messages.length === 0
             ? "Begin wherever you are…"
             : "Ask a question, or tell me what feels different…"
         }
         rows={hero ? 3 : 2}
       />
+      <small
+        className="composer-keyboard-help"
+        id={`${hero ? "opening" : id}-keyboard-help`}
+      >
+        Enter to send · Shift+Enter for a new line
+      </small>
       {!hero && exercise && (
         <label className="dictation-target">
           Dictation goes to
@@ -705,17 +715,26 @@ export function Soulfire() {
         )}
         <div className="composer-send-row">
           <small id={`${hero ? "opening" : id}-send-help`}>
-            {busy
-              ? "Your message is being processed. You can stop it."
-              : voiceActive
-                ? "Finish or cancel voice input before sending."
-                : configured === null
-                  ? "Checking the AI connection before sending…"
-                  : !configured
-                    ? "AI is not connected. Your draft stays here; you can explore an example."
-                    : !draft.trim()
-                      ? "Type or dictate a draft to send."
-                      : "Review your words. Send shares this draft with OpenAI."}
+            {busy ? (
+              <span
+                className="composer-response-status"
+                role="status"
+                aria-atomic="true"
+              >
+                <ResponseDots />
+                {streamingReply ? "Responding…" : "Thinking…"} You can stop it.
+              </span>
+            ) : voiceActive ? (
+              "Finish or cancel voice input before sending."
+            ) : configured === null ? (
+              "Checking the AI connection before sending…"
+            ) : !configured ? (
+              "AI is not connected. Your draft stays here; you can explore an example."
+            ) : !draft.trim() ? (
+              "Type or dictate a draft to send."
+            ) : (
+              "Review your words. Send shares this draft with OpenAI."
+            )}
           </small>
           {busy ? (
             <button onClick={cancel}>
@@ -725,7 +744,7 @@ export function Soulfire() {
             <button
               className="primary"
               aria-describedby={`${hero ? "opening" : id}-send-help`}
-              aria-keyshortcuts="Control+Enter Meta+Enter"
+              aria-keyshortcuts="Enter Control+Enter Meta+Enter"
               disabled={!draft.trim() || voiceActive || !configured}
               onClick={() => send(draft, "conversation")}
             >

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { ResponseDots } from "./ResponseDots";
 import type { Message } from "../lib/schema";
 
 /** Provisional streamed text never enters the submitted conversation history. */
@@ -56,7 +57,10 @@ export function ChatTimeline({
           className="chat-message chat-assistant chat-pending"
           aria-label="Response in progress"
         >
-          <span className="chat-speaker">soulfire · responding</span>
+          <span className="chat-speaker">
+            soulfire · {pending ? "responding" : "thinking"}
+            <ResponseDots />
+          </span>
           <p>{pending || "Making room for what you shared…"}</p>
         </article>
       )}
