@@ -1,5 +1,7 @@
 # soulfire · Proof of Concept One
 
+**Single local build (November 8):** use `main` in `/Users/miguelalvarado/Coding/soulfire` and open **http://127.0.0.1:3100**. The latest chat feedback/keyboard fixes, conversation-first studio, reviewed public wisdom and optional voice comparison are together. Port 3102 is retired. [Consolidation and checks](docs/implementation/single-local-build-20261108.md).
+
 **Integrated conversation-first studio (November 7):** streaming multi-turn chat, an animated landscape/chat/optional-practice layout, and curated all-twelve-step knowledge. See [current scope](docs/implementation/conversation-studio-20261107.md). First-turn text now answers conversationally; exercises and media tools are explicit choices. Live quality for this new prompt remains unverified. The [reviewed public wisdom subset](docs/wisdom-vault/RUNTIME-REVIEW.md) is integrated without a feature flag; the full private Vault stays local.
 
 A local, responsive practice prototype based on the repository vision and selected sage-and-gold design. The complete interaction loop and real OpenAI integrations are implemented. **Text and native voice were evaluated with fictional scenarios on October 30, 2026. Text defaults to GPT-6.1 Sol following matched model checks; voice uses separate Realtime delivery instructions. Factual voice drafting errors remain unresolved. Physical-microphone behavior is under limited manual evaluation; clinical benefit is unverified.** Labeled examples are available without a key. This is not a public pilot or clinical product.
@@ -24,9 +26,9 @@ npm ci
 npm run dev
 ```
 
-Open http://127.0.0.1:3100. Production: `npm run build`, then `npm start` (stop the dev server first). Do not run dev and build against the same `.next` directory simultaneously.
+Open http://127.0.0.1:3100. Production: `npm run build`, then `npm start` (stop the existing preview first). Both commands use port 3100; they do not create a second preview. `npm start` keeps the optional experimental voice comparison available. Set `SOULFIRE_EXPERIMENT_REASONED_VOICE=0` to explicitly disable it. Do not run dev and build against the same `.next` directory simultaneously.
 
-The authoritative project on this Mac is `/Users/miguelalvarado/Coding/soulfire`, including Git history, the existing GitHub remote and all latest uncommitted prototype edits:
+The authoritative project on this Mac is `/Users/miguelalvarado/Coding/soulfire`, including Git history, the existing GitHub remote and all integrated prototype changes:
 
 ```sh
 cd /Users/miguelalvarado/Coding/soulfire

@@ -1,3 +1,7 @@
+# Single local build — November 8, 2026
+
+The authoritative checkout is `/Users/miguelalvarado/Coding/soulfire` on local `main`. Use only **http://127.0.0.1:3100** for the normal preview. All recent integrated studio, reviewed public wisdom, optional voice comparison and chat composer work is included. The 3102 preview is retired; its worktree and private files remain recoverable. `npm start` and the old `scripts/start-unified-local.sh` entrypoint now target the same 3100 build. See [consolidation](docs/implementation/single-local-build-20261108.md) for launch control, validation and preservation details. No remote push or public deployment is included in this consolidation. Earlier branch/port statements below describe historical checkpoints.
+
 ## November 7 integration
 
 The conversation-first studio, all-twelve-step guidance and 22 reviewed public wisdom summaries are integrated without a wisdom feature flag. See `docs/wisdom-vault/RUNTIME-REVIEW.md`. Only the approved public projection is tracked; private authoring corpus and source files remain local/ignored. No paid live-model evaluation or deployment is implied. Historical branch/validation sections below describe earlier checkpoints.

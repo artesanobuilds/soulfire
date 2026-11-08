@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --hostname 127.0.0.1 --port 3100",
+    "dev": "node scripts/start-local.mjs --dev",
     "build": "next build",
-    "start": "next start --hostname 127.0.0.1 --port 3100",
+    "start": "node scripts/start-local.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run",

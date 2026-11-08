@@ -18,6 +18,8 @@
 
 Browser/model/media success paths are simulated. No paid model calls, physical microphone capture, provider-quality evaluation or public deployment is included. Local screenshots under `test-results` use fictional content only.
 
-## Local delivery
+## Original local delivery (superseded by consolidation)
 
 The fixes are kept on `fix/chat-composer-feedback-20261108`. The separate local 3102 preview is updated to the same revision; the older 3100 process and existing browser tabs are left untouched. No remote push, main-branch merge or public deployment is included.
+
+The later [single-build consolidation](single-local-build-20261108.md) merges this work into local `main` and replaces both preview instances with port 3100.

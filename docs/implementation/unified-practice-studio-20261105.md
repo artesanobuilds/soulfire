@@ -1,3 +1,5 @@
+> Historical checkpoint: the [November 8 consolidation](single-local-build-20261108.md) replaces this document’s branch/3102 launch instructions with local `main` on port 3100.
+
 # Unified practice studio test build · 5 November 2026
 
 Local-only branch `experiment/unified-practice-studio-20261105`, built from fetched main `d6ea83f` (including the manually verified voice pause/noise tuning). Integrated experiment heads: voice `8876571`, situated guidance `3cfee8f`. Original checkouts and their histories remain intact; no main merge, push or deployment.
